@@ -6,4 +6,5 @@
     <string name="usuario">Usuario</string>
     <string name="olvidaste_la_contrasenia">¿Olvidaste la contraseña?</string>
     <string name="registrate">Registrate</string>
+    <string name="recuperar_contrsase_a">Recuperar contrsaseña</string>
 </resources>
