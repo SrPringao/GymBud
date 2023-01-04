@@ -6,17 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login 1"
-        android:textSize="70px"
+
+    <EditText
+        android:id="@+id/etUsuario"
+        android:layout_width="324dp"
+        android:layout_height="58dp"
+        android:autofillHints="name"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:hint="Usuario"
+        android:singleLine="true"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.45" />
+
+    <EditText
+        android:id="@+id/etContraseña"
+        android:layout_width="324dp"
+        android:layout_height="58dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:hint="Contraseña"
+        android:singleLine="true"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.564" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="264dp"
+        android:layout_height="236dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/botonIngresar"
+        android:layout_width="111dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="40dp"
+        android:text="Ingresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etContraseña"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:layout_width="218dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="¿No tienes cuenta?"
+        android:textColor="@color/black"
+        android:textSize="30px"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="562dp">
+
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="218dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="@color/black"
+        android:textSize="30px"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="632dp">
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
