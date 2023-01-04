@@ -65,15 +65,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="218dp"
         android:layout_height="46dp"
         android:gravity="center"
         android:text="¿No tienes cuenta?"
         android:textColor="@color/black"
         android:textSize="30px"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="562dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807"
+        tools:ignore="MissingConstraints">
 
 
     </TextView>
@@ -86,9 +91,12 @@
         android:text="¿Olvidaste tu contraseña?"
         android:textColor="@color/black"
         android:textSize="30px"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="632dp">
-    </TextView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.927"
+        tools:ignore="MissingConstraints"></TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
