@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GymBud</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta?</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="usuario">Usuario</string>
+    <string name="olvidaste_la_contrasenia">¿Olvidaste la contraseña?</string>
+    <string name="registrate">Registrate</string>
 </resources>

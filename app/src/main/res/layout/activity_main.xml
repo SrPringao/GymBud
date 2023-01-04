@@ -14,7 +14,7 @@
         android:autofillHints="name"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:hint="Usuario"
+        android:hint="@string/usuario"
         android:singleLine="true"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
         android:layout_height="58dp"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
-        android:hint="Contraseña"
+        android:hint="@string/contrasenia"
         android:singleLine="true"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
         android:layout_width="111dp"
         android:layout_height="57dp"
         android:layout_marginTop="40dp"
-        android:text="Ingresar"
+        android:text="@string/ingresar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,9 +69,9 @@
         android:layout_width="218dp"
         android:layout_height="46dp"
         android:gravity="center"
-        android:text="¿No tienes cuenta?"
+        android:text="@string/no_tienes_cuenta"
         android:textColor="@color/black"
-        android:textSize="30px"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -84,19 +84,41 @@
     </TextView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView4"
         android:layout_width="218dp"
         android:layout_height="46dp"
         android:gravity="center"
-        android:text="¿Olvidaste tu contraseña?"
+        android:text="@string/olvidaste_la_contrasenia"
         android:textColor="@color/black"
-        android:textSize="30px"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.927"
-        tools:ignore="MissingConstraints"></TextView>
+        app:layout_constraintVertical_bias="0.91"
+        tools:ignore="MissingConstraints">
+
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="218dp"
+        android:layout_height="46dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:focusable="true"
+        android:text="@string/registrate"
+
+        android:textColor="#2200CC"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.843"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
