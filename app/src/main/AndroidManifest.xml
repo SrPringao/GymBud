@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gymbud">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,6 +20,10 @@
             android:name=".Registro"
             android:exported="false" />
         <activity
+            android:name=".infopersonal"
+            android:exported="false" />
+        <activity
+
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
