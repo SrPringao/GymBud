@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gymbud">
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymBud"
         tools:targetApi="31">
+        <activity
+            android:name=".infopersonal"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
