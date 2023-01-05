@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.07"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/GymBudPreLogoW" />
 
     <Button
         android:id="@+id/botonIngresar"
