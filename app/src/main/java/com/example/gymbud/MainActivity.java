@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.TextView;
-
+import android.net.Uri;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,12 +32,28 @@ TextView TVRegistro, TVRecuperar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ETusr =findViewById(R.id.etUsuario);
+        ETusr = findViewById(R.id.etUsuario);
         ETcontra = findViewById(R.id.etContraseña);
         BIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
 
+        TVRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Registro = new Intent(MainActivity.this, Registro.class);
+                startActivity(Registro);
+                finish();
+            }
+        });
+
+        TVRecuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentNavegador = new Intent(Intent.ACTION_VIEW, Uri.parse("https://francoaldrete.com"));
+                startActivity(intentNavegador);
+            }
+        });
     }
 
     public void LinkRegistrarse(View view) {
