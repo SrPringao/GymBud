@@ -57,7 +57,7 @@ TextView TVRegistro, TVRecuperar;
     }
 
     public void LinkRegistrarse(View view) {
-        String url = "http://localhost/Bd/bd.php?usr=";
+        String url = "http://10.200.23.196/Bd/bd.php?usr=";
         url = url + ETusr.getText().toString();
         url = url + "&pass=";
         url = url + ETcontra.getText().toString();
