@@ -57,6 +57,9 @@ SharedPreferences archivo;
                 startActivity(intentNavegador);
             }
         });
+
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+
     }
 
     public void LinkRegistrarse(View view) {
@@ -95,6 +98,9 @@ SharedPreferences archivo;
     }
 
     public void clickInicio(View view) {
+
+        Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
+
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
         url = url + ETusr.getText().toString();
         url = url + "&pass=";
