@@ -99,24 +99,31 @@ SharedPreferences archivo;
 
     public void clickInicio(View view) {
 
-        Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
 
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
         url = url + ETusr.getText().toString();
         url = url + "&pass=";
         url = url + ETcontra.getText().toString();
 
+        //este toast es pa verificar que el url se cree bien
+
+        //Toast.makeText(this, url,Toast.LENGTH_SHORT).show();
+
         JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getInt("usr") != -1) {
+                    //el pedo esta aqui, no me acuerdo muy bien que tenia que tener este if pa que entrara a cierta informacion del
+                    //usuario
+                    if (response.getInt("User") != -1) {
                         Intent i = new Intent(MainActivity.this, MainActivity.class);
                         SharedPreferences.Editor editor = archivo.edit();
-                        editor.putInt("id_usuario", response.getInt("usr"));
+                        editor.putInt("UID_user", response.getInt("User"));
                         editor.commit();
                         startActivity(i);
                         finish();
+
                     } else {
                         ETusr.setText("");
                         ETcontra.setText("");
