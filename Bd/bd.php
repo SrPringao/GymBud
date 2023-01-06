@@ -1,42 +1,22 @@
 <?php
-
-class Basededatos
+if ($_SERVER['REQUEST_METHOD']=='GET') 
 {
-private $con;
-public function __construct()
-{
+    require_once("conexion.php");
+    $id = $_GET["usr"];
+    $pass =$_GET["pass"];
 
-$this ->con = new PDO('mysql:host=localhost;dbname=gymbud','root','');
-}
+    $query = "SELECT * FROM user WHERE  User= '$id' AND Password = '$pass'";
+    $result = $mysqli ->query($query);
 
-public function consulta($id)
-{
-$sql = $this-> con->prepare("SELECT * FROM PersonalInfo where PersonalInfo.UserId = ".$id);
-$sql -> execute();
-$res = $sql->fetchAll();
-$arreglo = array();
-    foreach ($res as $dato)
-    {
-    $obj = new Persona();
-    $obj -> nombre = $dato['nombre'];
-
-    array_push($arreglo, $obj);
-    } 
-
-return $arreglo;
-}
-
-public function ingreso($usr, $pass)
-{
-    $sql = $this->con->prepare("SELECT * FROM PersonalInfo WHERE BINARY PersonalInfo.UserId = '" .$usr. "' and BINARY Password = '" . $pass ."'");
-    $sql->execute();
-    $res = $sql->fetchAll();
-
-    if(count($res)>0){
-        foreach($res AS $dato)
-        return $dato['id'];
+    if ($mysqli -> affected_rows > 0) {
+        while ($row = $result ->fetch_assoc()) 
+        {
+            $array = $row;
+        }
+        echo json_encode($array);
+    }else {
+        echo "Not found any rows";
     }
-    return -1;
-}
-
+    $result ->close();
+    $mysqli ->close();
 }
