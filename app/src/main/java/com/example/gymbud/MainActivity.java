@@ -57,24 +57,26 @@ TextView TVRegistro, TVRecuperar;
     }
 
     public void LinkRegistrarse(View view) {
-        String url = "http://192.168.1.236/ingresar.php?usr=";
+        String url = "http://localhost/Bd/bd.php?usr=";
         url = url + ETusr.getText().toString();
         url = url + "&pass=";
         url = url + ETcontra.getText().toString();
-
         RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
-        JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                String UID,user,mail,password,presence;
                 try {
-                    if (response.getInt("usr") != -1) {
+                    UID = response.getString("UID");
+                    user = response.getString("User");
+                    mail = response.getString("Mail");
+                    password = response.getString("Password");
+                    presence = response.getString("Presence");
                         Intent i = new Intent(MainActivity.this, infopersonal.class);
                         startActivity(i);
                         finish();
-                    } else {
-                        ETusr.setText("");
-                        ETcontra.setText("");
-                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -87,6 +89,5 @@ TextView TVRegistro, TVRecuperar;
             }
         });
         lanzarPeticion.add(pet);
-        lanzarPeticion.start();
     }
 }
