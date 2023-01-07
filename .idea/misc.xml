@@ -3,12 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/SGame/GymBud/app/src/main/res/layout/activity_infopersonal.xml" value="0.1" />
         <entry key="..\:/Users/SGame/GymBud/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/SGame/GymBud/app/src/main/res/layout/activity_registro.xml" value="0.1" />
-        <entry key="..\:/Users/SGame/GymBud/app/src/main/res/xml/network_security_config.xml" value="0.1" />
-        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_infopersonal.xml" value="0.19322916666666667" />
-        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/SGame/GymBud/app/src/main/res/layout/activity_registro.xml" value="0.11676798378926039" />
+        <entry key="..\:/Users/SGame/GymBud/app/src/main/res/layout/infopersonal.xml" value="0.253125" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_infopersonal.xml" value="0.275" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_registro.xml" value="0.18802083333333333" />
       </map>
     </option>

@@ -14,3 +14,18 @@ if ($mysqli->connect_error) {
 } else {
     echo "Connected successfully";
 }
+
+// <?php
+//   $host_name = 'db5010326703.hosting-data.io';
+//   $database = 'dbs8751665';
+//   $user_name = 'dbu1646673';
+//   $password = 'francogol2004';
+
+//   $link = new mysqli($host_name, $user_name, $password, $database);
+
+//   if ($link->connect_error) {
+//     die('<p>Error al conectar con servidor MySQL: '. $link->connect_error .'</p>');
+//   } else {
+//     echo '<p>Se ha establecido la conexión al servidor MySQL con éxito.</p>';
+//   }
+// 

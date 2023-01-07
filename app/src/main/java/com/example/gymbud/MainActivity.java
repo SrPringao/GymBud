@@ -26,17 +26,20 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 EditText ETusr,ETcontra;
-Button BIngreso;
+Button btnIngreso;
 TextView TVRegistro, TVRecuperar;
+SharedPreferences archivo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ETusr = findViewById(R.id.etUsuario);
         ETcontra = findViewById(R.id.etContraseña);
-        BIngreso = findViewById(R.id.botonIngresar);
+        btnIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
+
 
         TVRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,10 +57,13 @@ TextView TVRegistro, TVRecuperar;
                 startActivity(intentNavegador);
             }
         });
+
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
+
     }
 
     public void LinkRegistrarse(View view) {
-        String url = "http://10.200.23.196/Bd/bd.php?usr=";
+        String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
         url = url + ETusr.getText().toString();
         url = url + "&pass=";
         url = url + ETcontra.getText().toString();
@@ -89,5 +95,52 @@ TextView TVRegistro, TVRecuperar;
             }
         });
         lanzarPeticion.add(pet);
+    }
+
+    public void clickInicio(View view) {
+
+        //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
+
+        String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
+        url = url + ETusr.getText().toString();
+        url = url + "&pass=";
+        url = url + ETcontra.getText().toString();
+
+        //este toast es pa verificar que el url se cree bien
+
+        //Toast.makeText(this, url,Toast.LENGTH_SHORT).show();
+
+        JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //el pedo esta aqui, no me acuerdo muy bien que tenia que tener este if pa que entrara a cierta informacion del
+                    //usuario
+                    if (response.getInt("User") != -1) {
+                        Intent i = new Intent(MainActivity.this, MainActivity.class);
+                        SharedPreferences.Editor editor = archivo.edit();
+                        editor.putInt("UID_user", response.getInt("User"));
+                        editor.commit();
+                        startActivity(i);
+                        finish();
+
+                    } else {
+                        ETusr.setText("");
+                        ETcontra.setText("");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("yo", error.getMessage());
+            }
+        });
+        RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
+        lanzarPeticion.add(pet);
+        lanzarPeticion.start();
     }
 }
