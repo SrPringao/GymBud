@@ -114,13 +114,9 @@ SharedPreferences archivo;
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    //el pedo esta aqui, no me acuerdo muy bien que tenia que tener este if pa que entrara a cierta informacion del
-                    //usuario
-                    if (response.getInt("User") != -1) {
-                        Intent i = new Intent(MainActivity.this, MainActivity.class);
-                        SharedPreferences.Editor editor = archivo.edit();
-                        editor.putInt("UID_user", response.getInt("User"));
-                        editor.commit();
+                    Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
+                    if (response.getInt("UID") != -1) {
+                        Intent i = new Intent(MainActivity.this, infopersonal.class);
                         startActivity(i);
                         finish();
 
@@ -131,7 +127,7 @@ SharedPreferences archivo;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
             }
         }, new Response.ErrorListener() {
             @Override
