@@ -7,115 +7,154 @@
     android:background="#252525"
     tools:context=".Registro">
 
-    <EditText
-        android:id="@+id/ETcorreo"
-        android:layout_width="324dp"
-        android:layout_height="58dp"
-        android:autofillHints="name"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-condensed"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background"
         android:gravity="center"
-        android:hint="Correo"
-        android:singleLine="true"
-        android:text=""
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.433" />
+        app:layout_constraintVertical_bias="0.39">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="324dp"
-        android:layout_height="58dp"
-        android:autofillHints="name"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:singleLine="true"
-        android:text="REGISTRO"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
 
-    <EditText
-        android:id="@+id/ETcontrasenaconf"
-        android:layout_width="324dp"
-        android:layout_height="58dp"
-        android:autofillHints="name"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:hint="Confirmar contraseña"
-        android:singleLine="true"
-        android:text=""
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="16dp"
+            android:text="Usuario: "
+            android:textColor="#ffffff"
+            android:textSize="23sp" />
 
-    <EditText
-        android:id="@+id/ETusuario"
-        android:layout_width="324dp"
-        android:layout_height="58dp"
-        android:autofillHints="name"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:hint="@string/usuario"
-        android:singleLine="true"
-        android:text=""
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        <EditText
+            android:id="@+id/ETusuario"
+            android:layout_width="343dp"
+            android:layout_height="43dp"
+            android:textAlignment="center"
+            android:textCursorDrawable="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
 
-    <EditText
-        android:id="@+id/ETcontrasena"
-        android:layout_width="324dp"
-        android:layout_height="58dp"
-        android:autofillHints="name"
-        android:backgroundTint="@color/white"
-        android:fontFamily="sans-serif-condensed"
-        android:gravity="center"
-        android:hint="Contraseña"
-        android:singleLine="true"
-        android:text=""
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595" />
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="Correo:"
+            android:textColor="#ffffff"
+            android:textSize="23sp" />
+
+        <EditText
+            android:id="@+id/ETcorreo"
+            android:layout_width="343dp"
+            android:layout_height="43dp"
+            android:textAlignment="center"
+            android:textCursorDrawable="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="Contraseña"
+            android:textColor="#ffffff"
+            android:textSize="23sp" />
+
+        <EditText
+            android:id="@+id/ETcontrasena"
+            android:layout_width="343dp"
+            android:layout_height="43dp"
+            android:textAlignment="center"
+            android:textCursorDrawable="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="Confirmar Contraseña"
+            android:textColor="#ffffff"
+            android:textSize="23sp" />
+
+        <EditText
+            android:id="@+id/ETcontrasenaconf"
+            android:layout_width="343dp"
+            android:layout_height="43dp"
+            android:textAlignment="center"
+            android:textCursorDrawable="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="116dp"
+        android:layout_height="131dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:srcCompat="@drawable/password" />
 
     <Button
         android:id="@+id/Bconfirmar"
-        android:layout_width="184dp"
-        android:layout_height="65dp"
-        android:text="Confirmar"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background"
         android:onClick="confirmar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Confirmar"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

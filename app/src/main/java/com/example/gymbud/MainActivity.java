@@ -41,6 +41,8 @@ SharedPreferences archivo;
         TVRecuperar = findViewById(R.id.TVRecuperar);
 
 
+
+
         TVRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,5 +105,12 @@ SharedPreferences archivo;
         RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
         lanzarPeticion.add(pet);
         lanzarPeticion.start();
+    }
+
+    public void LinkRegistrarse(View view) {
+        Intent Registro = new Intent(MainActivity.this, Registro.class);
+        startActivity(Registro);
+        finish();
+
     }
 }
