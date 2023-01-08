@@ -134,13 +134,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="116dp"
-        android:layout_height="131dp"
+        android:layout_width="238dp"
+        android:layout_height="218dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:srcCompat="@drawable/password" />
+        app:srcCompat="@drawable/gblogo" />
 
     <Button
         android:id="@+id/Bconfirmar"
