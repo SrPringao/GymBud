@@ -37,7 +37,7 @@ public class Registro extends AppCompatActivity {
     }
 
     public void confirmar (View view){
-        Toast.makeText(Registro.this,ETcontrasena.getText().toString() + "    " + ETcontrasenaconf.getText().toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Registro.this,ETcontrasena.getText().toString() + "    " + ETcontrasenaconf.getText().toString(),Toast.LENGTH_SHORT).show();
         if (ETcontrasena.getText().toString() != ETcontrasenaconf.getText().toString())
         {
             String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
