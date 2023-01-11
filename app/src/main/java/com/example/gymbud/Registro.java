@@ -107,10 +107,6 @@ public class Registro extends AppCompatActivity {
                 return;
             }
 
-
-
-
-
             progressDialog.show();
 
         String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
@@ -149,7 +145,5 @@ public class Registro extends AppCompatActivity {
         Intent i = new Intent(Registro.this, MainActivity.class);
         startActivity(i);
         finish();
-
-
     }
 }

@@ -147,7 +147,7 @@
         android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/background"
+        android:background="@drawable/button_background_pressed"
         android:onClick="confirmar"
         android:text="Confirmar"
         android:textColor="#ffffff"
