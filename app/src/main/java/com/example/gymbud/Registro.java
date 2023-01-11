@@ -2,14 +2,16 @@ package com.example.gymbud;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.util.Patterns;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,10 +39,41 @@ public class Registro extends AppCompatActivity {
     }
 
     public void confirmar (View view){
-        //Toast.makeText(Registro.this,ETcontrasena.getText().toString() + "    " + ETcontrasenaconf.getText().toString(),Toast.LENGTH_SHORT).show();
-        if (ETcontrasena.getText().toString() != ETcontrasenaconf.getText().toString())
-        {
-            String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
+
+
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("cargando pa");
+
+        final String usuario = ETusuario.getText().toString().trim();
+        final String correo = ETcorreo.getText().toString().trim();
+        final String con1 = ETcontrasena.getText().toString().trim();
+        final String con2 = ETcontrasenaconf.getText().toString().trim();
+
+        if(usuario.isEmpty()){
+            Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(correo.isEmpty()){
+            Toast.makeText(Registro.this, "Ingrese su correo electronico", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(con1.isEmpty()){
+            Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(con2.isEmpty()){
+            Toast.makeText(Registro.this, "Ingrese la confirmacion de su contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (!TextUtils.equals(con1,con2)){
+            Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            return;
+        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
+            Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressDialog.show();
+
+
+
+        String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
             url = url + ETusuario.getText().toString();
             url = url + "&mail=";
             url = url + ETcorreo.getText().toString();
@@ -54,12 +87,13 @@ public class Registro extends AppCompatActivity {
                             Intent i = new Intent(Registro.this, MainActivity.class);
                             startActivity(i);
                             finish();
-
                         }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
+
+
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -70,9 +104,12 @@ public class Registro extends AppCompatActivity {
             RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
             lanzarPeticion.add(pet);
             lanzarPeticion.start();
-        }
-        else{
-            Toast.makeText(Registro.this,"Las contraseñas no son iguales",Toast.LENGTH_SHORT).show();
-        }
+            progressDialog.dismiss();
+            Toast.makeText(Registro.this, "Te has registrado exitosamente", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(Registro.this, MainActivity.class);
+            startActivity(i);
+            finish();
+
+
     }
 }
