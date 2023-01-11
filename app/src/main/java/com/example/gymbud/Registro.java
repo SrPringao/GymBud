@@ -2,7 +2,6 @@ package com.example.gymbud;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,13 +23,10 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-
 public class Registro extends AppCompatActivity {
     EditText ETusuario, ETcontrasena, ETcontrasenaconf, ETcorreo;
     Button Bconfirmar;
+    boolean rancio ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,38 +41,7 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void confirmar(View view) {
-
-
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("cargando pa");
-
-        final String usuario = ETusuario.getText().toString().trim();
-        final String correo = ETcorreo.getText().toString().trim();
-        final String con1 = ETcontrasena.getText().toString().trim();
-        final String con2 = ETcontrasenaconf.getText().toString().trim();
-
-        if (usuario.isEmpty()) {
-            Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (correo.isEmpty()) {
-            Toast.makeText(Registro.this, "Ingrese su correo electronico", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (con1.isEmpty()) {
-            Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (con2.isEmpty()) {
-            Toast.makeText(Registro.this, "Ingrese la confirmacion de su contraseña", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (!TextUtils.equals(con1, con2)) {
-            Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-            Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        progressDialog.show();
+    public boolean verificar(String usuario){
 
         String urlv = "http://francoaldrete.com/GymBud/verificacion.php?usr=";
         urlv += usuario;
@@ -86,8 +51,10 @@ public class Registro extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.equalsIgnoreCase("El usuario ya existe")) {
                     Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                    rancio = false;
                 } else if (response.equalsIgnoreCase("El usuario no existe")){
                     Toast.makeText(Registro.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
+                    rancio = true;
                 }
             }
         }, new Response.ErrorListener() {
@@ -101,7 +68,50 @@ public class Registro extends AppCompatActivity {
         peti.add(request);
         peti.start();
 
+        return rancio;
+    }
 
+    public void confirmar(View view) {
+
+
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("cargando pa");
+
+            final String usuario = ETusuario.getText().toString().trim();
+            final String correo = ETcorreo.getText().toString().trim();
+            final String con1 = ETcontrasena.getText().toString().trim();
+            final String con2 = ETcontrasenaconf.getText().toString().trim();
+
+        //do {
+            if (usuario.isEmpty()) {
+                Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (correo.isEmpty()) {
+                Toast.makeText(Registro.this, "Ingrese su correo electronico", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (con1.isEmpty()) {
+                Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (con2.isEmpty()) {
+                Toast.makeText(Registro.this, "Ingrese la confirmacion de su contraseña", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!TextUtils.equals(con1, con2)) {
+                Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+                Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (!verificar(usuario)){
+                Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                rancio =  true;
+                return;
+            }
+
+
+
+
+
+            progressDialog.show();
 
         String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
         url = url + ETusuario.getText().toString();
