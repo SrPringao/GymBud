@@ -66,6 +66,18 @@ SharedPreferences archivo;
 
     public void clickInicio(View view) {
 
+        final String usuario = ETusr.getText().toString().trim();
+        final String correo = ETcontra.getText().toString().trim();
+
+        if (usuario.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Ingrese un nombre de usuario para continuar", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (correo.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Ingrese una contraseña para continuar", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
         //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
 
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
