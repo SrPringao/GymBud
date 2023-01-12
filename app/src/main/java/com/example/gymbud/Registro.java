@@ -26,7 +26,7 @@ import org.json.JSONObject;
 public class Registro extends AppCompatActivity {
     EditText ETusuario, ETcontrasena, ETcontrasenaconf, ETcorreo;
     Button Bconfirmar;
-    boolean rancio ;
+    boolean rancio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +51,10 @@ public class Registro extends AppCompatActivity {
             public void onResponse(String response) {
                 if (response.equalsIgnoreCase("El usuario ya existe")) {
                     Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
-                    rancio = false;
+                    rancio = true;
                 } else if (response.equalsIgnoreCase("El usuario no existe")){
                     Toast.makeText(Registro.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
-                    rancio = true;
+                    rancio = false;
                 }
             }
         }, new Response.ErrorListener() {
@@ -68,6 +68,8 @@ public class Registro extends AppCompatActivity {
         peti.add(request);
         peti.start();
 
+
+
         return rancio;
     }
 
@@ -77,12 +79,12 @@ public class Registro extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("cargando pa");
 
+
             final String usuario = ETusuario.getText().toString().trim();
             final String correo = ETcorreo.getText().toString().trim();
             final String con1 = ETcontrasena.getText().toString().trim();
             final String con2 = ETcontrasenaconf.getText().toString().trim();
 
-        //do {
             if (usuario.isEmpty()) {
                 Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
                 return;
@@ -101,11 +103,13 @@ public class Registro extends AppCompatActivity {
             } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
                 Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
                 return;
-            }else if (!verificar(usuario)){
-                Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
-                rancio =  true;
+            }else if (!verificar(usuario) && !rancio){
+                Toast.makeText(Registro.this, String.valueOf(rancio) +"   "+ String.valueOf(verificar(usuario)), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registro.this, "Usuario existente", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+
 
             progressDialog.show();
 
