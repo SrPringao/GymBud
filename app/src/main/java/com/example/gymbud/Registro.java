@@ -1,12 +1,17 @@
 package com.example.gymbud;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
@@ -22,9 +27,10 @@ import org.json.JSONObject;
 
 public class Registro extends AppCompatActivity {
     EditText ETusuario, ETcontrasena, ETcontrasenaconf, ETcorreo;
-    Button Bconfirmar;
+    Button Bconfirmar,bfeka;
     boolean rancio;
     boolean usuarioValido = true;
+
 
 
     @Override
@@ -37,6 +43,9 @@ public class Registro extends AppCompatActivity {
         ETcorreo = findViewById(R.id.ETcorreo);
         Bconfirmar = findViewById(R.id.Bconfirmar);
 
+
+
+
         ETusuario.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -45,13 +54,22 @@ public class Registro extends AppCompatActivity {
                     String usuario = ETusuario.getText().toString();
                     // Verifica si el usuario existe en la base de datos
                     usuarioValido = verificar(usuario);
-                    // Si el usuario no existe, habilita el botón de confirmar
-//                    if(!usuarioValido){
-//                        Bconfirmar.setEnabled(false);
-//                    }else{
-//                        Bconfirmar.setEnabled(true);
-//                    }
                 }
+            }
+        });
+
+        ETusuario.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // Código a ejecutar cuando el usuario quita el teclado
+                    // por ejemplo
+                    ETusuario.clearFocus();
+                    ETcorreo.requestFocus();
+
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -63,15 +81,27 @@ public class Registro extends AppCompatActivity {
         String urlv = "http://francoaldrete.com/GymBud/verificacion.php?usr=";
         urlv += usuario;
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(Registro.this);
+        builder.setTitle("Advertencia");
+        builder.setMessage("El usuario que ingresaste ya existe en el sistema, intenta cambiar el nombre de usuario a uno no existente");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ETcorreo.requestFocus();
+                dialog.dismiss();
+            }
+        });
+
         StringRequest request = new StringRequest(Request.Method.GET, urlv, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.equalsIgnoreCase("El usuario ya existe")) {
-                    Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
                     Bconfirmar.setEnabled(false);
+                    builder.create().show();
                     rancio = true;
                 } else if (response.equalsIgnoreCase("El usuario no existe")){
-                    Toast.makeText(Registro.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Registro.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
                     Bconfirmar.setEnabled(true);
 
                     rancio = false;
@@ -87,7 +117,7 @@ public class Registro extends AppCompatActivity {
         RequestQueue peti= Volley.newRequestQueue(Registro.this);
         peti.add(request);
         peti.start();
-        
+
         return rancio;
     }
 
@@ -95,12 +125,16 @@ public class Registro extends AppCompatActivity {
 
     public void confirmar(View view) {
 
+        ETusuario.clearFocus();
+        ETcorreo.requestFocus();
         rancio = false;
 
             final String usuario = ETusuario.getText().toString().trim();
             final String correo = ETcorreo.getText().toString().trim();
             final String con1 = ETcontrasena.getText().toString().trim();
             final String con2 = ETcontrasenaconf.getText().toString().trim();
+
+
 
             if (usuario.isEmpty()) {
                 Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
@@ -128,7 +162,7 @@ public class Registro extends AppCompatActivity {
 //            }
 
 
-
+        verificar(ETusuario.getText().toString());
 
 
 
@@ -169,4 +203,6 @@ public class Registro extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+
 }
