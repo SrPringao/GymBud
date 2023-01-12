@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +37,10 @@ public class Registro extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         ETusuario = findViewById(R.id.ETusuario);
@@ -76,6 +82,19 @@ public class Registro extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        // Código a ejecutar cuando el usuario presiona el botón de regresar
+        // Por ejemplo:
+        //Toast.makeText(this, "Regresando", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(Registro.this, MainActivity.class);
+        startActivity(i);
+
+    }
+
+
+
+
     public boolean verificar(String usuario){
 
         String urlv = "http://francoaldrete.com/GymBud/verificacion.php?usr=";
@@ -91,6 +110,8 @@ public class Registro extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+
 
         StringRequest request = new StringRequest(Request.Method.GET, urlv, new Response.Listener<String>() {
             @Override
