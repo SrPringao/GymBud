@@ -21,13 +21,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Registro extends AppCompatActivity {
-    EditText ETusuario, ETcontrasena, ETcontrasenaconf, ETcorreo;
     Button Bconfirmar;
+    TextInputEditText  ETcontrasenaconf, ETcontrasena , ETusuario, ETcorreo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
