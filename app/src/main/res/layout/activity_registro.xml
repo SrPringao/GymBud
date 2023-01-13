@@ -86,48 +86,78 @@
             android:textColor="#ffffff"
             android:textSize="23sp" />
 
-        <EditText
-            android:id="@+id/ETcontrasena"
-            android:layout_width="343dp"
-            android:layout_height="43dp"
-            android:textAlignment="center"
-            android:textCursorDrawable="@color/black"
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleEnabled="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:layout_marginBottom="32dp"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            android:textSize="18sp"
+
+            >
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ETcontrasena"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_edittext"
+                android:textColor="#ffffff"
+                android:textCursorDrawable="@color/black"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+
+                >
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:text="Confirmar Contraseña"
             android:textColor="#ffffff"
             android:textSize="23sp" />
 
-        <EditText
-            android:id="@+id/ETcontrasenaconf"
-            android:layout_width="343dp"
-            android:layout_height="43dp"
-            android:textAlignment="center"
-            android:textCursorDrawable="@color/black"
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleEnabled="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:layout_marginBottom="32dp"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+
+            android:textSize="18sp"
+
+            >
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ETcontrasenaconf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_edittext"
+                android:textColor="#ffffff"
+                android:textCursorDrawable="@color/black"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+
+                >
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

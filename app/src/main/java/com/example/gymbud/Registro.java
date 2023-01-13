@@ -27,8 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Registro extends AppCompatActivity {
+    EditText ETusuario, ETcorreo;
     Button Bconfirmar;
-    TextInputEditText  ETcontrasenaconf, ETcontrasena , ETusuario, ETcorreo;
+    TextInputEditText  ETcontrasenaconf, ETcontrasena ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,32 +44,6 @@ public class Registro extends AppCompatActivity {
         ETcontrasenaconf = findViewById(R.id.ETcontrasenaconf);
         ETcorreo = findViewById(R.id.ETcorreo);
         Bconfirmar = findViewById(R.id.Bconfirmar);
-
-
-
-
-        ETusuario.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    // Obtén el nombre de usuario ingresado
-                    String usuario = ETusuario.getText().toString();
-                    // Verifica si el usuario existe en la base de datos
-                }
-            }
-        });
-
-        ETusuario.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    ETusuario.clearFocus();
-                    ETcorreo.requestFocus();
-                    return true;
-                }
-                return false;
-            }
-        });
 
     }
 
