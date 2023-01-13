@@ -55,8 +55,9 @@ SharedPreferences archivo;
         TVRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentNavegador = new Intent(Intent.ACTION_VIEW, Uri.parse("https://francoaldrete.com"));
-                startActivity(intentNavegador);
+                Intent olvidos = new Intent(MainActivity.this, olvidos.class);
+                startActivity(olvidos);
+                finish();
             }
         });
 

@@ -90,12 +90,11 @@
             android:layout_height="40dp"
             android:layout_marginTop="44dp"
             android:layout_marginBottom="64dp"
-            android:textColor="@color/black"
             android:background="@drawable/background_forget_password"
-            android:onClick="LinkRegistrarse"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="Olvidaste la contraseña?"
+            android:textColor="@color/black"
             android:textSize="14sp" />
 
     </LinearLayout>
