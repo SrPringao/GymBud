@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -96,7 +97,7 @@ SharedPreferences archivo;
                 try {
                     Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
                     if (response.getInt("UID") != -1) {
-                        Intent i = new Intent(MainActivity.this, infopersonal.class);
+                        Intent i = new Intent(MainActivity.this, FragmentContainer.class);
                         startActivity(i);
                         finish();
 

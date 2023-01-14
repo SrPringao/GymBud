@@ -26,7 +26,6 @@
 
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -55,7 +54,6 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -101,7 +99,6 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="254dp"
         android:layout_height="210dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
