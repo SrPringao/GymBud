@@ -113,9 +113,9 @@ public class Registro extends AppCompatActivity {
                         //mostrar un error ya que el string no tiene al menos un número
                         Toast.makeText(Registro.this, "La contraseña debe de contar con al menos un numero", Toast.LENGTH_SHORT).show();
                         return;
-                    } else if(con1.length() > 12) {
+                    } else if(con1.length() > 18) {
                         //mostrar un error ya que el string tiene más de 12 caracteres
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con al menos 12 caracteres", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registro.this, "La contraseña debe de contar con menos de 18 caracteres", Toast.LENGTH_SHORT).show();
                         return;
                     }else if (!TextUtils.equals(con1, con2)) {
                         Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
