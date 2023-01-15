@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -56,6 +57,7 @@ public class Registro extends AppCompatActivity {
 
     }
 
+
     public void confirmar(View view) {
 
 
@@ -64,115 +66,135 @@ public class Registro extends AppCompatActivity {
         final String con1 = ETcontrasena.getText().toString().trim();
         final String con2 = ETcontrasenaconf.getText().toString().trim();
 
-
-        String urlv = "http://francoaldrete.com/GymBud/verificacion.php?usr=";
-        urlv += usuario;
+        final String urlv = "http://francoaldrete.com/GymBud/verificacion.php?usr=" + usuario;
 
 
-
-        StringRequest request = new StringRequest(Request.Method.GET, urlv, new Response.Listener<String>() {
+        String url = "http://francoaldrete.com/GymBud/correo.php?mail=";
+        url += correo;
+        JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
+
+                Toast.makeText(Registro.this, "El correo ya esta registrado", Toast.LENGTH_SHORT).show();
 
 
 
-                if (response.equalsIgnoreCase("El usuario ya existe")) {
-                    Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
-                } else if (response.equalsIgnoreCase("El usuario no existe")){
-
-
-                    if (usuario.isEmpty()) {
-                        Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (correo.isEmpty()) {
-                        Toast.makeText(Registro.this, "Ingrese su correo electronico", Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (con1.isEmpty()) {
-                        Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if (con2.isEmpty()) {
-                        Toast.makeText(Registro.this, "Ingrese la confirmacion de su contraseña", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                     else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                        Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else if(con1.length() < 8) {
-                        //mostrar un error ya que el string tiene menos de 8 caracteres
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con al menos 8 caracteres", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else if(!con1.matches(".*[A-Z].*") || !con1.matches(".*[a-z].*")) {
-                        //mostrar un error ya que el string no tiene al menos una letra mayúscula y una letra minúscula
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con al menos una mayuscula y una minuscula", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else if(!con1.matches(".*[^A-Za-z0-9].*")) {
-                        //mostrar un error ya que el string no tiene al menos un caracter especial
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con al menos un caracter especial", Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if(!con1.matches(".*\\d.*")) {
-                        //mostrar un error ya que el string no tiene al menos un número
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con al menos un numero", Toast.LENGTH_SHORT).show();
-                        return;
-                    } else if(con1.length() > 18) {
-                        //mostrar un error ya que el string tiene más de 12 caracteres
-                        Toast.makeText(Registro.this, "La contraseña debe de contar con menos de 18 caracteres", Toast.LENGTH_SHORT).show();
-                        return;
-                    }else if (!TextUtils.equals(con1, con2)) {
-                        Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                        return;
-                     }
-
-
-                    String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
-                    url = url + ETusuario.getText().toString();
-                    url = url + "&mail=";
-                    url = url + ETcorreo.getText().toString();
-                    url = url + "&pass=";
-                    url = url + ETcontrasena.getText().toString();
-                    JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                if (response.getInt("") != -1) {
-                                    Intent i = new Intent(Registro.this, MainActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("yo", error.getMessage());
-                        }
-                    });
-                    RequestQueue lanzarPeticion = Volley.newRequestQueue(getApplicationContext());
-                    lanzarPeticion.add(pet);
-                    lanzarPeticion.start();
-
-                    Toast.makeText(Registro.this, "Te has registrado exitosamente", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(Registro.this, MainActivity.class);
-                    startActivity(i);
-                    finish();
-
-
-                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                StringRequest request = new StringRequest(Request.Method.GET, urlv, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
+
+
+                        if (response.equalsIgnoreCase("El usuario ya existe")) {
+                            Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                        } else if (response.equalsIgnoreCase("El usuario no existe")){
+
+
+                            if (usuario.isEmpty()) {
+                                Toast.makeText(Registro.this, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else if (correo.isEmpty()) {
+                                Toast.makeText(Registro.this, "Ingrese su correo electronico", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else if (con1.isEmpty()) {
+                                Toast.makeText(Registro.this, "Ingrese su contraseña", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else if (con2.isEmpty()) {
+                                Toast.makeText(Registro.this, "Ingrese la confirmacion de su contraseña", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+                                Toast.makeText(Registro.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else if(con1.length() < 8) {
+                                //mostrar un error ya que el string tiene menos de 8 caracteres
+                                Toast.makeText(Registro.this, "La contraseña debe de contar con al menos 8 caracteres", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else if(!con1.matches(".*[A-Z].*") || !con1.matches(".*[a-z].*")) {
+                                //mostrar un error ya que el string no tiene al menos una letra mayúscula y una letra minúscula
+                                Toast.makeText(Registro.this, "La contraseña debe de contar con al menos una mayuscula y una minuscula", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else if(!con1.matches(".*[^A-Za-z0-9].*")) {
+                                //mostrar un error ya que el string no tiene al menos un caracter especial
+                                Toast.makeText(Registro.this, "La contraseña debe de contar con al menos un caracter especial", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else if(!con1.matches(".*\\d.*")) {
+                                //mostrar un error ya que el string no tiene al menos un número
+                                Toast.makeText(Registro.this, "La contraseña debe de contar con al menos un numero", Toast.LENGTH_SHORT).show();
+                                return;
+                            } else if(con1.length() > 18) {
+                                //mostrar un error ya que el string tiene más de 12 caracteres
+                                Toast.makeText(Registro.this, "La contraseña debe de contar con menos de 18 caracteres", Toast.LENGTH_SHORT).show();
+                                return;
+                            }else if (!TextUtils.equals(con1, con2)) {
+                                Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+
+                            String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
+                            url = url + ETusuario.getText().toString();
+                            url = url + "&mail=";
+                            url = url + ETcorreo.getText().toString();
+                            url = url + "&pass=";
+                            url = url + ETcontrasena.getText().toString();
+                            JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        if (response.getInt("") != -1) {
+                                            Intent i = new Intent(Registro.this, MainActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Log.d("yo", error.getMessage());
+                                }
+                            });
+                            RequestQueue lanzarPeticion = Volley.newRequestQueue(getApplicationContext());
+                            lanzarPeticion.add(pet);
+                            lanzarPeticion.start();
+
+                            Toast.makeText(Registro.this, "Te has registrado exitosamente", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(Registro.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
+
+
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+                RequestQueue peti= Volley.newRequestQueue(Registro.this);
+                peti.add(request);
+                peti.start();
             }
         });
+        RequestQueue lanzarPeticion = Volley.newRequestQueue(this);
+        lanzarPeticion.add(pet);
+        lanzarPeticion.start();
 
-        RequestQueue peti= Volley.newRequestQueue(Registro.this);
-        peti.add(request);
-        peti.start();
+
+
+
 
     }
 

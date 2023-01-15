@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ComponentActivity;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Context;
@@ -30,7 +31,6 @@ EditText ETusr,ETcontra;
 Button btnIngreso;
 TextView TVRegistro, TVRecuperar;
 SharedPreferences archivo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
