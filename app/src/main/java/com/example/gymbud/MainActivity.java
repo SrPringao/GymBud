@@ -83,9 +83,9 @@ SharedPreferences archivo;
         //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
 
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
-        url = url + ETusr.getText().toString();
+        url = url + Uri.encode(ETusr.getText().toString());
         url = url + "&pass=";
-        url = url + ETcontra.getText().toString();
+        url = url + Uri.encode(ETcontra.getText().toString());
 
         //este toast es pa verificar que el url se cree bien
 
