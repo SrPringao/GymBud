@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ComponentActivity;
 import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Context;
@@ -30,7 +31,6 @@ EditText ETusr,ETcontra;
 Button btnIngreso;
 TextView TVRegistro, TVRecuperar;
 SharedPreferences archivo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +83,9 @@ SharedPreferences archivo;
         //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
 
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
-        url = url + ETusr.getText().toString();
+        url = url + Uri.encode(ETusr.getText().toString());
         url = url + "&pass=";
-        url = url + ETcontra.getText().toString();
+        url = url + Uri.encode(ETcontra.getText().toString());
 
         //este toast es pa verificar que el url se cree bien
 
