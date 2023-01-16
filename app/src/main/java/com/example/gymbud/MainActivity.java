@@ -1,12 +1,10 @@
 package com.example.gymbud;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ComponentActivity;
-import androidx.fragment.app.FragmentContainerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.gymbud.db.DbHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +27,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 EditText ETusr,ETcontra;
-Button btnIngreso;
+Button btnIngreso, MACABRO;
 TextView TVRegistro, TVRecuperar;
 SharedPreferences archivo;
     @Override
@@ -40,6 +39,22 @@ SharedPreferences archivo;
         btnIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
+      //  MACABRO = findViewById(R.id.botonMACABRO);
+
+       /* MACABRO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbHelper dbHelper = new DbHelper(MainActivity.this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                if(db!=null) {
+                    Toast.makeText(MainActivity.this,"SE CREO LA BD",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this,"NO SE CREO UE",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        */
+
 
 
 
