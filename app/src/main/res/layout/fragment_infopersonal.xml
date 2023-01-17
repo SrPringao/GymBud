@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,14 +11,16 @@
 
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         >
 
-<!--container de tarjetas -->
+        <!--container de tarjetas -->
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -30,12 +32,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
 
-<!--            tarjeta 1           -->
+            <!--            tarjeta 1           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -51,8 +53,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -63,9 +65,10 @@
                             android:textSize="22sp" />
 
                         <LinearLayout
-                          android:layout_width="wrap_content"
-                          android:orientation="horizontal"
-                          android:layout_height="wrap_content">
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -79,6 +82,7 @@
                                 android:text="      x"
                                 android:textColor="#000000"
                                 android:textSize="22sp" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -93,8 +97,7 @@
                                 android:textColor="#000000"
                                 android:textSize="22sp" />
 
-                      </LinearLayout>
-
+                        </LinearLayout>
 
 
                     </LinearLayout>
@@ -103,12 +106,12 @@
 
             </LinearLayout>
 
-<!--            tarjeta 2           -->
+            <!--            tarjeta 2           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -124,8 +127,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -140,8 +143,7 @@
                             android:layout_width="80dp"
 
                             android:layout_height="80dp"
-                            app:srcCompat="@drawable/gblogo">
-                        </ImageView>
+                            app:srcCompat="@drawable/gblogo"></ImageView>
 
 
                     </LinearLayout>
@@ -149,12 +151,12 @@
 
             </LinearLayout>
 
-<!--            tarjeta 3           -->
+            <!--            tarjeta 3           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -170,15 +172,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="@drawable/background"
+                            android:gravity="center"
                             android:orientation="vertical">
 
 
@@ -191,8 +193,9 @@
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -206,6 +209,7 @@
                                     android:text="      x"
                                     android:textColor="#000000"
                                     android:textSize="22sp" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -224,21 +228,13 @@
 
 
                             <ProgressBar
-                                android:layout_width="300dp"
                                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="300dp"
                                 android:layout_height="30dp">
 
                             </ProgressBar>
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:text="Calcular peso"
-                                android:layout_height="wrap_content">
-
-                            </Button>
-
                         </LinearLayout>
-
 
 
                     </LinearLayout>
@@ -247,12 +243,12 @@
 
             </LinearLayout>
 
-<!--            tarjerta 4          -->
+            <!--            tarjerta 4          -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -267,15 +263,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center"
                             android:background="@drawable/background"
+                            android:gravity="center"
                             android:orientation="vertical">
 
 
@@ -288,8 +284,9 @@
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -303,6 +300,7 @@
                                     android:text="      x"
                                     android:textColor="#000000"
                                     android:textSize="22sp" />
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -321,35 +319,30 @@
 
 
                             <ProgressBar
-                                android:layout_width="300dp"
                                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="300dp"
                                 android:layout_height="30dp">
 
                             </ProgressBar>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:text="Calcular IMC"
-                                android:layout_height="wrap_content">
-
-                            </Button>
 
                         </LinearLayout>
 
 
 
+
+                        
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
 
-<!--            tarjeta 5           -->
+            <!--            tarjeta 5           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -364,8 +357,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -384,11 +377,10 @@
 
                         <Button
                             android:layout_width="wrap_content"
-                            android:text="Calcular tasa de grasa"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:text="Calcular tasa de grasa">
 
                         </Button>
-
 
 
                     </LinearLayout>
@@ -397,12 +389,12 @@
 
             </LinearLayout>
 
-<!--            tarjeta 6           -->
+            <!--            tarjeta 6           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2"
                 android:layout_marginTop="10dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
@@ -418,8 +410,56 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
                         android:background="@drawable/background"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frase de hoy:"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Si sabes que tu vienes pantorrilla vas a triunfar cao"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+<!--            t7-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="15dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -446,4 +486,4 @@
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
