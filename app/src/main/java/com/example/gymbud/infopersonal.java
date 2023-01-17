@@ -90,4 +90,4 @@ public class infopersonal extends Fragment {
         return v;
 
     }
-} 
+}
