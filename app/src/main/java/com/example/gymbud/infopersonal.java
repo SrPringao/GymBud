@@ -77,9 +77,12 @@ public class infopersonal extends Fragment {
         botonson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 DbHelper dbHelper = new DbHelper(v.getContext());
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
             String Update = "Update PHRASE SET Id = 77 WHERE Id = 1";
+           //     String Insert = "INSERT INTO PHRASE (Id,Motivation) VALUES (4,'Si se puede brou')";
+           //     String Delete = "DELETE FROM PHRASE WHERE Id = 4";
                 db.execSQL(Update);
                 Toast.makeText(v.getContext(),"Se realizo el cambio",Toast.LENGTH_SHORT);
             }
