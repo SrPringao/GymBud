@@ -30,12 +30,12 @@ public class DbQuery extends DbHelper {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put("Assists", Assists);
-            values.put("CurrentWeight", CurrentWeight);
-            values.put("WeightGoal", WeightGoal);
-            values.put("Height", Height);
-            values.put("Gender", Gender);
-            values.put("Age", Age);
+            values.put("3", Assists);
+            values.put("90.7", CurrentWeight);
+            values.put("85.00", WeightGoal);
+            values.put("189", Height);
+            values.put("2", Gender);
+            values.put("22", Age);
 
 
             id = db.insert(TABLE_PERSONINFO, null, values);

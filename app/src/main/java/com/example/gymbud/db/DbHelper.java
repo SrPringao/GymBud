@@ -28,13 +28,13 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_PERSONINFO + "(" + " UserId INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "Assists INTEGER ," +
+                "Assists INTEGER NOT NULL," +
                 "DayRoutine INTEGER REFERENCES ROUTINENAME (ID)," +
-                "CurrentWeight REAL ," +
-                "WeightGoal REAL ," +
-                "Height REAL ," +
-                "Gender INTEGER ," +
-                "Age INTEGER ," +
+                "CurrentWeight REAL NOT NULL," +
+                "WeightGoal REAL NOT NULL," +
+                "Height REAL NOT NULL," +
+                "Gender INTEGER NOT NULL," +
+                "Age INTEGER NOT NULL," +
                 "Phrase TEXT REFERENCES PHRASE (Id))");
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_ROUTINENAME +"(" + "Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Routine TEXT REFERENCES ROUTINE (RoutineName))");
