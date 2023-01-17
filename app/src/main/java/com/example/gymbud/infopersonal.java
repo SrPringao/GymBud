@@ -1,5 +1,6 @@
 package com.example.gymbud;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.gymbud.db.DbHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +62,18 @@ public class infopersonal extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_infopersonal, container, false);
+
+        DbHelper dbHelper = new DbHelper(v.getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String Update = "Update PHRASE SET Id = 77 WHERE Id = 1";
+        //     String Insert = "INSERT INTO PHRASE (Id,Motivation) VALUES (4,'Si se puede brou')";
+        //     String Delete = "DELETE FROM PHRASE WHERE Id = 4";
+        db.execSQL(Update);
+        Toast.makeText(v.getContext(), "Se realizo el cambio", Toast.LENGTH_SHORT);
+
+
+        return v;
+
+
     }
 }
