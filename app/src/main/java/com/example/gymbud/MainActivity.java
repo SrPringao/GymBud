@@ -40,7 +40,7 @@ SharedPreferences archivo;
         btnIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
-      //  MACABRO = findViewById(R.id.botonMACABRO);
+        //MACABRO = findViewById(R.id.botonMACABRO);
 
        /* MACABRO.setOnClickListener(new View.OnClickListener() {
             @Override
