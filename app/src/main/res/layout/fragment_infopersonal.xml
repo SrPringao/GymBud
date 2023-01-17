@@ -16,10 +16,8 @@
         android:orientation="vertical"
         >
 
-
 <!--container de tarjetas -->
         <LinearLayout
-
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,14 +58,52 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Penelope diaz"
+                            android:text="Racha de asistencias"
                             android:textColor="#000000"
                             android:textSize="22sp" />
+
+                        <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dias"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="      x"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="      Semanas"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="      x"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+
+                      </LinearLayout>
+
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
+
+<!--            tarjeta 2           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -95,14 +131,273 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Penelope diaz"
+                            android:text="Rutina de hoy"
                             android:textColor="#000000"
                             android:textSize="22sp" />
+
+
+                        <ImageView
+                            android:layout_width="80dp"
+
+                            android:layout_height="80dp"
+                            app:srcCompat="@drawable/gblogo">
+                        </ImageView>
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+<!--            tarjeta 3           -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="15dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/background"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/background"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Peso"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Peso :"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      x"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      Meta de peso:"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      x"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                            </LinearLayout>
+
+
+                            <ProgressBar
+                                android:layout_width="300dp"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_height="30dp">
+
+                            </ProgressBar>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:text="Calcular peso"
+                                android:layout_height="wrap_content">
+
+                            </Button>
+
+                        </LinearLayout>
+
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
+
+<!--            tarjerta 4          -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/background"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@drawable/background"
+                            android:orientation="vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indice de masa corporal:"
+                                android:textColor="#000000"
+                                android:textSize="22sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="IMC:"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      x"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      IMC ideal:"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="      x"
+                                    android:textColor="#000000"
+                                    android:textSize="22sp" />
+
+                            </LinearLayout>
+
+
+                            <ProgressBar
+                                android:layout_width="300dp"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_height="30dp">
+
+                            </ProgressBar>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:text="Calcular IMC"
+                                android:layout_height="wrap_content">
+
+                            </Button>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+<!--            tarjeta 5           -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/background"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tasa de grasa"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="X %"
+                            android:textColor="#000000"
+                            android:textSize="22sp" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:text="Calcular tasa de grasa"
+                            android:layout_height="wrap_content">
+
+                        </Button>
+
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+<!--            tarjeta 6           -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -130,92 +425,25 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Penelope diaz"
+                            android:text="Frase de hoy:"
                             android:textColor="#000000"
                             android:textSize="22sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@drawable/background"
-                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Penelope diaz"
+                            android:text="Si sabes que tu vienes pantorrilla vas a triunfar cao"
                             android:textColor="#000000"
                             android:textSize="22sp" />
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@drawable/background"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Penelope diaz"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-
 
         </LinearLayout>
     </ScrollView>
-
-
-
-
 
 </FrameLayout>
