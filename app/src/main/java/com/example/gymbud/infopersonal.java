@@ -3,6 +3,7 @@ package com.example.gymbud;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -65,7 +66,7 @@ public class infopersonal extends Fragment {
         return fragment;
     }
 
-    ScrollView scroll;
+    NestedScrollView scroll;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,23 +85,23 @@ public class infopersonal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_infopersonal,container,false);
-        botonson = v.findViewById(R.id.pruebon);
-        editadon = v.findViewById(R.id.editt);
+//        botonson = v.findViewById(R.id.pruebon);
+//        editadon = v.findViewById(R.id.editt);
 
 
-        botonson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                DbHelper dbHelper = new DbHelper(v.getContext());
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                String Update = "Update PHRASE SET Id = 77 WHERE Id = 1";
-                //     String Insert = "INSERT INTO PHRASE (Id,Motivation) VALUES (4,'Si se puede brou')";
-                //     String Delete = "DELETE FROM PHRASE WHERE Id = 4";
-                db.execSQL(Update);
-                Toast.makeText(v.getContext(),"Se realizo el cambio",Toast.LENGTH_SHORT);
-            }
-        });
+//        botonson.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                DbHelper dbHelper = new DbHelper(v.getContext());
+//                SQLiteDatabase db = dbHelper.getWritableDatabase();
+//                String Update = "Update PHRASE SET Id = 77 WHERE Id = 1";
+//                //     String Insert = "INSERT INTO PHRASE (Id,Motivation) VALUES (4,'Si se puede brou')";
+//                //     String Delete = "DELETE FROM PHRASE WHERE Id = 4";
+//                db.execSQL(Update);
+//                Toast.makeText(v.getContext(),"Se realizo el cambio",Toast.LENGTH_SHORT);
+//            }
+//        });
         return v;
 
     }

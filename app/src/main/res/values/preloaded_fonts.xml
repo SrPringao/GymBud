@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/athiti_semibold</item>
+        <item>@font/dosis</item>
+        <item>@font/dosis_bold</item>
+        <item>@font/lato_light</item>
+        <item>@font/lato</item>
+    </array>
+</resources>
