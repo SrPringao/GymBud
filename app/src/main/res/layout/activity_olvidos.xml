@@ -48,7 +48,7 @@
             android:textAlignment="center"
             android:textCursorDrawable="@color/black"
             android:inputType="textPersonName"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
 

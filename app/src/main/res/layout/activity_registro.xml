@@ -45,7 +45,7 @@
             android:background="@drawable/background_edittext"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:background="@drawable/background_edittext"
             android:ems="10"
             android:inputType="text"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="18sp" />
         <TextView
             android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background_edittext"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textCursorDrawable="@color/black"
                 android:inputType="textPassword"
                 android:textAlignment="center"
@@ -145,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background_edittext"
-                android:textColor="#ffffff"
+                android:textColor="@color/black"
                 android:textCursorDrawable="@color/black"
                 android:inputType="textPassword"
                 android:textAlignment="center"
