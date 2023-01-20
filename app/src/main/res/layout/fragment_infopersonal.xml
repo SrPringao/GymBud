@@ -3,487 +3,311 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".infopersonal"
-    android:background="@drawable/backgrounblack">
+    android:background="@drawable/backgrounblack"
+
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
+    style="@style/parent.contentLayout">
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        android:layout_height="match_parent">
 
-        <!--container de tarjetas -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/cardView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Informacion Personal"
+                style="@style/viewParent.headerText" />
+
+            <TextView
+                android:text="En este apartado podras encontrar los datos que registraste asi como la evolucion que vayas teniendo, entre otros detalles"
+                style="@style/viewParent.headerText.contentText"
+                android:layout_marginBottom="20dp"/>
 
 
-            <!--            tarjeta 1           -->
-            <LinearLayout
+            <!--Example with RelativeLayout and Gradient Drawable -->
+            <!-- for Recycler view use any of the layout as model-->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                <RelativeLayout
+                    android:id="@+id/card1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:background="@drawable/home_gradient_maths"
+                    android:padding="10dp">
 
+                    <TextView
+                        android:id="@+id/textViewSub1Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:paddingBottom="10dp"
+                        android:text="Racha de asistencias" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/Texto1Dias"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub1Title"
+                        android:paddingEnd="5dp"
+                        android:text="Llevas un racha de" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Racha de asistencias"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
+                    <TextView
+                        android:id="@+id/diasn"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub1Title"
+                        android:layout_toEndOf="@+id/Texto1Dias"
+                        android:text="N"
+                        android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Dias"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="      x"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="      Semanas"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="      x"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
-
-                        </LinearLayout>
+                    <TextView
+                        android:id="@+id/Texto2Dias"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub1Title"
+                        android:layout_toEndOf="@+id/diasn"
+                        android:paddingStart="5dp"
+                        android:text="dias consecutivos!"
+                        tools:ignore="RtlSymmetry" />
 
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:layout_toEndOf="@+id/Texto2Dias"
+                        android:maxHeight="90dp"
+                        android:paddingStart="20dp"
+                        android:src="@drawable/otisparado"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-            </LinearLayout>
+            <!--if the second one is used as model for recyclerView, refer:
+            https://appsnipp.com/gradient-layout-for-dynamic-gradients-in-android-without-drawable-library/
+            -->
 
-            <!--            tarjeta 2           -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rutina de hoy"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    gl:start_color="@color/gradientLightYellow"
+                    gl:end_color="@color/gradientOrange"
+                    gl:orientation="LEFT_RIGHT"
+                    android:padding="10dp">
 
 
-                        <ImageView
-                            android:layout_width="80dp"
+                    <TextView
+                        android:id="@+id/textViewSub2Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Rutina de hoy" />
 
-                            android:layout_height="80dp"
-                            app:srcCompat="@drawable/gblogo"></ImageView>
+
+                    <ImageView
+                        android:layout_width="230dp"
+                        android:layout_height="131dp"
+                        android:layout_below="@+id/textViewSub2Title"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/gblogo">
+
+                    </ImageView>
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-            <!--            tarjeta 3           -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    gl:end_color="@color/gradientLightYellow2"
+                    gl:start_color="@color/gradientLightOrange2"
+                    gl:orientation="LEFT_RIGHT"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewSub3Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:layout_centerInParent="false"
+                        android:text="Peso" />
+
+                    <TextView
+                        android:id="@+id/Texto1Peso"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub3Title"
+                        android:text="Clickea la tarjeta para personalizar tus valores!" />
 
 
-                    <LinearLayout
+                    <ProgressBar
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:id="@+id/progress"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Texto1Peso"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="50dp">
 
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Peso"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
+                    </ProgressBar>
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/progress"
+                        android:layout_centerHorizontal="true"
+                        android:text="Peso actual: X | Meta de peso: N" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Peso :"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      x"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      Meta de peso:"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      x"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                            </LinearLayout>
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-                            <ProgressBar
-                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                android:layout_width="300dp"
-                                android:layout_height="30dp">
-
-                            </ProgressBar>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-            <!--            tarjerta 4          -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    gl:start_color="@color/gradientLightOrange2"
+                    gl:end_color="@color/gradientOrange3"
+                    gl:orientation="LEFT_RIGHT"
+                    android:padding="10dp">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/textViewSub4Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:layout_centerInParent="false"
+                        android:text="IMC" />
+
+                    <TextView
+                        android:id="@+id/dias"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub4Title"
+                        android:text="Clickea la tarjeta para personalizar tus valores!" />
+
+
+                    <ProgressBar
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:id="@+id/progress2"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/background"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/dias"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="50dp">
 
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Indice de masa corporal:"
-                                android:textColor="#000000"
-                                android:textSize="22sp" />
+                    </ProgressBar>
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/progress2"
+                        android:layout_centerHorizontal="true"
+                        android:text="IMC: X | IMC ideal: N" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="IMC:"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      x"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      IMC ideal:"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="      x"
-                                    android:textColor="#000000"
-                                    android:textSize="22sp" />
-
-                            </LinearLayout>
-
-
-                            <ProgressBar
-                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                                android:layout_width="300dp"
-                                android:layout_height="30dp">
-
-                            </ProgressBar>
-
-                        </LinearLayout>
-
-
-
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-            <!--            tarjeta 5           -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    gl:start_color="@color/gradientViolet"
+                    gl:end_color="@color/gradientLightBlue"
+                    gl:orientation="LEFT_RIGHT"
+                    android:padding="10dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textViewSub5Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Tasa de grasa" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tasa de grasa"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
+                    <TextView
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub5Title"
+                        android:text="Tu tasa de grasa es de el X%" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="X %"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
+                    <ImageView
+                        style="@style/homeCardImage"
+                        android:maxHeight="90dp"
+                        android:src="@drawable/gblogo" />
 
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Calcular tasa de grasa">
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
 
-                        </Button>
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-
-            <!--            tarjeta 6           -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    gl:start_color="@color/gradientLightGreen"
+                    gl:end_color="@color/gradientLightBlue"
+                    gl:orientation="LEFT_RIGHT"
+                    android:padding="10dp">
 
+                    <TextView
+                        android:id="@+id/textViewSub6Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:text="Frase del dia" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Frase de hoy:"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:text="Si sabes que tu vienes pantorrilla vas a triunfar cao"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
+                    <TextView
+                        android:id="@+id/frase"
+                        android:text="El dolor que sientes hoy es la fuerza que sentiras mañana\n\n-Natanael Cano 2024"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_below="@id/textViewSub6Title"/>
 
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+            </androidx.cardview.widget.CardView>
 
 
-            </LinearLayout>
 
-<!--            t7-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="180dp"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/background"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Frase de hoy:"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Si sabes que tu vienes pantorrilla vas a triunfar cao"
-                            android:textColor="#000000"
-                            android:textSize="22sp" />
-
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
