@@ -4,7 +4,7 @@
         <item>@font/athiti_semibold</item>
         <item>@font/dosis</item>
         <item>@font/dosis_bold</item>
-        <item>@font/lato</item>
         <item>@font/lato_light</item>
+        <item>@font/lato</item>
     </array>
 </resources>

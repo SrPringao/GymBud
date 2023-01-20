@@ -31,9 +31,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="96dp"
             android:layout_marginEnd="16dp"
-            android:text="Usuario"
-            android:textColor="@color/bottomNavigationBackground"
             android:elegantTextHeight="true"
+            android:fontFamily="@font/lato"
+            android:shadowColor="#000000"
+            android:text="Usuario"
+            android:textColor="@color/black"
             android:textSize="23sp" />
 
 
@@ -51,7 +53,7 @@
             android:textAlignment="center"
             android:textCursorDrawable="@color/black"
             android:inputType="textPersonName"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -62,7 +64,7 @@
             android:layout_marginEnd="16dp"
             android:text="Contraseña"
             android:elegantTextHeight="true"
-            android:textColor="@color/bottomNavigationBackground"
+            android:textColor="@color/black"
             android:textSize="23sp" />
 
 
@@ -82,7 +84,7 @@
             android:background="@drawable/background_edittext"
             android:ems="10"
             android:inputType="textPassword"
-            android:textColor="#ffffff"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <Button
@@ -132,7 +134,7 @@
         android:background="@drawable/button_background_pressed"
         android:text="Iniciar Sesion"
         android:onClick="clickInicio"
-        android:textColor="#ffffff"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
