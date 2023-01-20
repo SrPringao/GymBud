@@ -32,7 +32,8 @@
             android:layout_marginTop="96dp"
             android:layout_marginEnd="16dp"
             android:text="Usuario"
-            android:textColor="#ffffff"
+            android:textColor="@color/bottomNavigationBackground"
+            android:elegantTextHeight="true"
             android:textSize="23sp" />
 
 
@@ -60,7 +61,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:text="Contraseña"
-            android:textColor="#ffffff"
+            android:elegantTextHeight="true"
+            android:textColor="@color/bottomNavigationBackground"
             android:textSize="23sp" />
 
 
@@ -91,9 +93,10 @@
             android:layout_marginBottom="64dp"
             android:background="@drawable/background_forget_password"
             android:paddingStart="20dp"
+
             android:paddingEnd="20dp"
             android:text="Olvidaste la contraseña?"
-            android:textColor="@color/black"
+            android:textColor="@color/colorIdentidad6"
             android:textSize="14sp" />
 
     </LinearLayout>

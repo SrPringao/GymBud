@@ -24,13 +24,13 @@
 
             <TextView
                 android:text="Informacion Personal"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/bottomNavigationTintColor"
                 android:paddingTop="5dp"
-                style="@style/viewParent.headerText" />
-
-            <TextView
-                android:text="En este apartado podras encontrar los datos que registraste asi como la evolucion que vayas teniendo, entre otros detalles"
-                style="@style/viewParent.headerText.contentText"
-                android:layout_marginBottom="20dp"/>
+                android:layout_height="50dp"
+                android:fontFamily="@font/lato"
+                android:layout_width="wrap_content"/>
 
 
             <androidx.cardview.widget.CardView
@@ -155,6 +155,7 @@
                         android:id="@+id/textViewSub3Title"
                         style="@style/viewParent.headerText.HomeCardTitle"
                         android:layout_centerInParent="false"
+                        android:paddingBottom="10dp"
                         android:text="Peso" />
 
                     <TextView
@@ -206,6 +207,7 @@
                         android:id="@+id/textViewSub4Title"
                         style="@style/viewParent.headerText.HomeCardTitle"
                         android:layout_centerInParent="false"
+                        android:paddingBottom="10dp"
                         android:text="IMC" />
 
                     <TextView
@@ -255,6 +257,7 @@
                     <TextView
                         android:id="@+id/textViewSub5Title"
                         style="@style/viewParent.headerText.HomeCardTitle"
+                        android:paddingBottom="10dp"
                         android:text="Tasa de grasa" />
 
                     <TextView
@@ -289,6 +292,7 @@
                     <TextView
                         android:id="@+id/textViewSub6Title"
                         style="@style/viewParent.headerText.HomeCardTitle"
+                        android:paddingBottom="10dp"
                         android:text="Frase del dia" />
 
                     <TextView
