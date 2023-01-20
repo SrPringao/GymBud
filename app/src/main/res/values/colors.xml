@@ -40,4 +40,17 @@
     <color name="gradientLightBlue">#376DF6</color>
     <color name="gradientLightGreen">#21E8AC</color>
 
+
+    <color name="colorIdentidad1">#D8AC28</color>
+    <color name="colorIdentidad2">#E1C675</color>
+    <color name="colorIdentidad3">@color/bottomNavigationBackground</color>
+    <color name="colorIdentidad4">@color/black</color>
+    <color name="colorIdentidad5">#E8BD70</color>
+    <color name="colorIdentidad6">#EDD185</color>
+
+
+
+
+
+
     </resources>

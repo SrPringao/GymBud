@@ -24,6 +24,7 @@
 
             <TextView
                 android:text="Informacion Personal"
+                android:paddingTop="5dp"
                 style="@style/viewParent.headerText" />
 
             <TextView
@@ -32,8 +33,6 @@
                 android:layout_marginBottom="20dp"/>
 
 
-            <!--Example with RelativeLayout and Gradient Drawable -->
-            <!-- for Recycler view use any of the layout as model-->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,13 +40,17 @@
                 app:cardPreventCornerOverlap="true"
                 android:layout_marginTop="10dp">
 
-                <RelativeLayout
-                    android:id="@+id/card1"
+                <net.colindodd.gradientlayout.GradientRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    android:background="@drawable/home_gradient_maths"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
+                    gl:orientation="LEFT_RIGHT"
+
+
                     android:padding="10dp">
+
 
                     <TextView
                         android:id="@+id/textViewSub1Title"
@@ -88,13 +91,11 @@
                         android:src="@drawable/otisparado"
                         tools:ignore="RtlSymmetry" />
 
-                </RelativeLayout>
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
             </androidx.cardview.widget.CardView>
 
 
-            <!--if the second one is used as model for recyclerView, refer:
-            https://appsnipp.com/gradient-layout-for-dynamic-gradients-in-android-without-drawable-library/
-            -->
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -109,8 +110,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/gradientLightYellow"
-                    gl:end_color="@color/gradientOrange"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     android:padding="10dp">
 
@@ -145,8 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:end_color="@color/gradientLightYellow2"
-                    gl:start_color="@color/gradientLightOrange2"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     android:padding="10dp">
 
@@ -196,8 +197,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/gradientLightOrange2"
-                    gl:end_color="@color/gradientOrange3"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     android:padding="10dp">
 
@@ -246,8 +247,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/gradientViolet"
-                    gl:end_color="@color/gradientLightBlue"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     android:padding="10dp">
 
@@ -280,8 +281,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/gradientLightGreen"
-                    gl:end_color="@color/gradientLightBlue"
+                    gl:start_color="@color/colorIdentidad5"
+                    gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     android:padding="10dp">
 
