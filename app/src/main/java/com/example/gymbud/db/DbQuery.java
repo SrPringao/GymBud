@@ -21,7 +21,8 @@ public class DbQuery extends DbHelper {
         this.context = context;
     }
 
-    public long InsertarInfoPerson(int Assists, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age) {
+
+    public long InsertarInfoPerson(int UserId,int Assists,int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age,String Phrase) {
         long id = 0;
         try {
 
@@ -30,12 +31,15 @@ public class DbQuery extends DbHelper {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put("3", Assists);
-            values.put("90.7", CurrentWeight);
-            values.put("85.00", WeightGoal);
-            values.put("189", Height);
-            values.put("2", Gender);
-            values.put("22", Age);
+            values.put("UserId", UserId);
+            values.put("Assists", Assists);
+            values.put("DayRoutine", DayRoutine);
+            values.put("CurrentWeight", CurrentWeight);
+            values.put("WeightGoal", WeightGoal);
+            values.put("Height", Height);
+            values.put("Gender", Gender);
+            values.put("Age", Age);
+            values.put("Phrase",Phrase);
 
 
             id = db.insert(TABLE_PERSONINFO, null, values);
@@ -43,6 +47,28 @@ public class DbQuery extends DbHelper {
             ex.toString();
         }
         return id;
+    }
+
+    public PersonInfo verinfo(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        PersonInfo personInfo = null;
+        Cursor cursorInfo;
+        cursorInfo = db.rawQuery("SELECT * FROM " + TABLE_PERSONINFO + " WHERE UserId = " + id, null);
+        if(cursorInfo.moveToFirst()){
+            personInfo = new PersonInfo();
+            personInfo.setUserId(cursorInfo.getInt(0));
+            personInfo.setAssists(cursorInfo.getInt(1));
+            personInfo.setDayRoutine(cursorInfo.getInt(2));
+            personInfo.setCurrentWeight(cursorInfo.getDouble(3));
+            personInfo.setWeightGoal(cursorInfo.getDouble(4));
+            personInfo.setHeight(cursorInfo.getDouble(5));
+            personInfo.setGender(cursorInfo.getInt(6));
+            personInfo.setAge(cursorInfo.getInt(7));
+            personInfo.setPhrase(cursorInfo.getString(8));
+        }
+        cursorInfo.close();
+        return personInfo;
     }
     public ArrayList<PersonInfo> MostrarPersonInfo(){
         DbHelper dbHelper = new DbHelper(context);
@@ -73,4 +99,3 @@ public class DbQuery extends DbHelper {
         return ListaPerson;
     }
 }
-
