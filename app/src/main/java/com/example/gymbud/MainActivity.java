@@ -20,7 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.gymbud.db.DbHelper;
+import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.PersonInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +32,7 @@ EditText ETusr,ETcontra;
 Button btnIngreso, MACABRO;
 TextView TVRegistro, TVRecuperar;
 SharedPreferences archivo;
+PersonInfo personInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,18 +115,35 @@ SharedPreferences archivo;
                 try {
                     Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
                     if (response.getInt("UID") != -1) {
-                        Intent i = new Intent(MainActivity.this, FragmentContainer.class);
-                        startActivity(i);
-                        finish();
+                        int UID = response.getInt("UID");
 
-                    } else {
-                        ETusr.setText("");
-                        ETcontra.setText("");
+                        DbQuery dbQuery = new DbQuery(MainActivity.this);
+                        personInfo = dbQuery.verinfo(UID);
+                        if (personInfo != null) {
+                            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                            startActivity(i);
+                            finish();
+
+                        } else {
+
+                            long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
+
+                            if (id > 0) {
+                                Toast.makeText(MainActivity.this, "Se registro padrino", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Error al registrarlo", Toast.LENGTH_SHORT).show();
+                            }
+
+                            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                            startActivity(i);
+                            finish();
+
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-               // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
+                // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
             }
         }, new Response.ErrorListener() {
             @Override
