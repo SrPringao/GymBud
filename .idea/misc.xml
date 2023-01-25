@@ -9,9 +9,11 @@
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable-v24/background.xml" value="0.196" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable-v24/background_edittext.xml" value="0.196" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable-v24/background_forget_password.xml" value="0.196" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable-v24/backgroundcorner.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2405" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/backgrounblack.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/background.xml" value="0.198" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/backgroundCorner.xml" value="0.266" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/background_edittext.xml" value="0.198" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/background_forget_password.xml" value="0.198" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/drawable/bfeka.xml" value="0.115" />
@@ -28,9 +30,12 @@
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_fragment_container.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_infopersonal.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_intro.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_main.xml" value="0.13157894736842105" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_olvidos.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_registro.xml" value="0.22" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_imc.xml" value="0.2894399315946986" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_personal.xml" value="0.5" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_tg.xml" value="0.2894399315946986" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_detalles_sucursal.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_ejercicios.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_infopersonal.xml" value="0.33" />
