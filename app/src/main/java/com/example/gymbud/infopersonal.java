@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.example.gymbud.R;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,6 +124,7 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoPersonal();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
