@@ -9,6 +9,18 @@
     android:background="@drawable/backgrounblack"
     tools:context=".DatosInfoPersonal">
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_flechanegrodorado"
+        app:layout_constraintStart_toStartOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="clickback"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +59,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewSub1Title"
                 android:layout_marginStart="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@color/black"
+                android:background="@drawable/background_edittext"
                 android:layout_marginEnd="20dp"
+                android:textColor="@color/black"
+
                 android:layout_marginBottom="20dp"
                 android:hint="Ingresa tu peso actual">
 
@@ -58,6 +78,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etInfo1"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="10dp"
+                android:cursorVisible="true"
+                android:textCursorDrawable="@color/black"
+                android:background="@drawable/background_edittext"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:hint="Ingresa tu meta de peso">

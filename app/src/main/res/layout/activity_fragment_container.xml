@@ -18,6 +18,7 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
+
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"

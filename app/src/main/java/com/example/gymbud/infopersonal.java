@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import eightbitlab.com.blurview.BlurView;
@@ -28,6 +30,7 @@ import com.example.gymbud.db.DbQuery;
  * create an instance of this fragment.
  */
 public class infopersonal extends Fragment {
+
 
 
 
@@ -79,30 +82,37 @@ public class infopersonal extends Fragment {
         }
 
 
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_infopersonal,container,false);
-//        botonson = v.findViewById(R.id.pruebon);
-//        editadon = v.findViewById(R.id.editt);
 
 
-//        botonson.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                DbHelper dbHelper = new DbHelper(v.getContext());
-//                SQLiteDatabase db = dbHelper.getWritableDatabase();
-//                String Update = "Update PHRASE SET Id = 77 WHERE Id = 1";
-//                //     String Insert = "INSERT INTO PHRASE (Id,Motivation) VALUES (4,'Si se puede brou')";
-//                //     String Delete = "DELETE FROM PHRASE WHERE Id = 4";
-//                db.execSQL(Update);
-//                Toast.makeText(v.getContext(),"Se realizo el cambio",Toast.LENGTH_SHORT);
-//            }
-//        });
+
         return v;
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageView imagen = view.findViewById(R.id.otisImg);
+        // aquí puedes usar la vista
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment secondFragment = new DatosInfoPersonal();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
     }
 }

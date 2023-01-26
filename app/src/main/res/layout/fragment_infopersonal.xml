@@ -12,6 +12,7 @@
     style="@style/parent.contentLayout">
 
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@
 
 
                     <ImageView
+                        android:id="@+id/otisImg"
                         style="@style/homeCardImage"
                         android:layout_toEndOf="@+id/Texto2Dias"
                         android:maxHeight="90dp"

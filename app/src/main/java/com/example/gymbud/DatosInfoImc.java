@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +50,7 @@ public class DatosInfoImc extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +60,17 @@ public class DatosInfoImc extends Fragment {
         }
     }
 
+    ImageView imagen;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_datos_info_imc, container, false);
+
     }
+
+
 }
