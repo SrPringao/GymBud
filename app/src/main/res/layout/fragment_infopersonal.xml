@@ -145,6 +145,8 @@
                 android:layout_marginTop="10dp">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
+
+                    android:id="@+id/cardpeso"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
@@ -200,6 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
+                    android:id="@+id/cardimc"
                     gl:start_color="@color/colorIdentidad5"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
@@ -251,6 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
+                    android:id="@+id/cardgrasa"
                     gl:start_color="@color/colorIdentidad5"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"

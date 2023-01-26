@@ -11,6 +11,8 @@
 
 
     <ImageView
+        android:id="@+id/botonback2"
+
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_flechanegrodorado"
@@ -62,19 +64,20 @@
                 android:layout_below="@id/textViewSub1Title"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="10dp"
-                android:cursorVisible="true"
-                android:textCursorDrawable="@color/black"
-                android:background="@drawable/background_edittext"
-
-
                 android:layout_marginBottom="20dp"
-                android:hint="Ingresa tu estatura"
 
-                android:textColor="@color/black">
+                android:background="@drawable/background_edittext"
+                android:cursorVisible="true"
+                android:hint="Ingresa tu estatura en cm"
+                android:inputType="number"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+
+
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+
+                android:textCursorDrawable="@color/black">
 
             </EditText>
 
@@ -85,13 +88,17 @@
                 android:layout_below="@id/etInfo1"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="10dp"
-                android:cursorVisible="true"
-                android:textCursorDrawable="@color/black"
                 android:background="@drawable/background_edittext"
-                android:hint="Ingresa tu peso">
+                android:cursorVisible="true"
+                android:hint="Ingresa tu peso"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:inputType="number"
+
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+
+                android:textCursorDrawable="@color/black">
 
             </EditText>
 

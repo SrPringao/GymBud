@@ -3,6 +3,7 @@ package com.example.gymbud;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 
 import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
+
+import net.colindodd.gradientlayout.GradientRelativeLayout;
 
 
 /**
@@ -77,7 +80,6 @@ public class infopersonal extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
             scroll = scroll.findViewById(R.id.scroll);
         }
 
@@ -101,12 +103,47 @@ public class infopersonal extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageView imagen = view.findViewById(R.id.otisImg);
-        // aquí puedes usar la vista
+        GradientRelativeLayout cardpeso = view.findViewById(R.id.cardpeso);
+        GradientRelativeLayout  cardimc = view.findViewById(R.id.cardimc);
+        GradientRelativeLayout  cardgrasa = view.findViewById(R.id.cardgrasa);
 
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoPersonal();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        cardpeso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment secondFragment = new DatosInfoPersonal();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        cardimc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment secondFragment = new DatosInfoImc();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        cardgrasa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment secondFragment = new DatosInfoTg();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
