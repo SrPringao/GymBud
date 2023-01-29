@@ -125,7 +125,7 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoPersonal();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.bounce_in, R.anim.bounce_out);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -137,7 +137,7 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoImc();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
 
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);

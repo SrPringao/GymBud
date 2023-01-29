@@ -75,6 +75,8 @@ public class DatosInfoPersonal extends Fragment {
             public void onClick(View view) {
                 Fragment firstFragment = new infopersonal();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
