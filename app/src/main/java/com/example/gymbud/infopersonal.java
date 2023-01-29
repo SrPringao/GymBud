@@ -112,6 +112,7 @@ public class infopersonal extends Fragment {
             @Override
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoPersonal();
+
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
@@ -124,7 +125,7 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoPersonal();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -136,6 +137,8 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoImc();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -147,7 +150,9 @@ public class infopersonal extends Fragment {
             public void onClick(View view) {
                 Fragment secondFragment = new DatosInfoTg();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
+
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
