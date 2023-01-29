@@ -12,6 +12,7 @@
     style="@style/parent.contentLayout">
 
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@
 
 
                     <ImageView
+                        android:id="@+id/otisImg"
                         style="@style/homeCardImage"
                         android:layout_toEndOf="@+id/Texto2Dias"
                         android:maxHeight="90dp"
@@ -143,6 +145,8 @@
                 android:layout_marginTop="10dp">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
+
+                    android:id="@+id/cardpeso"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
@@ -198,6 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
+                    android:id="@+id/cardimc"
                     gl:start_color="@color/colorIdentidad5"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
@@ -249,6 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
+                    android:id="@+id/cardgrasa"
                     gl:start_color="@color/colorIdentidad5"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"

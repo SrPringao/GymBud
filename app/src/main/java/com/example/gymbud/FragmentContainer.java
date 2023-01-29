@@ -1,10 +1,14 @@
 package com.example.gymbud;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -13,11 +17,18 @@ public class FragmentContainer extends AppCompatActivity {
 
     MeowBottomNavigation bottomNav;
 
+    ImageView imagen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_container);
         bottomNav = findViewById(R.id.bottomNav);
+
 
 
         bottomNav.add(new MeowBottomNavigation.Model(1,R.drawable.ic_baseline_person_24));
@@ -31,7 +42,7 @@ public class FragmentContainer extends AppCompatActivity {
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Fragment fragment;
 
-                if (item.getId() == 4){
+                if (item.getId() == 4){ 
                     fragment = new Sucursales();
 
                 }else if (item.getId() == 3){
@@ -48,7 +59,6 @@ public class FragmentContainer extends AppCompatActivity {
                 loadFragment(fragment);
             }
         });
-
 
         bottomNav.show(1,true);
 
@@ -73,6 +83,8 @@ public class FragmentContainer extends AppCompatActivity {
         //set count to dashboard item
 //        bottomNav.setCount(3, "10");
     }
+
+
 
     @Override
     public void onBackPressed() {
