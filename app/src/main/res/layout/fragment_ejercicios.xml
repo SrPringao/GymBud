@@ -9,8 +9,8 @@
 
 
     <TextView
-        android:layout_width="wrap_content"
         android:id="@+id/tituloejercicios"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="56dp"
         android:fontFamily="@font/lato"
@@ -47,6 +47,152 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/ethombro"
+        android:layout_width="126dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="20dp"
+        android:cursorVisible="false"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:text="Hombro"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/etbiceps"
+        android:layout_width="131dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Biceps"
+        android:editable="false"
+        android:focusable="false"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.372"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/etoblicuos"
+        android:layout_width="145dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Oblicuos"
+        android:editable="false"
+        android:focusable="false"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.426"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="159dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:editable="false"
+        android:focusable="false"
+
+        android:inputType="textPersonName"
+        android:text="Pecho"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.312"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="159dp"
+        android:layout_height="50dp"
+        android:editable="false"
+        android:focusable="false"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Abs"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="127dp"
+        android:layout_height="45dp"
+        android:editable="false"
+        android:focusable="false"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Antebrazos"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+    <EditText
+        android:cursorVisible="false"
+
+        android:id="@+id/editTextTextPersonName7"
+        android:layout_width="127dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="48dp"
+        android:ems="10"
+        android:editable="false"
+        android:focusable="false"
+        android:inputType="textPersonName"
+        android:text="Cuadriceps"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562"
+        tools:ignore="Deprecated,MissingConstraints" />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,12 +2,14 @@ package com.example.gymbud;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +79,7 @@ public class Ejercicios extends Fragment {
         ImageView imagen = view.findViewById(R.id.imgvuelta);
         ImageView modelo =  view.findViewById(R.id.imgmodelo);
         TextView titulo = view.findViewById(R.id.tituloejercicios);
+        EditText hombro = view.findViewById(R.id.ethombro);
 
 
         modelo.setY(3000);
@@ -86,18 +89,27 @@ public class Ejercicios extends Fragment {
         modelo.animate().translationY(0).setDuration(500).setStartDelay(0);
         titulo.animate().translationX(0).setDuration(500).setStartDelay(0);
 
-
         final boolean[] ejercicios = {true};
+
+        hombro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (ejercicios[0]) {
+                    //grupo1.setVisibility(View.VISIBLE);
                     modelo.setImageResource(R.drawable.otisparado);
                     titulo.setText("Ejercicios frontales");
 
                     ejercicios[0] = false;
                 } else {
+                    //grupo1.setVisibility(View.GONE);
                     modelo.setImageResource(R.drawable.otisparado2);
                     titulo.setText("Ejercicios traseros");
                     ejercicios[0] = true;
@@ -105,6 +117,8 @@ public class Ejercicios extends Fragment {
 
             }
         });
+
+
 
     }
 }
