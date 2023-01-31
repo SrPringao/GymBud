@@ -3,8 +3,10 @@ package com.example.gymbud;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -76,7 +78,45 @@ public class FragmentContainer extends AppCompatActivity {
             @Override
             public void onReselectItem(MeowBottomNavigation.Model item) {
                 //display a toast
-                Toast.makeText(getApplicationContext(),"Reselect "+ item.getId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Reselect "+ item.getId(), Toast.LENGTH_SHORT).show();
+                Fragment fragment;
+
+                if (item.getId() == 4){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                        fragmentManager.popBackStack();
+                    }
+
+                    fragment = new Sucursales();
+
+                }else if (item.getId() == 3){
+
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                        fragmentManager.popBackStack();
+                    }
+
+                    fragment = new Ejercicios();
+
+
+                }else if (item.getId() == 2){
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                        fragmentManager.popBackStack();
+                    }
+
+                    fragment = new DetallesSucursal();
+
+
+                }else{
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); i++) {
+                        fragmentManager.popBackStack();
+                    }
+
+                    fragment = new infopersonal();
+                }
+                loadFragment(fragment);
             }
         });
 
@@ -84,12 +124,11 @@ public class FragmentContainer extends AppCompatActivity {
 //        bottomNav.setCount(3, "10");
     }
 
-
-
     @Override
-    public void onBackPressed() {
-
+    public void onBackPressed(){
     }
+
+
 
     private void loadFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.navFragmentContainer,fragment,null).commit();
