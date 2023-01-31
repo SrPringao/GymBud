@@ -31,10 +31,10 @@ public class FragmentContainer extends AppCompatActivity {
 
 
 
-        bottomNav.add(new MeowBottomNavigation.Model(1,R.drawable.ic_baseline_person_24));
-        bottomNav.add(new MeowBottomNavigation.Model(2,R.drawable.ic_baseline_person_24));
-        bottomNav.add(new MeowBottomNavigation.Model(3,R.drawable.ic_baseline_person_24));
-        bottomNav.add(new MeowBottomNavigation.Model(4,R.drawable.ic_baseline_person_24));
+        bottomNav.add(new MeowBottomNavigation.Model(1,R.drawable.icinfo));
+        bottomNav.add(new MeowBottomNavigation.Model(2,R.drawable.icrutinas));
+        bottomNav.add(new MeowBottomNavigation.Model(3,R.drawable.icejercicios));
+        bottomNav.add(new MeowBottomNavigation.Model(4,R.drawable.icsucursales));
 
 
         bottomNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
