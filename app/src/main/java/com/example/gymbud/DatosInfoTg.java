@@ -70,6 +70,7 @@ public class DatosInfoTg extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ImageView imagen = view.findViewById(R.id.botonback3);
 
+
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

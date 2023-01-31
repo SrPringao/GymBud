@@ -2,11 +2,17 @@ package com.example.gymbud;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +52,7 @@ public class Ejercicios extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +60,65 @@ public class Ejercicios extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //imagen.animate().translationX(-1400).setDuration(2700).setStartDelay(0);
+
         return inflater.inflate(R.layout.fragment_ejercicios, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageView imagen = view.findViewById(R.id.imgvuelta);
+        ImageView modelo =  view.findViewById(R.id.imgmodelo);
+        TextView titulo = view.findViewById(R.id.tituloejercicios);
+        EditText hombro = view.findViewById(R.id.ethombro);
+
+
+        modelo.setY(3000);
+        titulo.setX(3000);
+
+        imagen.animate().translationX(1100).setDuration(500).setStartDelay(0);
+        modelo.animate().translationY(0).setDuration(500).setStartDelay(0);
+        titulo.animate().translationX(0).setDuration(500).setStartDelay(0);
+
+        final boolean[] ejercicios = {true};
+
+        hombro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (ejercicios[0]) {
+                    //grupo1.setVisibility(View.VISIBLE);
+                    modelo.setImageResource(R.drawable.otisparado);
+                    titulo.setText("Ejercicios frontales");
+
+                    ejercicios[0] = false;
+                } else {
+                    //grupo1.setVisibility(View.GONE);
+                    modelo.setImageResource(R.drawable.otisparado2);
+                    titulo.setText("Ejercicios traseros");
+                    ejercicios[0] = true;
+                }
+
+            }
+        });
+
+
+
     }
 }
