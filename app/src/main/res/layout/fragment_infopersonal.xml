@@ -269,9 +269,10 @@
                         android:text="Tasa de grasa" />
 
                     <TextView
+                        android:id="@+id/TasaGrasa"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/textViewSub5Title"
-                        android:text="Tu tasa de grasa es de el X%" />
+                         />
 
                     <ImageView
                         style="@style/homeCardImage"

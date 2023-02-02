@@ -108,7 +108,7 @@ public class DatosInfoTg extends Fragment {
                 if( 0 == opciones.getSelectedItemId()){
                     sexo = 1;
                 }else if(1==opciones.getSelectedItemId()){
-                    sexo = 0;
+                    sexo = 2;
                 }
                     int UID = activity.UIDUSR();
                 String update = "UPDATE PERSONINFO SET Gender = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
