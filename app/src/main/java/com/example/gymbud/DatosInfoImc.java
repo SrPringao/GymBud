@@ -1,17 +1,22 @@
 package com.example.gymbud;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.gymbud.db.DbHelper;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
@@ -78,8 +83,41 @@ public class DatosInfoImc extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageView imagen = view.findViewById(R.id.botonback2);
 
+        FragmentContainer activity = (FragmentContainer) getActivity();
+
+        ImageView imagen = view.findViewById(R.id.botonback2);
+        Button boton = view.findViewById(R.id.Calc);
+        EditText testo = view.findViewById(R.id.etInfo1);
+
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(testo.getText().toString().isEmpty() ){
+                    Toast.makeText(getContext(),"Llena el campo requerido",Toast.LENGTH_SHORT).show();
+
+                }else{
+
+                    int UID = activity.UIDUSR();
+                    String update = "UPDATE PERSONINFO SET Height = "+testo.getText().toString()+ " WHERE UserId = " + UID;
+                    Log.d("UPDATE", update);
+                    db.execSQL(update);
+
+                    Fragment firstFragment = new infopersonal();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+
+            }
+        });
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

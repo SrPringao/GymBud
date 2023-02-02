@@ -183,6 +183,7 @@
 
                     <TextView
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:id="@+id/Pesos"
                         android:layout_below="@id/progress"
                         android:layout_centerHorizontal="true"
                         android:text="Peso actual: X | Meta de peso: N" />
@@ -236,6 +237,7 @@
 
                     <TextView
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:id="@+id/IMC"
                         android:layout_below="@id/progress2"
                         android:layout_centerHorizontal="true"
                         android:text="IMC: X | IMC ideal: N" />
@@ -267,9 +269,10 @@
                         android:text="Tasa de grasa" />
 
                     <TextView
+                        android:id="@+id/TasaGrasa"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/textViewSub5Title"
-                        android:text="Tu tasa de grasa es de el X%" />
+                         />
 
                     <ImageView
                         style="@style/homeCardImage"

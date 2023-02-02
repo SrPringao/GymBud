@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentResultListener;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -20,11 +21,12 @@ public class FragmentContainer extends AppCompatActivity {
     MeowBottomNavigation bottomNav;
 
     ImageView imagen;
-
+    int UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    UID = getIntent().getExtras().getInt("UID");
 
-
+        Log.d("UID", "Llego el UID " + UID);
 
 
         super.onCreate(savedInstanceState);
@@ -42,9 +44,10 @@ public class FragmentContainer extends AppCompatActivity {
         bottomNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
-                Fragment fragment;
+                Fragment fragment = new Fragment();
 
-                if (item.getId() == 4){ 
+
+                if (item.getId() == 4){
                     fragment = new Sucursales();
 
                 }else if (item.getId() == 3){
@@ -132,5 +135,8 @@ public class FragmentContainer extends AppCompatActivity {
 
     private void loadFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.navFragmentContainer,fragment,null).commit();
+    }
+    public int UIDUSR(){
+        return UID;
     }
 }
