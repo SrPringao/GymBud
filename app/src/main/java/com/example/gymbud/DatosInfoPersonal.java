@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,18 +83,14 @@ public class DatosInfoPersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         FragmentContainer activity = (FragmentContainer) getActivity();
-       // int UID = activity.UIDUSR();
+        int UID = activity.UIDUSR();
+        Log.d("USR", "EL uid que llego es "+ UID);
         super.onViewCreated(view, savedInstanceState);
         ImageView imagen = view.findViewById(R.id.botonback1);
         Button BotonCalc = view.findViewById(R.id.Calc);
         EditText ETP,ETP2;
         ETP = view.findViewById(R.id.etInfo1);
         ETP2 = view.findViewById(R.id.etInfo2);
-        ETP.setText(Integer.toString(UID));
-        Bundle datos = new Bundle();
-        datos.putString("UID",Integer.toString(UID));
-
-
 
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -102,10 +99,13 @@ public class DatosInfoPersonal extends Fragment {
             @Override
             public void onClick(View view) {
 
-         /*       String PAct = ETP.getText().toString();
+               String PAct = ETP.getText().toString();
                 String MP = ETP2.getText().toString();
+                /*
                 String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + "WHERE UserId = " +
-                db.execSQL(update,null);*/
+                db.execSQL(update,null);
+
+                 */
             }
         });
         imagen.setOnClickListener(new View.OnClickListener() {

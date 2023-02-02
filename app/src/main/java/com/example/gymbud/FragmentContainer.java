@@ -19,11 +19,11 @@ public class FragmentContainer extends AppCompatActivity {
     MeowBottomNavigation bottomNav;
 
     ImageView imagen;
-
+    int UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    int UID = getIntent().getExtras().getInt("UID");
-    Bundle bundle = new Bundle();
+    UID = getIntent().getExtras().getInt("UID");
+
         Log.d("UID", "Llego el UID " + UID);
 
 
@@ -43,7 +43,7 @@ public class FragmentContainer extends AppCompatActivity {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Fragment fragment = new Fragment();
-                fragment.setArguments(bundle);
+
 
                 if (item.getId() == 4){
                     fragment = new Sucursales();
@@ -96,5 +96,8 @@ public class FragmentContainer extends AppCompatActivity {
 
     private void loadFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.navFragmentContainer,fragment,null).commit();
+    }
+    public int UIDUSR(){
+        return UID;
     }
 }
