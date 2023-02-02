@@ -82,10 +82,11 @@ public class Ejercicios extends Fragment {
         EditText hombro = view.findViewById(R.id.ethombro);
 
 
+        imagen.setX(3000);
         modelo.setY(3000);
         titulo.setX(3000);
 
-        imagen.animate().translationX(1100).setDuration(500).setStartDelay(0);
+        imagen.animate().translationX(0).setDuration(500).setStartDelay(0);
         modelo.animate().translationY(0).setDuration(500).setStartDelay(0);
         titulo.animate().translationX(0).setDuration(500).setStartDelay(0);
 
