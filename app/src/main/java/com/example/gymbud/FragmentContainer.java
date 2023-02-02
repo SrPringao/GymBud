@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentResultListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,8 +22,9 @@ public class FragmentContainer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
+    int UID = getIntent().getExtras().getInt("UID");
+    Bundle bundle = new Bundle();
+        Log.d("UID", "Llego el UID " + UID);
 
 
         super.onCreate(savedInstanceState);
@@ -40,9 +42,10 @@ public class FragmentContainer extends AppCompatActivity {
         bottomNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
-                Fragment fragment;
+                Fragment fragment = new Fragment();
+                fragment.setArguments(bundle);
 
-                if (item.getId() == 4){ 
+                if (item.getId() == 4){
                     fragment = new Sucursales();
 
                 }else if (item.getId() == 3){

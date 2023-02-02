@@ -116,11 +116,11 @@ PersonInfo personInfo;
                     Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
                     if (response.getInt("UID") != -1) {
                         int UID = response.getInt("UID");
-
                         DbQuery dbQuery = new DbQuery(MainActivity.this);
                         personInfo = dbQuery.verinfo(UID);
                         if (personInfo != null) {
                             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                            i.putExtra("UID",UID);
                             startActivity(i);
                             finish();
 
@@ -135,6 +135,7 @@ PersonInfo personInfo;
                             }
 
                             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                            i.putExtra("UID",UID);
                             startActivity(i);
                             finish();
 
