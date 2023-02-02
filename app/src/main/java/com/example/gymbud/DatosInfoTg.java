@@ -128,6 +128,7 @@ public class DatosInfoTg extends Fragment {
             }
         });
 
+
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
