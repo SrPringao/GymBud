@@ -55,7 +55,7 @@
                 android:text="Calcular tasa de grasa" />
 
             <EditText
-                android:id="@+id/etInfo1"
+                android:id="@+id/etInfo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewSub1Title"
@@ -65,7 +65,7 @@
 
                 android:background="@drawable/background_edittext"
                 android:cursorVisible="true"
-                android:hint="Sexo"
+                android:hint="Edad"
                 android:inputType="text"
                 android:paddingStart="10dp"
 
@@ -76,18 +76,16 @@
 
             </EditText>
 
-            <EditText
-                android:id="@+id/etInfo2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etInfo1"
+            <Spinner
+                android:id="@+id/SpinnerSex"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/etInfo2"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/background_edittext"
                 android:cursorVisible="true"
 
-                android:hint="Edad"
-                android:inputType="number"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -95,12 +93,13 @@
                 android:textCursorDrawable="@color/black">
 
 
-            </EditText>
+            </Spinner>
 
             <Button
+                android:id="@+id/Calc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/etInfo2"
+                android:layout_below="@+id/SpinnerSex"
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="70dp"
