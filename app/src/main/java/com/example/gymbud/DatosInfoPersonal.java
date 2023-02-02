@@ -83,8 +83,7 @@ public class DatosInfoPersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         FragmentContainer activity = (FragmentContainer) getActivity();
-        int UID = activity.UIDUSR();
-        Log.d("USR", "EL uid que llego es "+ UID);
+
         super.onViewCreated(view, savedInstanceState);
         ImageView imagen = view.findViewById(R.id.botonback1);
         Button BotonCalc = view.findViewById(R.id.Calc);
@@ -98,14 +97,18 @@ public class DatosInfoPersonal extends Fragment {
         BotonCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int UID = activity.UIDUSR();
+                Log.d("USR", "EL uid que llego es "+ UID);
+               Float PAct = Float.parseFloat(ETP.getText().toString());
+                Float MP = Float.parseFloat(ETP2.getText().toString());
+                Log.d("USR", "EL PACT " + PAct);
+                Log.d("USR", "MP "+ MP);
 
-               String PAct = ETP.getText().toString();
-                String MP = ETP2.getText().toString();
-                /*
-                String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + "WHERE UserId = " +
-                db.execSQL(update,null);
+                String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + " WHERE UserId = " + UID;
+                Log.d("UPDATE", update);
+                db.execSQL(update);
 
-                 */
+
             }
         });
         imagen.setOnClickListener(new View.OnClickListener() {

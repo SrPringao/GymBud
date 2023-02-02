@@ -183,6 +183,7 @@
 
                     <TextView
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:id="@+id/Pesos"
                         android:layout_below="@id/progress"
                         android:layout_centerHorizontal="true"
                         android:text="Peso actual: X | Meta de peso: N" />
