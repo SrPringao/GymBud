@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.gymbud.db.DbHelper;
 
@@ -97,18 +98,29 @@ public class DatosInfoPersonal extends Fragment {
         BotonCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int UID = activity.UIDUSR();
-                Log.d("USR", "EL uid que llego es "+ UID);
-               Float PAct = Float.parseFloat(ETP.getText().toString());
-                Float MP = Float.parseFloat(ETP2.getText().toString());
-                Log.d("USR", "EL PACT " + PAct);
-                Log.d("USR", "MP "+ MP);
-
-                String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + " WHERE UserId = " + UID;
-                Log.d("UPDATE", update);
-                db.execSQL(update);
+                if (ETP.getText().toString().isEmpty() || ETP2.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(),"Llena los 2 campos",Toast.LENGTH_SHORT).show();
+                } else {
 
 
+                    int UID = activity.UIDUSR();
+                    Log.d("USR", "EL uid que llego es " + UID);
+                    Float PAct = Float.parseFloat(ETP.getText().toString());
+                    Float MP = Float.parseFloat(ETP2.getText().toString());
+
+                    String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + " WHERE UserId = " + UID;
+                    Log.d("UPDATE", update);
+                    db.execSQL(update);
+
+
+                    Fragment firstFragment = new infopersonal();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
             }
         });
         imagen.setOnClickListener(new View.OnClickListener() {

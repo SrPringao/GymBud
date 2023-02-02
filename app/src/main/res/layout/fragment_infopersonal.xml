@@ -237,6 +237,7 @@
 
                     <TextView
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:id="@+id/IMC"
                         android:layout_below="@id/progress2"
                         android:layout_centerHorizontal="true"
                         android:text="IMC: X | IMC ideal: N" />
