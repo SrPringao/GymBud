@@ -131,6 +131,8 @@ public class infopersonal extends Fragment {
 
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
+
+
         rellenado(personInfo,UID,pesos,IMC,TG);
 
 
@@ -190,7 +192,7 @@ public class infopersonal extends Fragment {
         });
 
     }
-    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
+   /* private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
         double imc = 0;
         double grasa;
         Log.d("abububub", Integer.toString(UID));
@@ -204,7 +206,7 @@ public class infopersonal extends Fragment {
         pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
         IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
         TG.setText("Tu tasa de grasa es del " + grasa+"%");
-    }
+    }*/
 
     private void fecha()
     {
