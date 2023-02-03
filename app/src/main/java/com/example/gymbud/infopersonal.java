@@ -1,5 +1,7 @@
 package com.example.gymbud;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -32,7 +34,10 @@ import net.colindodd.gradientlayout.GradientRelativeLayout;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -114,8 +119,7 @@ public class infopersonal extends Fragment {
         PersonInfo personInfo;
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
-        double imc = 0;
-        double grasa;
+
 
         ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
@@ -125,18 +129,15 @@ public class infopersonal extends Fragment {
         GradientRelativeLayout cardimc = view.findViewById(R.id.cardimc);
         GradientRelativeLayout cardgrasa = view.findViewById(R.id.cardgrasa);
 
-
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
-        imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
-        Log.d("IMC", Double.toString(imc));
-        imc = Math.round(imc);
-        grasa = ((1.20*imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
-        grasa = Math.round(grasa);
+        rellenado(personInfo,UID,pesos,IMC,TG);
 
-        pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
-        IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
-        TG.setText("Tu tasa de grasa es del " + grasa+"%");
+
+
+
+
+
 
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +188,28 @@ public class infopersonal extends Fragment {
                 transaction.commit();
             }
         });
+
+    }
+    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
+        double imc = 0;
+        double grasa;
+
+
+        imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
+        Log.d("IMC", Double.toString(imc));
+        imc = Math.round(imc);
+        grasa = ((1.20*imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
+        grasa = Math.round(grasa);
+
+        pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
+        IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
+        TG.setText("Tu tasa de grasa es del " + grasa+"%");
+    }
+
+    private void fecha()
+    {
+        String DateT;
+
 
     }
 }
