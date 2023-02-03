@@ -77,61 +77,163 @@ public class Ejercicios extends Fragment {
     View.OnClickListener ejercicioseleccionado =new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Fragment fragment = new GrupoSeleccionado();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            Bundle args = new Bundle();
+
             switch (view.getId()) {
+
                 case R.id.ethombro:
                     Log.d("Tag", "onClick: hombro");
+
+                    args.putString("nombre_musculo", "Hombro");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                     break;
                 case R.id.etbiceps:
                     Log.d("Tag", "onClick: bicep");
+
+                    args.putString("nombre_musculo", "Bicep");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etoblicuos:
                     Log.d("Tag", "onClick: oblicuos");
 
+                    args.putString("nombre_musculo", "Oblicuos");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.etpecho:
                     Log.d("Tag", "onClick: pecho");
+                    args.putString("nombre_musculo", "Pecho");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etabs:
                     Log.d("Tag", "onClick: abs");
 
+                    args.putString("nombre_musculo", "Abs");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.etantebrazos:
                     Log.d("Tag", "onClick: antebrazos");
+
+                    args.putString("nombre_musculo", "Antebrazos");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etcuadriceps:
                     Log.d("Tag", "onClick: cuads");
 
+                    args.putString("nombre_musculo", "Cuadriceps");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.ettrapecios:
                     Log.d("Tag", "onClick: trapecios");
+
+                    args.putString("nombre_musculo", "Trapecios");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etriceps:
                     Log.d("Tag", "onClick: triceps");
 
+                    args.putString("nombre_musculo", "Triceps");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.etfemorales:
                     Log.d("Tag", "onClick: femorales");
+
+                    args.putString("nombre_musculo", "Femorales");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etpantorrillas:
                     Log.d("Tag", "onClick: pantorrillas");
 
+                    args.putString("nombre_musculo", "Pantorrillas");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.etdorsales:
                     Log.d("Tag", "onClick: dorsales");
+
+                    args.putString("nombre_musculo", "Dorsales");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
 
                     break;
                 case R.id.etespaldamedia:
                     Log.d("Tag", "onClick: espalda media");
 
+                    args.putString("nombre_musculo", "Espalda Media");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
                     break;
                 case R.id.etgluteos:
                     Log.d("Tag", "onClick: gluteos");
 
+                    args.putString("nombre_musculo", "Gluteos");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                     break;
             }
         }
