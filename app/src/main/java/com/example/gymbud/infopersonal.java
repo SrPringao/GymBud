@@ -193,7 +193,7 @@ public class infopersonal extends Fragment {
     private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
         double imc = 0;
         double grasa;
-
+        Log.d("abububub", Integer.toString(UID));
 
         imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
         Log.d("IMC", Double.toString(imc));

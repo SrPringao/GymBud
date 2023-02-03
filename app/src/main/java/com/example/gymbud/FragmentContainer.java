@@ -160,7 +160,6 @@ public class FragmentContainer extends AppCompatActivity {
         Context context = this;
         SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
         fecha = sharedPrefs.getString("Fecha","0");
-
         return fecha;
     }
 }
