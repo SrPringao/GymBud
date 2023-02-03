@@ -2,6 +2,7 @@ package com.example.gymbud;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -66,8 +67,7 @@ public class Ejercicios extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //imagen.animate().translationX(-1400).setDuration(2700).setStartDelay(0);
+
 
         return inflater.inflate(R.layout.fragment_ejercicios, container, false);
     }
@@ -79,38 +79,64 @@ public class Ejercicios extends Fragment {
         ImageView imagen = view.findViewById(R.id.imgvuelta);
         ImageView modelo =  view.findViewById(R.id.imgmodelo);
         TextView titulo = view.findViewById(R.id.tituloejercicios);
-        EditText hombro = view.findViewById(R.id.ethombro);
+        ConstraintLayout ejerciciosfrontalesi = view.findViewById(R.id.ejerciciosizquierda);
+        ConstraintLayout ejerciciosfrontalesd = view.findViewById(R.id.ejerciciosderecha);
+        ConstraintLayout ejerciciostraserosi = view.findViewById(R.id.ejerciciositraseros);
+        ConstraintLayout ejerciciostraserosd = view.findViewById(R.id.ejerciciosdtraseros);
+
+        ejerciciosfrontalesd.setVisibility(View.VISIBLE);
+        ejerciciosfrontalesi.setVisibility(View.VISIBLE);
+        modelo.setImageResource(R.drawable.otisparado);
 
 
         imagen.setX(3000);
         modelo.setY(3000);
         titulo.setX(3000);
 
+        ejerciciosfrontalesi.setX(-3000);
+        ejerciciosfrontalesd.setX(3000);
+
+        ejerciciostraserosi.setY(-3000);
+        ejerciciostraserosd.setY(-3000);
+
+
         imagen.animate().translationX(0).setDuration(500).setStartDelay(0);
         modelo.animate().translationY(0).setDuration(500).setStartDelay(0);
         titulo.animate().translationX(0).setDuration(500).setStartDelay(0);
 
-        final boolean[] ejercicios = {true};
+        ejerciciosfrontalesi.animate().translationX(0).setDuration(500).setStartDelay(0);
+        ejerciciosfrontalesd.animate().translationX(0).setDuration(500).setStartDelay(0);
 
-        hombro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+        final boolean[] ejercicios = {false};
+
 
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (ejercicios[0]) {
-                    //grupo1.setVisibility(View.VISIBLE);
+
+                    ejerciciostraserosi.animate().translationY(-3000).setDuration(500).setStartDelay(0);
+                    ejerciciostraserosd.animate().translationY(3000).setDuration(500).setStartDelay(0);
+
+                    ejerciciosfrontalesi.animate().translationX(0).setDuration(500).setStartDelay(0);
+                    ejerciciosfrontalesd.animate().translationX(0).setDuration(500).setStartDelay(0);
+
                     modelo.setImageResource(R.drawable.otisparado);
                     titulo.setText("Ejercicios frontales");
 
                     ejercicios[0] = false;
                 } else {
-                    //grupo1.setVisibility(View.GONE);
+                    ejerciciosfrontalesi.animate().translationX(-3000).setDuration(500).setStartDelay(0);
+                    ejerciciosfrontalesd.animate().translationX(3000).setDuration(500).setStartDelay(0);
+
+                    ejerciciostraserosi.setVisibility(View.VISIBLE);
+                    ejerciciostraserosd.setVisibility(View.VISIBLE);
+                    ejerciciostraserosi.animate().translationY(0).setDuration(500).setStartDelay(0);
+                    ejerciciostraserosd.animate().translationY(0).setDuration(500).setStartDelay(0);
+
+
                     modelo.setImageResource(R.drawable.otisparado2);
                     titulo.setText("Ejercicios traseros");
                     ejercicios[0] = true;
