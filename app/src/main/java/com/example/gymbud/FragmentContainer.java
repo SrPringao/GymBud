@@ -1,20 +1,20 @@
 package com.example.gymbud;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
 
-import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FragmentContainer extends AppCompatActivity {
 
@@ -24,8 +24,23 @@ public class FragmentContainer extends AppCompatActivity {
     int UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    UID = getIntent().getExtras().getInt("UID");
 
+
+        long ahora = System.currentTimeMillis();
+        Date fecha = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String hora = df.format(fecha);
+        Log.d("Hora",hora);
+
+        Context context = this;
+        SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("Fecha", hora);
+        editor.commit();
+
+
+
+        UID = getIntent().getExtras().getInt("UID");
         Log.d("UID", "Llego el UID " + UID);
 
 
@@ -139,4 +154,14 @@ public class FragmentContainer extends AppCompatActivity {
     public int UIDUSR(){
         return UID;
     }
+
+    public String fecha(){
+        String fecha="0";
+        Context context = this;
+        SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
+        fecha = sharedPrefs.getString("Fecha","0");
+
+        return fecha;
+    }
 }
+

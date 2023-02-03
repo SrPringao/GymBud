@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,9 +34,14 @@ Button btnIngreso, MACABRO;
 TextView TVRegistro, TVRecuperar;
 SharedPreferences archivo;
 PersonInfo personInfo;
+    Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int shared;
+        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo",context.MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         ETusr = findViewById(R.id.etUsuario);
         ETcontra = findViewById(R.id.etContraseña);
@@ -58,6 +64,14 @@ PersonInfo personInfo;
         });
         */
 
+
+        shared = sharedPrefs.getInt("UID",0);
+        if(shared != 0 ){
+            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+            i.putExtra("UID",shared);
+            startActivity(i);
+            finish();
+        }
 
 
 
@@ -85,6 +99,7 @@ PersonInfo personInfo;
     }
 
     public void clickInicio(View view) {
+        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo",context.MODE_PRIVATE);
 
         final String usuario = ETusr.getText().toString().trim();
         final String correo = ETcontra.getText().toString().trim();
@@ -121,6 +136,13 @@ PersonInfo personInfo;
                         if (personInfo != null) {
                             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
                             i.putExtra("UID",UID);
+
+
+                            SharedPreferences.Editor editor = sharedPrefs.edit();
+                            editor.putInt("UID", UID);
+                            editor.commit();
+
+
                             startActivity(i);
                             finish();
 
@@ -133,6 +155,10 @@ PersonInfo personInfo;
                             } else {
                                 Toast.makeText(MainActivity.this, "Error al registrarlo", Toast.LENGTH_SHORT).show();
                             }
+
+                            SharedPreferences.Editor editor = sharedPrefs.edit();
+                            editor.putInt("UID", UID);
+                            editor.commit();
 
                             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
                             i.putExtra("UID",UID);
