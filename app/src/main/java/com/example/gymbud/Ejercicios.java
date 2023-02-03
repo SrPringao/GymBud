@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,6 +74,70 @@ public class Ejercicios extends Fragment {
     }
 
 
+    View.OnClickListener ejercicioseleccionado =new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.ethombro:
+                    Log.d("Tag", "onClick: hombro");
+                    break;
+                case R.id.etbiceps:
+                    Log.d("Tag", "onClick: bicep");
+
+                    break;
+                case R.id.etoblicuos:
+                    Log.d("Tag", "onClick: oblicuos");
+
+                    break;
+                case R.id.etpecho:
+                    Log.d("Tag", "onClick: pecho");
+
+                    break;
+                case R.id.etabs:
+                    Log.d("Tag", "onClick: abs");
+
+                    break;
+                case R.id.etantebrazos:
+                    Log.d("Tag", "onClick: antebrazos");
+
+                    break;
+                case R.id.etcuadriceps:
+                    Log.d("Tag", "onClick: cuads");
+
+                    break;
+                case R.id.ettrapecios:
+                    Log.d("Tag", "onClick: trapecios");
+
+                    break;
+                case R.id.etriceps:
+                    Log.d("Tag", "onClick: triceps");
+
+                    break;
+                case R.id.etfemorales:
+                    Log.d("Tag", "onClick: femorales");
+
+                    break;
+                case R.id.etpantorrillas:
+                    Log.d("Tag", "onClick: pantorrillas");
+
+                    break;
+                case R.id.etdorsales:
+                    Log.d("Tag", "onClick: dorsales");
+
+                    break;
+                case R.id.etespaldamedia:
+                    Log.d("Tag", "onClick: espalda media");
+
+                    break;
+                case R.id.etgluteos:
+                    Log.d("Tag", "onClick: gluteos");
+
+                    break;
+            }
+        }
+    };
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -123,8 +188,11 @@ public class Ejercicios extends Fragment {
                     ejerciciosfrontalesi.animate().translationX(0).setDuration(500).setStartDelay(0);
                     ejerciciosfrontalesd.animate().translationX(0).setDuration(500).setStartDelay(0);
 
+                    modelo.animate().rotationBy(-360).setDuration(500).setStartDelay(0);
                     modelo.setImageResource(R.drawable.otisparado);
+
                     titulo.setText("Ejercicios frontales");
+                    Log.d("Estado", "onClick: Adelante");
 
                     ejercicios[0] = false;
                 } else {
@@ -136,10 +204,13 @@ public class Ejercicios extends Fragment {
                     ejerciciostraserosi.animate().translationY(0).setDuration(500).setStartDelay(0);
                     ejerciciostraserosd.animate().translationY(0).setDuration(500).setStartDelay(0);
 
-
+                    modelo.animate().rotationBy(360).setDuration(500).setStartDelay(0);
                     modelo.setImageResource(R.drawable.otisparado2);
+
                     titulo.setText("Ejercicios traseros");
                     ejercicios[0] = true;
+
+                    Log.d("Estado", "onClick: Atras");
                 }
 
             }
@@ -147,5 +218,13 @@ public class Ejercicios extends Fragment {
 
 
 
+        int[] editTextIds = {R.id.ethombro, R.id.etbiceps, R.id.etoblicuos,R.id.etpecho,R.id.etabs,R.id.etantebrazos,R.id.etcuadriceps,R.id.ettrapecios,R.id.etriceps,R.id.etfemorales
+        ,R.id.etpantorrillas,R.id.etdorsales,R.id.etespaldamedia,R.id.etgluteos};
+
+        for (int id : editTextIds) {
+            EditText editText = view.findViewById(id);
+            editText.setOnClickListener(ejercicioseleccionado);
+        }
     }
+
 }

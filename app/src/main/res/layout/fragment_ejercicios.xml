@@ -133,7 +133,7 @@
 
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/etpecho"
 
             android:layout_width="159dp"
             android:layout_height="50dp"
@@ -154,7 +154,7 @@
             tools:ignore="Deprecated,MissingConstraints" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/etabs"
 
             android:layout_width="159dp"
             android:layout_height="50dp"
@@ -174,7 +174,7 @@
             tools:ignore="Deprecated,MissingConstraints" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName6"
+            android:id="@+id/etantebrazos"
 
             android:layout_width="127dp"
             android:layout_height="45dp"
@@ -194,7 +194,7 @@
             tools:ignore="Deprecated,MissingConstraints" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName7"
+            android:id="@+id/etcuadriceps"
 
             android:layout_width="127dp"
             android:layout_height="45dp"
