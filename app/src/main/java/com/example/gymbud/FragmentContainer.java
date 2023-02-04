@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,19 +23,6 @@ public class FragmentContainer extends AppCompatActivity {
     int UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        long ahora = System.currentTimeMillis();
-        Date fecha = new Date(ahora);
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-        String hora = df.format(fecha);
-        Log.d("Hora",hora);
-
-        Context context = this;
-
-
-
-
         UID = getIntent().getExtras().getInt("UID");
         Log.d("UID", "Llego el UID " + UID);
 
@@ -152,12 +138,32 @@ public class FragmentContainer extends AppCompatActivity {
         return UID;
     }
 
-    public String fecha(){
+    public String FechaG(){
         String fecha="0";
         Context context = this;
         SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
         fecha = sharedPrefs.getString("Fecha","0");
         return fecha;
+    }
+    public String FechaAct(){
+        long ahora = System.currentTimeMillis();
+        Date fechaD = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        String DateT = df.format(fechaD);
+        Log.d("FechaAct",DateT);
+        return  DateT;
+    }
+
+
+    public float FechaLONG(){
+        Context context = this;
+        SharedPreferences sharedPrefs = getSharedPreferences("FechaL",context.MODE_PRIVATE);
+        long fecha = sharedPrefs.getLong("Fecha",0);
+        long FechaC = System.currentTimeMillis();
+        long diferencia = FechaC-fecha;
+        long diasDesde = (long) Math.floor(diferencia/(1000*60*60*24));
+        Log.d("DIASDESDE", ""+diasDesde);
+        return diasDesde;
     }
 }
 

@@ -306,7 +306,6 @@
 
                     <TextView
                         android:id="@+id/frase"
-                        android:text="El dolor que sientes hoy es la fuerza que sentiras mañana\n\n-Natanael Cano 2024"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/textViewSub6Title"/>
 

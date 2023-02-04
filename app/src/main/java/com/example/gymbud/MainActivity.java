@@ -149,13 +149,6 @@ PersonInfo personInfo;
                         } else {
 
                             long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
-
-                            if (id > 0) {
-                                Toast.makeText(MainActivity.this, "Se registro padrino", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(MainActivity.this, "Error al registrarlo", Toast.LENGTH_SHORT).show();
-                            }
-
                             SharedPreferences.Editor editor = sharedPrefs.edit();
                             editor.putInt("UID", UID);
                             editor.commit();
