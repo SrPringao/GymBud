@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.gymbud.db.Entidades.PersonInfo;
-import com.example.gymbud.db.Entidades.Phrase;
 
 import java.util.ArrayList;
 
@@ -71,22 +70,6 @@ public class DbQuery extends DbHelper {
         cursorInfo.close();
         return personInfo;
     }
-    public Phrase verFrase(int id){
-        DbHelper dbHelper = new DbHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Phrase frase = null;
-        Cursor cursorsote;
-        cursorsote = db.rawQuery("SELECT * FROM " + TABLE_PHRASE + " WHERE Id = " + id,null);
-        if (cursorsote.moveToFirst()) {
-            frase = new Phrase();
-            frase.setId(cursorsote.getInt(0));
-            frase.setMotivation(cursorsote.getString(1));
-        }
-        cursorsote.close();
-        return frase;
-    }
-
-
     public ArrayList<PersonInfo> MostrarPersonInfo(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -115,6 +98,4 @@ public class DbQuery extends DbHelper {
         cursorperson.close();
         return ListaPerson;
     }
-
-
 }

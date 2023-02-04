@@ -2,11 +2,14 @@ package com.example.gymbud;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.example.gymbud.R;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,18 +17,27 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
+import android.widget.ScrollView;
+
+import eightbitlab.com.blurview.BlurView;
 
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
 import com.example.gymbud.db.Entidades.PersonInfo;
-import com.example.gymbud.db.Entidades.Phrase;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
-import java.util.Random;
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -103,29 +115,25 @@ public class infopersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         PersonInfo personInfo;
-        TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
-        String FechaG = activity.FechaG();
-        String FechaAct = activity.FechaAct();
-        float FechaC = activity.FechaLONG();
+
 
         ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
         TextView IMC = view.findViewById(R.id.IMC);
         TextView TG = view.findViewById(R.id.TasaGrasa);
-        TextView Racha = view.findViewById(R.id.diasn);
         GradientRelativeLayout cardpeso = view.findViewById(R.id.cardpeso);
         GradientRelativeLayout cardimc = view.findViewById(R.id.cardimc);
         GradientRelativeLayout cardgrasa = view.findViewById(R.id.cardgrasa);
 
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
+        rellenado(personInfo,UID,pesos,IMC,TG);
 
 
-        rellenado(personInfo,UID,pesos,IMC,TG,Racha);
-        fecha(FechaG,FechaAct,frase,FechaC);
 
 
 
@@ -182,13 +190,10 @@ public class infopersonal extends Fragment {
         });
 
     }
-    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG,TextView racha){
-        Context context = getContext();
-        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
-        int RachaGuardada = sharedPrefs.getInt("RACHA",0);
+    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
         double imc = 0;
         double grasa;
-        Log.d("abububub", Integer.toString(UID));
+
 
         imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
         Log.d("IMC", Double.toString(imc));
@@ -199,56 +204,12 @@ public class infopersonal extends Fragment {
         pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
         IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
         TG.setText("Tu tasa de grasa es del " + grasa+"%");
-        racha.setText(String.valueOf(RachaGuardada));
     }
 
-    private void fecha(String fecha,String DateT, TextView testoFrase,float FechaL)
+    private void fecha()
     {
-        Context context = getContext();
-        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        int Racha = sharedPrefs.getInt("RACHA",0);
-        final int random = new Random().nextInt(74);
-        DbQuery dbQuery = new DbQuery(getContext());
-        Phrase frase;
-        frase = dbQuery.verFrase(random);
+        String DateT;
 
 
-        float FechaGUARDADA = sharedPrefs.getFloat("FechaDIF",0);
-        float FechasDif = FechaL-FechaGUARDADA;
-
-
-        Log.d("Diferencia Fechas",""+FechasDif );
-        if((FechaL-FechaGUARDADA) == 1){
-            Racha++;
-            editor.putFloat("FechaDIF",FechaL);
-            editor.putInt("RACHA", Racha);
-            editor.commit();
-        }else if(FechaL-FechaGUARDADA == 0){
-
-        }else{
-            Racha = 0;
-            editor.putInt("RACHA", Racha);
-            editor.putFloat("FechaDIF",FechaL);
-            editor.commit();
-        }
-
-        if(DateT.equals(fecha)){
-            int id = sharedPrefs.getInt("Id",0);
-            frase = dbQuery.verFrase(id);
-            testoFrase.setText(frase.getMotivation());
-            Log.d("Fecha","Es el mismo dia");
-
-        }else{
-            long ahora = System.currentTimeMillis();
-            testoFrase.setText(frase.getMotivation());
-            editor.putString("Fecha", DateT);
-            editor.putInt("Id", random);
-            editor.putLong("FechaL",ahora);
-            editor.commit();
-
-        }
     }
-
-
 }
