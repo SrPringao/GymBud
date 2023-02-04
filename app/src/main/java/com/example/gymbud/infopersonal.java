@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
 import com.example.gymbud.db.Entidades.PersonInfo;
+import com.example.gymbud.db.Entidades.Phrase;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
@@ -119,6 +120,9 @@ public class infopersonal extends Fragment {
         PersonInfo personInfo;
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
+        String FechaG = activity.fecha();
+
+        fecha(FechaG);
 
 
         ImageView imagen = view.findViewById(R.id.otisImg);
@@ -192,7 +196,7 @@ public class infopersonal extends Fragment {
         });
 
     }
-   /* private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
+    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG){
         double imc = 0;
         double grasa;
         Log.d("abububub", Integer.toString(UID));
@@ -206,12 +210,22 @@ public class infopersonal extends Fragment {
         pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
         IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
         TG.setText("Tu tasa de grasa es del " + grasa+"%");
-    }*/
+    }
 
-    private void fecha()
+    private void fecha(String fecha)
     {
-        String DateT;
+        DbQuery dbQuery = new DbQuery(getContext());
+        Phrase frase;
+        //frase = dbQuery.verFrase()
+        long ahora = System.currentTimeMillis();
+        Date fechaD = new Date(ahora);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String DateT = df.format(fechaD);
 
+        if(DateT==fecha){
+
+
+        }
 
     }
 }
