@@ -192,11 +192,6 @@ public class Registro extends AppCompatActivity {
         RequestQueue lanzarPeticion = Volley.newRequestQueue(this);
         lanzarPeticion.add(pet);
         lanzarPeticion.start();
-
-
-
-
-
     }
 
 
