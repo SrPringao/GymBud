@@ -39,6 +39,7 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 
 /**
@@ -116,14 +117,11 @@ public class infopersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         PersonInfo personInfo;
+        TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
         String FechaG = activity.fecha();
-
-        fecha(FechaG);
-
 
         ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
@@ -139,7 +137,7 @@ public class infopersonal extends Fragment {
 
         rellenado(personInfo,UID,pesos,IMC,TG);
 
-
+        fecha(FechaG,frase);
 
 
 
@@ -212,20 +210,29 @@ public class infopersonal extends Fragment {
         TG.setText("Tu tasa de grasa es del " + grasa+"%");
     }
 
-    private void fecha(String fecha)
+    private void fecha(String fecha, TextView testoFrase)
     {
+        final int random = new Random().nextInt(74); // [0, 60] + 20 => [20, 80]
         DbQuery dbQuery = new DbQuery(getContext());
         Phrase frase;
-        //frase = dbQuery.verFrase()
+        frase = dbQuery.verFrase(random);
         long ahora = System.currentTimeMillis();
         Date fechaD = new Date(ahora);
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
         String DateT = df.format(fechaD);
-
-        if(DateT==fecha){
-
-
+        Log.d("VDateT",DateT);
+        Log.d("Vfecha",fecha);
+        if(DateT.equals(fecha)){
+            Log.d("Fecha","Es el mismo dia");
+        }else{
+            testoFrase.setText(frase.getMotivation());
+            Context context = getContext();
+            SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putString("Fecha", DateT);
+            editor.commit();
         }
-
     }
+
+
 }

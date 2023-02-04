@@ -33,10 +33,7 @@ public class FragmentContainer extends AppCompatActivity {
         Log.d("Hora",hora);
 
         Context context = this;
-        SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString("Fecha", hora);
-        editor.commit();
+
 
 
 
