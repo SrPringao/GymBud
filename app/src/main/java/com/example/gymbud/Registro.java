@@ -137,12 +137,11 @@ public class Registro extends AppCompatActivity {
 
 
                             String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
-                            url = url + Uri.encode(ETusuario.getText().toString());
+                            url = url + ETusuario.getText().toString();
                             url = url + "&mail=";
-                            url = url + Uri.encode(ETcorreo.getText().toString());
+                            url = url + ETcorreo.getText().toString();
                             url = url + "&pass=";
-                            url = url + Uri.encode(ETcontrasena.getText().toString());
-
+                            url = url + ETcontrasena.getText().toString();
                             JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
@@ -192,6 +191,11 @@ public class Registro extends AppCompatActivity {
         RequestQueue lanzarPeticion = Volley.newRequestQueue(this);
         lanzarPeticion.add(pet);
         lanzarPeticion.start();
+
+
+
+
+
     }
 
 

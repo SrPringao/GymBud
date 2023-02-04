@@ -29,11 +29,11 @@ import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity {
-    EditText ETusr,ETcontra;
-    Button btnIngreso, MACABRO;
-    TextView TVRegistro, TVRecuperar;
-    SharedPreferences archivo;
-    PersonInfo personInfo;
+EditText ETusr,ETcontra;
+Button btnIngreso, MACABRO;
+TextView TVRegistro, TVRecuperar;
+SharedPreferences archivo;
+PersonInfo personInfo;
     Context context = this;
 
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
-        //  MACABRO = findViewById(R.id.botonMACABRO);
+      //  MACABRO = findViewById(R.id.botonMACABRO);
 
        /* MACABRO.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +149,13 @@ public class MainActivity extends AppCompatActivity {
                         } else {
 
                             long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
+
+                            if (id > 0) {
+                                Toast.makeText(MainActivity.this, "Se registro padrino", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Error al registrarlo", Toast.LENGTH_SHORT).show();
+                            }
+
                             SharedPreferences.Editor editor = sharedPrefs.edit();
                             editor.putInt("UID", UID);
                             editor.commit();
