@@ -156,7 +156,7 @@ public class FragmentContainer extends AppCompatActivity {
 
 
     public float FechaLONG(){
-        Context context = this;
+        Context context = this;//contesto
         SharedPreferences sharedPrefs = getSharedPreferences("FechaL",context.MODE_PRIVATE);
         long fecha = sharedPrefs.getLong("Fecha",0);
         long FechaC = System.currentTimeMillis();
