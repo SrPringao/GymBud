@@ -1,11 +1,13 @@
 package com.example.gymbud;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -88,6 +90,7 @@ public class Ejercicios extends Fragment {
                     Log.d("Tag", "onClick: hombro");
 
                     args.putString("nombre_musculo", "Hombro");
+                    args.putInt("Id",1);
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                     transaction.replace(R.id.navFragmentContainer, fragment);
@@ -96,7 +99,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etbiceps:
                     Log.d("Tag", "onClick: bicep");
-
+                    args.putInt("Id",2);
                     args.putString("nombre_musculo", "Bicep");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -107,7 +110,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etoblicuos:
                     Log.d("Tag", "onClick: oblicuos");
-
+                    args.putInt("Id",5);
                     args.putString("nombre_musculo", "Oblicuos");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -118,6 +121,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etpecho:
                     Log.d("Tag", "onClick: pecho");
+                    args.putInt("Id",3);
                     args.putString("nombre_musculo", "Pecho");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -128,7 +132,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etabs:
                     Log.d("Tag", "onClick: abs");
-
+                    args.putInt("Id",4);
                     args.putString("nombre_musculo", "Abs");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -139,7 +143,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etantebrazos:
                     Log.d("Tag", "onClick: antebrazos");
-
+                    args.putInt("Id",6);
                     args.putString("nombre_musculo", "Antebrazos");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -150,7 +154,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etcuadriceps:
                     Log.d("Tag", "onClick: cuads");
-
+                    args.putInt("Id",7);
                     args.putString("nombre_musculo", "Cuadriceps");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -161,7 +165,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.ettrapecios:
                     Log.d("Tag", "onClick: trapecios");
-
+                    args.putInt("Id",8);
                     args.putString("nombre_musculo", "Trapecios");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -172,7 +176,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etriceps:
                     Log.d("Tag", "onClick: triceps");
-
+                    args.putInt("Id",10);
                     args.putString("nombre_musculo", "Triceps");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -183,7 +187,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etfemorales:
                     Log.d("Tag", "onClick: femorales");
-
+                    args.putInt("Id",14);
                     args.putString("nombre_musculo", "Femorales");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -194,7 +198,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etpantorrillas:
                     Log.d("Tag", "onClick: pantorrillas");
-
+                    args.putInt("Id",15);
                     args.putString("nombre_musculo", "Pantorrillas");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -205,7 +209,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etdorsales:
                     Log.d("Tag", "onClick: dorsales");
-
+                    args.putInt("Id",9);
                     args.putString("nombre_musculo", "Dorsales");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -216,7 +220,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etespaldamedia:
                     Log.d("Tag", "onClick: espalda media");
-
+                    args.putInt("Id",11);
                     args.putString("nombre_musculo", "Espalda Media");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
@@ -227,7 +231,7 @@ public class Ejercicios extends Fragment {
                     break;
                 case R.id.etgluteos:
                     Log.d("Tag", "onClick: gluteos");
-
+                    args.putInt("Id",13);
                     args.putString("nombre_musculo", "Gluteos");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);

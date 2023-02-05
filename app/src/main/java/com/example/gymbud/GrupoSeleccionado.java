@@ -1,15 +1,25 @@
 package com.example.gymbud;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
+import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.Exercises;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,11 +75,23 @@ public class GrupoSeleccionado extends Fragment {
         return inflater.inflate(R.layout.fragment_grupo_seleccionado, container, false);
     }
 
+    RecyclerView recyclerView;
+    ArrayList<Ejercicios> EjerciciosLista;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Context context = getContext();
         Bundle args = getArguments();
         String nombreMusculo = args.getString("nombre_musculo");
+        int id = args.getInt("Id");
+        Log.d("ID",Integer.toString(id));
+        recyclerView = view.findViewById(R.id.Recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+        DbQuery dbQuery = new DbQuery(context);
+        EjerciciosLista = new ArrayList<>();
+
+        EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
+        recyclerView.setAdapter(adapter);
 
         ImageView imagenatras = view.findViewById(R.id.botonback4);
         TextView textView = view.findViewById(R.id.tituloejerciciosGS);
