@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.gymbud.db.Entidades.Exercises;
 import com.example.gymbud.db.Entidades.PersonInfo;
 import com.example.gymbud.db.Entidades.Phrase;
 
@@ -114,6 +115,37 @@ public class DbQuery extends DbHelper {
         }
         cursorperson.close();
         return ListaPerson;
+    }
+
+    public  ArrayList<Exercises> MostrarEjercicios(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Exercises> ListaEjercicios = new ArrayList<>();
+        Exercises ejercicios = null;
+        Cursor cursorejercicios = null;
+        cursorejercicios = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + id , null);
+        if (cursorejercicios.moveToFirst()){
+            do{
+                ejercicios = new Exercises();
+                ejercicios.setId(cursorejercicios.getInt(0));
+                ejercicios.setName(cursorejercicios.getString(1));
+                ejercicios.setMuscularGroup(cursorejercicios.getInt(2));
+                ejercicios.setFocus(cursorejercicios.getString(3));
+                ejercicios.setForeSeeing(cursorejercicios.getString(4));
+                ejercicios.setExecution(cursorejercicios.getString(5));
+                ejercicios.setDetails(cursorejercicios.getString(6));
+                ejercicios.setImage(cursorejercicios.getBlob(7));
+                ejercicios.setTool(cursorejercicios.getInt(8));
+                ejercicios.setCategory(cursorejercicios.getInt(9));
+                ejercicios.setDifficulty(cursorejercicios.getInt(10));
+                ejercicios.setStats(cursorejercicios.getInt(11));
+
+                ListaEjercicios.add(ejercicios);
+            }while (cursorejercicios.moveToNext());
+        }
+        cursorejercicios.close();
+        return ListaEjercicios;
     }
 
 
