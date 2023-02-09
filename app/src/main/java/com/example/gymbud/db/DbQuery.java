@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -147,6 +148,31 @@ public class DbQuery extends DbHelper {
         cursorejercicios.close();
         return ListaEjercicios;
     }
+    public Exercises EjerciciosVER(int id){
+        Log.d("Exercises", id+"");
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Exercises exercises = null;
+        Cursor cursorejercicios;
+        cursorejercicios = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE + " WHERE Id = " + id, null);
+        if(cursorejercicios.moveToFirst()){
+            exercises = new Exercises();
+            exercises.setId(cursorejercicios.getInt(0));
+            exercises.setName(cursorejercicios.getString(1));
+            exercises.setMuscularGroup(cursorejercicios.getInt(2));
+            exercises.setFocus(cursorejercicios.getString(3));
+            exercises.setForeSeeing(cursorejercicios.getString(4));
+            exercises.setExecution(cursorejercicios.getString(5));
+            exercises.setDetails(cursorejercicios.getString(6));
+            exercises.setImage(cursorejercicios.getBlob(7));
+            exercises.setTool(cursorejercicios.getInt(8));
+            exercises.setCategory(cursorejercicios.getInt(9));
+            exercises.setDifficulty(cursorejercicios.getInt(10));
+            exercises.setStats(cursorejercicios.getInt(11));
+        }
 
+        cursorejercicios.close();
+        return exercises;
+    }
 
 }

@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,7 +39,6 @@ public class FragmentContainer extends AppCompatActivity {
         bottomNav.add(new MeowBottomNavigation.Model(2,R.drawable.icrutinas));
         bottomNav.add(new MeowBottomNavigation.Model(3,R.drawable.icejercicios));
         bottomNav.add(new MeowBottomNavigation.Model(4,R.drawable.icsucursales));
-
 
         bottomNav.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
@@ -128,6 +129,7 @@ public class FragmentContainer extends AppCompatActivity {
     @Override
     public void onBackPressed(){
     }
+
 
 
 

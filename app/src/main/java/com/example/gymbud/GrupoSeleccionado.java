@@ -92,6 +92,21 @@ public class GrupoSeleccionado extends Fragment {
 
         EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
         recyclerView.setAdapter(adapter);
+        adapter.setOnClickListener(new EjerciciosAdaptador.EventOnItemClick() {
+            @Override
+            public void OnItemClick(int posicion) {
+                Bundle args = new Bundle();
+                Fragment fragment = new fragment_ejercicio_seleccionado();
+                args.putInt("id",posicion);
+                fragment.setArguments(args);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         ImageView imagenatras = view.findViewById(R.id.botonback4);
         TextView textView = view.findViewById(R.id.tituloejerciciosGS);
