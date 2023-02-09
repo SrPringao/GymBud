@@ -35,10 +35,13 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
         return new EjerciciosViewHolder(view,listener);
     }
-
+    public int setPosicion(int posicion){
+        return posicion;
+    }
     @Override
     public void onBindViewHolder(@NonNull EjerciciosAdaptador.EjerciciosViewHolder holder, int position) {
         holder.Nombre.setText(ListaEjercicios.get(position).getName());
+        setPosicion(position);
 
     }
     public void setOnClickListener(EventOnItemClick listener){
@@ -52,7 +55,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
     public static class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
-        int posicion;
+        int posicion = getAdapterPosition();
         static TextView Nombre;
         public EjerciciosViewHolder(@NonNull View itemView,EventOnItemClick listener){
             super(itemView);
@@ -60,12 +63,12 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
             this.listener=listener;
             Nombre = itemView.findViewById(R.id.Testo);
         }
-        public void setPosicion(int posicion){
-            this.posicion = posicion;
-        }
+
+
         @Override
         public void onClick(View view) {
-            listener.OnItemClick(posicion);
+
+            listener.OnItemClick(getAdapterPosition()+1);
         }
     }
 

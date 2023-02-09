@@ -12,11 +12,13 @@
     style="@style/parent.contentLayout">
 
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="630dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,33 +26,33 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="Informacion Personal"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="@color/bottomNavigationTintColor"
-                android:paddingTop="5dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:fontFamily="@font/lato"
-                android:layout_width="wrap_content"/>
+                android:paddingTop="5dp"
+                android:text="Informacion Personal"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+                app:cardPreventCornerOverlap="true">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
 
 
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
 
                     <TextView
@@ -97,25 +99,22 @@
             </androidx.cardview.widget.CardView>
 
 
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
-
+                app:cardPreventCornerOverlap="true">
 
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
 
                     <TextView
@@ -140,9 +139,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+                app:cardPreventCornerOverlap="true">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
 
@@ -150,10 +149,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
                     <TextView
                         android:id="@+id/textViewSub3Title"
@@ -170,8 +169,8 @@
 
 
                     <ProgressBar
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:id="@+id/progress"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Texto1Peso"
@@ -182,8 +181,8 @@
                     </ProgressBar>
 
                     <TextView
-                        style="@style/viewParent.headerText.homeCardContent"
                         android:id="@+id/Pesos"
+                        style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/progress"
                         android:layout_centerHorizontal="true"
                         android:text="Peso actual: X | Meta de peso: N" />
@@ -195,19 +194,19 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+                app:cardPreventCornerOverlap="true">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:id="@+id/cardimc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    android:id="@+id/cardimc"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
                     <TextView
                         android:id="@+id/textViewSub4Title"
@@ -224,8 +223,8 @@
 
 
                     <ProgressBar
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:id="@+id/progress2"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/dias"
@@ -236,8 +235,8 @@
                     </ProgressBar>
 
                     <TextView
-                        style="@style/viewParent.headerText.homeCardContent"
                         android:id="@+id/IMC"
+                        style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/progress2"
                         android:layout_centerHorizontal="true"
                         android:text="IMC: X | IMC ideal: N" />
@@ -248,19 +247,19 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+                app:cardPreventCornerOverlap="true">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:id="@+id/cardgrasa"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    android:id="@+id/cardgrasa"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
                     <TextView
                         android:id="@+id/textViewSub5Title"
@@ -271,8 +270,7 @@
                     <TextView
                         android:id="@+id/TasaGrasa"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub5Title"
-                         />
+                        android:layout_below="@id/textViewSub5Title" />
 
                     <ImageView
                         style="@style/homeCardImage"
@@ -285,18 +283,18 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+                app:cardPreventCornerOverlap="true">
 
                 <net.colindodd.gradientlayout.GradientRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:minHeight="100dp"
-                    gl:start_color="@color/colorIdentidad5"
+                    android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
-                    android:padding="10dp">
+                    gl:start_color="@color/colorIdentidad5">
 
                     <TextView
                         android:id="@+id/textViewSub6Title"
@@ -307,14 +305,11 @@
                     <TextView
                         android:id="@+id/frase"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub6Title"/>
-
+                        android:layout_below="@id/textViewSub6Title" />
 
 
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
             </androidx.cardview.widget.CardView>
-
-
 
 
         </LinearLayout>

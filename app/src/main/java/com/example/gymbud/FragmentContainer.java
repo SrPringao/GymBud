@@ -167,8 +167,5 @@ public class FragmentContainer extends AppCompatActivity {
         Log.d("DIASDESDE", ""+diasDesde);
         return diasDesde;
     }
-    public void TextoPres(View view){
-
-    }
 }
 

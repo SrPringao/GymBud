@@ -1,12 +1,21 @@
 package com.example.gymbud;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.Exercises;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,7 +63,30 @@ public class fragment_ejercicio_seleccionado extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    Exercises exercises;
+    @Override
+public void onViewCreated(View view,Bundle savedInstanceState){
+        Context context = view.getContext();
+        DbQuery dbQuery = new DbQuery(context);
+        Bundle args = getArguments();
 
+        int id = args.getInt("id");
+
+        Log.d("IDeee", ""+id);
+
+        exercises = dbQuery.EjerciciosVER(id);
+        TextView Titulo,PreparacionD,EjecucionD,DetallesD;
+        Titulo = view.findViewById(R.id.NombreEjercicio);
+        PreparacionD = view.findViewById(R.id.PreparacionData);
+        EjecucionD = view.findViewById(R.id.EjecucionData);
+        DetallesD = view.findViewById(R.id.DetallesData);
+
+        Titulo.setText(exercises.getName());
+        PreparacionD.setText(exercises.getForeSeeing());
+        EjecucionD.setText(exercises.getExecution());
+        DetallesD.setText(exercises.getDetails());
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
