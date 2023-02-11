@@ -42,8 +42,19 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recycler"
-        android:layout_width="380dp"
-        android:layout_height="571dp"
+        android:layout_width="371dp"
+        android:layout_height="559dp"
+
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+
+        android:clipToPadding="false"
+        android:paddingVertical="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.645"

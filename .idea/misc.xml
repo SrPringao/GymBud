@@ -33,10 +33,12 @@
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_olvidos.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/activity_registro.xml" value="0.22" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/cardview.xml" value="0.25" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_imc.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_personal.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_datos_info_tg.xml" value="0.22" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_detalles_sucursal.xml" value="0.3009833262077811" />
+        <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_ejercicio_seleccionado.xml" value="0.22" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_ejercicios.xml" value="0.33" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_grupo_seleccionado.xml" value="0.22" />
         <entry key="..\:/Users/franc/GymBud/app/src/main/res/layout/fragment_infopersonal.xml" value="0.33" />
