@@ -73,7 +73,7 @@
         <item name="android:textSize">20dp</item>
         <item name="android:layout_width">183dp</item>
         <item name="android:layout_height">36dp</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintHorizontal_bias">0</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
@@ -89,6 +89,7 @@
         <item name="android:layout_height">wrap_content</item>
 
         <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintHorizontal_bias">0.125</item>
         <item name="layout_constraintStart_toStartOf">parent</item>

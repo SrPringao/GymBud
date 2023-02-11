@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".infopersonal"
     android:background="@drawable/backgrounblack"
+    tools:context=".infopersonal"
 
 
     >
@@ -18,11 +18,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fadeScrollbars="false"
         android:scrollIndicators="end"
         android:scrollbarStyle="insideOverlay"
-        android:fadeScrollbars="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -56,13 +56,13 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
 
-                android:src="@drawable/ic_flechanegrodorado"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:clickable="true"
                 android:focusable="true"
 
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="15dp"
+                android:src="@drawable/ic_flechanegrodorado"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
             </ImageView>
@@ -99,10 +99,10 @@
                 />
 
             <androidx.core.widget.NestedScrollView
-                android:layout_marginTop="20dp"
                 android:id="@+id/nested"
                 android:layout_width="400dp"
                 android:layout_height="360dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button">
@@ -110,65 +110,57 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     style="@style/parent.contentLayout"
-                    android:background="@color/uruguayo"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/uruguayo">
 
                     <TextView
                         android:id="@+id/Preparacion"
-                        android:text="Preparacion"
                         style="@style/nestedTextTitle"
+                        android:text="Preparacion"
                         tools:ignore="MissingConstraints"
-
                         />
 
                     <TextView
-                        style="@style/nestedTextTitle"
-                        android:textColor="@color/white"
+                        android:id="@+id/PreparacionData"
+                        style="@style/nestedText"
+                        app:layout_constraintTop_toBottomOf="@+id/Preparacion"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
                         android:id="@+id/ejecucion"
+                        style="@style/nestedTextTitle"
                         android:text="Ejecucion"
-                        android:layout_width="183dp"
-                        android:layout_height="36dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/PreparacionData" />
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toBottomOf="@+id/PreparacionData"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        style="@style/nestedText"
+                        android:id="@+id/EjecucionData"
+                        app:layout_constraintTop_toBottomOf="@+id/ejecucion"
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/Detalles"
-
                         style="@style/nestedTextTitle"
                         android:text="Detalles"
-                        android:layout_width="183dp"
-                        android:layout_height="36dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/EjecucionData" />
+                        app:layout_constraintTop_toBottomOf="@+id/EjecucionData"
+                        tools:ignore="MissingConstraints" />
+
 
                     <TextView
-                        android:id="@+id/detalles"
+                        android:id="@+id/DetallesData"
+                        style="@style/nestedText"
+                        app:layout_constraintTop_toBottomOf="@+id/Detalles"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/Musculatura"
+                        style="@style/nestedTextTitle"
                         android:text="Musculatura"
-                        style="@style/nestedTextTitle"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/DetallesData" />
-
-                    <TextView
-                        android:id="@+id/EjercicioSimi"
-                        android:text="Ejercicios Similares"
-                        style="@style/nestedTextTitle"
-                        android:layout_width="245dp"
-                        android:layout_height="41dp"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Musculatura1" />
-
-
-
+                        app:layout_constraintTop_toBottomOf="@+id/DetallesData"
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/Musculatura2"
@@ -192,47 +184,20 @@
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
                         app:layout_constraintVertical_bias="0.051" />
 
-                    <TextView
-                        android:id="@+id/EjecucionData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.125"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ejecucion" />
 
 
 
                     <TextView
-                        android:id="@+id/DetallesData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        style="@style/nestedText"
-
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.093"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:textColor="@color/white"
-                        app:layout_constraintTop_toBottomOf="@+id/Detalles" />
-
-
-
-
-                    <TextView
-                        style="@style/nestedText"
-                        android:id="@+id/PreparacionData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/EjercicioSimi"
+                        style="@style/nestedTextTitle"
+                        android:layout_width="245dp"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Ejercicios Similares"
                         android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.125"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/Preparacion" />
-
-
-
+                        app:layout_constraintTop_toBottomOf="@+id/Musculatura1" />
 
 
 
