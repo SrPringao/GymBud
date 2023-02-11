@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gymbud.db.DbQuery;
@@ -66,6 +68,9 @@ public class fragment_ejercicio_seleccionado extends Fragment {
     Exercises exercises;
     @Override
 public void onViewCreated(View view,Bundle savedInstanceState){
+
+        ImageView imagen = view.findViewById(R.id.botonback4);
+
         Context context = view.getContext();
         DbQuery dbQuery = new DbQuery(context);
         Bundle args = getArguments();
@@ -85,6 +90,21 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         PreparacionD.setText(exercises.getForeSeeing());
         EjecucionD.setText(exercises.getExecution());
         DetallesD.setText(exercises.getDetails());
+
+
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new GrupoSeleccionado();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Bundle args = new Bundle();
+
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
     }
     @Override
