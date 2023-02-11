@@ -135,11 +135,10 @@ public class DatosInfoPersonal extends Fragment {
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment firstFragment = new infopersonal();
+                Fragment fragment = new GrupoSeleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-
-                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
