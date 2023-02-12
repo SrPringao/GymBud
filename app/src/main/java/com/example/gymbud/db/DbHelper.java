@@ -69,6 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_STATS + "(" + "ID_Stats INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "Weight INTEGER," +
                 "Reps INTEGER," +
+                "Reps2 INTEGER,"+
                 "Time REAL," +
                 "Date TEXT)");
 

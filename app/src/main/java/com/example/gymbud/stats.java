@@ -16,6 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.Stats;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,23 +86,40 @@ public class stats extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stats, container, false);
     }
-
+Stats stats;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = getContext();
+        DbQuery dbQuery = new DbQuery(context);
+        TextView Carga,Reps,Tiempo,Reps2;
         ImageView Back = view.findViewById(R.id.botonback);
         ImageView agregar = view.findViewById(R.id.Agregar);
         Bundle args = getArguments();
         int id = args.getInt("Id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
+        stats = dbQuery.verStats(1);
+        Carga = view.findViewById(R.id.Carga);
+        Reps = view.findViewById(R.id.Repeticiones);
+        Reps2 = view.findViewById(R.id.Repeticiones2);
+        Tiempo = view.findViewById(R.id.Tiempo);
+        Carga.setText(""+stats.getWeight());
+        Reps.setText(""+stats.getReps());
+        Reps2.setText(""+stats.getReps2());
+        Tiempo.setText(""+stats.getTime());
+
+
 
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new registropeso();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                args.putInt("id",id);
+                args.putInt("Id",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

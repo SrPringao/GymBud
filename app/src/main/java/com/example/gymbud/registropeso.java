@@ -1,5 +1,7 @@
 package com.example.gymbud;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.gymbud.db.DbHelper;
+import com.example.gymbud.db.DbQuery;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,6 +76,15 @@ public class registropeso extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Context context = getContext();
+
+        FragmentContainer activity = (FragmentContainer) getActivity();
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Bundle args = getArguments();
+        int id = args.getInt("Id");
+        int ID = args.getInt("ID");
+        String musculo = args.getString("Musculo");
         ImageView Back = view.findViewById(R.id.botonback);
         EditText CargaR, RepsR, RepsR2, TiempoR;
         CargaR = view.findViewById(R.id.CargaR);
@@ -78,14 +92,17 @@ public class registropeso extends Fragment {
         RepsR2 = view.findViewById(R.id.RepsR2);
         TiempoR = view.findViewById(R.id.TiempoR);
         Button Guardar = view.findViewById(R.id.GuardadoR);
-
+        DbQuery dbQuery = new DbQuery(context);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
+                args.putInt("id",id);
+                args.putInt("Id",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -95,9 +112,19 @@ public class registropeso extends Fragment {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            int carga = Integer.parseInt(CargaR.getText().toString());
+            int reps = Integer.parseInt(RepsR.getText().toString());
+            int reps2 = Integer.parseInt(RepsR2.getText().toString());
+            float Time = Float.parseFloat(TiempoR.getText().toString());
+                String FechaG = activity.FechaG();
+                String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ " WHERE ID_Stats = " + id;
+                db.execSQL(update);
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
+                args.putInt("id",id);
+                args.putInt("Id",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

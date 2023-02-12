@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.example.gymbud.db.Entidades.Exercises;
 import com.example.gymbud.db.Entidades.PersonInfo;
 import com.example.gymbud.db.Entidades.Phrase;
+import com.example.gymbud.db.Entidades.Stats;
 
 import java.util.ArrayList;
 
@@ -173,6 +174,46 @@ public class DbQuery extends DbHelper {
 
         cursorejercicios.close();
         return exercises;
+    }
+
+    public long StatsInsert(int id,int weight, int reps,int reps2,float time, String Date){
+        long query=0;
+        try {
+            DbHelper dbHelper = new DbHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("ID_Stats", id);
+            values.put("Weight", weight);
+            values.put("Reps", reps);
+            values.put("Reps2", reps2);
+            values.put("Time", time);
+            values.put("Date", Date);
+
+            query = db.insert(TABLE_STATS, null, values);
+        } catch (Exception ex) {
+            ex.toString();
+        }
+        return query;
+    }
+
+    public Stats verStats(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Stats stats = null;
+        Cursor cursorsote;
+        cursorsote = db.rawQuery("SELECT * FROM " + TABLE_STATS + " WHERE ID_Stats = " + id,null);
+        if (cursorsote.moveToFirst()) {
+            stats = new Stats();
+            stats.setID_Stats(cursorsote.getInt(0));
+            stats.setWeight(cursorsote.getInt(1));
+            stats.setReps(cursorsote.getInt(2));
+            stats.setReps2(cursorsote.getInt(3));
+            stats.setTime(cursorsote.getFloat(4));
+            stats.setDate(cursorsote.getString(5));
+        }
+        cursorsote.close();
+        return stats;
     }
 
 }

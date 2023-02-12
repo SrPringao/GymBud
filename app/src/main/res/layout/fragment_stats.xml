@@ -7,6 +7,42 @@
     android:background="@drawable/backgrounblack"
     tools:context=".stats">
 
+    <TextView
+        android:id="@+id/Repeticiones2"
+        android:layout_width="41dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/lato"
+        android:gravity="center"
+        android:hint="0"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/X"
+        android:layout_width="41dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/lato"
+        android:gravity="center"
+        android:hint="X"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723">
+
+    </TextView>
+
     <ImageView
         android:background="@drawable/otisparado"
         android:id="@+id/Agregar"
@@ -146,19 +182,19 @@
 
     <TextView
         android:id="@+id/Repeticiones"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
+        android:layout_width="41dp"
+        android:layout_height="37dp"
         android:fontFamily="@font/lato"
-        android:textColor="@color/white"
         android:gravity="center"
-        android:hint="0x0"
+        android:hint="0"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721">
+        app:layout_constraintVertical_bias="0.723">
 
     </TextView>
 

@@ -103,6 +103,7 @@ public class infopersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
