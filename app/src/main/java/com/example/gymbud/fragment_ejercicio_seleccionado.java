@@ -96,7 +96,13 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment fragment = new stats();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Bundle args = new Bundle();
 
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         imagen.setOnClickListener(new View.OnClickListener() {

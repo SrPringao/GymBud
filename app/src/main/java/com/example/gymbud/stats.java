@@ -1,12 +1,30 @@
 package com.example.gymbud;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ImageDecoder;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.view.LineChartView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +78,64 @@ public class stats extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stats, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Context context = getContext();
+        ImageView agregar = view.findViewById(R.id.Agregar);
+
+        agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+        LineChartView grafica;
+        grafica = view.findViewById(R.id.Grafica);
+        String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
+                "Oct", "Nov", "Dec"};
+        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+
+        List yAxisValues = new ArrayList();
+        List axisValues = new ArrayList();
+
+
+        Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
+
+        for (int i = 0; i < axisData.length; i++) {
+            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+        }
+
+        for (int i = 0; i < yAxisData.length; i++) {
+            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        }
+
+        List lines = new ArrayList();
+        lines.add(line);
+
+        LineChartData data = new LineChartData();
+        data.setLines(lines);
+
+        Axis axis = new Axis();
+        axis.setValues(axisValues);
+        axis.setTextSize(16);
+        axis.setTextColor(Color.parseColor("#03A9F4"));
+        data.setAxisXBottom(axis);
+
+        Axis yAxis = new Axis();
+        yAxis.setName("Sales in millions");
+        yAxis.setTextColor(Color.parseColor("#03A9F4"));
+        yAxis.setTextSize(16);
+        data.setAxisYLeft(yAxis);
+
+        grafica.setLineChartData(data);
+        Viewport viewport = new Viewport(grafica.getMaximumViewport());
+        viewport.top = 110;
+        grafica.setMaximumViewport(viewport);
+        grafica.setCurrentViewport(viewport);
     }
 }
