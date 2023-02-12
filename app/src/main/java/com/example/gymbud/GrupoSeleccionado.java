@@ -81,7 +81,9 @@ public class GrupoSeleccionado extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Context context = getContext();
         Bundle args = getArguments();
+    ImageView Back = view.findViewById(R.id.botonback4);
         String nombreMusculo = args.getString("nombre_musculo");
+        Log.d("musculo",nombreMusculo );
         int id = args.getInt("Id");
         Log.d("ID",Integer.toString(id));
         recyclerView = view.findViewById(R.id.Recycler);
@@ -92,12 +94,27 @@ public class GrupoSeleccionado extends Fragment {
 
         EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
         recyclerView.setAdapter(adapter);
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Ejercicios();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
         adapter.setOnClickListener(new EjerciciosAdaptador.EventOnItemClick() {
             @Override
             public void OnItemClick(int posicion) {
                 Bundle args = new Bundle();
                 Fragment fragment = new fragment_ejercicio_seleccionado();
                 args.putInt("id",posicion);
+                args.putInt("Id",id);
+                args.putString("Musculo",nombreMusculo);
                 fragment.setArguments(args);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);

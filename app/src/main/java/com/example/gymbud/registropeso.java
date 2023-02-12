@@ -1,31 +1,30 @@
 package com.example.gymbud;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
-import com.example.gymbud.db.Entidades.Exercises;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_ejercicio_seleccionado#newInstance} factory method to
+ * Use the {@link registropeso#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_ejercicio_seleccionado extends Fragment {
+public class registropeso extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +35,7 @@ public class fragment_ejercicio_seleccionado extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_ejercicio_seleccionado() {
+    public registropeso() {
         // Required empty public constructor
     }
 
@@ -46,11 +45,11 @@ public class fragment_ejercicio_seleccionado extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment fragment_ejercicio_seleccionado.
+     * @return A new instance of fragment registropeso.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_ejercicio_seleccionado newInstance(String param1, String param2) {
-        fragment_ejercicio_seleccionado fragment = new fragment_ejercicio_seleccionado();
+    public static registropeso newInstance(String param1, String param2) {
+        registropeso fragment = new registropeso();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,42 +65,42 @@ public class fragment_ejercicio_seleccionado extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    Exercises exercises;
+
     @Override
-public void onViewCreated(View view,Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_registropeso, container, false);
+    }
 
-        ImageView imagen = view.findViewById(R.id.botonback4);
-        Button Stats;
-        Context context = view.getContext();
-        DbQuery dbQuery = new DbQuery(context);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Context context = getContext();
+
+        FragmentContainer activity = (FragmentContainer) getActivity();
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         Bundle args = getArguments();
-
-        int id = args.getInt("id");
-        int ID = args.getInt("Id");
+        int id = args.getInt("Id");
+        int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
-        Log.d("IDeee", ""+id);
-        Log.d("Musculo", musculo);
-        exercises = dbQuery.EjerciciosVER(id);
-        TextView Titulo,PreparacionD,EjecucionD,DetallesD;
-        Titulo = view.findViewById(R.id.NombreEjercicio);
-        PreparacionD = view.findViewById(R.id.PreparacionData);
-        EjecucionD = view.findViewById(R.id.EjecucionData);
-        DetallesD = view.findViewById(R.id.DetallesData);
-        Stats = view.findViewById(R.id.Stats);
+        ImageView Back = view.findViewById(R.id.botonback);
+        EditText CargaR, RepsR, RepsR2, TiempoR;
+        CargaR = view.findViewById(R.id.CargaR);
+        RepsR = view.findViewById(R.id.RepsR);
+        RepsR2 = view.findViewById(R.id.RepsR2);
+        TiempoR = view.findViewById(R.id.TiempoR);
+        Button Guardar = view.findViewById(R.id.GuardadoR);
+        DbQuery dbQuery = new DbQuery(context);
 
-        Titulo.setText(exercises.getName());
-        PreparacionD.setText(exercises.getForeSeeing());
-        EjecucionD.setText(exercises.getExecution());
-        DetallesD.setText(exercises.getDetails());
-
-        Stats.setOnClickListener(new View.OnClickListener() {
+        Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Bundle args = new Bundle();
-                args.putInt("Id",id);
-                args.putInt("ID",ID);
+                args.putInt("id",id);
+                args.putInt("Id",ID);
                 args.putString("Musculo",musculo);
                 fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
@@ -109,27 +108,27 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 transaction.commit();
             }
         });
-        imagen.setOnClickListener(new View.OnClickListener() {
+
+        Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new GrupoSeleccionado();
+            int carga = Integer.parseInt(CargaR.getText().toString());
+            int reps = Integer.parseInt(RepsR.getText().toString());
+            int reps2 = Integer.parseInt(RepsR2.getText().toString());
+            float Time = Float.parseFloat(TiempoR.getText().toString());
+                String FechaG = activity.FechaG();
+                String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ " WHERE ID_Stats = " + id;
+                db.execSQL(update);
+                Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Bundle args = new Bundle();
+                args.putInt("id",id);
                 args.putInt("Id",ID);
-                args.putString("nombre_musculo",musculo);
+                args.putString("Musculo",musculo);
                 fragment.setArguments(args);
-                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ejercicio_seleccionado, container, false);
     }
 }

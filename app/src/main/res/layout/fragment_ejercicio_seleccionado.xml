@@ -68,7 +68,7 @@
             </ImageView>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/Stats"
                 android:layout_width="232dp"
                 android:layout_height="51dp"
                 android:layout_marginTop="40dp"
@@ -105,7 +105,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button">
+                app:layout_constraintTop_toBottomOf="@+id/Stats">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -162,30 +162,30 @@
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
                         tools:ignore="MissingConstraints" />
 
-                    <ImageView
-                        android:id="@+id/Musculatura2"
-                        android:layout_width="188dp"
-                        android:layout_height="201dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.845"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/DetallesData"
-                        app:layout_constraintVertical_bias="0.051" />
 
                     <ImageView
                         android:id="@+id/Musculatura1"
-                        android:layout_width="188dp"
-                        android:layout_height="201dp"
+                        android:layout_width="179dp"
+                        android:layout_height="171dp"
+                        android:background="@drawable/otisparado"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
-                        app:layout_constraintVertical_bias="0.051" />
+                        app:layout_constraintVertical_bias="0.165" />
 
-
-
+                    <ImageView
+                        android:id="@+id/Musculatura2"
+                        android:layout_width="179dp"
+                        android:layout_height="171dp"
+                        android:background="@drawable/otisparado"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/DetallesData"
+                        app:layout_constraintVertical_bias="0.163" />
 
                     <TextView
                         android:id="@+id/EjercicioSimi"
@@ -200,10 +200,9 @@
                         app:layout_constraintTop_toBottomOf="@+id/Musculatura1" />
 
 
-
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="438dp"
-                        android:layout_height="198dp"
+                        android:layout_width="353dp"
+                        android:layout_height="168dp"
                         android:layout_marginTop="12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
