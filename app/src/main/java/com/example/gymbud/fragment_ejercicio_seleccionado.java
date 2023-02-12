@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,7 +71,7 @@ public class fragment_ejercicio_seleccionado extends Fragment {
 public void onViewCreated(View view,Bundle savedInstanceState){
 
         ImageView imagen = view.findViewById(R.id.botonback4);
-
+        Button Stats;
         Context context = view.getContext();
         DbQuery dbQuery = new DbQuery(context);
         Bundle args = getArguments();
@@ -85,13 +86,19 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         PreparacionD = view.findViewById(R.id.PreparacionData);
         EjecucionD = view.findViewById(R.id.EjecucionData);
         DetallesD = view.findViewById(R.id.DetallesData);
+        Stats = view.findViewById(R.id.Stats);
 
         Titulo.setText(exercises.getName());
         PreparacionD.setText(exercises.getForeSeeing());
         EjecucionD.setText(exercises.getExecution());
         DetallesD.setText(exercises.getDetails());
 
+        Stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
