@@ -8,6 +8,7 @@
     tools:context=".stats">
 
     <ImageView
+        android:background="@drawable/otisparado"
         android:id="@+id/Agregar"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -19,6 +20,7 @@
         app:layout_constraintVertical_bias="0.389" />
 
     <Spinner
+        android:id="@+id/SpinnerProgre"
         android:layout_width="168dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -114,9 +116,6 @@
 
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="clickbait"
         android:src="@drawable/ic_flechanegrodorado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

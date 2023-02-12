@@ -77,9 +77,10 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Bundle args = getArguments();
 
         int id = args.getInt("id");
-
+        int ID = args.getInt("Id");
+        String musculo = args.getString("Musculo");
         Log.d("IDeee", ""+id);
-
+        Log.d("Musculo", musculo);
         exercises = dbQuery.EjerciciosVER(id);
         TextView Titulo,PreparacionD,EjecucionD,DetallesD;
         Titulo = view.findViewById(R.id.NombreEjercicio);
@@ -99,7 +100,10 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
-
+                args.putInt("Id",id);
+                args.putInt("ID",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -111,7 +115,9 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 Fragment fragment = new GrupoSeleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
-
+                args.putInt("Id",ID);
+                args.putString("nombre_musculo",musculo);
+                fragment.setArguments(args);
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);

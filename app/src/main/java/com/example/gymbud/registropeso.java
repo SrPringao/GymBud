@@ -2,11 +2,17 @@ package com.example.gymbud;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +66,42 @@ public class registropeso extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_registropeso, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ImageView Back = view.findViewById(R.id.botonback);
+        EditText CargaR, RepsR, RepsR2, TiempoR;
+        CargaR = view.findViewById(R.id.CargaR);
+        RepsR = view.findViewById(R.id.RepsR);
+        RepsR2 = view.findViewById(R.id.RepsR2);
+        TiempoR = view.findViewById(R.id.TiempoR);
+        Button Guardar = view.findViewById(R.id.GuardadoR);
+
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new stats();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        Guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new stats();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 }

@@ -3,12 +3,15 @@ package com.example.gymbud;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.ImageDecoder;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,15 +87,39 @@ public class stats extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = getContext();
+        ImageView Back = view.findViewById(R.id.botonback);
         ImageView agregar = view.findViewById(R.id.Agregar);
+        Bundle args = getArguments();
+        int id = args.getInt("Id");
+        int ID = args.getInt("ID");
+        String musculo = args.getString("Musculo");
 
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Fragment fragment = new registropeso();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new fragment_ejercicio_seleccionado();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                args.putInt("id",id);
+                args.putInt("Id",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
+                Log.d("ID", id+"");
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         LineChartView grafica;
         grafica = view.findViewById(R.id.Grafica);

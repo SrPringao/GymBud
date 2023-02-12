@@ -15,9 +15,6 @@
         android:layout_height="50dp"
         android:src="@drawable/ic_flechanegrodorado"
         app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="clickbait"
         app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
