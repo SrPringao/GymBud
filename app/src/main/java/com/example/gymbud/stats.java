@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.gymbud.db.DbQuery;
@@ -84,8 +86,16 @@ public class stats extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+
+        View view;
+        view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.opciones, android.R.layout.simple_spinner_item);
+        fechas.setAdapter(adapter);
+        return view;
     }
+    Spinner fechas;
 Stats stats;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -99,15 +109,29 @@ Stats stats;
         int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
-        stats = dbQuery.verStats(id);
+       
         Carga = view.findViewById(R.id.Carga);
         Reps = view.findViewById(R.id.Repeticiones);
         Reps2 = view.findViewById(R.id.Repeticiones2);
         Tiempo = view.findViewById(R.id.Tiempo);
-        Carga.setText(""+stats.getWeight());
-        Reps.setText(""+stats.getReps());
-        Reps2.setText(""+stats.getReps2());
-        Tiempo.setText(""+stats.getTime());
+
+
+        try {
+            stats = dbQuery.verStats(id);
+            if(stats != null) {
+                Carga.setText("" + stats.getWeight());
+                Reps.setText("" + stats.getReps());
+                Reps2.setText("" + stats.getReps2());
+                Tiempo.setText("" + stats.getTime());
+            }else{
+
+                long query = dbQuery.StatsInsert(0,0,0,0,"0/0/0",id);
+                Log.d("INSERT", "Se inserto");
+            }
+        }catch (Exception ex){
+            Log.d("Error", "No hay stats que sacar");
+        }
+
 
 
 
