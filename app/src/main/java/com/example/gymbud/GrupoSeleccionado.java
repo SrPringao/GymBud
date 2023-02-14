@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
@@ -83,9 +84,9 @@ public class GrupoSeleccionado extends Fragment {
         Bundle args = getArguments();
     ImageView Back = view.findViewById(R.id.botonback4);
         String nombreMusculo = args.getString("nombre_musculo");
-        Log.d("musculo",nombreMusculo );
-        int id = args.getInt("Id");
-        Log.d("ID",Integer.toString(id));
+       //Log.d("musculo",nombreMusculo );
+       int id = args.getInt("ID");
+        Log.d("id",Integer.toString(id));
         recyclerView = view.findViewById(R.id.Recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
@@ -94,6 +95,8 @@ public class GrupoSeleccionado extends Fragment {
 
         EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
         recyclerView.setAdapter(adapter);
+
+
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +114,14 @@ public class GrupoSeleccionado extends Fragment {
             @Override
             public void OnItemClick(int posicion) {
                 Bundle args = new Bundle();
+                int idplus;
+                idplus = posicion;
+                idplus += MusculoSuma(nombreMusculo);
+                Log.d("idplus", ""+idplus);
+                //Log.d("NOMBREMUSCULO", nombreMusculo);
                 Fragment fragment = new fragment_ejercicio_seleccionado();
-                args.putInt("id",posicion);
-                args.putInt("Id",id);
+                args.putInt("id",idplus);
+                args.putInt("ID",id);
                 args.putString("Musculo",nombreMusculo);
                 fragment.setArguments(args);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -133,9 +141,14 @@ public class GrupoSeleccionado extends Fragment {
         imagenatras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Fragment firstFragment = new Ejercicios();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                args.putInt("Id",id);
+                args.putString("Musculo",nombreMusculo);
+                firstFragment.setArguments(args);
 
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
                 transaction.addToBackStack(null);
@@ -144,5 +157,58 @@ public class GrupoSeleccionado extends Fragment {
         });
 
 
+    }
+
+    //Funcion para probar cuando esten los ejercicios ya en la bd
+    int MusculoSuma(String Musculo){
+        int NumMagico=1;
+        /*switch (Musculo){
+            case "Hombro":
+                NumMagico=1;
+                break;
+            case "Bicep":
+                NumMagico=20;
+                break;
+            case "Pecho":
+                NumMagico=40;
+                break;
+            case "Abs":
+                NumMagico=60;
+                break;
+            case "Oblicuos":
+                NumMagico=80;
+                break;
+            case "Antebrazo":
+                NumMagico=100;
+                break;
+            case "Cuadriceps":
+                NumMagico=120;
+                break;
+            case "Trapecios":
+                NumMagico=140;
+                break;
+            case "Dorsal":
+                NumMagico=160;
+                break;
+            case "Tricep":
+                NumMagico=180;
+                break;
+            case "Espalda Media":
+                NumMagico=200;
+                break;
+
+            case "Gluteo":
+                NumMagico=220;
+                break;
+            case "Femoral":
+                NumMagico=240;
+                break;
+            case "Pantorrilla":
+                NumMagico=260;
+                break;
+
+        }*/
+      //  Log.d("NUM MAGICO", ""+NumMagico);
+        return NumMagico;
     }
 }

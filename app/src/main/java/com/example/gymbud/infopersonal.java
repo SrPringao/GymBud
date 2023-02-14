@@ -189,10 +189,10 @@ public class infopersonal extends Fragment {
         int RachaGuardada = sharedPrefs.getInt("RACHA",0);
         double imc = 0;
         double grasa;
-        Log.d("abububub", Integer.toString(UID));
+       // Log.d("abububub", Integer.toString(UID));
 
         imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
-        Log.d("IMC", Double.toString(imc));
+      //  Log.d("IMC", Double.toString(imc));
         imc = Math.round(imc);
         grasa = ((1.20*imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
         grasa = Math.round(grasa);
@@ -219,7 +219,7 @@ public class infopersonal extends Fragment {
         float FechasDif = FechaL-FechaGUARDADA;
 
 
-        Log.d("Diferencia Fechas",""+FechasDif );
+       // Log.d("Diferencia Fechas",""+FechasDif );
         if((FechaL-FechaGUARDADA) == 1){
             Racha++;
             editor.putFloat("FechaDIF",FechaL);
@@ -238,7 +238,7 @@ public class infopersonal extends Fragment {
             int id = sharedPrefs.getInt("Id",0);
             frase = dbQuery.verFrase(id);
             testoFrase.setText(frase.getMotivation());
-            Log.d("Fecha","Es el mismo dia");
+       //     Log.d("Fecha","Es el mismo dia");
 
         }else{
             long ahora = System.currentTimeMillis();

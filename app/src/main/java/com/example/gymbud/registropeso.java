@@ -82,7 +82,7 @@ public class registropeso extends Fragment {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Bundle args = getArguments();
-        int id = args.getInt("Id");
+        int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
         ImageView Back = view.findViewById(R.id.botonback);
@@ -92,7 +92,6 @@ public class registropeso extends Fragment {
         RepsR2 = view.findViewById(R.id.RepsR2);
         TiempoR = view.findViewById(R.id.TiempoR);
         Button Guardar = view.findViewById(R.id.GuardadoR);
-        DbQuery dbQuery = new DbQuery(context);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
