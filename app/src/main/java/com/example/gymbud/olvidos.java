@@ -31,7 +31,7 @@ public class olvidos extends AppCompatActivity {
         correo = findViewById(R.id.ETCorreoR);
     }
 
-
+    //Esta funcion es para que cuando te saque de la aplicacion a el buscador te regrese instantaneamente a la aplicacion
     protected void onStop(){
         super.onStop();
         Intent i = new Intent(olvidos.this, MainActivity.class);
@@ -39,7 +39,8 @@ public class olvidos extends AppCompatActivity {
         finish();
     }
 
-
+//Si el correo ingresado es un correo valido realiza un request al servicio de mail que esta en el servidor y manda el correo al correo ingresado
+    //Tambien primero asegura que el correo si este registrado en la base de datos, si no te manda un error y te pide que ingreses un correo registrado
 public void Query(String mail) {
     if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo.getText().toString()).matches()) {
         Toast.makeText(olvidos.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
@@ -71,7 +72,7 @@ public void Query(String mail) {
     }
 }
 
-
+    //Se activa cuando se presiona el boton y recibe el correo que ingresaron en el editText para despues realizar la query
     public void LinkRegistro(View view){
         String mail = correo.getText().toString();
         Query(mail);

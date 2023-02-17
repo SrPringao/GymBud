@@ -136,10 +136,13 @@ public class FragmentContainer extends AppCompatActivity {
     private void loadFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.navFragmentContainer,fragment,null).commit();
     }
+
+    //Esta funcion solo retorna el UID del usuario en caso de que se necesite
     public int UIDUSR(){
         return UID;
     }
 
+    //Esta funcion recibe la fecha guardada en los sharedPreferences y la retorna.
     public String FechaG(){
         String fecha="0";
         Context context = this;
@@ -147,6 +150,7 @@ public class FragmentContainer extends AppCompatActivity {
         fecha = sharedPrefs.getString("Fecha","0");
         return fecha;
     }
+    //Esta funcion guarda la fecha actual, le da formato YYYY/MM/dd y lo retorna
     public String FechaAct(){
         long ahora = System.currentTimeMillis();
         Date fechaD = new Date(ahora);
@@ -156,7 +160,8 @@ public class FragmentContainer extends AppCompatActivity {
         return  DateT;
     }
 
-
+    //Esta funcion realiza lo mismo que FechaAct, solo con la diferencia de que realiza un calculo para poder restar las fechas
+    // Y asi poder calcular cuantos dias hay de diferencia, esta funcion retorna la fecha en cantidad de dias.
     public float FechaLONG(){
         Context context = this;//contesto
         SharedPreferences sharedPrefs = getSharedPreferences("FechaL",context.MODE_PRIVATE);

@@ -84,6 +84,8 @@ public class Ejercicios extends Fragment {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             Bundle args = new Bundle();
 
+            //Este switch case se usa para diferenciar cual fue el musculo que se selecciono y asi poder hacer la query despues, con su respectivo
+            //nombre y el id del musculo en la base de datos
             switch (view.getId()) {
 
                 case R.id.ethombro:

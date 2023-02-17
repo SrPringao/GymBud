@@ -143,7 +143,7 @@ public class infopersonal extends Fragment {
                 transaction.commit();
             }
         });
-
+        //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosInfoPersonal
         cardpeso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,6 +156,7 @@ public class infopersonal extends Fragment {
             }
         });
 
+        //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosInfoIMC
         cardimc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,6 +170,7 @@ public class infopersonal extends Fragment {
             }
         });
 
+        //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosTg
         cardgrasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,6 +185,11 @@ public class infopersonal extends Fragment {
         });
 
     }
+
+    //Esta funcion lo que hace es rellenar las tarjetas con la informacion ya guardada en la base de datos anteriormente, recibe un objeto tipo PersonInfo
+    //recibe el UID que es el id del usuario en la base de datos, y los textview de las tarjetas, despues realiza el calculo del imc con el peso y la altura guardada
+    //en la bd, tambien calcula la grasa corporal con una funcion que usa el imc del usuario previamente calculado, su edad y su genero
+    //Para finalizar coloca los calculos realizados en su tarjeta correspondiente.
     private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG,TextView racha){
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
@@ -203,7 +210,13 @@ public class infopersonal extends Fragment {
         racha.setText(String.valueOf(RachaGuardada));
     }
 
-    private void fecha(String fecha,String DateT, TextView testoFrase,float FechaL)
+    //Esta funcion realiza una comparacion con la fecha previamente registrada en los shared preferencees que seria la ultima fecha que el usuario
+    //ingreso a la aplicacion, y despues realiza una comparacion con la fecha actual y si la resta de estas fechas es mayor a uno se reinicia la racha de asistencias a 0
+    //Si la resta es igual a uno se intercambia la fecha guardada con la actual y se agrega uno a la racha, despues se guardan los cambios, si la resta es
+    //tambien esta misma funcion realiza un cambio en la frase del dia si la fecha actual es diferente de la fecha guardada, si asi es se llama la funcion verFrase
+    //E ingresa el texto en el textview de la frase
+    //Si la fecha es la misma recibe el id de la frase guardado en los shared preferences y hace la query con el id guardado
+    private void fecha(String fecha,String DateT, TextView testoFrase, float FechaL)
     {
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
@@ -216,7 +229,6 @@ public class infopersonal extends Fragment {
 
 
         float FechaGUARDADA = sharedPrefs.getFloat("FechaDIF",0);
-        float FechasDif = FechaL-FechaGUARDADA;
 
 
        // Log.d("Diferencia Fechas",""+FechasDif );

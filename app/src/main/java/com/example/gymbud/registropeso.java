@@ -93,7 +93,9 @@ public class registropeso extends Fragment {
         RepsR2 = view.findViewById(R.id.RepsR2);
         TiempoR = view.findViewById(R.id.TiempoR);
         Button Guardar = view.findViewById(R.id.GuardadoR);
-
+        //Este boton esta vinculado a la imagen de la flecha hacia atras y lo unico que hace es regresarte a la pantalla anterior,
+        //mandando los datos id,ID y musculo a esta pantalla anterior para despues utilizarlos y evitar la perdida del musculo seleccionado o
+        //el ejercicio seleccionado, todos estos se mandan en un bundle.
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +110,11 @@ public class registropeso extends Fragment {
                 transaction.commit();
             }
         });
-
+        //Esta funcion esta vinculada al boton guardar que lo que hace es recibir todos los datos insertados en los editText, para despues
+        //Realizar una insert a la base de datos en la tabla stats con todos los datos ya registrados anteriormente, tambien se llama a la funcion FechaG para
+        //Obtener la fecha actual del celular y registrarla.
+        //Tambien Envia el id,ID y el musculo para cargar el ejercicio seleccionado y poder regresar de manera correcta en un bundle y realiza la
+        //transaccion de los fragments.
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

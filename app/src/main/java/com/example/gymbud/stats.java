@@ -106,9 +106,9 @@ Stats stats;
         ImageView Back = view.findViewById(R.id.botonback);
         ImageView agregar = view.findViewById(R.id.Agregar);
         Bundle args = getArguments();
-        int id = args.getInt("id");
-        int ID = args.getInt("ID");
-        String musculo = args.getString("Musculo");
+        int id = args.getInt("id");//id del ejercicio seleccionado
+        int ID = args.getInt("ID");//id del musculo seleccionado
+        String musculo = args.getString("Musculo");//Nombre del musculo seleccionado
        
         Carga = view.findViewById(R.id.Carga);
         Reps = view.findViewById(R.id.Repeticiones);
@@ -117,7 +117,8 @@ Stats stats;
 
 
         try {
-            stats = dbQuery.verStats(id);
+            stats = dbQuery.verStats(id); //Esta es la query verstats con el id del ejercicio seleccionado
+            //Este if ingresa los datos registrados de la bd en caso de que si haya algo, si no inserta 0 en todo en el id del ejercicio
             if(stats != null) {
                 Carga.setText("" + stats.getWeight());
                 Reps.setText("" + stats.getReps());
@@ -125,7 +126,7 @@ Stats stats;
                 Tiempo.setText("" + stats.getTime());
             }else{
 
-                long query = dbQuery.StatsInsert(0,0,0,0,"0/0/0",id);
+                long query = dbQuery.StatsInsert(0,0,0,0,"0/0/0",id); //Es la query del insert
                 Log.d("INSERT", "Se inserto");
             }
         }catch (Exception ex){
@@ -134,7 +135,7 @@ Stats stats;
 
 
 
-
+//En caso de que se presione el boton de regresar te envia a la pantalla anterior con id,ID y el nombre del musculo
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +150,7 @@ Stats stats;
                 transaction.commit();
             }
         });
-
+//En caso de que se presione el boton de regresar te envia a la pantalla anterior con id,ID y el nombre del musculo
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,23 +167,25 @@ Stats stats;
             }
         });
 
-        LineChartView grafica;
-        grafica = view.findViewById(R.id.Grafica);
+        //Todo esto es sobre la grafica
+
+        LineChartView grafica; //Aqui declaramos el objeto de la grafica que es un Line Chart
+        grafica = view.findViewById(R.id.Grafica); //Encontramos el objeto en el fragment
         String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
-                "Oct", "Nov", "Dec"};
-        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18};
+                "Oct", "Nov", "Dec"}; //Le ingresamos los datos del eje X
+        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18}; //Le ingresamos los datos del eje Y
 
-        List yAxisValues = new ArrayList();
-        List axisValues = new ArrayList();
+        List yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
+        List axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
 
 
-        Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0"));
+        Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0")); //Le ponemos el color que queramos a la grafica
 
-        for (int i = 0; i < axisData.length; i++) {
+        for (int i = 0; i < axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
             axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
         }
 
-        for (int i = 0; i < yAxisData.length; i++) {
+        for (int i = 0; i < yAxisData.length; i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
             yAxisValues.add(new PointValue(i, yAxisData[i]));
         }
 
