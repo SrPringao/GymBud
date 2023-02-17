@@ -96,10 +96,12 @@ public class DatosInfoTg extends Fragment {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        //Esta funcion se asegura que todos los campos esten llenos y analiza la info del spinner dependiendo del sexo seleccionado, para despues realizar un update
+        //de los datos ya anteriormente registrados con los datos nuevamente ingresados con un string, usando db.exercSQL como solo necesitamos insertarlo y no
+        //recibir nada podemos realizarlo de esta manera sencilla
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String genero = opciones.getSelectedItem().toString();
                 if (Edad.getText().toString().isEmpty()) {
                     Toast.makeText(getContext(), "Ingresa tu edad", Toast.LENGTH_SHORT).show();
                 } else {
@@ -128,7 +130,7 @@ public class DatosInfoTg extends Fragment {
             }
         });
 
-
+        //Esta funcion te regresa al fragmento anterior
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

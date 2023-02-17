@@ -25,7 +25,11 @@ public class DbQuery extends DbHelper {
         this.context = context;
     }
 
-
+    //Esta funcion lo que hace es de tipo long y lo que hace es insertar informacion en la base de datos de sqlite
+    //todos los datos que recibe son las diferentes columnas de la tabla, y lo que hacemos es instanciar un objeto DbHelper
+    //Para despues usar el metodo get writable database que lo que hace es preparar la bd para realizar cambios, despues
+    //Declaramos content values y de ahi lo vamos llenando con los datos que recibe de cuando se invoca la funcion, para despues insertarlo en
+    // la tabla person info
     public long InsertarInfoPerson(int UserId,int Assists,int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age,String Phrase) {
         long id = 0;
         try {
@@ -52,7 +56,9 @@ public class DbQuery extends DbHelper {
         }
         return id;
     }
-
+    //Esta funcion lo que hace es mostrar la informacion almacenada en la bd, instanciamos un objeto dbHelper, y preparamos la bd para escribir,
+    //despues con el pojo ya creado de PersonInfo que tiene las variables de la tabla con sus respectivos getters and setters, hacemos una query a la bd
+    //con el id del usuario que lo recibe cuando se invoca la funcion, para despues ir guardando la informacion en este objeto person info y retornar el objeto.
     public PersonInfo verinfo(int id){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -74,6 +80,8 @@ public class DbQuery extends DbHelper {
         cursorInfo.close();
         return personInfo;
     }
+    //En esta funcion creamos un objeto dbHelper que es la bd, para despues prepararla para escribir y hacer la query de la tabla phrase buscando el id que recibe la
+    //funcion, para despues guardar los datos en el pojo Phrase y retornar este mismo objeto
     public Phrase verFrase(int id){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -88,7 +96,6 @@ public class DbQuery extends DbHelper {
         cursorsote.close();
         return frase;
     }
-
 
     public ArrayList<PersonInfo> MostrarPersonInfo(){
         DbHelper dbHelper = new DbHelper(context);
@@ -118,7 +125,10 @@ public class DbQuery extends DbHelper {
         cursorperson.close();
         return ListaPerson;
     }
-
+    //Esta funcion crea un arraylist con los datos de exercises que se va a usar para el recyclerview,
+    //Creamos el arreglo y lo inicializamos, como ya fue mencionado anteriormente creamos el dbHelper y lo inicializamos con el contexto de la view,
+    //Despues hacemos una query de la tabla exercise a la bd buscando el id e iteramos todos los datos hasta tener todos los que tengan ese id en especifico,
+    //despues retornamos la lista
     public  ArrayList<Exercises> MostrarEjercicios(int id){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -149,6 +159,8 @@ public class DbQuery extends DbHelper {
         cursorejercicios.close();
         return ListaEjercicios;
     }
+    //Esta funcion tambien como fue mencionado anteriormente realiza lo mismo con la tabla ejercicio, creando un pojo y guardando los datos para poder
+    //mostrarlos haciendo una query a la tabla ejercicios con su respectivo id y retornando el objeto exercises
     public Exercises EjerciciosVER(int id){
         Log.d("Exercises", id+"");
         DbHelper dbHelper = new DbHelper(context);
@@ -175,20 +187,22 @@ public class DbQuery extends DbHelper {
         cursorejercicios.close();
         return exercises;
     }
-
-    public long StatsInsert(int id,int weight, int reps,int reps2,float time, String Date){
+    //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
+    //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con
+    //los valores guardados en values, para retornar la query
+    public long StatsInsert(int weight, int reps,int reps2,float time, String Date,int IdEjercicio){
         long query=0;
         try {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put("ID_Stats", id);
             values.put("Weight", weight);
             values.put("Reps", reps);
             values.put("Reps2", reps2);
             values.put("Time", time);
             values.put("Date", Date);
+            values.put("IdEjercicio", IdEjercicio);
 
             query = db.insert(TABLE_STATS, null, values);
         } catch (Exception ex) {
@@ -197,23 +211,33 @@ public class DbQuery extends DbHelper {
         return query;
     }
 
+    //Esta funcion sirve para mostrar las stats, como ya fue mencionado antes se crea un pojo llamado stats y creamos el objeto dbhelper para preparar la bd
+    //para escritura, despues realizar un selectr a la tabla stats con el id recibido y se almacenan los datos en el pojo, para despues retornar stats.
     public Stats verStats(int id){
+
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Stats stats = null;
         Cursor cursorsote;
-        cursorsote = db.rawQuery("SELECT * FROM " + TABLE_STATS + " WHERE ID_Stats = " + id,null);
-        if (cursorsote.moveToFirst()) {
-            stats = new Stats();
-            stats.setID_Stats(cursorsote.getInt(0));
-            stats.setWeight(cursorsote.getInt(1));
-            stats.setReps(cursorsote.getInt(2));
-            stats.setReps2(cursorsote.getInt(3));
-            stats.setTime(cursorsote.getFloat(4));
-            stats.setDate(cursorsote.getString(5));
-        }
-        cursorsote.close();
-        return stats;
-    }
+        try {
+            cursorsote = db.rawQuery("SELECT * FROM " + TABLE_STATS + " WHERE IdEjercicio = " + id ,null);
+            if (cursorsote.moveToFirst()) {
+                stats = new Stats();
+                stats.setID_Stats(cursorsote.getInt(0));
+                stats.setWeight(cursorsote.getInt(1));
+                stats.setReps(cursorsote.getInt(2));
+                stats.setReps2(cursorsote.getInt(3));
+                stats.setTime(cursorsote.getFloat(4));
+                stats.setDate(cursorsote.getString(5));
+                cursorsote.close();
 
+            }
+            Log.d("FIN", "FINIQUITO");
+            return stats;
+        }catch (Exception ex){
+            Log.d("Exception", String.valueOf(ex));
+        }
+        Log.d("FIN", "NO FINIQUITO");
+        return stats;
+}
 }

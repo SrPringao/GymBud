@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
@@ -82,18 +83,22 @@ public class GrupoSeleccionado extends Fragment {
         Context context = getContext();
         Bundle args = getArguments();
     ImageView Back = view.findViewById(R.id.botonback4);
-        String nombreMusculo = args.getString("nombre_musculo");
-        Log.d("musculo",nombreMusculo );
-        int id = args.getInt("Id");
-        Log.d("ID",Integer.toString(id));
+        String nombreMusculo = args.getString("nombre_musculo");//nombre del musculo seleccionado
+       //Log.d("musculo",nombreMusculo );
+       int id = args.getInt("ID");//id del musculo seleccionado
+        Log.d("id",Integer.toString(id));
         recyclerView = view.findViewById(R.id.Recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         DbQuery dbQuery = new DbQuery(context);
         EjerciciosLista = new ArrayList<>();
-
+    //creamos un objeto del adaptador para usarlo en el recycler
+    //Despues realizamos la query con los ejercicios guardados en la bd con la funcion MostrarEjercicios, mandando el musculo seleccionado
         EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
+
         recyclerView.setAdapter(adapter);
+
+
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +111,21 @@ public class GrupoSeleccionado extends Fragment {
                 transaction.commit();
             }
         });
-
+        //Esta funcion lo  que hace es recibir la posicion de la tarjeta seleccionada del recycler, para despues,
+        //sumar la cantidad previa de ejercicios en la base de datos y asi acceder al ejercicio correcto, llamando a la funcion
+        //MusculoSuma, pasandole el nombre del musculo en la llamada.
         adapter.setOnClickListener(new EjerciciosAdaptador.EventOnItemClick() {
             @Override
             public void OnItemClick(int posicion) {
                 Bundle args = new Bundle();
+                int idplus;
+                idplus = posicion;
+                idplus += MusculoSuma(nombreMusculo);
+                Log.d("idplus", ""+idplus);
+                //Log.d("NOMBREMUSCULO", nombreMusculo);
                 Fragment fragment = new fragment_ejercicio_seleccionado();
-                args.putInt("id",posicion);
-                args.putInt("Id",id);
+                args.putInt("id",idplus);
+                args.putInt("ID",id);
                 args.putString("Musculo",nombreMusculo);
                 fragment.setArguments(args);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -129,13 +141,18 @@ public class GrupoSeleccionado extends Fragment {
         TextView textView = view.findViewById(R.id.tituloejerciciosGS);
         textView.setText(nombreMusculo);
 
-
+//Esta funcion te regresa al fragment anterior y manda los datos id y el nombre del musculo en un bundle
         imagenatras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Fragment firstFragment = new Ejercicios();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                args.putInt("Id",id);
+                args.putString("Musculo",nombreMusculo);
+                firstFragment.setArguments(args);
 
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
                 transaction.addToBackStack(null);
@@ -144,5 +161,61 @@ public class GrupoSeleccionado extends Fragment {
         });
 
 
+    }
+
+    //Funcion para probar cuando esten los ejercicios ya en la bd
+    //Esta funcion lo que hace es asegurarse que los id de cuando se seleccione en la aplicacion sean los mismos que estan en la bd,
+    //ya que no encontre la manera de hacer que cuando se seleccione una tarjeta del recycler tenga un id personalizado y solo van de forma
+    //ascendente, sumando a el id del recycler la cantidad de ejercicios previos para llegar al id correcto
+    int MusculoSuma(String Musculo){
+        int NumMagico=1;
+        /*switch (Musculo){
+            case "Hombro":
+                NumMagico=1;
+                break;
+            case "Bicep":
+                NumMagico=20;
+                break;
+            case "Pecho":
+                NumMagico=40;
+                break;
+            case "Abs":
+                NumMagico=60;
+                break;
+            case "Oblicuos":
+                NumMagico=80;
+                break;
+            case "Antebrazo":
+                NumMagico=100;
+                break;
+            case "Cuadriceps":
+                NumMagico=120;
+                break;
+            case "Trapecios":
+                NumMagico=140;
+                break;
+            case "Dorsal":
+                NumMagico=160;
+                break;
+            case "Tricep":
+                NumMagico=180;
+                break;
+            case "Espalda Media":
+                NumMagico=200;
+                break;
+
+            case "Gluteo":
+                NumMagico=220;
+                break;
+            case "Femoral":
+                NumMagico=240;
+                break;
+            case "Pantorrilla":
+                NumMagico=260;
+                break;
+
+        }*/
+      //  Log.d("NUM MAGICO", ""+NumMagico);
+        return NumMagico;
     }
 }

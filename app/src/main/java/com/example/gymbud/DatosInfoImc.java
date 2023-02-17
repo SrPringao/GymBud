@@ -93,7 +93,8 @@ public class DatosInfoImc extends Fragment {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-
+        //Esta funcion se asegura que los 2 campos esten llenos, si no le manda un mensaje al usuario, despues llama la funcion UIDUSR para recibir el UID y realiza
+        //un update en PERSONINFO cambiando la altura dependiendo del uid recibido, despues te regresa al fragment anterior
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +119,7 @@ public class DatosInfoImc extends Fragment {
 
             }
         });
+        //Este boton te regresa al fragment anterior
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

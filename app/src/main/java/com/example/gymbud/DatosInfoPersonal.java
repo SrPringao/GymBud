@@ -97,13 +97,15 @@ public class DatosInfoPersonal extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ImageView imagen = view.findViewById(R.id.botonback1);
         Button BotonCalc = view.findViewById(R.id.Calc);
-        EditText ETP,ETP2;
+        EditText ETP, ETP2;
         ETP = view.findViewById(R.id.etInfo1);
         ETP2 = view.findViewById(R.id.etInfo2);
 
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        //Esta funcion lo que hace es asegurarse que los campos esten llenos, despues recibe el UID de la funcion UIDUSR y realiza un update en la tabla PERSONINFO
+        //colocando los datos registrados donde el usuario tenga el UID, y te regresa al fragment anterior.
         BotonCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
