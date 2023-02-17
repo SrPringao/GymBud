@@ -53,6 +53,8 @@ public class FragmentContainer extends AppCompatActivity {
                     fragment = new Ejercicios();
 
 
+
+
                 }else if (item.getId() == 2){
                     fragment = new Rutinas();
 
