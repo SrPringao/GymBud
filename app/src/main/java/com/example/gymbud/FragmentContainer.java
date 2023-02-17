@@ -54,7 +54,7 @@ public class FragmentContainer extends AppCompatActivity {
 
 
                 }else if (item.getId() == 2){
-                    fragment = new DetallesSucursal();
+                    fragment = new Rutinas();
 
 
                 }else{
