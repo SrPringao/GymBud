@@ -57,4 +57,14 @@ public class Stats {
     int Reps2;
     float Time;
     String Date;
+
+    public int getIdEjercicio() {
+        return IdEjercicio;
+    }
+
+    public void setIdEjercicio(int idEjercicio) {
+        IdEjercicio = idEjercicio;
+    }
+
+    int IdEjercicio;
 }
