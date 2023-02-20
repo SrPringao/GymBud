@@ -41,7 +41,7 @@
         app:srcCompat="@drawable/backgroundcornerinverted" />
 
     <TextView
-        android:id="@+id/NombreSucursal"
+        android:id="@+id/SubName"
         style="@style/sucursalesgod"
         android:layout_width="187dp"
         android:layout_height="124dp"
@@ -61,7 +61,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/ubicacion"
+        android:id="@+id/Location"
         style="@style/viewParent.headerText.homeCardContent"
         android:layout_width="164dp"
         android:layout_height="199dp"
@@ -77,33 +77,34 @@
         app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/NombreSucursal"
+        app:layout_constraintStart_toEndOf="@+id/SubName"
         app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
         app:layout_constraintVertical_bias="0.384"
         tools:ignore="MissingConstraints" />
 
     <RatingBar
-        android:id="@+id/rating"
+        android:id="@+id/Rating"
         android:layout_width="207dp"
         android:layout_height="44dp"
 
+        android:layout_marginBottom="20dp"
         android:numStars="5"
+
+
         android:paddingTop="10dp"
-
-
         android:progress="@integer/material_motion_duration_long_2"
         android:progressTint="@color/colorIdentidad2"
+
+
         android:rating="1.3"
 
-
         android:secondaryProgressTint="@color/colorIdentidad2"
-
         app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
-        app:layout_constraintEnd_toStartOf="@+id/ubicacion"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintEnd_toStartOf="@+id/Location"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NombreSucursal"
-        app:layout_constraintVertical_bias="0.383"
+        app:layout_constraintTop_toBottomOf="@+id/SubName"
+        app:layout_constraintVertical_bias="0.342"
         tools:ignore="MissingConstraints" />
 
 
