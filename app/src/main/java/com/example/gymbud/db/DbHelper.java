@@ -165,6 +165,11 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 
+
+
+
+//panto panto
+
 //Pecho
     /*    sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
@@ -182,6 +187,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
 //Oblicu
+
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");

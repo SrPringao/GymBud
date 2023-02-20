@@ -8,20 +8,11 @@
     style="@style/parent.contentLayout"
     tools:context=".GrupoSeleccionado">
 
-    <ImageView
-        android:id="@+id/botonback5"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_flechanegrodorado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </ImageView>
-
     <TextView
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text="Sucursales"
@@ -29,27 +20,25 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
+
         android:id="@+id/RecyclerSucursales"
-        android:layout_width="371dp"
-        android:layout_height="559dp"
-
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-
-
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="376dp"
+        android:layout_height="733dp"
 
         android:clipToPadding="false"
         android:paddingVertical="20dp"
         android:paddingStart="20dp"
+
+        android:paddingTop="8dp"
         android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.645"
@@ -59,3 +48,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
