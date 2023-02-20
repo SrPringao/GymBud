@@ -1,5 +1,6 @@
 package com.example.gymbud.Adaptadores;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.Ejercicios;
+import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.R;
 import com.example.gymbud.db.Entidades.Exercises;
 import com.example.gymbud.fragment_ejercicio_seleccionado;
@@ -55,7 +57,6 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
     public static class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
-        int posicion = getAdapterPosition();
         static TextView Nombre;
         public EjerciciosViewHolder(@NonNull View itemView,EventOnItemClick listener){
             super(itemView);
@@ -63,12 +64,10 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
             this.listener=listener;
             Nombre = itemView.findViewById(R.id.Testo);
         }
-
-
         @Override
         public void onClick(View view) {
 
-            listener.OnItemClick(getAdapterPosition()+1);
+            listener.OnItemClick(getAdapterPosition());
         }
     }
 

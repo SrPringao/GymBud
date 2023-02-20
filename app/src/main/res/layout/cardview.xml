@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_edittext">
+    android:layout_height="106dp"
+
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="20dp"
+    android:gravity="center"
+    android:background="@drawable/backgroundcorner">
+
 
     <TextView
         android:id="@+id/Testo"
-        android:layout_width="451dp"
-        android:layout_height="82dp"
-        android:paddingStart="10dp"
+        style="@style/viewParent.headerText.homeCardContent"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingHorizontal="10dp"
+        android:gravity="center"
         android:paddingTop="10dp"
-        android:text=""
+        android:text="Elevaciones laterales de pie con mancuernas"
+
         android:textColor="@android:color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        />
+
+
 
 </LinearLayout>

@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
     </ImageView>
 
     <TextView
@@ -38,7 +39,8 @@
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recycler2"
+
+        android:id="@+id/RecyclerSucursales"
         android:layout_width="371dp"
         android:layout_height="559dp"
 
@@ -59,3 +61,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

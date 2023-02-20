@@ -66,7 +66,7 @@ PersonInfo personInfo;
 
 
         shared = sharedPrefs.getInt("UID",0);
-        if(shared != 0 ){
+        if(shared != 0 ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
             i.putExtra("UID",shared);
             startActivity(i);
@@ -75,7 +75,7 @@ PersonInfo personInfo;
 
 
 
-
+        //Este setOnClickListener cuando presionas el boton te manda a la pantalla de registro
         TVRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +84,7 @@ PersonInfo personInfo;
                 finish();
             }
         });
-
+        //Este setOnClickListener cuando presionas el boton te manda a la pantalla de olvidos
         TVRecuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +98,9 @@ PersonInfo personInfo;
 
     }
 
+    //La funcion ClickInicio lo que hace es que recibe los dos datos ingresados en los editText, para despues comprobar si alguno de estos esta vacio mandar error
+    //, si esta completo realiza la query al servidor con el php designado, con la contraseña y usuario registrado, si si esta registrado acacede a la pantalla de
+    //info usuario, si no existe manda un error y pide al usuario que reingrese sus credenciales
     public void clickInicio(View view) {
         SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo",context.MODE_PRIVATE);
 
@@ -175,7 +178,7 @@ PersonInfo personInfo;
         lanzarPeticion.add(pet);
         lanzarPeticion.start();
     }
-
+    //Esta funcion es en caso de que presionen que se quieren registrar, los manda a la pantalla registro
     public void LinkRegistrarse(View view) {
         Intent Registro = new Intent(MainActivity.this, Registro.class);
         startActivity(Registro);

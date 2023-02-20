@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.Stats;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,7 +83,7 @@ public class registropeso extends Fragment {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Bundle args = getArguments();
-        int id = args.getInt("Id");
+        int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
         ImageView Back = view.findViewById(R.id.botonback);
@@ -92,8 +93,9 @@ public class registropeso extends Fragment {
         RepsR2 = view.findViewById(R.id.RepsR2);
         TiempoR = view.findViewById(R.id.TiempoR);
         Button Guardar = view.findViewById(R.id.GuardadoR);
-        DbQuery dbQuery = new DbQuery(context);
-
+        //Este boton esta vinculado a la imagen de la flecha hacia atras y lo unico que hace es regresarte a la pantalla anterior,
+        //mandando los datos id,ID y musculo a esta pantalla anterior para despues utilizarlos y evitar la perdida del musculo seleccionado o
+        //el ejercicio seleccionado, todos estos se mandan en un bundle.
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +110,11 @@ public class registropeso extends Fragment {
                 transaction.commit();
             }
         });
-
+        //Esta funcion esta vinculada al boton guardar que lo que hace es recibir todos los datos insertados en los editText, para despues
+        //Realizar una insert a la base de datos en la tabla stats con todos los datos ya registrados anteriormente, tambien se llama a la funcion FechaG para
+        //Obtener la fecha actual del celular y registrarla.
+        //Tambien Envia el id,ID y el musculo para cargar el ejercicio seleccionado y poder regresar de manera correcta en un bundle y realiza la
+        //transaccion de los fragments.
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,8 +123,10 @@ public class registropeso extends Fragment {
             int reps2 = Integer.parseInt(RepsR2.getText().toString());
             float Time = Float.parseFloat(TiempoR.getText().toString());
                 String FechaG = activity.FechaG();
-                String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ " WHERE ID_Stats = " + id;
-                db.execSQL(update);
+            //    String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ "+ WHERE ID_Ejercicio = " + id;
+
+                DbQuery dbQuery = new DbQuery(context);
+                long query = dbQuery.StatsInsert(carga,reps,reps2,Time,FechaG,id);
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 args.putInt("id",id);
