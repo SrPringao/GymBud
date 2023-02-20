@@ -207,21 +207,20 @@ public class stats extends Fragment {
             tempPointValue =  new PointValue(StatsLista.get(i).getWeight(),StatsLista.get(i).getReps());
             values.add(tempPointValue);
         }
-
+        int[] axisData = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150}; //Le ingresamos los datos del eje X
+        int[] yAxisData = {1, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24}; //Le ingresamos los datos del eje Y
         List yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
         List axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
 
 
         Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setCubic(false);//.setHasLabels(true); //Le ponemos el color que queramos a la grafica
 
-/*        for (int i = 0; i < StatsLista.size(); i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
-            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+        for (int i = 0; i < StatsLista.size(); i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
+            axisValues.add(new PointValue(i, axisData[i]));
         }
-        //axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
-        //yAxisValues.add(new PointValue(i, yAxisData[i]));
         for (int i = 0; i < StatsLista.size(); i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
             yAxisValues.add(new PointValue(i, yAxisData[i]));
-        }*/
+        }
 
         List lines = new ArrayList<Line>();
         lines.add(line);
@@ -229,7 +228,7 @@ public class stats extends Fragment {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        /*Axis axis = new Axis();
+        Axis axis = new Axis();
         axis.setValues(axisValues);
         axis.setTextSize(16);
         axis.setTextColor(Color.parseColor("#0000"));
@@ -245,7 +244,7 @@ public class stats extends Fragment {
         Viewport viewport = new Viewport(grafica.getMaximumViewport());
         viewport.top = 110;
         grafica.setMaximumViewport(viewport);
-        grafica.setCurrentViewport(viewport);*/
+        grafica.setCurrentViewport(viewport);
     }
     //Funcion para recuperar la info de la base de datos e insertarla al spinner
     private void ConsultarDatos(int id) {
