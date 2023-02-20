@@ -213,6 +213,7 @@ public class stats extends Fragment {
         List<PointValue> values = new ArrayList<PointValue>();
         PointValue tempPointValue;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        String[] Fechas = new String[StatsLista.size()];
         float[] axisData = new float[StatsLista.size()];
         for (int i=0;i<StatsLista.size();i++){
             String FECHABD = StatsLista.get(i).getDate();
@@ -224,7 +225,7 @@ public class stats extends Fragment {
                 Log.d("LONG", ""+FechaNumerada);
                 axisData[i] = FechaNumerada;*/
                 Log.d("PESO", ""+StatsLista.get(i).getWeight());
-                axisData[i] = i;
+                Fechas[i] = StatsLista.get(i).getDate();
                 tempPointValue =  new PointValue(i,StatsLista.get(i).getWeight());
                 values.add(tempPointValue);
             } catch (Exception e) {
@@ -247,7 +248,7 @@ public class stats extends Fragment {
 
         for (int i = 0; i <axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
             tempAxisValue = new AxisValue(i);
-            tempAxisValue.setValue(axisData[i]);
+            tempAxisValue.setLabel(Fechas[i]);
             axisValues.add(tempAxisValue);
         }
         for (int i = 0; i < 15; i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
@@ -263,15 +264,17 @@ public class stats extends Fragment {
         data.setLines(lines);
 
        Axis axis = new Axis(axisValues);
-        axis.setTextSize(16);
+        axis.setTextSize(10);
         axis.setName("Fecha");
         axis.setTextColor(Color.parseColor("#9C27B0"));
+        data.setValueLabelTextSize(10);
         data.setAxisXBottom(axis);
 
        Axis yAxis = new Axis(yAxisValues);
-        yAxis.setTextSize(16);
+        yAxis.setTextSize(10);
         yAxis.setName("Peso");
         yAxis.setTextColor(Color.parseColor("#03A9F4"));
+        data.setValueLabelTextSize(10);
         data.setAxisYLeft(yAxis);
 
         grafica.setLineChartData(data);
