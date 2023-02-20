@@ -1,23 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="400dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-
-    android:orientation="vertical"
-    android:layout_marginBottom="20dp"
     android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
     android:gravity="center"
-    android:background="@drawable/backgroundcorner">
+    android:background="@color/uruguayo"
+    android:orientation="vertical">
 
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="416dp"
+        android:layout_height="197dp"
+        app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        app:srcCompat="@drawable/backgrounblack">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+        app:srcCompat="@drawable/background" />
 
     <TextView
         android:id="@+id/NombreSucursal"
         style="@style/sucursalesgod"
-        android:layout_width="365dp"
-        android:layout_height="68dp"
+        android:layout_width="176dp"
+        android:layout_height="67dp"
 
         android:gravity="center"
         android:paddingHorizontal="10dp"
@@ -26,45 +51,31 @@
 
         android:textColor="@android:color/black"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-
-        android:layout_width="221dp"
-        android:layout_height="274dp"
-        android:src="@drawable/otisparado"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NombreSucursal"
-        app:layout_constraintVertical_bias="0.428">
-
-    </ImageView>
+        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
+        app:layout_constraintVertical_bias="0.273"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/ubicacion"
         style="@style/viewParent.headerText.homeCardContent"
         android:layout_width="171dp"
         android:layout_height="193dp"
+        android:layout_marginStart="8dp"
         android:gravity="center"
         android:paddingHorizontal="10dp"
+
         android:paddingTop="10dp"
         android:text="Av. La Calma, esq. Calle Casiopea 4481, Col. La Calma 45070. Guadalajara, Jalisco"
 
         android:textColor="@android:color/black"
         android:textSize="20dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502"
+        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/NombreSucursal"
+        app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
         tools:ignore="MissingConstraints" />
 
     <RatingBar
@@ -73,20 +84,20 @@
         android:layout_height="78dp"
 
         android:numStars="5"
-        android:progress="@integer/material_motion_duration_long_2"
-
-
         android:paddingTop="10dp"
+
+
+        android:progress="@integer/material_motion_duration_long_2"
         android:progressTint="@color/black"
         android:rating="1.3"
 
         android:secondaryProgressTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ubicacion"
 
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
+        app:layout_constraintEnd_toStartOf="@+id/ubicacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NombreSucursal"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
