@@ -243,6 +243,8 @@ public class stats extends Fragment {
 
         Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
 
+        
+
         for (int i = 0; i <axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
             tempAxisValue = new AxisValue(i);
             tempAxisValue.setValue(axisData[i]);
