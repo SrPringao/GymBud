@@ -122,11 +122,11 @@ public class registropeso extends Fragment {
             int reps = Integer.parseInt(RepsR.getText().toString());
             int reps2 = Integer.parseInt(RepsR2.getText().toString());
             float Time = Float.parseFloat(TiempoR.getText().toString());
-                String FechaG = activity.FechaG();
+                String FechaAct = activity.FechaAct();
             //    String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ "+ WHERE ID_Ejercicio = " + id;
 
                 DbQuery dbQuery = new DbQuery(context);
-                long query = dbQuery.StatsInsert(carga,reps,reps2,Time,FechaG,id);
+                long query = dbQuery.StatsInsert(carga,reps,reps2,Time,FechaAct,id);
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 args.putInt("id",id);

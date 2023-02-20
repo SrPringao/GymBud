@@ -1,9 +1,11 @@
 package com.example.gymbud;
 
+
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.ImageDecoder;
-import android.media.Image;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,15 +17,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
 import com.example.gymbud.db.Entidades.Stats;
 
+
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -81,22 +89,24 @@ public class stats extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
+    ArrayList<String> ListaStats;
+    ArrayList<Stats> StatsLista;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view;
         view = inflater.inflate(R.layout.fragment_stats, container, false);
-
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.opciones, android.R.layout.simple_spinner_item);
+        Bundle args = getArguments();
+        int id = args.getInt("id");//id del ejercicio seleccionado
+        ConsultarDatos(id);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,ListaStats);
         fechas.setAdapter(adapter);
         return view;
     }
     Spinner fechas;
-Stats stats;
+    Stats stats;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -109,11 +119,35 @@ Stats stats;
         int id = args.getInt("id");//id del ejercicio seleccionado
         int ID = args.getInt("ID");//id del musculo seleccionado
         String musculo = args.getString("Musculo");//Nombre del musculo seleccionado
-       
+
+        fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
         Carga = view.findViewById(R.id.Carga);
         Reps = view.findViewById(R.id.Repeticiones);
         Reps2 = view.findViewById(R.id.Repeticiones2);
         Tiempo = view.findViewById(R.id.Tiempo);
+
+        fechas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position!=0){
+                Carga.setText(""+StatsLista.get(position).getWeight()+" kg");
+                Reps.setText(""+StatsLista.get(position).getReps());
+                Reps2.setText(""+StatsLista.get(position).getReps2());
+                Tiempo.setText(""+StatsLista.get(position).getTime()+ " mins");
+            }else {
+                    Carga.setText("");
+                    Reps.setText("");
+                    Reps2.setText("");
+                    Tiempo.setText("");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         try {
@@ -125,9 +159,10 @@ Stats stats;
                 Reps2.setText("" + stats.getReps2());
                 Tiempo.setText("" + stats.getTime());
             }else{
-
-                long query = dbQuery.StatsInsert(0,0,0,0,"0/0/0",id); //Es la query del insert
-                Log.d("INSERT", "Se inserto");
+               /* FragmentContainer activity = (FragmentContainer) getActivity();
+                String FechaAct = activity.FechaAct();
+                long query = dbQuery.StatsInsert(0,0,0,0,FechaAct,id); //Es la query del insert
+                Log.d("INSERT", "Se inserto");*/
             }
         }catch (Exception ex){
             Log.d("Error", "No hay stats que sacar");
@@ -167,44 +202,79 @@ Stats stats;
             }
         });
 
+
+
+       //
         //Todo esto es sobre la grafica
 
         LineChartView grafica; //Aqui declaramos el objeto de la grafica que es un Line Chart
         grafica = view.findViewById(R.id.Grafica); //Encontramos el objeto en el fragment
-        String[] axisData = {"Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept",
-                "Oct", "Nov", "Dec"}; //Le ingresamos los datos del eje X
-        int[] yAxisData = {50, 20, 15, 30, 20, 60, 15, 40, 45, 10, 90, 18}; //Le ingresamos los datos del eje Y
 
-        List yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
-        List axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
+        List<PointValue> values = new ArrayList<PointValue>();
+        PointValue tempPointValue;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        String[] Fechas = new String[StatsLista.size()];
+        float[] axisData = new float[StatsLista.size()];
+        for (int i=0;i<StatsLista.size();i++){
+            String FECHABD = StatsLista.get(i).getDate();
+            try {
+   /*             Date fecha = formato.parse(FECHABD);
+                long fechaLong = fecha.getTime();
+                Log.d("LONGBF", ""+fechaLong);
+                long FechaNumerada = (long) Math.floor(fechaLong/(1000*60*60*24));
+                Log.d("LONG", ""+FechaNumerada);
+                axisData[i] = FechaNumerada;*/
+                Log.d("PESO", ""+StatsLista.get(i).getWeight());
+                Fechas[i] = StatsLista.get(i).getDate();
+                tempPointValue =  new PointValue(i,StatsLista.get(i).getWeight());
+                values.add(tempPointValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
-        Line line = new Line(yAxisValues).setColor(Color.parseColor("#9C27B0")); //Le ponemos el color que queramos a la grafica
 
-        for (int i = 0; i < axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
-            axisValues.add(i, new AxisValue(i).setLabel(axisData[i]));
+        }
+         //Le ingresamos los datos del eje X
+
+        int[] yAxisData = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150}; //Le ingresamos los datos del eje Y
+        List<AxisValue> yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
+        List<AxisValue> axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
+        AxisValue tempAxisValue;
+
+        Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
+
+        
+
+        for (int i = 0; i <axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setLabel(Fechas[i]);
+            axisValues.add(tempAxisValue);
+        }
+        for (int i = 0; i < 15; i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setValue(yAxisData[i]);
+            yAxisValues.add(tempAxisValue);
         }
 
-        for (int i = 0; i < yAxisData.length; i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
-        }
-
-        List lines = new ArrayList();
+        List lines = new ArrayList<Line>();
         lines.add(line);
 
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        Axis axis = new Axis();
-        axis.setValues(axisValues);
-        axis.setTextSize(16);
-        axis.setTextColor(Color.parseColor("#03A9F4"));
+       Axis axis = new Axis(axisValues);
+        axis.setTextSize(10);
+        axis.setName("Fecha");
+        axis.setTextColor(Color.parseColor("#9C27B0"));
+        data.setValueLabelTextSize(10);
         data.setAxisXBottom(axis);
 
-        Axis yAxis = new Axis();
-        yAxis.setName("Sales in millions");
+       Axis yAxis = new Axis(yAxisValues);
+        yAxis.setTextSize(10);
+        yAxis.setName("Peso");
         yAxis.setTextColor(Color.parseColor("#03A9F4"));
-        yAxis.setTextSize(16);
+        data.setValueLabelTextSize(10);
         data.setAxisYLeft(yAxis);
 
         grafica.setLineChartData(data);
@@ -212,5 +282,34 @@ Stats stats;
         viewport.top = 110;
         grafica.setMaximumViewport(viewport);
         grafica.setCurrentViewport(viewport);
+    }
+    //Funcion para recuperar la info de la base de datos e insertarla al spinner
+    private void ConsultarDatos(int id) {
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Stats stats = null;
+        StatsLista = new ArrayList<Stats>();
+
+        Cursor cursor = db.rawQuery(" SELECT * FROM "+DbQuery.TABLE_STATS+" WHERE IdEjercicio =" + id,null);
+
+        while (cursor.moveToNext()){
+            stats = new Stats();
+            stats.setID_Stats(cursor.getInt(0));
+            stats.setWeight(cursor.getInt(1));
+            stats.setReps(cursor.getInt(2));
+            stats.setReps2(cursor.getInt(3));
+            stats.setTime(cursor.getFloat(4));
+            stats.setDate(cursor.getString(5));
+            stats.setIdEjercicio(cursor.getInt(6));
+            StatsLista.add(stats);
+        }
+        ObtenerLista();
+    }
+    private void ObtenerLista(){
+        ListaStats = new ArrayList<String>();
+        for (int i=0;i<StatsLista.size();i++){
+            ListaStats.add(StatsLista.get(i).getDate());
+        }
     }
 }
