@@ -218,8 +218,8 @@
 
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/Grafica"
-        android:layout_width="383dp"
-        android:layout_height="163dp"
+        android:layout_width="350dp"
+        android:layout_height="155dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"

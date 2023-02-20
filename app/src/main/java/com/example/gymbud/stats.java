@@ -1,11 +1,11 @@
 package com.example.gymbud;
 
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.ImageDecoder;
-import android.media.Image;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +27,11 @@ import com.example.gymbud.db.DbHelper;
 import com.example.gymbud.db.DbQuery;
 import com.example.gymbud.db.Entidades.Stats;
 
+
+import java.text.ParseException;
 import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -155,8 +159,10 @@ public class stats extends Fragment {
                 Reps2.setText("" + stats.getReps2());
                 Tiempo.setText("" + stats.getTime());
             }else{
-                long query = dbQuery.StatsInsert(0,0,0,0,"0/0/0",id); //Es la query del insert
-                Log.d("INSERT", "Se inserto");
+               /* FragmentContainer activity = (FragmentContainer) getActivity();
+                String FechaAct = activity.FechaAct();
+                long query = dbQuery.StatsInsert(0,0,0,0,FechaAct,id); //Es la query del insert
+                Log.d("INSERT", "Se inserto");*/
             }
         }catch (Exception ex){
             Log.d("Error", "No hay stats que sacar");
@@ -196,6 +202,9 @@ public class stats extends Fragment {
             }
         });
 
+
+
+       //
         //Todo esto es sobre la grafica
 
         LineChartView grafica; //Aqui declaramos el objeto de la grafica que es un Line Chart
@@ -203,23 +212,46 @@ public class stats extends Fragment {
 
         List<PointValue> values = new ArrayList<PointValue>();
         PointValue tempPointValue;
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        float[] axisData = new float[StatsLista.size()];
         for (int i=0;i<StatsLista.size();i++){
-            tempPointValue =  new PointValue(StatsLista.get(i).getWeight(),StatsLista.get(i).getReps());
-            values.add(tempPointValue);
+            String FECHABD = StatsLista.get(i).getDate();
+            try {
+   /*             Date fecha = formato.parse(FECHABD);
+                long fechaLong = fecha.getTime();
+                Log.d("LONGBF", ""+fechaLong);
+                long FechaNumerada = (long) Math.floor(fechaLong/(1000*60*60*24));
+                Log.d("LONG", ""+FechaNumerada);
+                axisData[i] = FechaNumerada;*/
+                Log.d("PESO", ""+StatsLista.get(i).getWeight());
+                axisData[i] = i;
+                tempPointValue =  new PointValue(i,StatsLista.get(i).getWeight());
+                values.add(tempPointValue);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+
         }
-        int[] axisData = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150}; //Le ingresamos los datos del eje X
-        int[] yAxisData = {1, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24}; //Le ingresamos los datos del eje Y
-        List yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
-        List axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
+         //Le ingresamos los datos del eje X
 
+        int[] yAxisData = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150}; //Le ingresamos los datos del eje Y
+        List<AxisValue> yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
+        List<AxisValue> axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
+        AxisValue tempAxisValue;
 
-        Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setCubic(false);//.setHasLabels(true); //Le ponemos el color que queramos a la grafica
+        Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
 
-        for (int i = 0; i < StatsLista.size(); i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
-            axisValues.add(new PointValue(i, axisData[i]));
+        for (int i = 0; i <axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setValue(axisData[i]);
+            axisValues.add(tempAxisValue);
         }
-        for (int i = 0; i < StatsLista.size(); i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
-            yAxisValues.add(new PointValue(i, yAxisData[i]));
+        for (int i = 0; i < 15; i++) { //Este for itera todos los valores en el eje y en el arraylist y los ingresa a la grafica
+            tempAxisValue = new AxisValue(i);
+            tempAxisValue.setValue(yAxisData[i]);
+            yAxisValues.add(tempAxisValue);
         }
 
         List lines = new ArrayList<Line>();
@@ -228,16 +260,16 @@ public class stats extends Fragment {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        Axis axis = new Axis();
-        axis.setValues(axisValues);
+       Axis axis = new Axis(axisValues);
         axis.setTextSize(16);
-        axis.setTextColor(Color.parseColor("#0000"));
+        axis.setName("Fecha");
+        axis.setTextColor(Color.parseColor("#9C27B0"));
         data.setAxisXBottom(axis);
 
-        Axis yAxis = new Axis();
-        yAxis.setName("abubu");
-        yAxis.setTextColor(Color.parseColor("#03A9F4"));
+       Axis yAxis = new Axis(yAxisValues);
         yAxis.setTextSize(16);
+        yAxis.setName("Peso");
+        yAxis.setTextColor(Color.parseColor("#03A9F4"));
         data.setAxisYLeft(yAxis);
 
         grafica.setLineChartData(data);
