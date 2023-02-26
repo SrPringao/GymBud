@@ -261,75 +261,197 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
 //pechamen
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Cruzamiento de cables',3,'Fortalecimiento del pecho','Sentarse en un banco con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo. Agarrar las asas de los cables con ambas manos y mantener los codos pegados al cuerpo. Mantener la postura correcta durante todo el ejercicio.','Cruzar las asas hacia el centro del cuerpo mientras mantiene la posición sentado. Regresar las asas a la posición inicial y repetir el movimiento. Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al cruzar las asas hacia el centro del cuerpo y hacia adentro al regresarlas a la posición inicial. Ajustar el peso de los cables según la capacidad del individuo.','Image',2,3,2,1)");
 
-        
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Cruces en polea baja pecho',3,'Fortalecimiento del pecho','Sentarse en un banco con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo. Agarrar las asas de la polea baja con ambas manos y mantener los codos pegados al cuerpo. Mantener la postura correcta durante todo el ejercicio.','Cruzar las asas hacia el centro del cuerpo mientras mantiene la posición sentado. Regresar las asas a la posición inicial y repetir el movimiento. Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al cruzar las asas hacia el centro del cuerpo y hacia adentro al regresarlas a la posición inicial. Ajustar el peso de la polea según la capacidad del individuo.','Image',1,2,2,3)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Aperturas en polea en banco',3,'Fortalecimiento del pecho','Sentarse en un banco con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo. Agarrar las asas de la polea con ambas manos y mantener los codos pegados al cuerpo. Mantener la postura correcta durante todo el ejercicio.','Abrazar las asas hacia el centro del cuerpo mientras mantiene la posición sentado. Regresar las asas a la posición inicial y repetir el movimiento. Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al abrazar las asas hacia el centro del cuerpo y hacia adentro al regresarlas a la posición inicial. Ajustar el peso de la polea según la capacidad del individuo.','Image',1,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca plano con polea',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca plana con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo. Agarrar las asas de la polea con ambas manos y mantener los codos pegados al cuerpo. Mantener la postura correcta durante todo el ejercicio.','Empujar las asas hacia arriba mientras mantiene la posición tumbado. Bajar las asas a la posición inicial y repetir el movimiento. Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al empujar las asas hacia arriba y hacia adentro al bajarlas. Ajustar el peso de la polea según la capacidad del individuo.','Image',1,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca plano con barra',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca plana con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una barra con ambas manos y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.\n','Empujar la barra hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar la barra a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.\n','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar la barra hacia arriba y hacia adentro al bajarla.\n" +
+                "Ajustar el peso de la barra según la capacidad del individuo.\n','Image',2,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca inclinada con barra',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca inclinada con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una barra con ambas manos y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.\n','Empujar la barra hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar la barra a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.\n','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar la barra hacia arriba y hacia adentro al bajarla.\n" +
+                "Ajustar el peso de la barra según la capacidad del individuo.\n','Image',2,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca declinada con barra',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca declinada con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una barra con ambas manos y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.\n','Empujar la barra hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar la barra a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.\n','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar la barra hacia arriba y hacia adentro al bajarla.\n" +
+                "Ajustar el peso de la barra según la capacidad del individuo.\n','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca plano con mancuernas',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca plana con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una mancuerna con cada mano y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar las mancuernas hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar las mancuernas hacia arriba y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca inclinada con mancuernas',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca inclinada con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una mancuerna con cada mano y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar las mancuernas hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar las mancuernas hacia arriba y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de banca declinada con mancuernas',3,'Fortalecimiento del pecho, hombros y tríceps','Acostarse en una banca declinada con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una mancuerna con cada mano y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar las mancuernas hacia arriba mientras mantiene la posición tumbado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar las mancuernas hacia arriba y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Aperturas con mancuernas en banco plano',3,'Fortalecimiento del pecho y hombros','Acostarse en un banco plano con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo.\n" +
+                "Sujetar una mancuerna con cada mano y mantener los codos pegados al cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Abrir los brazos a los lados mientras mantiene la posición tumbado.\n" +
+                "Cerrar los brazos y volver a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al abrir los brazos y hacia adentro al cerrarlos.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Pull over con mancuerna en banco',3,'Fortalecimiento del pecho, espalda y hombros','Sentarse en un banco con las piernas apoyadas en el suelo y los hombros apoyados en el respaldo. Sujetar una mancuerna con ambas manos y mantener los codos pegados al cuerpo. Mantener la postura correcta durante todo el ejercicio.','Extender los brazos por encima de la cabeza mientras mantiene la posición sentada. Bajar los brazos a la posición inicial y repetir el movimiento. Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada en el respaldo y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al extender los brazos y hacia adentro al bajarlos. Ajustar el peso de la mancuerna según la capacidad del individuo.','Image',3,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Flexiones con pies elevados',3,'Fortalecimiento del pecho, tríceps y espalda','Colocarse en una posición de flexión con los brazos extendidos y los pies apoyados en una superficie elevada, como un banco o una mesa.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Flexionar los brazos y bajar el cuerpo hacia abajo hasta que el pecho toque el suelo.\n" +
+                "Empujar hacia arriba para volver a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al bajar el cuerpo y hacia adentro al subir.\n" +
+                "Ajustar la dificultad de la ejecución cambiando la altura de los pies o la distancia entre las manos.','Image',4,2,2,3)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press vertical sentado en máquina de pecho',3,'Fortalecimiento del pecho y tríceps','Sentarse en una máquina de press vertical con la espalda apoyada contra el respaldo y los pies apoyados en el suelo.\n" +
+                "Colocar los brazos en los soportes de la máquina con las palmas de las manos mirando hacia abajo.\n" +
+                "Ajustar los soportes para que queden a la altura adecuada para el tamaño del individuo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar hacia arriba con los brazos para levantar los pesos de la máquina.\n" +
+                "Bajar los pesos a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada contra el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar hacia arriba y hacia adentro al bajar los pesos.\n" +
+                "Ajustar el peso de la máquina según la capacidad del individuo.','Image',5,2,2,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Aperturas en máquina contractora',3,'Fortalecimiento del pecho y tríceps','Sentarse en una máquina de aperturas con la espalda apoyada contra el respaldo y los pies apoyados en el suelo.\n" +
+                "Colocar los brazos en los soportes de la máquina con las palmas de las manos mirando hacia abajo.\n" +
+                "Ajustar los soportes para que queden a la altura adecuada para el tamaño del individuo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.\n','Empujar hacia afuera con los brazos para levantar los pesos de la máquina.\n" +
+                "Bajar los pesos a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.\n','Mantener la espalda apoyada contra el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar hacia afuera y hacia adentro al bajar los pesos.\n" +
+                "Ajustar el peso de la máquina según la capacidad del individuo.\n','Image',5,3,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Fondos en paralelas para pecho',3,'Fortalecimiento del pecho, tríceps y hombro','Colocarse de pie frente a un par de barras paralelas a la altura del pecho, con los brazos extendidos y las palmas de las manos apoyadas en las barras.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Flexionar los brazos y bajar el cuerpo hacia abajo hasta que los brazos queden formando un ángulo de 90 grados o hasta que el pecho toque las barras.\n" +
+                "Empujar hacia arriba para volver a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al bajar el cuerpo y hacia adentro al subir.\n" +
+                "Ajustar la distancia entre las barras según la capacidad del individuo.','Image',2,2,2,2)");
 
 
-//panto panto
+//bicep
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps tipo martillo con polea',2,'Hipertrofia','Colocar la altura de la polea a la altura deseada, colocar los pies entre la polea para tener una mejor estabilidad.\n" +
+                "Tomar los agarres de la polea con la mano, con los brazos estirados, las muñecas en una posición neutra y los codos pegados al cuerpo.','1. Inspirar y mantener el core firme, contraer el bíceps y levantar los brazos.\n" +
+                "2. Expirar al llegar a la posición superior.\n" +
+                "3. Lentamente bajar los brazos hasta llegar a la posición inicial, manteniendo el core firme.','Mantener la espalda recta durante todo el ejercicio.\n" +
+                "Evitar el balanceo de los brazos y el uso de la inercia.\n" +
+                "Realizar el ejercicio de manera controlada.','Image',1,2,2,1)");
 
-//Pecho
-    /*    sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Bice
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//A
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Oblicu
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps en doble polea alta',2,'Hipertrofia','Colocar las poleas en la altura deseada, colocar los pies entre las poleas para tener una mejor estabilidad. Tomar los agarres de la polea con la mano, con los brazos estirados, las muñecas en una posición neutra y los codos pegados al cuerpo.','Inspirar y mantener el core firme, contraer el bíceps y levantar los brazos. Expirar al llegar a la posición superior. Lentamente bajar los brazos hasta llegar a la posición inicial, manteniendo el core firme.','Mantener la espalda recta durante todo el ejercicio. Evitar el balanceo de los brazos y el uso de la inercia. Realizar el ejercicio de manera controlada.','Image',1,2,2,3)");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Antebra
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Cuadrice
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Trapeci
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Trice
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Dorsal
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Espalda med
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Glute
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)")        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-//Femoral
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Name','MuscularGroup','Focus','Foreseeing','Execution','Details','Image',Tool,Category,Difficulty,Stats)");
-*/
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps con barra en polea',2,'Hipertrofia','Colocar la altura de la polea a la altura deseada, colocar los pies entre la polea para tener una mejor estabilidad.\n" +
+                "Tomar la barra de la polea con la mano, con los brazos estirados, las muñecas en una posición neutra y los codos pegados al cuerpo.','Inspirar y mantener el core firme, contraer el bíceps y levantar la barra.\n" +
+                "Expirar al llegar a la posición superior.\n" +
+                "Lentamente bajar la barra hasta llegar a la posición inicial, manteniendo el core firme.','Mantener la espalda recta durante todo el ejercicio.\n" +
+                "Evitar el balanceo de los brazos y el uso de la inercia.\n" +
+                "Realizar el ejercicio de manera controlada.','Image',2,3,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps 21s con barra en polea',2,'Hipertrofia','Colocar la altura de la polea a la altura deseada, colocar los pies entre la polea para tener una mejor estabilidad.\n" +
+                "Tomar la barra de la polea con la mano, con los brazos estirados, las muñecas en una posición neutra y los codos pegados al cuerpo.','Realizar 7 repeticiones desde la parte alta del movimiento hasta la parte baja.\n" +
+                "Realizar 7 repeticiones desde la parte baja del movimiento hasta la parte alta.\n" +
+                "Realizar 7 repeticiones completando el recorrido completo.','Mantener la espalda recta durante todo el ejercicio.\n" +
+                "Evitar el balanceo de los brazos y el uso de la inercia.\n" +
+                "Realizar el ejercicio de manera controlada.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps con barra',2,'Concentrado','Agarrar la barra con un agarre ligeramente más amplio que el ancho de los hombros, colocar los pies separados al ancho de los hombros, enderezar la espalda y contraer el abdomen.','Tomar la barra con los brazos extendidos y los codos cerca del cuerpo. Flexionar los brazos para elevar la barra hacia el hombro. Inspirar al principio de la fase de elevación. Asegurarse de que los codos queden fijos durante la fase de elevación. Expirar al final de la fase de elevación. Retornar a la posición inicial bajando la barra con suavidad y control.','Asegurarse de mantener la espalda recta y no doblarla durante el ejercicio. Mantener los codos quietos, no los mueva hacia adelante o hacia atrás. Inspirar al principio de la fase de elevación. Expirar al final de la fase de elevación. Bajar la barra con suavidad y control.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps en banco Scott con barra',2,'Concentrado','Colocarse en el banco Scott con la espalda apoyada en un ángulo de 45 grados, agarrar la barra con un agarre ligeramente más amplio que el ancho de los hombros.','1. Comenzar con los brazos extendidos y los codos cerca del cuerpo. \n2.Flexionar los brazos para elevar la barra hacia el hombro.\n3.Inspirar al principio de la fase de elevación.\n4.Asegurarse de que los codos queden fijos durante la fase de elevación.\n5.Expirar al final de la fase de elevación.\n6.Retornar a la posición inicial bajando la barra con suavidad y control.','Asegurarse de mantener la espalda apoyada en el banco en un ángulo de 45 grados durante el ejercicio.\nMantener los codos quietos, no los mueva hacia adelante o hacia atrás.\nInspirar al principio de la fase de elevación.\nExpirar al final de la fase de elevación.\nBajar la barra con suavidad y control.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Spider curl',2,'Concentrado','Colocar las piernas abajo del banco de spider, asegurarse de que la espalda se encuentre apoyada en el banco, agarrar la barra con un agarre ligeramente más amplio que el ancho de los hombros.','Tomar la barra con los brazos extendidos y los codos cerca del cuerpo. Flexionar los brazos para elevar la barra hacia el hombro. Inspirar al principio de la fase de elevación. Asegurarse de que los codos queden fijos durante la fase de elevación. Expirar al final de la fase de elevación. Retornar a la posición inicial bajando la barra con suavidad y control.','Asegurarse de que la espalda se encuentre apoyada en el banco. Mantener los codos quietos, no los mueva hacia adelante o hacia atrás. Inspirar al principio de la fase de elevación. Expirar al final de la fase de elevación. Bajar la barra con suavidad y control.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps con barra agarre cerrado',2,'Concentrado','Agarrar la barra con un agarre cerrado, colocar los pies separados al ancho de los hombros, enderezar la espalda y contraer el abdomen.','Tomar la barra con los brazos extendidos y los codos cerca del cuerpo. Flexionar los brazos para elevar la barra hacia el hombro. Inspirar al principio de la fase de elevación. Asegurarse de que los codos queden fijos durante la fase de elevación. Expirar al final de la fase de elevación. Retornar a la posición inicial bajando la barra con suavidad y control.','Asegurarse de mantener la espalda recta y no doblarla durante el ejercicio. Mantener los codos quietos, no los mueva hacia adelante o hacia atrás. Inspirar al principio de la fase de elevación. Expirar al final de la fase de elevación. Bajar la barra con suavidad y control.','Image',2,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps alterno con mancuernas',2,'Concentrado','Agarrar una mancuerna en cada mano, colocar los pies separados al ancho de los hombros, enderezar la espalda y contraer el abdomen.','Tomar la mancuerna con el brazo extendido y el codo cerca del cuerpo. Flexionar el brazo para elevar la mancuerna hacia el hombro. Inspirar al principio de la fase de elevación. Asegurarse de que el codo quede fijo durante la fase de elevación. Expirar al final de la fase de elevación. Retornar a la posición inicial bajando la mancuerna con suavidad y control. Repetir el mismo movimiento con el otro brazo.','Asegurarse de mantener la espalda recta y no doblarla durante el ejercicio. Mantener el codo quieto, no lo mueva hacia adelante o hacia atrás. Inspirar al principio de la fase de elevación. Expirar al final de la fase de elevación. Bajar la mancuerna con suavidad y control.','Image',3,2,2,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps alterno tipo martillo con mancuernas',2,'Concentrado','Agarrar una mancuerna en cada mano con un agarre en forma de martillo, colocar los pies separados al ancho de los hombros, enderezar la espalda y contraer el abdomen.','Tomar las mancuernas con los brazos extendidos y los codos cerca del cuerpo.\n" +
+                "Flexionar los brazos para elevar las mancuernas hacia el hombro.\n" +
+                "Inspirar al principio de la fase de elevación.\n" +
+                "Asegurarse de que los codos queden fijos durante la fase de elevación.\n" +
+                "Expirar al final de la fase de elevación.\n" +
+                "Retornar a la posición inicial bajando las mancuernas con suavidad y control.\n" +
+                "Repetir el mismo movimiento con el otro brazo.','Asegurarse de mantener la espalda recta y no doblarla durante el ejercicio.\n" +
+                "Mantener los codos quietos, no los mueva hacia adelante o hacia atrás.\n" +
+                "Inspirar al principio de la fase de elevación.\n" +
+                "Expirar al final de la fase de elevación.\n" +
+                "Bajar las mancuernas con suavidad y control.','Image',3,2,2,2)");
+
+//        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps en banco Scott con mancuernas',2,'Concentrado','Colocarse en el banco Scott con la espalda apoyada en un ángulo de 45 grados, agarrar una mancuerna en cada mano, con los brazos extendidos y los codos cerca del cuerpo.','Flexionar los brazos para elevar las mancuernas hacia el hombro.\n" +
+//                "Inspirar al principio de la fase de elevación.\n" +
+//                "Asegurarse de que los codos queden fijos durante la fase de elevación.\n" +
+//                "Expirar al final de la fase de elevación.\n" +
+//                "Retornar a la posición inicial bajando las mancuernas con suavidad y control.\n" +
+//                "Repetir el mismo movimiento con el otro brazo.\n','Image',3,2,3,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps concentrado con mancuernas',2,'Isométrico','Sentado con una mancuerna en cada mano y con los brazos apoyados sobre la pierna','1. Sostén la mancuerna con ambas manos, con los brazos apoyados sobre la pierna.\n" +
+                "2. Dobla los brazos para elevar la mancuerna por encima de la rodilla.\n" +
+                "3. Mantén la posición por unos segundos.\n" +
+                "4. Luego regresa a la posición inicial.\n','Respira profundamente antes de comenzar cada repetición.\n" +
+                "No uses el impulso de tu cuerpo para levantar la mancuerna.\n" +
+                "Tómate tu tiempo entre cada repetición.\n','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps inclinado alterno con mancuernas sentado',2,'Isométrico','Sentado con una mancuerna en cada mano, brazos extendidos a los lados y con una ligera inclinación hacia atrás.','Sostén la mancuerna con ambas manos, con los brazos extendidos a los lados y con una ligera inclinación hacia atrás.\n" +
+                "Dobla los brazos para elevar la mancuerna por encima de los hombros.\n" +
+                "Mantén la posición por unos segundos.\n" +
+                "Luego regresa a la posición inicial.\n','Respira profundamente antes de comenzar cada repetición.\n" +
+                "Estira los brazos al máximo al subir y bajar la mancuerna.\n" +
+                "No uses el impulso de tu cuerpo para levantar la mancuerna.\n" +
+                "Tómate tu tiempo entre cada repetición.\n','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bicep en banco con codos atrás',2,'Isométrico','Acostado sobre un banco con los codos atrás y una mancuerna en cada mano.','Sostén la mancuerna con ambas manos, con los codos atrás.\n" +
+                "Dobla los brazos para elevar la mancuerna por encima de la cabeza.\n" +
+                "Mantén la posición por unos segundos.\n" +
+                "Luego regresa a la posición inicial.\n','Respira profundamente antes de comenzar cada repetición.\n" +
+                "Estira los brazos al máximo al subir y bajar la mancuerna.\n" +
+                "No uses el impulso de tu cuerpo para levantar la mancuerna.\n" +
+                "Tómate tu tiempo entre cada repetición.\n','Image',8,3,2,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps alterno con mancuernas sentado',2,'Isométrico','Sentado con una mancuerna en cada mano, brazos extendidos a los lados y con una ligera inclinación hacia adelante.','Sostén la mancuerna con ambas manos, con los brazos extendidos a los lados y con una ligera inclinación hacia adelante.\n" +
+                "Dobla los brazos para elevar la mancuerna por encima de los hombros.\n" +
+                "Mantén la posición por unos segundos.\n" +
+                "Luego regresa a la posición inicial.\n','Respira profundamente antes de comenzar cada repetición.\n" +
+                "Estira los brazos al máximo al subir y bajar la mancuerna.\n" +
+                "No uses el impulso de tu cuerpo para levantar la mancuerna.\n" +
+                "Tómate tu tiempo entre cada repetición.\n','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Curl de bíceps en maquina en banco Scott',2,'Isométrico','Acostado en un banco Scott con los brazos extendidos a los lados.','Sostén la barra de la maquina con ambas manos, con los brazos extendidos a los lados.\n" +
+                "Dobla los brazos para elevar la barra por encima de los hombros.\n" +
+                "Mantén la posición por unos segundos.\n" +
+                "Luego regresa a la posición inicial.\n','Respira profundamente antes de comenzar cada repetición.\n" +
+                "Estira los brazos al máximo al subir y bajar la barra.\n" +
+                "No uses el impulso de tu cuerpo para levantar la barra.\n" +
+                "Tómate tu tiempo entre cada repetición.\n','Image',5,2,2,1)");
+
 
         //Por si queremos rellenar mas
        /*
