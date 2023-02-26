@@ -132,40 +132,137 @@ public class DbHelper extends SQLiteOpenHelper {
       //  sqLiteDatabase.execSQL("INSERT INTO " + TABLE_STATS + "("+"Weight,Reps,Time,Date)" + " VALUES " + "(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0'),"+"(" + "'0','0','0','0')");
 
 
-        //Tablita ejercicios
-
-        //Hombro
+//Hombro
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo en polea con cuerda',1,'Fortalecimiento muscular','Ajusta la altura de la polea según tu altura y coloca una cuerda en cada lado de la polea','Eleva las manos hacia los lados, manteniendo los codos ligeramente doblados y llevando las manos hacia arriba hasta la altura de los hombros\n" +
                 "Baja las manos lentamente a la posición inicial y repite el ejercicio\n','Asegúrate de mantener la espalda recta y el abdomen contraído durante todo el ejercicio\n" +
                 "Puedes variar la intensidad del ejercicio ajustando la resistencia de la polea\n" +
                 "Puedes realizar el ejercicio con un agarre prono (palmas hacia abajo) o supino (palmas hacia arriba) para trabajar diferentes partes de los músculos del hombro\n','Image',1,2,2,1)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo vertical con barra',1,'Fortalecimiento de los hombros y la espalda superior\n','1. Coloca una barra de remo o mancuernas en el suelo frente a ti.\n" +
-                "2. Coloca una mancuerna o disco de peso en cada extremo de la barra.\n" +
-                "3. De pie frente a la barra, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta la barra con las manos hacia abajo.\n','1. Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
-                "2. Lentamente regresa a la posición inicial y repite el movimiento.\n','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
-                "También puedes variar el peso de la mancuerna para ajustar la dificultad.\n','Image',2,2,2,2)");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones laterales de pie con mancuernas',1,'Fortalecimiento de los hombros','1. Coloca dos mancuernas de un peso adecuado para ti en el suelo a tus lados.\n" +
-                "2. De pie, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta cada mancuerna con una mano.\n','1. Eleva los brazos hacia los lados hasta que estén alineados con los hombros, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
-                "2. Lentamente regresa a la posición inicial y repite el movimiento.\n','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
-                "También puedes variar el peso de las mancuernas para ajustar la dificultad.\n','Image',3,3,2,3)");
+
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones posteriores de pie con polea baja',1,'Fortalecimiento de los hombros','Coloca una polea baja en una máquina de cables o en un anclaje de pared.\n" +
+                "Coloca una banda de resistencia alrededor de tus pies.\n" +
+                "Coloca una mancuerna o disco de peso en la polea.','De pie frente a la polea, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta las manijas de la polea con las manos hacia abajo.\n" +
+                "Eleva los brazos hacia atrás y hacia arriba, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar la resistencia de la banda o el peso de la mancuerna para ajustar la dificultad.','Image',1,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones posteriores de pie con polea baja',1,'Fortalecimiento de los hombros','Coloca una polea baja en una máquina de cables o en un anclaje de pared.\n" +
+                "Coloca una banda de resistencia alrededor de tus pies.\n" +
+                "Coloca una mancuerna o disco de peso en la polea.','De pie frente a la polea, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta las manijas de la polea con las manos hacia abajo.\n" +
+                "Eleva los brazos hacia atrás y hacia arriba, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar la resistencia de la banda o el peso de la mancuerna para ajustar la dificultad.','Image',1,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo Vertical con polea',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una polea en una máquina de cables o en un anclaje de pared a una altura que te permita sujetarla con los brazos extendidos.\n" +
+                "Coloca una mancuerna o disco de peso en la polea.\n" +
+                "De pie frente a la polea, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta las manijas de la polea con las manos hacia abajo.','Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',1,2,2,1)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press Hombro sentado en polea',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una polea en una máquina de cables o en un anclaje de pared a una altura que te permita sujetarla con los brazos extendidos.\n" +
+                "Coloca una mancuerna o disco de peso en la polea.\n" +
+                "Siéntate en un banco frente a la polea, con las piernas ligeramente separadas y los pies apoyados en el suelo. Sujeta las manijas de la polea con las manos hacia abajo.','Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',1,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo vertical con barra',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una barra de remo o mancuernas en el suelo frente a ti.\n" +
+                "Coloca una mancuerna o disco de peso en cada extremo de la barra.\n" +
+                "De pie frente a la barra, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta la barra con las manos hacia abajo.','Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',2,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press frontal de pie con barra',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una barra de remo o mancuernas en el suelo frente a ti.\n" +
+                "Coloca una mancuerna o disco de peso en cada extremo de la barra.\n" +
+                "De pie frente a la barra, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta la barra con las manos hacia arriba.','Eleva los brazos hacia arriba y hacia adelante, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación frontal con barra',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una barra de remo o mancuernas en el suelo frente a ti.\n" +
+                "Coloca una mancuerna o disco de peso en cada extremo de la barra.\n" +
+                "De pie frente a la barra, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta la barra con las manos hacia arriba.','Eleva los brazos hacia arriba y hacia adelante, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',2,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones laterales de pie con mancuernas',1,'Fortalecimiento de los hombros','Coloca dos mancuernas de un peso adecuado para ti en el suelo a tus lados. De pie, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta cada mancuerna con una mano.','Eleva los brazos hacia los lados hasta que estén alineados con los hombros, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta. Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio. También puedes variar el peso de las mancuernas para ajustar la dificultad.','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo vertical con mancuernas',1,'Fortalecimiento de los hombros y la espalda superior','Coloca dos mancuernas de un peso adecuado para ti en el suelo frente a ti.\n" +
+                "De pie frente a las mancuernas, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta cada mancuerna con una mano hacia abajo.','Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
+                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
+                "También puedes variar el peso de las mancuernas para ajustar la dificultad.','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones frontales alternas de pie con mancuernas',1,'Fortalecimiento del hombro','Pararse derecho con las piernas ligeramente separadas y los pies paralelos al ancho de los hombros.\n" +
+                "Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Elevar una de las mancuernas hacia el frente del cuerpo con el brazo extendido, manteniendo el codo pegado al costado.\n" +
+                "Bajar la mancuerna a la posición inicial y repetir el movimiento con la otra mano.\n" +
+                "Continuar alternando el movimiento de ambos brazos durante el tiempo o repeticiones establecidas.','Mantener el cuerpo firme y evitar balancearse durante la ejecución del ejercicio.\n" +
+                "Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press frontal con mancuernas y agarre neutro',1,'Fortalecimiento del hombro y tríceps','Pararse derecho con las piernas ligeramente separadas y los pies paralelos al ancho de los hombros.\n" +
+                "Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo y las palmas de las manos mirando hacia el cuerpo (agarre neutro).\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Elevar ambas mancuernas hacia el frente del cuerpo con los brazos extendidos, manteniendo el codo pegado al costado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener el cuerpo firme y evitar balancearse durante la ejecución del ejercicio.\n" +
+                "Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',8,2,2,3)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press militar sentado con mancuernas',1,'Fortalecimiento del hombro y tríceps','Sentarse en un banco de entrenamiento con la espalda recta y los pies apoyados en el suelo.\n" +
+                "Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo y las palmas de las manos mirando hacia el cuerpo (agarre neutro).\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Elevar ambas mancuernas hacia el frente del cuerpo con los brazos extendidos, manteniendo el codo pegado al costado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',8,2,3,1)");
+
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press Arnold en banco',1,'Fortalecimiento del hombro y tríceps','Sentarse en un banco de entrenamiento con la espalda recta y los pies apoyados en el suelo.\n" +
                 "Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo y las palmas de las manos mirando hacia el cuerpo (agarre neutro).\n" +
                 "Elevar las mancuernas hasta la altura del hombro con los codos pegados al costado.\n" +
-                "Mantener la postura correcta durante todo el ejercicio.\n','Elevar las mancuernas hacia arriba y hacia atrás en dirección a las orejas, con los codos pegados al costado y las manos ligeramente inclinadas hacia afuera.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Elevar las mancuernas hacia arriba y hacia atrás en dirección a las orejas, con los codos pegados al costado y las manos ligeramente inclinadas hacia afuera.\n" +
                 "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
-                "Continuar durante el tiempo o repeticiones establecidas.\n','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
                 "Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas.\n" +
-                "Ajustar el peso de las mancuernas según la capacidad del individuo.\n','Image',8,3,2,4)");
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',3,2,2,2)");
+
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones posteriores con banco inclinado',1,'Fortalecimiento del hombro y espalda superior','Acostarse boca abajo en un banco inclinado con la cabeza hacia abajo y los brazos colgando hacia el suelo.\n" +
+                "Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo y las palmas de las manos mirando hacia el cuerpo (agarre neutro).\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Elevar ambas mancuernas hacia atrás en dirección a las nalgas con los brazos extendidos, manteniendo el codo pegado al costado.\n" +
+                "Bajar las mancuernas a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y evitar balancearse durante la ejecución del ejercicio.\n" +
+                "Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas.\n" +
+                "Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',8,2,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones laterales sentado con mancuernas',1,'Fortalecimiento del hombro','Sentarse en un banco de entrenamiento con la espalda recta y los pies apoyados en el suelo. Sujetar una mancuerna en cada mano con los brazos a los lados del cuerpo y las palmas de las manos mirando hacia el cuerpo (agarre neutro). Elevar las mancuernas hasta la altura del hombro con los codos pegados al costado. Mantener la postura correcta durante todo el ejercicio.','Elevar una de las mancuernas hacia el lado del cuerpo con el brazo extendido, manteniendo el codo pegado al costado. Bajar la mancuerna a la posición inicial y repetir el movimiento con la otra mano. Continuar alternando el movimiento de ambos brazos durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio. Respirar hacia fuera al levantar las mancuernas y hacia adentro al bajarlas. Ajustar el peso de las mancuernas según la capacidad del individuo.','Image',8,2,3,1)");
+
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press de hombro en máquina',1,'Fortalecimiento del hombro y tríceps','Sentarse en una máquina de press de hombro con la espalda apoyada contra el respaldo y los pies apoyados en el suelo.\n" +
                 "Colocar los brazos en los soportes de la máquina con las palmas de las manos mirando hacia arriba.\n" +
-                "Ajustar los soportes para que queden a la altura adecuada para el tamaño del individuo.\n','Empujar hacia arriba con los brazos para levantar los pesos de la máquina.\n" +
-                "Bajar los pesos a la posición inicial y repetir el movimiento.\n','Mantener la espalda apoyada contra el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
-                "Respirar hacia fuera al empujar hacia arriba y hacia adentro al bajar los pesos.\n','Image',5,2,2,5)");
+                "Ajustar los soportes para que queden a la altura adecuada para el tamaño del individuo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar hacia arriba con los brazos para levantar los pesos de la máquina.\n" +
+                "Bajar los pesos a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada contra el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar hacia arriba y hacia adentro al bajar los pesos.\n" +
+                "Ajustar el peso de la máquina según la capacidad del individuo.','Image',5,3,2,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación lateral en máquina',1,'Fortalecimiento del hombro','Sentarse en una máquina de elevación lateral con la espalda apoyada contra el respaldo y los pies apoyados en el suelo.\n" +
+                "Colocar los brazos en los soportes de la máquina con las palmas de las manos mirando hacia abajo.\n" +
+                "Ajustar los soportes para que queden a la altura adecuada para el tamaño del individuo.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Empujar hacia afuera con los brazos para levantar los pesos de la máquina.\n" +
+                "Bajar los pesos a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda apoyada contra el respaldo y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al empujar hacia afuera y hacia adentro al bajar los pesos.\n" +
+                "Ajustar el peso de la máquina según la capacidad del individuo.','Image',5,2,3,2)");
+
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Peck Fly invertido',1,'Fortalecimiento del hombro y pectoral','Colgarse de una barra de dominadas con las manos en pronación (palmas hacia abajo) y los brazos extendidos.\n" +
+                "Mantener la postura correcta durante todo el ejercicio.','Abrir los brazos hacia los lados del cuerpo con las palmas de las manos hacia arriba, como si estuviera abriendo un paraguas.\n" +
+                "Cerrar los brazos volviendo a la posición inicial y repetir el movimiento.\n" +
+                "Continuar durante el tiempo o repeticiones establecidas.','Mantener la espalda recta y los hombros hacia abajo durante todo el ejercicio.\n" +
+                "Respirar hacia fuera al abrir los brazos y hacia adentro al cerrarlos.\n" +
+                "Ajustar la dificultad de la ejecución cambiando la inclinación del cuerpo y la distancia entre las manos.','Image',1,2,2,3)");
 
 
+//pechamen
 
-
-
+        
 
 
 //panto panto
