@@ -130,17 +130,12 @@ public class stats extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (position!=0){
+
                 Carga.setText(""+StatsLista.get(position).getWeight()+" kg");
                 Reps.setText(""+StatsLista.get(position).getReps());
                 Reps2.setText(""+StatsLista.get(position).getReps2());
                 Tiempo.setText(""+StatsLista.get(position).getTime()+ " mins");
-            }else {
-                    Carga.setText("");
-                    Reps.setText("");
-                    Reps2.setText("");
-                    Tiempo.setText("");
-                }
+
             }
 
             @Override
@@ -217,22 +212,10 @@ public class stats extends Fragment {
         float[] axisData = new float[StatsLista.size()];
         for (int i=0;i<StatsLista.size();i++){
             String FECHABD = StatsLista.get(i).getDate();
-            try {
-   /*             Date fecha = formato.parse(FECHABD);
-                long fechaLong = fecha.getTime();
-                Log.d("LONGBF", ""+fechaLong);
-                long FechaNumerada = (long) Math.floor(fechaLong/(1000*60*60*24));
-                Log.d("LONG", ""+FechaNumerada);
-                axisData[i] = FechaNumerada;*/
                 Log.d("PESO", ""+StatsLista.get(i).getWeight());
                 Fechas[i] = StatsLista.get(i).getDate();
                 tempPointValue =  new PointValue(i,StatsLista.get(i).getWeight());
                 values.add(tempPointValue);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
 
         }
          //Le ingresamos los datos del eje X
