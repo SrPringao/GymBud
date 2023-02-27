@@ -14,11 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/backgrounblack"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
     </androidx.fragment.app.FragmentContainerView>
-
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottomNav"
