@@ -1,12 +1,31 @@
 package com.example.gymbud;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.gymbud.Adaptadores.SucursalesAdaptador;
+import com.example.gymbud.db.Entidades.Sucursal;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +53,7 @@ public class Sucursales extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Sucursales.
+     * @return A new instance of fragment Sucursal.
      */
     // TODO: Rename and change types and number of parameters
     public static Sucursales newInstance(String param1, String param2) {
@@ -54,11 +73,68 @@ public class Sucursales extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    RecyclerView recyclerView;
+    ArrayList<Sucursal> SucursalesLista;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceSttate){
+        Context context = getContext();
+        SucursalesLista = new ArrayList<>();
+        recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerSucursales);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        MostrarResultado();
+
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sucursales, container, false);
+    }
+
+    private void MostrarResultado(){
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = "https://francoaldrete.com/GymBud/sucursal.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray array = new JSONArray(response);
+                                for (int i = 0;i<array.length();i++) {
+                                    JSONObject Obj = (JSONObject) array.get(i);
+                                    Log.d("ID",""+Obj.getInt("id"));
+                                    SucursalesLista.add(new Sucursal(
+                                            Obj.getInt("id"),
+                                            Obj.getInt("CurrentUsers"),
+                                            Obj.getInt("Rating"),
+                                            Obj.getString("SubName"),
+                                            Obj.getString("Location"),
+                                            Obj.getString("ImageLink"),
+                                            Obj.getString("Schedule"),
+                                            Obj.getInt("ContactNumber")
+                                    ));
+                                    SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista);
+                                    recyclerView.setAdapter(adapter);
+                                }
+                        }catch (JSONException e){
+                            Log.d("NO SIRVIO", "NO SIRVIO");
+                            Log.d("JSONException", ""+e);
+                        }
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(getContext()).add(stringRequest);
+
     }
 }

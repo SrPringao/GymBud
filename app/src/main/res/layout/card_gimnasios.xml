@@ -13,6 +13,7 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="197dp"
         app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"
@@ -34,6 +35,7 @@
         android:layout_marginTop="156dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:paddingBottom="15dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
