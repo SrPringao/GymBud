@@ -28,8 +28,8 @@
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/RecyclerSucursales"
-        android:layout_width="376dp"
-        android:layout_height="733dp"
+        android:layout_width="380dp"
+        android:layout_height="600dp"
 
         android:clipToPadding="false"
         android:paddingVertical="20dp"

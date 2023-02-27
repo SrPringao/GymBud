@@ -3,24 +3,22 @@ package com.example.gymbud.Adaptadores;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbud.Ejercicios;
 import com.example.gymbud.R;
-import com.example.gymbud.db.Entidades.Exercises;
-import com.example.gymbud.fragment_ejercicio_seleccionado;
+import com.example.gymbud.db.Entidades.Sucursal;
 
 import java.util.ArrayList;
 
-public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptador.EjerciciosViewHolder> {
+public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptador.SucursalesViewHolder> {
 
-    ArrayList<Exercises> ListasSucursales;
-    public SucursalesAdaptador(ArrayList<Exercises> ListasSucursales){
+    ArrayList<Sucursal> ListasSucursales;
+    public SucursalesAdaptador(ArrayList<Sucursal> ListasSucursales){
         this.ListasSucursales = ListasSucursales;
     }
     public interface EventOnItemClick{
@@ -30,38 +28,50 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
 
     @NonNull
     @Override
-    public SucursalesAdaptador.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview,null,false);
+    public SucursalesAdaptador.SucursalesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_gimnasios,null,false);
 
-        return new EjerciciosViewHolder(view,listener);
+        return new SucursalesViewHolder(view,listener);
     }
     public int setPosicion(int posicion){
         return posicion;
     }
+
+
     @Override
-    public void onBindViewHolder(@NonNull SucursalesAdaptador.EjerciciosViewHolder holder, int position) {
-        holder.Nombre.setText(ListasSucursales.get(position).getName());
+    public void onBindViewHolder(@NonNull SucursalesAdaptador.SucursalesViewHolder holder, int position) {
+        holder.SubName.setText(ListasSucursales.get(position).getSubName());
+        holder.Location.setText(ListasSucursales.get(position).getLocation());
         setPosicion(position);
 
     }
+
+
     public void setOnClickListener(EventOnItemClick listener){
         this.listener=listener;
     }
+
+
 
     @Override
     public int getItemCount() {
         return ListasSucursales.size();
     }
 
-    public static class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class SucursalesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
         int posicion = getAdapterPosition();
-        static TextView Nombre;
-        public EjerciciosViewHolder(@NonNull View itemView,EventOnItemClick listener){
+        TextView SubName,Location;
+        RatingBar rating;
+        ImageView imagen;
+
+        public SucursalesViewHolder(@NonNull View itemView,EventOnItemClick listener){
             super(itemView);
             itemView.setOnClickListener(this);
             this.listener=listener;
-            Nombre = itemView.findViewById(R.id.Testo);
+            SubName = itemView.findViewById(R.id.SubName);
+            Location = itemView.findViewById(R.id.Location);
+            rating = itemView.findViewById(R.id.Rating);
         }
 
 
