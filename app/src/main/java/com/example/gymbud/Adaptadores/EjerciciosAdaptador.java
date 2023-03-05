@@ -38,7 +38,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
     @NonNull
     @Override
     public EjerciciosAdaptador.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
         return new EjerciciosViewHolder(view, listener);
     }
 
