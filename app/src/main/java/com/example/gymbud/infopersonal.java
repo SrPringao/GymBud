@@ -1,6 +1,7 @@
 package com.example.gymbud;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -111,6 +112,8 @@ public class infopersonal extends Fragment {
         String FechaG = activity.FechaG();
         String FechaAct = activity.FechaAct();
         float FechaC = activity.FechaLONG();
+        ImageView imgLogout = view.findViewById(R.id.imglogout);
+
 
         ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
@@ -131,18 +134,24 @@ public class infopersonal extends Fragment {
 
 
 
-
-        imagen.setOnClickListener(new View.OnClickListener() {
+        //setonclick en caso de que presiones la imagen de logout
+        imgLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment secondFragment = new DatosInfoPersonal();
+                //guardamos en shared preferences que el usuario no esta logeado
+                SharedPreferences preferences = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("sesion", false);
+                editor.commit();
 
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.navFragmentContainer, secondFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
+                //mandamos al usuario a la pantalla de login
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+                }
         });
+
+
         //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosInfoPersonal
         cardpeso.setOnClickListener(new View.OnClickListener() {
             @Override

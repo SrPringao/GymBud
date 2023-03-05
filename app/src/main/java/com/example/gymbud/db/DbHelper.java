@@ -159,6 +159,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
                 "También puedes variar el peso de la mancuerna para ajustar la dificultad.','Image',1,2,2,1)");
 
+
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Press Hombro sentado en polea',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una polea en una máquina de cables o en un anclaje de pared a una altura que te permita sujetarla con los brazos extendidos.\n" +
                 "Coloca una mancuerna o disco de peso en la polea.\n" +
                 "Siéntate en un banco frente a la polea, con las piernas ligeramente separadas y los pies apoyados en el suelo. Sujeta las manijas de la polea con las manos hacia abajo.','Eleva los brazos hacia arriba y hacia atrás, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
@@ -801,7 +802,7 @@ public class DbHelper extends SQLiteOpenHelper {
 //                "Levantar los talones lo más alto posible y mantener la posición por un segundo.\n" +
 //                "Bajar suavemente los talones hacia el suelo y repetir el ejercicio varias veces.\n','Image',1,2,2,2)");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación de talones de pie en máquina',14,'Fortalecimiento de la pantorrilla','Colocarse de pie frente a una máquina de elevación de talones y colocar los talones en las plataformas. Ajustar la altura de las plataformas de acuerdo a la altura de los talones.','Elevar los talones del suelo y apoyar los dedos en las plataformas.\n" +
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación de talones de pie en máquina',15,'Fortalecimiento de la pantorrilla','Colocarse de pie frente a una máquina de elevación de talones y colocar los talones en las plataformas. Ajustar la altura de las plataformas de acuerdo a la altura de los talones.','Elevar los talones del suelo y apoyar los dedos en las plataformas.\n" +
                 "Levantar los talones lo más alto posible y mantener la posición por un segundo.\n" +
                 "Bajar suavemente los talones hacia el suelo y repetir el ejercicio varias veces.\n','Asegúrate de mantener el equilibrio durante todo el ejercicio y evita balancearte. También es importante que no levantes los talones demasiado alto, ya que esto puede causar dolor en los talones.','Image',5,2,1,1)");
 
