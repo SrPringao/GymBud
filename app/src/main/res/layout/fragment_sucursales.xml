@@ -8,6 +8,7 @@
     style="@style/parent.contentLayout"
     tools:context=".GrupoSeleccionado">
 
+
     <TextView
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"

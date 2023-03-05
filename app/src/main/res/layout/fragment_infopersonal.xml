@@ -11,7 +11,6 @@
     xmlns:gl="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -311,6 +310,50 @@
 
 
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/colorIdentidad6"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/colorIdentidad5">
+
+                    <TextView
+                        android:id="@+id/textViewSub7Title"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:paddingBottom="10dp"
+                        android:text="Logout" />
+
+                    <ImageView
+                        android:id="@+id/imglogout"
+                        android:layout_below="@+id/textViewSub7Title"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_width="69dp"
+                        android:layout_height="61dp"
+                        android:layout_above="@+id/textViewSub8Title"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_logout" />
+
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+
+
+
+
             </androidx.cardview.widget.CardView>
 
 

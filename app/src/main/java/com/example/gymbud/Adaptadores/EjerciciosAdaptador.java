@@ -19,56 +19,63 @@ import com.example.gymbud.fragment_ejercicio_seleccionado;
 
 import java.util.ArrayList;
 
+
 public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptador.EjerciciosViewHolder> {
 
-    ArrayList<Exercises> ListaEjercicios;
-    public EjerciciosAdaptador(ArrayList<Exercises> ListaEjercicios){
-        this.ListaEjercicios = ListaEjercicios;
+    ArrayList<Exercises> ListasEjercicios;
+
+    public EjerciciosAdaptador(ArrayList<Exercises> ListasEjercicios) {
+        this.ListasEjercicios = ListasEjercicios;
     }
-    public interface EventOnItemClick{
+
+    public interface EventOnItemClick {
+
         public void OnItemClick(int posicion);
     }
+
     EventOnItemClick listener;
 
     @NonNull
     @Override
     public EjerciciosAdaptador.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview,null,false);
-
-        return new EjerciciosViewHolder(view,listener);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
+        return new EjerciciosViewHolder(view, listener);
     }
-    public int setPosicion(int posicion){
+
+    public int setPosicion(int posicion) {
         return posicion;
     }
+
     @Override
     public void onBindViewHolder(@NonNull EjerciciosAdaptador.EjerciciosViewHolder holder, int position) {
-        holder.Nombre.setText(ListaEjercicios.get(position).getName());
-        setPosicion(position);
+        Exercises exercise = ListasEjercicios.get(position);
+        holder.Nombre.setText(exercise.getName());
+    }
 
-    }
-    public void setOnClickListener(EventOnItemClick listener){
-        this.listener=listener;
-    }
 
     @Override
     public int getItemCount() {
-        return ListaEjercicios.size();
+        return ListasEjercicios.size();
+    }
+
+    public void setOnClickListener(EventOnItemClick listener) {
+        this.listener = listener;
     }
 
     public static class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
-        static TextView Nombre;
-        public EjerciciosViewHolder(@NonNull View itemView,EventOnItemClick listener){
+        final TextView Nombre;
+
+        public EjerciciosViewHolder(@NonNull View itemView, EventOnItemClick listener) {
             super(itemView);
             itemView.setOnClickListener(this);
-            this.listener=listener;
+            this.listener = listener;
             Nombre = itemView.findViewById(R.id.Testo);
         }
+
         @Override
         public void onClick(View view) {
-
             listener.OnItemClick(getAdapterPosition());
         }
     }
-
 }

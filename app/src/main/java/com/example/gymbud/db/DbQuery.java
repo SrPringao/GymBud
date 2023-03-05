@@ -49,7 +49,6 @@ public class DbQuery extends DbHelper {
             values.put("Age", Age);
             values.put("Phrase",Phrase);
 
-
             id = db.insert(TABLE_PERSONINFO, null, values);
         } catch (Exception ex) {
             ex.toString();
