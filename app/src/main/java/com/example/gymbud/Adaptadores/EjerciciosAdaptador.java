@@ -67,8 +67,11 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
         @Override
         public void onClick(View view) {
 
+
             listener.OnItemClick(getAdapterPosition());
         }
     }
+
+
 
 }

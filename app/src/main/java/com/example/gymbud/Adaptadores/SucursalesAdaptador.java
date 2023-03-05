@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,14 +23,17 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
         this.ListasSucursales = ListasSucursales;
     }
     public interface EventOnItemClick{
+
         public void OnItemClick(int posicion);
     }
     EventOnItemClick listener;
+
 
     @NonNull
     @Override
     public SucursalesAdaptador.SucursalesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_gimnasios,null,false);
+
 
         return new SucursalesViewHolder(view,listener);
     }
@@ -38,10 +42,12 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
     }
 
 
+
     @Override
     public void onBindViewHolder(@NonNull SucursalesAdaptador.SucursalesViewHolder holder, int position) {
         holder.SubName.setText(ListasSucursales.get(position).getSubName());
         holder.Location.setText(ListasSucursales.get(position).getLocation());
+
         setPosicion(position);
 
     }
@@ -77,7 +83,8 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
 
         @Override
         public void onClick(View view) {
-            listener.OnItemClick(getAdapterPosition()+1);
+            //listener.OnItemClick(getAdapterPosition());
+            Toast.makeText(view.getContext(), "Posicion: "+getAdapterPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 

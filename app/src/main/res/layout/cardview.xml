@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="106dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-
     android:orientation="vertical"
     android:layout_marginBottom="20dp"
     android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+
     android:gravity="center"
     android:background="@drawable/backgroundcorner">
-
 
     <TextView
         android:id="@+id/Testo"
@@ -22,7 +22,6 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:text="Elevaciones laterales de pie con mancuernas"
-
         android:textColor="@android:color/black"
         android:textSize="20dp"
 

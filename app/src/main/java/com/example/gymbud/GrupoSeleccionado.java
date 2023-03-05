@@ -70,6 +70,7 @@ public class GrupoSeleccionado extends Fragment {
     }
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -79,27 +80,29 @@ public class GrupoSeleccionado extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Ejercicios> EjerciciosLista;
     @Override
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Context context = getContext();
         Bundle args = getArguments();
-    ImageView Back = view.findViewById(R.id.botonback4);
+        ImageView Back = view.findViewById(R.id.botonback4);
         String nombreMusculo = args.getString("nombre_musculo");//nombre del musculo seleccionado
+
        //Log.d("musculo",nombreMusculo );
-       int id = args.getInt("ID");//id del musculo seleccionado
+        int id = args.getInt("ID");//id del musculo seleccionado
         Log.d("id",Integer.toString(id));
         recyclerView = view.findViewById(R.id.Recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+
         DbQuery dbQuery = new DbQuery(context);
         EjerciciosLista = new ArrayList<>();
+
     //creamos un objeto del adaptador para usarlo en el recycler
     //Despues realizamos la query con los ejercicios guardados en la bd con la funcion MostrarEjercicios, mandando el musculo seleccionado
         EjerciciosAdaptador adapter = new EjerciciosAdaptador(dbQuery.MostrarEjercicios(id));
-
         recyclerView.setAdapter(adapter);
 
-
-
+        //Esta funcion te regresa al fragment anterior y manda los datos id y el nombre del musculo en un bundle
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
