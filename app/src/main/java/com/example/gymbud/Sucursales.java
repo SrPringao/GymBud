@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,7 +88,12 @@ public class Sucursales extends Fragment {
         MostrarResultado();
 
 
-        SucursalesAdaptador adaptador = new SucursalesAdaptador(SucursalesLista);
+        SucursalesAdaptador adaptador = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
         recyclerView.setAdapter(adaptador);
 
 
@@ -125,7 +131,17 @@ public class Sucursales extends Fragment {
                                             Obj.getString("Schedule"),
                                             Obj.getInt("ContactNumber")
                                     ));
-                                    SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista);
+                                    SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(int position) {
+                                            Sucursal sucursal = SucursalesLista.get(position);
+                                            Log.d("Sucursal", ""+sucursal.getId());
+                                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                            transaction.replace(R.id.navFragmentContainer, new SucursalSeleccionada());
+                                            transaction.addToBackStack(null);
+                                            transaction.commit();
+                                        }
+                                    });
                                     recyclerView.setAdapter(adapter);
                                 }
                         }catch (JSONException e){
