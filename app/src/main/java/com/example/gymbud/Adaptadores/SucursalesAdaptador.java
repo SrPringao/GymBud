@@ -1,12 +1,14 @@
 package com.example.gymbud.Adaptadores;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +48,7 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
     public void onBindViewHolder(@NonNull SucursalesAdaptador.SucursalesViewHolder holder, int position) {
         holder.SubName.setText(ListasSucursales.get(position).getSubName());
         holder.Location.setText(ListasSucursales.get(position).getLocation());
+        holder.rating.setRating(ListasSucursales.get(position).getRating());
 
         setPosicion(position);
     }
@@ -71,8 +74,8 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    listener.onItemClick(1);
+                    Toast.makeText(view.getContext(), "Posicion: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    listener.onItemClick(getAdapterPosition());
                 }
             });
         }

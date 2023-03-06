@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import com.example.gymbud.db.Entidades.Sucursal;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -78,18 +82,56 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         return inflater.inflate(R.layout.fragment_sucursal_seleccionada, container, false);
     }
 
-
+    TextView Sucursal,Personas;
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Sucursal Seleccionada");
+        Bundle mbundle = getArguments();
+        String sucursal=mbundle.getString("Nombre");
+        Sucursal = (TextView) view.findViewById(R.id.TituloSucursales);
+        Sucursal.setText(sucursal);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+    Bundle mbundle = getArguments();
+    String sucursal=mbundle.getString("Nombre","NO DATA");
+    double Lat=20.637847141785972
+            ,Long=-103.41884252155718;
+    switch(sucursal){
+        case "La Calma":
+            Lat=20.637847141785972;
+            Long=-103.41884252155718;
+            break;
+        case "Javier Mina":
+            Lat=20.667294198684644;
+            Long=-103.31336553875106;
+            break;
+        case "Mariano Otero":
+            Lat=20.632611820270494;
+            Long=-103.4253400851146;
+            break;
+        case "Clouthier":
+            Lat=20.671056271119884;
+            Long=-103.41746674272368;
+            break;
+        case "Belisario":
+            Lat=20.69425458524266;
+            Long=-103.32276057242636;
+            break;
+        case "Chapalita":
+            Lat=20.664563545261345;
+            Long=-103.4106651913678;
+            break;
+        case "Lázaro Cárdenas":
+            Lat=20.669517605369627;
+            Long=-103.40420645405732;
+            break;
 
+    }
+    mMap = googleMap;
         // Add a marker in Sydney and move the camera}
     //La calma
     //20.637847141785972, -103.41884252155718
@@ -105,7 +147,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     //20.664563545261345, -103.4106651913678
     //Lazaro Cardenas
     //20.669517605369627, -103.40420645405732
-        LatLng Gym = new LatLng(20.637847141785972, -103.41884252155718);
+        LatLng Gym = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions()
                 .position(Gym)
                 .title("Gym"));

@@ -78,7 +78,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/SubName"
         app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
         app:layout_constraintVertical_bias="0.384"
@@ -86,11 +86,10 @@
 
     <RatingBar
         android:id="@+id/Rating"
-        android:layout_width="207dp"
-        android:layout_height="44dp"
+        android:layout_width="239dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="20dp"
         android:numStars="5"
-
 
 
         android:paddingTop="10dp"
@@ -100,10 +99,10 @@
         android:secondaryProgressTint="@color/colorIdentidad2"
         app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
         app:layout_constraintEnd_toStartOf="@+id/Location"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SubName"
-        app:layout_constraintVertical_bias="0.342"
+        app:layout_constraintVertical_bias="0.388"
         tools:ignore="MissingConstraints" />
 
 

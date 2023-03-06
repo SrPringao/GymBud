@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -79,12 +80,14 @@ public class Sucursales extends Fragment {
     }
     RecyclerView recyclerView;
     ArrayList<Sucursal> SucursalesLista;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceSttate){
         Context context = getContext();
         SucursalesLista = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerSucursales);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
         MostrarResultado();
 
 
@@ -134,10 +137,16 @@ public class Sucursales extends Fragment {
                                     SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(int position) {
-                                            Sucursal sucursal = SucursalesLista.get(position);
-                                            Log.d("Sucursal", ""+sucursal.getId());
+                                            Fragment fragment = new SucursalSeleccionada();
                                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                            transaction.replace(R.id.navFragmentContainer, new SucursalSeleccionada());
+                                            Bundle args = new Bundle();
+                                            args.putString("Nombre", SucursalesLista.get(position).getSubName());
+                                            Log.d("Nombre", SucursalesLista.get(position).getSubName());
+                                            args.putInt("ID", SucursalesLista.get(position).getId());
+                                            Log.d("ID", ""+SucursalesLista.get(position).getId());
+                                            fragment.setArguments(args);
+                                            transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                                            transaction.replace(R.id.navFragmentContainer, fragment);
                                             transaction.addToBackStack(null);
                                             transaction.commit();
                                         }
