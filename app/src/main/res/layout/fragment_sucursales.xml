@@ -12,40 +12,31 @@
     <TextView
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
         android:text="Sucursales"
         android:textColor="@color/bottomNavigationTintColor"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.1"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/RecyclerSucursales"
-        android:layout_width="380dp"
-        android:layout_height="600dp"
-
-        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:paddingVertical="20dp"
         android:paddingStart="20dp"
-
-        android:paddingTop="8dp"
         android:paddingEnd="20dp"
         android:paddingBottom="8dp"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        app:layout_constraintTop_toBottomOf="@+id/TituloSucursales"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

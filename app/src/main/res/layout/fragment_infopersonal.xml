@@ -11,15 +11,18 @@
     xmlns:gl="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
 
+
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="630dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="55dp"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -352,13 +355,10 @@
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
 
 
-
-
             </androidx.cardview.widget.CardView>
-
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
