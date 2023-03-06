@@ -13,6 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -136,12 +140,40 @@ public class Registro extends AppCompatActivity {
                             }
 
 
+                            String ContraseñaEncriptada = ETcontrasena.getText().toString();
+                            //convert Etcontraseña to Sha256
+
+
+                            try {
+                                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                                byte[] textBytes = ContraseñaEncriptada.getBytes(StandardCharsets.UTF_8);
+                                digest.update(textBytes);
+                                byte[] hashBytes = digest.digest();
+
+                                StringBuilder hexString = new StringBuilder();
+                                for (byte hashByte : hashBytes) {
+                                    String hex = Integer.toHexString(0xff & hashByte);
+                                    if (hex.length() == 1) hexString.append('0');
+                                    hexString.append(hex);
+                                }
+                                String hashText = hexString.toString();
+
+                                Log.d("MainActivity", "Hash SHA-256 de " + ContraseñaEncriptada + ": " + hashText);
+                                ContraseñaEncriptada = hashText;
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+
+
+
                             String url = "http://francoaldrete.com/GymBud/insert.php?usr=";
                             url = url + Uri.encode(ETusuario.getText().toString());
                             url = url + "&mail=";
                             url = url + Uri.encode(ETcorreo.getText().toString());
                             url = url + "&pass=";
-                            url = url + Uri.encode(ETcontrasena.getText().toString());
+                            Log.d("MainActivity", "La contraseña hash que se guarda es "  + ": " + ContraseñaEncriptada);
+
+                            url = url + Uri.encode(ContraseñaEncriptada);
 
                             JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                                 @Override

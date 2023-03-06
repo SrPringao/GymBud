@@ -27,6 +27,10 @@ import com.example.gymbud.db.Entidades.PersonInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class MainActivity extends AppCompatActivity {
 EditText ETusr,ETcontra;
@@ -115,13 +119,36 @@ PersonInfo personInfo;
             return;
         }
 
+        String ContraseñaEncriptada = ETcontra.getText().toString();
 
         //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
+
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] textBytes = ContraseñaEncriptada.getBytes(StandardCharsets.UTF_8);
+            digest.update(textBytes);
+            byte[] hashBytes = digest.digest();
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hashBytes) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+            String hashText = hexString.toString();
+
+            Log.d("MainActivity", "Hash SHA-256 de " + ContraseñaEncriptada + ": " + hashText);
+            ContraseñaEncriptada = hashText;
+
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
         url = url + Uri.encode(ETusr.getText().toString());
         url = url + "&pass=";
-        url = url + Uri.encode(ETcontra.getText().toString());
+        url = url + Uri.encode(ContraseñaEncriptada);
 
         //este toast es pa verificar que el url se cree bien
 
