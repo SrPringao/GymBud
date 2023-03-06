@@ -87,21 +87,58 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     }
 
     TextView Sucursal,Personas;
-
-    private int[] mImages = {
-            R.drawable.lacalma1,R.drawable.lacalma2,R.drawable.lacalma3,R.drawable.lacalma4
-    };
-
+    public int[] imagenes(String sucursal){
+        int [] mImages = new int[]{};
+        switch (sucursal){
+            case "La Calma":
+                mImages = new int[]{
+                        R.drawable.lacalma1,R.drawable.lacalma2,R.drawable.lacalma3,R.drawable.lacalma4
+                };
+                break;
+            case "Javier Mina":
+                mImages = new int[]{
+                        R.drawable.javiermina1,R.drawable.javiermina2,R.drawable.javiermina3,R.drawable.javiermina4
+                };
+                break;
+            case "Mariano Otero":
+                mImages = new int[]{
+                        R.drawable.marianootero1,R.drawable.marianootero2,R.drawable.marianootero3,R.drawable.marianootero4
+                };
+                break;
+            case "Clouthier":
+                mImages = new int[]{
+                        R.drawable.clouthier1,R.drawable.clouthier2,R.drawable.clouthier3,R.drawable.clouthier4
+                };
+                break;
+            case "Belisario":
+                mImages = new int[]{
+                       R.drawable.belisario1,R.drawable.belisario2,R.drawable.belisario3,R.drawable.belisario4
+                };
+                break;
+            case "Chapalita":
+                mImages = new int[]{
+                        R.drawable.chapalita1,R.drawable.chapalita2,R.drawable.chapalita3,R.drawable.chapalita4
+                };
+                break;
+                case "Lázaro Cárdenas":
+                mImages = new int[]{
+                        R.drawable.lazarocardenas1,R.drawable.lazarocardenas2,R.drawable.lazarocardenas3,R.drawable.lazarocardenas4
+                };
+        }
+        return mImages;
+    }
+     int[] Imagenes = {};
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
         Bundle mbundle = getArguments();
+        Imagenes = imagenes(mbundle.getString("Nombre"));
         String sucursal=mbundle.getString("Nombre");
         Sucursal = (TextView) view.findViewById(R.id.TituloSucursales);
         Sucursal.setText(sucursal);
         CarouselView carouselView = view.findViewById(R.id.carouselView);
         carouselView.setImageListener(imageListener);
-        carouselView.setPageCount(mImages.length);
+        carouselView.setPageCount(Imagenes.length);
 
 
 
@@ -112,7 +149,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
      ImageListener imageListener = new ImageListener() {
          @Override
          public void setImageForPosition(int position, ImageView imageView) {
-             imageView.setImageResource(mImages[position]);
+             imageView.setImageResource(Imagenes[position]);
          }
      };
 @Override
