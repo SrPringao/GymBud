@@ -141,7 +141,6 @@ public class Registro extends AppCompatActivity {
 
 
                             String ContraseñaEncriptada = ETcontrasena.getText().toString();
-                            //convert Etcontraseña to Sha256
 
 
                             try {
