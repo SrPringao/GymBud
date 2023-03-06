@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgrounblack"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
 
     <TextView
@@ -14,7 +15,6 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
-        android:text="Sucursal la calma"
         android:textColor="@color/bottomNavigationTintColor"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -24,29 +24,43 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_width="296dp"
+        android:layout_height="164dp"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"
 
-
-    <TextView
-        android:id="@+id/tituloSucursales"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="308dp"
-        android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
-        android:text="Ubicacion"
-        android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TituloSucursales"
+        app:layout_constraintVertical_bias="0.595" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="385dp"
+        android:layout_height="223dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.614"
+        map:cameraZoom="10"
+        map:uiZoomControls="true"></fragment>
 
     <TextView
-        android:id="@+id/tituloSucursales2"
+        android:id="@+id/TextoPersonas"
         android:layout_width="363dp"
         android:layout_height="102dp"
-        android:layout_marginTop="432dp"
+        android:layout_marginTop="532dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text="Personas dentro de la sucursal"
@@ -55,15 +69,16 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tituloSucursales3"
+        android:id="@+id/Personas"
         android:layout_width="101dp"
         android:layout_height="56dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text="15"
@@ -72,9 +87,12 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloSucursales2"
+        app:layout_constraintTop_toBottomOf="@+id/TextoPersonas"
         tools:ignore="MissingConstraints" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

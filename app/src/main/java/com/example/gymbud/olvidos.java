@@ -45,25 +45,27 @@ public void Query(String mail) {
     if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo.getText().toString()).matches()) {
         Toast.makeText(olvidos.this, "Ingresa un correo valido", Toast.LENGTH_SHORT).show();
     } else {
-        String url = "http://francoaldrete.com/GymBud/correo.php?mail=";
+        //http://francoaldrete.com/GymBud/correo.php?mail=
+        String url = "https://Francoaldrete.com/Gymbud/Index.php?mail=";
         url += mail;
         JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 Toast.makeText(olvidos.this, "Se envio el correo ", Toast.LENGTH_SHORT).show();
-                String URL = "https://Francoaldrete.com/Gymbud/Index.php?mail=";
-                URL += mail;
-                Intent intentNavegador = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
-                startActivity(intentNavegador);
-
-
+               // String URL = "https://Francoaldrete.com/Gymbud/Index.php?mail=";
+                //URL += mail;
+                //Intent intentNavegador = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                //startActivity(intentNavegador);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("yo", error.getMessage());
-                Toast.makeText(olvidos.this, "El correo no existe", Toast.LENGTH_SHORT).show();
+                Intent olvidos = new Intent(olvidos.this, MainActivity.class);
+                startActivity(olvidos);
+                finish();
+                Toast.makeText(olvidos.this, "El correo se envio", Toast.LENGTH_SHORT).show();
             }
         });
         RequestQueue lanzarPeticion = Volley.newRequestQueue(this);

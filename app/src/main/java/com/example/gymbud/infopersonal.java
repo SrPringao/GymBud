@@ -139,9 +139,9 @@ public class infopersonal extends Fragment {
             @Override
             public void onClick(View view) {
                 //guardamos en shared preferences que el usuario no esta logeado
-                SharedPreferences preferences = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getActivity().getSharedPreferences("MainArchivo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("sesion", false);
+                editor.putInt("UID", 0);
                 editor.commit();
 
                 //mandamos al usuario a la pantalla de login

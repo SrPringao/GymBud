@@ -70,7 +70,7 @@ PersonInfo personInfo;
 
 
         shared = sharedPrefs.getInt("UID",0);
-        if(shared != 0 ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
+        if(shared != 0  ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
             i.putExtra("UID",shared);
             startActivity(i);
