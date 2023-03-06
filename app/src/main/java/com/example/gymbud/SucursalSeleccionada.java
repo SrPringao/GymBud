@@ -2,11 +2,13 @@ package com.example.gymbud;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +87,11 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     }
 
     TextView Sucursal,Personas;
+
+    private int[] mImages = {
+            R.drawable.lacalma1,R.drawable.lacalma2,R.drawable.lacalma3,R.drawable.lacalma4
+    };
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
@@ -90,10 +99,22 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         String sucursal=mbundle.getString("Nombre");
         Sucursal = (TextView) view.findViewById(R.id.TituloSucursales);
         Sucursal.setText(sucursal);
+        CarouselView carouselView = view.findViewById(R.id.carouselView);
+        carouselView.setImageListener(imageListener);
+        carouselView.setPageCount(mImages.length);
+
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+     ImageListener imageListener = new ImageListener() {
+         @Override
+         public void setImageForPosition(int position, ImageView imageView) {
+             imageView.setImageResource(mImages[position]);
+         }
+     };
 @Override
     public void onMapReady(GoogleMap googleMap) {
     Bundle mbundle = getArguments();
@@ -132,21 +153,6 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
 
     }
     mMap = googleMap;
-        // Add a marker in Sydney and move the camera}
-    //La calma
-    //20.637847141785972, -103.41884252155718
-    //Javier Mina
-    //20.667294198684644, -103.31336553875106
-    //Mariano Otero
-    //20.632611820270494, -103.4253400851146
-    //Clouthier
-    //20.671056271119884, -103.41746674272368
-    //Belisario
-    //20.69425458524266, -103.32276057242636
-    //Chapalita
-    //20.664563545261345, -103.4106651913678
-    //Lazaro Cardenas
-    //20.669517605369627, -103.40420645405732
         LatLng Gym = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions()
                 .position(Gym)
