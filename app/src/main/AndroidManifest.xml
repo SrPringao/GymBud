@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:largeHeap="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -53,7 +53,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyCOPic6cUTjthbtwQxOde47gwTzy_Yi2gA" />
 
         <meta-data
             android:name="preloaded_fonts"

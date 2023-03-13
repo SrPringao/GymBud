@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import org.json.JSONObject;
 public class Registro extends AppCompatActivity {
     EditText ETusuario, ETcorreo;
     Button Bconfirmar;
+    ImageView BotonB;
     TextInputEditText  ETcontrasenaconf, ETcontrasena ;
 
     @Override
@@ -44,12 +46,21 @@ public class Registro extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        BotonB = findViewById(R.id.BBR);
         ETusuario = findViewById(R.id.ETusuario);
         ETcontrasena = findViewById(R.id.ETcontrasena);
         ETcontrasenaconf = findViewById(R.id.ETcontrasenaconf);
         ETcorreo = findViewById(R.id.ETcorreo);
         Bconfirmar = findViewById(R.id.Bconfirmar);
 
+        BotonB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Registro.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
 
