@@ -217,6 +217,9 @@ public class GrupoSeleccionado extends Fragment {
                 NumMagico=153;
                 break;
 
+
+
+                
         }
       //  Log.d("NUM MAGICO", ""+NumMagico);
         return NumMagico;
