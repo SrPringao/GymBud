@@ -1,27 +1,43 @@
 package com.example.gymbud;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.load.resource.bitmap.BitmapDrawableResource;
 import com.example.gymbud.db.Entidades.Sucursal;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,10 +46,7 @@ import com.synnapps.carouselview.ImageListener;
  */
 public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback //implements OnMapReadyCallback
  {
-    MapView mapView;
     GoogleMap mMap;
-    View vista;
-    Bundle mBundle;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -128,9 +141,22 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         return mImages;
     }
      int[] Imagenes = {};
+    ImageView imagen;
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
+        imagen = view.findViewById(R.id.botonbackselec);
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new Sucursales();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         Bundle mbundle = getArguments();
         Imagenes = imagenes(mbundle.getString("Nombre"));
         String sucursal=mbundle.getString("Nombre");
@@ -139,6 +165,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         CarouselView carouselView = view.findViewById(R.id.carouselView);
         carouselView.setImageListener(imageListener);
         carouselView.setPageCount(Imagenes.length);
+        personas(view);
 
 
 
@@ -193,7 +220,57 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         LatLng Gym = new LatLng(Lat, Long);
         mMap.addMarker(new MarkerOptions()
                 .position(Gym)
-                .title("Gym"));
+                .title("Gym")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Gym));
+    }
+    public  void personas(View view){
+        Bundle mbundle = getArguments();
+        String sucursal=mbundle.getString("Nombre","NO DATA");
+        int NumSucursal=1;
+        switch(sucursal){
+            case "La Calma":
+                NumSucursal=1;
+                break;
+            case "Javier Mina":
+                NumSucursal=2;
+                break;
+            case "Mariano Otero":
+                NumSucursal=3;
+                break;
+            case "Clouthier":
+                NumSucursal=4;
+                break;
+            case "Belisario":
+                NumSucursal=5;
+                break;
+            case "Chapalita":
+                NumSucursal=5;
+                break;
+            case "Lázaro Cárdenas":
+                NumSucursal=6;
+                break;
+
+        }
+        String url = "https://francoaldrete.com/GymBud/count.php?sucursal=";
+        url += NumSucursal;
+        StringRequest sRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String respuesta) {
+                        Personas = view.findViewById(R.id.Personas);
+                        Personas.setText(respuesta);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                       Log.d("FALLO",""+error);
+                    }
+                });
+        RequestQueue lanzarPeticion = Volley.newRequestQueue(getContext());
+        lanzarPeticion.add(sRequest);
+        lanzarPeticion.start();
     }
 }

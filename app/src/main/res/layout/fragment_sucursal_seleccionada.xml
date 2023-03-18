@@ -8,6 +8,20 @@
     xmlns:map="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
 
+    <ImageView
+        android:id="@+id/botonbackselec"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_flechanegrodorado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.002"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002">
+
+    </ImageView>
+
     <TextView
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"
@@ -53,14 +67,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.614"
-        map:cameraZoom="10"
+        map:cameraZoom="20"
+        map:mapId="8c4e92551812a7a2"
         map:uiZoomControls="true"></fragment>
 
     <TextView
         android:id="@+id/TextoPersonas"
         android:layout_width="363dp"
         android:layout_height="102dp"
-        android:layout_marginTop="532dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text="Personas dentro de la sucursal"
@@ -69,9 +84,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map"
         tools:ignore="MissingConstraints" />
 
     <TextView

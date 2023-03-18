@@ -172,52 +172,55 @@ public class GrupoSeleccionado extends Fragment {
     //ascendente, sumando a el id del recycler la cantidad de ejercicios previos para llegar al id correcto
     int MusculoSuma(String Musculo){
         int NumMagico=1;
-        /*switch (Musculo){
+        switch (Musculo){
             case "Hombro":
                 NumMagico=1;
                 break;
             case "Bicep":
-                NumMagico=20;
+                NumMagico=36;
                 break;
             case "Pecho":
-                NumMagico=40;
+                NumMagico=20;
                 break;
             case "Abs":
-                NumMagico=60;
+                NumMagico=85;
                 break;
             case "Oblicuos":
-                NumMagico=80;
+                NumMagico=66;
                 break;
             case "Antebrazo":
-                NumMagico=100;
+                NumMagico=97;
                 break;
             case "Cuadriceps":
-                NumMagico=120;
+                NumMagico=116;
                 break;
             case "Trapecios":
-                NumMagico=140;
+                NumMagico=141;
                 break;
             case "Dorsal":
-                NumMagico=160;
+                NumMagico=161;
                 break;
             case "Tricep":
-                NumMagico=180;
+                NumMagico=51;
                 break;
             case "Espalda Media":
-                NumMagico=200;
+                NumMagico=105;
                 break;
 
             case "Gluteo":
-                NumMagico=220;
+                NumMagico=134;
                 break;
             case "Femoral":
-                NumMagico=240;
+                NumMagico=142;
                 break;
             case "Pantorrilla":
-                NumMagico=260;
+                NumMagico=153;
                 break;
 
-        }*/
+
+
+                
+        }
       //  Log.d("NUM MAGICO", ""+NumMagico);
         return NumMagico;
     }
