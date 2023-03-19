@@ -7,7 +7,6 @@
     android:background="@drawable/backgrounblack"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
-
     <ImageView
         android:id="@+id/botonbackselec"
         android:layout_width="50dp"
@@ -105,8 +104,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextoPersonas"
         tools:ignore="MissingConstraints" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
