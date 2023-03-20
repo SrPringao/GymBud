@@ -710,7 +710,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Evita inclinarte hacia adelante o hacia atrás demasiado durante el movimiento\n" +
                 "Mantén los codos pegados al cuerpo y no los dejes salir hacia los lados\n','Image',3,2,3,1)");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Sentadilla con mancuernas',3,'Fortalecimiento y tonificación muscular','Colocarse de pie con las piernas ligeramente separadas y las mancuernas a los lados del cuerpo\n" +
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Sentadilla con mancuernas',13,'Fortalecimiento y tonificación muscular','Colocarse de pie con las piernas ligeramente separadas y las mancuernas a los lados del cuerpo\n" +
                 "Mantener los hombros hacia atrás y el pecho erguido durante todo el ejercicio','Doblar las rodillas y bajar el tronco hacia abajo como si estuvieras sentándote en una silla mientras inspiras\n" +
                 "Presiona con los talones y levanta el tronco hacia arriba mientras exhalas\n" +
                 "Repetir el movimiento durante el número de repeticiones deseado','Asegúrate de mantener la espalda recta y los hombros hacia atrás durante todo el ejercicio\n" +
