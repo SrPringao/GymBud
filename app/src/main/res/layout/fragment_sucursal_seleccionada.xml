@@ -7,6 +7,35 @@
     android:background="@drawable/backgrounblack"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout">
+
+    <ImageView
+        android:id="@+id/Extra5"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="84dp"
+        map:layout_constraintEnd_toStartOf="@+id/Extra3"
+        map:layout_constraintStart_toEndOf="@+id/Extra1"
+        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ImageView
+        android:id="@+id/Extra4"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="84dp"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ImageView
+        android:id="@+id/Extra6"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="84dp"
+
+        android:layout_marginEnd="12dp"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+
     <ImageView
         android:id="@+id/botonbackselec"
         android:layout_width="50dp"
@@ -25,7 +54,7 @@
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:textColor="@color/bottomNavigationTintColor"
@@ -42,18 +71,18 @@
         android:layout_width="296dp"
         android:layout_height="164dp"
         app:fillColor="#FFFFFFFF"
-        app:pageColor="#00000000"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#FF777777"
-        app:strokeWidth="1dp"
-
         app:layout_constraintBottom_toTopOf="@+id/map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TituloSucursales"
-        app:layout_constraintVertical_bias="0.595" />
+
+        app:layout_constraintVertical_bias="0.271"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp" />
 
     <fragment
         android:id="@+id/map"
@@ -62,27 +91,26 @@
         android:layout_height="223dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614"
         map:cameraZoom="20"
         map:mapId="8c4e92551812a7a2"
         map:uiZoomControls="true"></fragment>
 
     <TextView
         android:id="@+id/TextoPersonas"
-        android:layout_width="363dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="177dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
-        android:text="Personas dentro de la sucursal"
+        android:text="Personas en la sucursal"
         android:textAlignment="center"
         android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map"
         tools:ignore="MissingConstraints" />
@@ -91,18 +119,65 @@
         android:id="@+id/Personas"
         android:layout_width="101dp"
         android:layout_height="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text="15"
         android:textAlignment="center"
         android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextoPersonas"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="177dp"
+        android:layout_height="69dp"
+        android:fontFamily="@font/lato"
+        android:text="Servicios extra de la sucursal"
+        android:textAlignment="center"
+        android:textColor="@color/bottomNavigationTintColor"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toEndOf="@+id/TextoPersonas"
+        app:layout_constraintTop_toBottomOf="@+id/map"
+        app:layout_constraintVertical_bias="0.167">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/Extra1"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ImageView
+        android:id="@+id/Extra2"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/Extra3"
+        app:layout_constraintStart_toEndOf="@+id/Extra1"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <ImageView
+        android:id="@+id/Extra3"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
