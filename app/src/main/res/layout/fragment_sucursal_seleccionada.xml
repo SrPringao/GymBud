@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        map:cameraZoom="20"
+        map:cameraZoom="18"
         map:mapId="8c4e92551812a7a2"
         map:uiZoomControls="true"></fragment>
 
