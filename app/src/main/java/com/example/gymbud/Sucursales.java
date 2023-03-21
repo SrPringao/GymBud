@@ -98,10 +98,6 @@ public class Sucursales extends Fragment {
             }
         });
         recyclerView.setAdapter(adaptador);
-
-
-
-
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -34,9 +35,12 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -146,6 +150,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
         imagen = view.findViewById(R.id.botonbackselec);
+        Extras(view);
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,10 +171,6 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         carouselView.setImageListener(imageListener);
         carouselView.setPageCount(Imagenes.length);
         personas(view);
-
-
-
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -271,6 +272,236 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 });
         RequestQueue lanzarPeticion = Volley.newRequestQueue(getContext());
         lanzarPeticion.add(sRequest);
+        lanzarPeticion.start();
+    }
+    ImageView imagen1,imagen2,imagen3,imagen4,imagen5,imagen6;
+    public void Extras(View view){
+
+        Bundle mbundle = getArguments();
+        String sucursal=mbundle.getString("Nombre","NO DATA");
+        int NumSucursal=1;
+        switch(sucursal){
+            case "La Calma":
+                NumSucursal=1;
+                break;
+            case "Javier Mina":
+                NumSucursal=2;
+                break;
+            case "Mariano Otero":
+                NumSucursal=3;
+                break;
+            case "Clouthier":
+                NumSucursal=4;
+                break;
+            case "Belisario":
+                NumSucursal=5;
+                break;
+            case "Chapalita":
+                NumSucursal=5;
+                break;
+            case "Lázaro Cárdenas":
+                NumSucursal=6;
+                break;
+
+        }
+
+        String url = "https://francoaldrete.com/GymBud/extra.php?sucursal=";
+        url += NumSucursal;
+        Log.d("Extras", "URL: " + url);
+        JsonArrayRequest extra = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String serviceId = jsonObject.getString("ServiceId");
+                            switch (serviceId){
+                                case "1":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.crossfit);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.crossfit);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.crossfit);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.crossfit);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.crossfit);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.crossfit);
+                                            break;
+                                    }
+                                    break;
+                                case "2":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.telas);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.telas);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.telas);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.telas);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.telas);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.telas);
+                                            break;
+                                    }
+                                    break;
+                                case "3":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.aberca);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.aberca);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.aberca);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.aberca);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.aberca);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.aberca);
+                                            break;
+                                    }
+                                    break;
+                                case "4":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.box);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.box);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.box);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.box);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.box);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.box);
+                                            break;
+                                    }
+                                    break;
+                                case "5":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.sauna);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.sauna);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.sauna);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.sauna);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.sauna);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.sauna);
+                                            break;
+                                    }
+                                    break;
+                                case "6":
+                                    switch (i){
+                                        case 0:
+                                            imagen1 = view.findViewById(R.id.Extra1);
+                                            imagen1.setImageResource(R.drawable.masaje);
+                                            break;
+                                        case 1:
+                                            imagen2 = view.findViewById(R.id.Extra2);
+                                            imagen2.setImageResource(R.drawable.masaje);
+                                            break;
+                                        case 2:
+                                            imagen3 = view.findViewById(R.id.Extra3);
+                                            imagen3.setImageResource(R.drawable.masaje);
+                                            break;
+                                        case 3:
+                                            imagen4 = view.findViewById(R.id.Extra4);
+                                            imagen4.setImageResource(R.drawable.masaje);
+                                            break;
+                                        case 4:
+                                            imagen5 = view.findViewById(R.id.Extra5);
+                                            imagen5.setImageResource(R.drawable.masaje);
+                                            break;
+                                        case 5:
+                                            imagen6 = view.findViewById(R.id.Extra6);
+                                            imagen6.setImageResource(R.drawable.masaje);
+                                            break;
+
+                                    }
+                                    break;
+                            }
+                                Log.d("Extras", "ServiceId: " + serviceId);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Extras", "Error: " + error);
+                    }
+                });
+        RequestQueue lanzarPeticion = Volley.newRequestQueue(getContext());
+        lanzarPeticion.add(extra);
         lanzarPeticion.start();
     }
 }
