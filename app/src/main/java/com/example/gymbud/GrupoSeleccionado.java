@@ -119,15 +119,11 @@ public class GrupoSeleccionado extends Fragment {
         //MusculoSuma, pasandole el nombre del musculo en la llamada.
         adapter.setOnClickListener(new EjerciciosAdaptador.EventOnItemClick() {
             @Override
-            public void OnItemClick(int posicion) {
+            public void OnItemClick(int ID) {
                 Bundle args = new Bundle();
-                int idplus;
-                idplus = posicion;
-                idplus += MusculoSuma(nombreMusculo);
-                Log.d("idplus", ""+idplus);
-                //Log.d("NOMBREMUSCULO", nombreMusculo);
+
                 Fragment fragment = new fragment_ejercicio_seleccionado();
-                args.putInt("id",idplus);
+                args.putInt("id",ID);
                 args.putInt("ID",id);
                 args.putString("Musculo",nombreMusculo);
                 fragment.setArguments(args);
@@ -138,6 +134,8 @@ public class GrupoSeleccionado extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
+
+
         });
 
         ImageView imagenatras = view.findViewById(R.id.botonback4);
