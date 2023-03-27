@@ -52,20 +52,16 @@
     <Spinner
         android:id="@+id/CRSpinner"
         android:layout_width="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="40dp"
-        android:clickable="true"
-        android:textColor="@color/colorIdentidad3"
-        android:spinnerMode="dropdown"
+        android:layout_height="78dp"
         android:layout_below="@id/textoCR2"
         android:layout_centerHorizontal="true"
-        android:layout_height="78dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:hapticFeedbackEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-    </Spinner>
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        android:textColor="@color/colorIdentidad3" />
 
     <Button
         android:id="@+id/CRButton"

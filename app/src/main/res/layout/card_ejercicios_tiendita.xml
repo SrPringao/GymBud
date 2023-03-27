@@ -53,6 +53,8 @@
             android:paddingHorizontal="10dp"
             android:layout_toStartOf="@id/CVEBotonAgregar"
             android:paddingTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:text="El enfoque de este ejercicio es la cabeza corta del bicep, y la larga te la tragas, porque sabe que yo vengo panto panto"
             android:textColor="@android:color/black"
             android:textSize="20dp"
