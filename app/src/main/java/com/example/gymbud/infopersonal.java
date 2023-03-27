@@ -131,7 +131,17 @@ public class infopersonal extends Fragment {
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);
 
-
+        imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment secondFragment = new Encuesta();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
 
         //setonclick en caso de que presiones la imagen de logout

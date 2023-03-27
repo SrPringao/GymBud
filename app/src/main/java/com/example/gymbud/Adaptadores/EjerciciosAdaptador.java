@@ -30,7 +30,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
     public interface EventOnItemClick {
 
-        public void OnItemClick(int posicion);
+        public void OnItemClick(int id);
     }
 
     EventOnItemClick listener;
@@ -62,7 +62,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
         this.listener = listener;
     }
 
-    public static class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
         final TextView Nombre;
 
@@ -75,7 +75,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
         @Override
         public void onClick(View view) {
-            listener.OnItemClick(getAdapterPosition());
+            listener.OnItemClick(ListasEjercicios.get(getAdapterPosition()).getId());
         }
     }
 }
