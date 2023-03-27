@@ -1,0 +1,120 @@
+{
+  "JsonPreguntas": [
+    {
+      "id": 1,
+      "pregunta": "¿Cual es tu sexo?",
+      "Respuesta1": "Hombre",
+      "opcion1": 0,
+      "Respuesta2": "Mujer",
+      "opcion2": 1,
+      "Respuesta3": "",
+      "opcion3": 0,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Padeces de alguna enfermedad que pueda dificultar tu entrenamiento?",
+      "Respuesta1": "Si",
+      "opcion1": 0,
+      "Respuesta2": "No",
+      "opcion2": 1,
+      "Respuesta3": "",
+      "opcion3": 0,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Que te dificulta esta enfermedad?",
+      "Respuesta1": "Ejercicios de tren superior",
+      "opcion1": 4,
+      "Respuesta2": "Ejercicios de tren inferior",
+      "opcion2": 5,
+      "Respuesta3": "Ejercicios cardiovasculares",
+      "opcion3": 6,
+      "Respuesta4": "TODOS",
+      "opcion4": 7
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Cual es tu experiencia en el gimnasio?",
+      "Respuesta1": "Novato",
+      "opcion1": 0,
+      "Respuesta2": "Intermedio",
+      "opcion2": 1,
+      "Respuesta3": "Avanzado",
+      "opcion3": 1,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "id":5,
+      "pregunta": "¿Cuál es su nivel de condición física actual?",
+      "Respuesta1": "Bajo",
+      "opcion1": 0,
+      "Respuesta2": "Mediano o alto",
+      "opcion2": 1,
+      "Respuesta3": "",
+      "opcion3": 0,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cuantos dias entrenas?",
+      "Respuesta1": "3",
+      "opcion1": 0,
+      "Respuesta2": "5",
+      "opcion2": 1,
+      "Respuesta3": "6",
+        "opcion3": 2,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "id": 7,
+        "pregunta": "¿Cuánto tiempo tiene para hacer ejercicio?",
+        "Respuesta1": "Menos de 60 mins",
+        "opcion1": 0,
+        "Respuesta2": "Entre 60 y 90 mins",
+        "opcion2": 1,
+        "Respuesta3": "Más de 90 mins",
+        "opcion3": 2,
+      "Respuesta4": "",
+      "opcion4": 0
+    },{
+      "id": 8,
+        "pregunta": "¿Cuál es su objetivo principal de entrenamiento?",
+        "Respuesta1": " Ganar masa muscular",
+        "opcion1": 0,
+        "Respuesta2": "Perder peso",
+        "opcion2": 1,
+        "Respuesta3": "Mejorar la salud en general",
+        "opcion3": 1,
+        "Respuesta4": "Mantener la forma física actual",
+        "opcion4": 1
+      },{
+      "id": 9,
+        "pregunta": "¿En qué músculos desea enfocarse?",
+        "Respuesta1": "Tren Superior",
+        "opcion1": 2,
+        "Respuesta2": "Tren Inferior",
+        "opcion2": 3,
+        "Respuesta3": "Cuerpo completo",
+        "opcion3": 4,
+      "Respuesta4": ""
+    },{
+        "id": 10,
+            "pregunta": "¿Que equipo preferirias usar a la hora de entrenar?",
+            "Respuesta1": "Mancuernas",
+            "opcion1": 0,
+            "Respuesta2": "Poleas",
+            "opcion2": 1,
+            "Respuesta3": "Barras",
+            "opcion3": 2,
+            "Respuesta4": "Maquinas",
+            "opcion4": 3
+        }
+  ]
+}

@@ -61,7 +61,7 @@
 
 
                     <TextView
-                        android:id="@+id/textViewSub1Title"
+                        android:id="@+id/Pregunta"
                         style="@style/viewParent.headerText.HomeCardTitle"
                         android:paddingBottom="10dp"
                         android:text="Racha de asistencias" />
@@ -69,14 +69,14 @@
                     <TextView
                         android:id="@+id/Texto1Dias"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub1Title"
+                        android:layout_below="@id/Pregunta"
                         android:paddingEnd="5dp"
                         android:text="Llevas un racha de" />
 
                     <TextView
                         android:id="@+id/diasn"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub1Title"
+                        android:layout_below="@id/Pregunta"
                         android:layout_toEndOf="@+id/Texto1Dias"
                         android:text="N"
                         android:textStyle="bold" />
@@ -84,7 +84,7 @@
                     <TextView
                         android:id="@+id/Texto2Dias"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub1Title"
+                        android:layout_below="@id/Pregunta"
                         android:layout_toEndOf="@+id/diasn"
                         android:paddingStart="5dp"
                         android:text="dias consecutivos!"
