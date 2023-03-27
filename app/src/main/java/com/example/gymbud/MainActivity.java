@@ -45,7 +45,7 @@ PersonInfo personInfo;
         super.onCreate(savedInstanceState);
 
         int shared;
-        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo", MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         ETusr = findViewById(R.id.etUsuario);
         ETcontra = findViewById(R.id.etContraseña);
@@ -106,7 +106,7 @@ PersonInfo personInfo;
     //, si esta completo realiza la query al servidor con el php designado, con la contraseña y usuario registrado, si si esta registrado acacede a la pantalla de
     //info usuario, si no existe manda un error y pide al usuario que reingrese sus credenciales
     public void clickInicio(View view) {
-        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo", MODE_PRIVATE);
 
         final String usuario = ETusr.getText().toString().trim();
         final String correo = ETcontra.getText().toString().trim();

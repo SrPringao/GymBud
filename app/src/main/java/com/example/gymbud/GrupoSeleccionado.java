@@ -214,10 +214,6 @@ public class GrupoSeleccionado extends Fragment {
             case "Pantorrilla":
                 NumMagico=153;
                 break;
-
-
-
-                
         }
       //  Log.d("NUM MAGICO", ""+NumMagico);
         return NumMagico;

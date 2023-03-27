@@ -1,20 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Rutinas">
+    android:background="@drawable/backgrounblack"
+    style="@style/parent.contentLayout">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tarjetaRutinaPersonalizada"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="#CC409D"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:text="Fragment rutinas" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_above="@id/separadorMedio"
+        app:cardCornerRadius="15dp"
+        app:cardPreventCornerOverlap="true"
+        tools:ignore="MissingConstraints">
+
+        <net.colindodd.gradientlayout.GradientRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="100dp"
+            android:padding="10dp"
+
+            gl:end_color="@color/colorIdentidad6"
+            gl:orientation="LEFT_RIGHT"
+            gl:start_color="@color/colorIdentidad5">
+
+            <TextView
+                android:id="@+id/tituloRutinaPersonalizada"
+                style="@style/viewParent.headerText.HomeCardTitle"
+                android:layout_centerHorizontal="true"
+                android:text="Rutina personalizada" />
+
+            <Button
+                android:id="@+id/botonRutinaPersonalizada"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/tituloRutinaPersonalizada"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/backgroundcornerinverted"
+                android:text="Crear"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="340dp" />
+        </net.colindodd.gradientlayout.GradientRelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tarjetaRutinaAutomatica"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:layout_centerVertical="true"
+        android:layout_below="@id/separadorMedio"
+        app:cardCornerRadius="15dp"
+        app:cardPreventCornerOverlap="true"
+        tools:ignore="MissingConstraints">
+
+
+        <net.colindodd.gradientlayout.GradientRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="100dp"
+            android:padding="10dp"
+            gl:end_color="@color/colorIdentidad6"
+            gl:orientation="LEFT_RIGHT"
+            gl:start_color="@color/colorIdentidad5">
+
+            <TextView
+                android:id="@+id/tituloRutinaAutomatica"
+                style="@style/viewParent.headerText.HomeCardTitle"
+                android:layout_centerHorizontal="true"
+                android:text="Rutina Automatica " />
+
+            <Button
+                android:id="@+id/botonRutinaAutomatica"
+                android:layout_width="300dp"
+                android:layout_height="80dp"
+                android:layout_below="@+id/tituloRutinaAutomatica"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/backgroundcornerinverted"
+                android:text="Crear"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="340dp" />
+        </net.colindodd.gradientlayout.GradientRelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/separadorMedio"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="20dp" />
+
+</RelativeLayout>

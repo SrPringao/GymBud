@@ -4,5 +4,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+    <string-array name="ListaEjercicios">
+        <item>Hombro</item>
+        <item>Bicep</item>
+        <item>Pecho</item>
+        <item>Abs</item>
+        <item>Oblicuos</item>
+        <item>Antebrazo</item>
+        <item>Cuadriceps</item>
+        <item>Trapecios</item>
+        <item>Dorsal</item>
+        <item>Tricep</item>
+        <item>Espalda media</item>
+        <item>Gluteo</item>
+        <item>Femoral</item>
+        <item>Pantorrilla</item>
+    </string-array>
 
 </resources>
