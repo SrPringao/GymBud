@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentRel"
     xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -55,20 +56,28 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
-        android:background="@drawable/backgroundcornerinvertedspinner"
-        android:spinnerMode="dialog"
+        android:textColor="@color/colorIdentidad3"
+        android:spinnerMode="dropdown"
         android:layout_below="@id/textoCR2"
         android:layout_centerHorizontal="true"
-        android:layout_height="78dp">
+        android:layout_height="78dp"
+        android:gravity="center"
+        android:hapticFeedbackEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
     </Spinner>
 
     <Button
         android:id="@+id/CRButton"
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/CRSpinner"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content">
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/backgroundcornerinverted"
+        android:text="Crear rutina"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:textColor="@color/bottomNavigationTintColor"
+        android:layout_centerHorizontal="true">
 
     </Button>
 

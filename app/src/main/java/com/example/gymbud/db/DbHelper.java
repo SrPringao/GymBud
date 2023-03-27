@@ -104,6 +104,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_MUSCULARGROUP + " VALUES " + "(" + "15,'Pantorrilla')");
 
 
+
         //Tablita herramientas
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_TOOLS + " VALUES " + "(" + "1,'Polea')");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_TOOLS + " VALUES " + "(" + "2,'Barra')");

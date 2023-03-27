@@ -5,13 +5,21 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string-array name="ListaEjercicios">
-        <item>Economico</item>
-        <item>Basico</item>
-        <item>Premium</item>
-        <item>Primera Clase</item>
-        <item>Royalty</item>
+        <item>Hombro</item>
+        <item>Bicep</item>
+        <item>Pecho</item>
+        <item>Abs</item>
+        <item>Oblicuos</item>
+        <item>Antebrazo</item>
+        <item>Cuadriceps</item>
+        <item>Trapecios</item>
+        <item>Dorsal</item>
+        <item>Tricep</item>
+        <item>Espalda media</item>
+        <item>Espalda baja</item>
+        <item>Gluteo</item>
+        <item>Femoral</item>
+        <item>Pantorrilla</item>
     </string-array>
-
-
 
 </resources>

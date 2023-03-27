@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -70,7 +71,6 @@ public class CreacionDeRutinas extends Fragment {
     Spinner spinner;
     String item;
     Button btn;
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -80,20 +80,32 @@ public class CreacionDeRutinas extends Fragment {
         spinner = view.findViewById(R.id.CRSpinner);
         btn = view.findViewById(R.id.CRButton);
 
+
+
         ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
                 (getActivity(), R.array.ListaEjercicios, android.R.layout.simple_spinner_item);
+
+        adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adap1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
                 item = parent.getItemAtPosition(i).toString();
-                Toast toast = Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT);
-                toast.show();
+//                Toast toast = Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT);
+//                toast.show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast toast = Toast.makeText(getActivity(), "No selecciono nada", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getActivity(), "Boton presionado", Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
