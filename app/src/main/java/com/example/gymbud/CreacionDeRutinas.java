@@ -3,6 +3,7 @@ package com.example.gymbud;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,15 +72,21 @@ public class CreacionDeRutinas extends Fragment {
     Spinner spinner;
     String item;
     Button btn;
+
+    int pos;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Creacion de Rutinas");
 
+        Fragment fragment = new DetallesEjerciciosTiendita();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Bundle args = new Bundle();
+
         spinner = view.findViewById(R.id.CRSpinner);
         btn = view.findViewById(R.id.CRButton);
-
 
 
         ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
@@ -92,8 +99,11 @@ public class CreacionDeRutinas extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
                 item = parent.getItemAtPosition(i).toString();
-//                Toast toast = Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT);
-//                toast.show();
+                pos = i+1;
+
+                if (pos >= 12){
+                    pos+=1;
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -105,8 +115,13 @@ public class CreacionDeRutinas extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getActivity(), "Boton presionado", Toast.LENGTH_SHORT);
-                toast.show();
+                args.putString("Ejercicio", item);
+                args.putInt("id", pos);
+                fragment.setArguments(args);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

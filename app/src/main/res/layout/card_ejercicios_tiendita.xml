@@ -29,10 +29,11 @@
         android:id="@+id/CVESeparador"
         android:layout_below="@id/CVET1"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/bottomNavigationTintColor"/>
+        android:background="@drawable/background_edittext"/>
 
 
     <RelativeLayout
@@ -60,12 +61,15 @@
         <Button
             android:id="@+id/CVEBotonAgregar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginStart="5dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="10dp"
             android:background="@drawable/backgroundcornerinverted"
             android:text="+"
+            android:textSize="40dp"
+            android:fontFamily="@font/lato_light"
             android:textColor="@color/colorPrimary" />
 
     </RelativeLayout>
