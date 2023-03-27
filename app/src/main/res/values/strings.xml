@@ -4,5 +4,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+    <string-array name="ListaEjercicios">
+        <item>Economico</item>
+        <item>Basico</item>
+        <item>Premium</item>
+        <item>Primera Clase</item>
+        <item>Royalty</item>
+    </string-array>
+
+
 
 </resources>

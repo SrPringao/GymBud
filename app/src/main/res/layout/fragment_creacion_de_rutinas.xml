@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreacionDeRutinas">
+    android:background="@drawable/backgrounblack"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbartienda"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textoCR1"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/lato"
+        android:text="Creacion de rutinas\nPersonalizadas"
+        android:textAlignment="center"
+        android:textColor="@color/bottomNavigationTintColor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    </TextView>
+
+    <TextView
+        android:id="@+id/textoCR2"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/textoCR1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/lato"
+        android:text="Selecciona el grupo \nmuscular"
+        android:textAlignment="center"
+        android:textColor="@color/bottomNavigationTintColor"
+        android:textSize="30sp"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <Spinner
+        android:id="@+id/CRSpinner"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:background="@drawable/backgroundcornerinvertedspinner"
+        android:spinnerMode="dialog"
+        android:layout_below="@id/textoCR2"
+        android:layout_centerHorizontal="true"
+        android:layout_height="78dp">
+    </Spinner>
+
+    <Button
+        android:id="@+id/CRButton"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/CRSpinner"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+    </Button>
+
+</RelativeLayout>

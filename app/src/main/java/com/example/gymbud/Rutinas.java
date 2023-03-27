@@ -73,7 +73,7 @@ public class Rutinas extends Fragment {
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment firstFragment = new infopersonal();
+                Fragment firstFragment = new CuestionarioRutinasAutomaticas();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
@@ -85,7 +85,7 @@ public class Rutinas extends Fragment {
         botonPersonalizada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment firstFragment = new infopersonal();
+                Fragment firstFragment = new CreacionDeRutinas();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, firstFragment);

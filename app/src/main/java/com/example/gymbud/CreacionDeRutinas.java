@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +65,38 @@ public class CreacionDeRutinas extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_creacion_de_rutinas, container, false);
+    }
+
+    Spinner spinner;
+    String item;
+    Button btn;
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // You can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("Creacion de Rutinas");
+
+        spinner = view.findViewById(R.id.CRSpinner);
+        btn = view.findViewById(R.id.CRButton);
+
+        ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
+                (getActivity(), R.array.ListaEjercicios, android.R.layout.simple_spinner_item);
+
+        spinner.setAdapter(adap1);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                item = parent.getItemAtPosition(i).toString();
+                Toast toast = Toast.makeText(getActivity(), item, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast toast = Toast.makeText(getActivity(), "No selecciono nada", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
     }
 }
