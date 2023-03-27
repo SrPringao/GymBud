@@ -30,7 +30,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
 
     public interface EventOnItemClick {
 
-        public void OnItemClick(int posicion);
+        void OnItemClick(int posicion);
     }
 
     EventOnItemClick listener;

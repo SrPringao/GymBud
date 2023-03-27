@@ -201,7 +201,7 @@ public class infopersonal extends Fragment {
     //Para finalizar coloca los calculos realizados en su tarjeta correspondiente.
     private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG,TextView racha){
         Context context = getContext();
-        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
         int RachaGuardada = sharedPrefs.getInt("RACHA",0);
         double imc = 0;
         double grasa;
@@ -228,7 +228,7 @@ public class infopersonal extends Fragment {
     private void fecha(String fecha,String DateT, TextView testoFrase, float FechaL)
     {
         Context context = getContext();
-        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         int Racha = sharedPrefs.getInt("RACHA",0);
         final int random = new Random().nextInt(74);

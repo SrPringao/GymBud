@@ -54,7 +54,6 @@
         android:id="@+id/TituloSucursales"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:textColor="@color/bottomNavigationTintColor"
@@ -63,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonbackselec"
         tools:ignore="MissingConstraints" />
 
     <com.synnapps.carouselview.CarouselView

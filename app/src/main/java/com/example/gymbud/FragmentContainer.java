@@ -52,13 +52,8 @@ public class FragmentContainer extends AppCompatActivity {
                 }else if (item.getId() == 3){
                     fragment = new Ejercicios();
 
-
-
-
                 }else if (item.getId() == 2){
                     fragment = new Rutinas();
-
-
                 }else{
                     fragment = new infopersonal();
                 }
@@ -109,7 +104,8 @@ public class FragmentContainer extends AppCompatActivity {
                         fragmentManager.popBackStack();
                     }
 
-                    fragment = new DetallesSucursal();
+
+                    fragment = new Rutinas();
 
 
                 }else{
@@ -148,7 +144,7 @@ public class FragmentContainer extends AppCompatActivity {
     public String FechaG(){
         String fecha="0";
         Context context = this;
-        SharedPreferences sharedPrefs = getSharedPreferences("Fecha",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = getSharedPreferences("Fecha", MODE_PRIVATE);
         fecha = sharedPrefs.getString("Fecha","0");
         return fecha;
     }
@@ -166,7 +162,7 @@ public class FragmentContainer extends AppCompatActivity {
     // Y asi poder calcular cuantos dias hay de diferencia, esta funcion retorna la fecha en cantidad de dias.
     public float FechaLONG(){
         Context context = this;//contesto
-        SharedPreferences sharedPrefs = getSharedPreferences("FechaL",context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = getSharedPreferences("FechaL", MODE_PRIVATE);
         long fecha = sharedPrefs.getLong("Fecha",0);
         long FechaC = System.currentTimeMillis();
         long diferencia = FechaC-fecha;
