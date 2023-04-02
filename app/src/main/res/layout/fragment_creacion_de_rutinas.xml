@@ -69,7 +69,7 @@
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:background="@drawable/backgroundcornerinverted"
-        android:text="Crear rutina"
+        android:text="Confirmar seleccion"
         android:textSize="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="90dp"

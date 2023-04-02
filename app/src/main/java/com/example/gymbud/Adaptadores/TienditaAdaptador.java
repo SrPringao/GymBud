@@ -58,7 +58,8 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                 int exerciseId = exercise.getId();
                 //si el id ya está en la lista, no se agrega
                 if (IdList.getInstance().contains(exerciseId)) {
-                    Toast.makeText(view.getContext(), "Ejercicio ya agregado", Toast.LENGTH_SHORT).show();
+                    //toast mas rapido
+                    Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
 
