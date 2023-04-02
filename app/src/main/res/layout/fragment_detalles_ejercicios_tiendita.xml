@@ -20,6 +20,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
+    <ImageView
+        android:id="@+id/DETBotonBack"
+        android:layout_below="@id/DETtoolbar"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_flechanegrodorado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
     <TextView
         android:id="@+id/DETtituloejerciciosGS"
         android:layout_below="@id/DETtoolbar"

@@ -9,9 +9,9 @@
     tools:context=".GrupoSeleccionado">
 
 
+
     <ImageView
         android:id="@+id/botonback4"
-
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_flechanegrodorado"

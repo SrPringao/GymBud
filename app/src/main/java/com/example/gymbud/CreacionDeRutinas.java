@@ -94,6 +94,13 @@ public class CreacionDeRutinas extends Fragment {
 
         adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        //apply rounded background to spinner
+        spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
+        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        spinner.setPadding(10, 10, 10, 10);
+
+
+
         spinner.setAdapter(adap1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

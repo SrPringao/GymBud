@@ -29,9 +29,6 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
     }
 
     public interface EventOnItemClick {
-
-
-
         public void OnItemClick(int id);
 
     }

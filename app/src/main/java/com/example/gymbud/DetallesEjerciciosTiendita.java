@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,6 +48,8 @@ public class DetallesEjerciciosTiendita extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,7 @@ public class DetallesEjerciciosTiendita extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ImageView imagenatras = view.findViewById(R.id.DETBotonBack);
 
         TextView titulo = view.findViewById(R.id.DETtituloejerciciosGS);
         Bundle bundle = this.getArguments();
@@ -88,5 +92,20 @@ public class DetallesEjerciciosTiendita extends Fragment {
         TienditaAdaptador adapter = new TienditaAdaptador(dbQuery.MostrarEjercicios(id));
         recyclerView.setAdapter(adapter);
 
+        imagenatras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment firstFragment = new CreacionDeRutinas();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
     }
+
+
 }

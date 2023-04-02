@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo del spinner -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorIdentidad5"/>
+            <stroke android:width="3dp"
+                android:color="@color/black"/>
+            <padding android:left="1dp"
+                android:top="1dp"
+                android:right="1dp"
+                android:bottom="1dp"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Flecha de desplegar hacia abajo -->
+    <item android:gravity="right|center_vertical"
+        android:paddingRight="50dp">
+        <bitmap android:src="@drawable/flechita_abajo"
+            android:width="24dp"
+            android:height="24dp"
+            />
+    </item>
+</layer-list>
