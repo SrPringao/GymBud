@@ -89,8 +89,8 @@ public class Tiendita extends Fragment {
 
         DbQuery dbQuery = new DbQuery (getContext());
         listaIds = IdList.getInstance();
-        CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjerciciosCarro(listaIds));
-        Log.d ("Ejercicios", dbQuery.MostrarEjerciciosCarro(listaIds).toString());
+        CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjercicios(listaIds));
+        Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
         recyclerView.setAdapter(adapter);
 
 

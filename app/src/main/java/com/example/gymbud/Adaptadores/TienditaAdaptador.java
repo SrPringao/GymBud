@@ -56,10 +56,20 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
             @Override
             public void onClick(View view) {
                 int exerciseId = exercise.getId();
-                listaDeIds.add(exerciseId);
-                Log.d("Lista de ids", listaDeIds.toString());
-                Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
-                IdList.getInstance().add(exerciseId);
+                //si el id ya está en la lista, no se agrega
+                if (IdList.getInstance().contains(exerciseId)) {
+                    Toast.makeText(view.getContext(), "Ejercicio ya agregado", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+
+                    listaDeIds.add(exerciseId);
+                    Log.d("Lista de ids", IdList.getInstance().toString());
+                    Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
+                    IdList.getInstance().add(exerciseId);
+                }
+                //si no está, se agrega
+
+
 
                 //toast that shows the current list of ids
 //                Toast.makeText(view.getContext(), listaDeIds.toString(), Toast.LENGTH_SHORT).show();

@@ -241,7 +241,7 @@ public class DbQuery extends DbHelper {
         return stats;
 }
 
-    public ArrayList<Exercises> MostrarEjerciciosCarro(ArrayList<Integer> ids) {
+    public ArrayList<Exercises> MostrarEjercicios(ArrayList<Integer> ids) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
