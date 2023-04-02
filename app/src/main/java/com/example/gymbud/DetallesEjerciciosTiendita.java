@@ -90,6 +90,7 @@ public class DetallesEjerciciosTiendita extends Fragment {
         EjerciciosLista = new ArrayList<>();
 
         TienditaAdaptador adapter = new TienditaAdaptador(dbQuery.MostrarEjercicios(id));
+//        Log.d("Ejercicios en pantalla 1 para ver como los regresa", dbQuery.MostrarEjercicios(id).toString());
         recyclerView.setAdapter(adapter);
 
         imagenatras.setOnClickListener(new View.OnClickListener() {

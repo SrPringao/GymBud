@@ -160,6 +160,7 @@ public class DbQuery extends DbHelper {
     }
     //Esta funcion tambien como fue mencionado anteriormente realiza lo mismo con la tabla ejercicio, creando un pojo y guardando los datos para poder
     //mostrarlos haciendo una query a la tabla ejercicios con su respectivo id y retornando el objeto exercises
+
     public Exercises EjerciciosVER(int id){
         Log.d("Exercises", id+"");
         DbHelper dbHelper = new DbHelper(context);
@@ -239,4 +240,37 @@ public class DbQuery extends DbHelper {
         Log.d("FIN", "NO FINIQUITO");
         return stats;
 }
+
+    public ArrayList<Exercises> MostrarEjerciciosCarro(ArrayList<Integer> ids) {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ArrayList<Exercises> listaEjercicios = new ArrayList<>();
+        Exercises ejercicios = null;
+        String commaSeparatedIds = ids.toString().replace("[", "").replace("]", ""); // Convertir la lista en una cadena separada por comas para usar en la cláusula IN
+        Cursor cursorEjercicios = null;
+        cursorEjercicios = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE + " WHERE id IN (" + commaSeparatedIds + ")", null);
+        if (cursorEjercicios.moveToFirst()) {
+            do {
+                ejercicios = new Exercises();
+                ejercicios.setId(cursorEjercicios.getInt(0));
+                ejercicios.setName(cursorEjercicios.getString(1));
+                ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
+                ejercicios.setFocus(cursorEjercicios.getString(3));
+                ejercicios.setForeSeeing(cursorEjercicios.getString(4));
+                ejercicios.setExecution(cursorEjercicios.getString(5));
+                ejercicios.setDetails(cursorEjercicios.getString(6));
+                ejercicios.setImage(cursorEjercicios.getBlob(7));
+                ejercicios.setTool(cursorEjercicios.getInt(8));
+                ejercicios.setCategory(cursorEjercicios.getInt(9));
+                ejercicios.setDifficulty(cursorEjercicios.getInt(10));
+                ejercicios.setStats(cursorEjercicios.getInt(11));
+
+                listaEjercicios.add(ejercicios);
+            } while (cursorEjercicios.moveToNext());
+        }
+        cursorEjercicios.close();
+        return listaEjercicios;
+    }
+
 }

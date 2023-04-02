@@ -4,12 +4,22 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.gymbud.Adaptadores.CarritoEjerciciosAdapter;
+import com.example.gymbud.Adaptadores.TienditaAdaptador;
+import com.example.gymbud.db.DbQuery;
+import com.example.gymbud.db.Entidades.IdList;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,11 +76,24 @@ public class Tiendita extends Fragment {
     }
 
 
+    ArrayList<Integer> listaIds = new ArrayList<>();
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can now set the text of a TextView
         ImageView imagenatras = view.findViewById(R.id.TiButtonBack);
+
+        RecyclerView recyclerView = view.findViewById(R.id.TiRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        DbQuery dbQuery = new DbQuery (getContext());
+        listaIds = IdList.getInstance();
+        CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjerciciosCarro(listaIds));
+        Log.d ("Ejercicios", dbQuery.MostrarEjerciciosCarro(listaIds).toString());
+        recyclerView.setAdapter(adapter);
+
+
         imagenatras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +104,7 @@ public class Tiendita extends Fragment {
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+
             }
         });
     }
