@@ -77,7 +77,7 @@ public class Encuesta extends Fragment {
         return inflater.inflate(R.layout.fragment_encuesta, container, false);
     }
 
-    private int[] Resultado = new int[10];
+    private int[] Resultado = new int[18];
     TextView Pregunta1;
     RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
     Button Confirmado;
@@ -190,9 +190,9 @@ public class Encuesta extends Fragment {
             JsonArray jsonArray = jsonObject.getAsJsonArray("JsonPreguntas");
 
 
-            for (int i = 0; i < jsonArray.size(); i++) {
+            for (int i = 1; i < jsonArray.size(); i++) {
                 jsonObject = jsonArray.get(i).getAsJsonObject();
-                int id = jsonObject.get("id").getAsInt();
+                int id = jsonObject.get("NumPregunta").getAsInt();
                 if (Pregunta == id) {
 
 

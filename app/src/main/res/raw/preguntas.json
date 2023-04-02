@@ -84,6 +84,18 @@
     },
     {
       "NumPregunta": 8,
+      "pregunta": "¿En que parte es esta lesion?",
+      "Respuesta1": "Pecho",
+      "opcion1": 4,
+      "Respuesta2": "Brazo",
+      "opcion2": 5,
+      "Respuesta3": "Espalda",
+      "opcion3": 6,
+      "Respuesta4": "Hombro",
+      "opcion4": 7
+    },
+    {
+      "NumPregunta": 9,
       "pregunta": "¿Cual es tu experiencia en el gimnasio?",
       "Respuesta1": "Novato",
       "opcion1": 0,
@@ -95,7 +107,7 @@
       "opcion4": 0
     },
     {
-      "NumPregunta":9,
+      "NumPregunta":10,
       "pregunta": "¿Cuál es su nivel de condición física actual?",
       "Respuesta1": "Bajo",
       "opcion1": 0,
@@ -107,7 +119,7 @@
       "opcion4": 0
     },
     {
-      "NumPregunta": 10,
+      "NumPregunta": 11,
       "pregunta": "¿Cuantos dias entrenas?",
       "Respuesta1": "3",
       "opcion1": 0,
@@ -119,7 +131,7 @@
       "opcion4": 0
     },
     {
-      "NumPregunta": 11,
+      "NumPregunta": 12,
         "pregunta": "¿Con cuanto tiempo dispones  para hacer ejercicio?",
         "Respuesta1": "Menos de 60 mins",
         "opcion1": 0,
@@ -130,7 +142,7 @@
       "Respuesta4": "",
       "opcion4": 0
     },{
-      "NumPregunta": 12,
+      "NumPregunta": 13,
       "pregunta": "¿Dispones del mismo tiempo todos los dias?",
       "Respuesta1": "Si",
       "opcion1": 4,
@@ -141,7 +153,7 @@
       "Respuesta4": "",
       "opcion4": 7
     },{
-      "NumPregunta": 13,
+      "NumPregunta": 14,
       "pregunta": "Cuanto tiempo tienes para entrenar el dia ",
       "Respuesta1": "Menos de 60 minutos",
       "opcion1": 4,
@@ -152,7 +164,7 @@
       "Respuesta4": "",
       "opcion4": 7
     },{
-      "NumPregunta": 14,
+      "NumPregunta": 15,
       "pregunta": "Con cuanto tiempo cuentas para entrenar",
       "Respuesta1": "Menos de 60 minutos",
       "opcion1": 4,
@@ -162,10 +174,8 @@
       "opcion3": 6,
       "Respuesta4": "",
       "opcion4": 7
-    },
-
-    {
-      "NumPregunta": 15,
+    },{
+      "NumPregunta": 16,
         "pregunta": "¿Cuál es su objetivo principal de entrenamiento?",
         "Respuesta1": " Ganar masa muscular",
         "opcion1": 0,
@@ -174,9 +184,9 @@
         "Respuesta3": "Mejorar la salud en general",
         "opcion3": 1,
         "Respuesta4": "Mantener la forma física actual",
-        "opcion4": 1
+      "opcion4":-1
       },{
-      "NumPregunta": 16,
+      "NumPregunta": 17,
         "pregunta": "¿En qué músculos desea enfocarse?",
         "Respuesta1": "Tren Superior",
         "opcion1": 2,
@@ -184,9 +194,10 @@
         "opcion2": 3,
         "Respuesta3": "Cuerpo completo",
         "opcion3": 4,
-      "Respuesta4": ""
+      "Respuesta4": "",
+      "opcion4":-1
     },{
-      "NumPregunta": 17,
+      "NumPregunta": 18,
       "pregunta": "¿Desea agregar abdomen a su rutina?",
       "Respuesta1": "Si",
       "opcion1": 2,
@@ -194,10 +205,10 @@
       "opcion2": 3,
       "Respuesta3": "Cuerpo completo",
       "opcion3": 4,
-      "Respuesta4": ""
-    },
-    {
-        "NumPregunta": 10,
+      "Respuesta4": "",
+      "opcion4":-1
+    },{
+        "NumPregunta": 19,
             "pregunta": "¿Que equipo preferirias usar a la hora de entrenar?",
             "Respuesta1": "Mancuernas",
             "opcion1": 0,

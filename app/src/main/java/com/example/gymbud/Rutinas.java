@@ -73,7 +73,7 @@ public class Rutinas extends Fragment {
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment firstFragment = new CuestionarioRutinasAutomaticas();
+                Fragment firstFragment = new Encuesta();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, firstFragment);
