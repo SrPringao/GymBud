@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.R;
 import com.example.gymbud.db.Entidades.Exercises;
+import com.example.gymbud.db.Entidades.IdList;
 
 import java.util.ArrayList;
 
@@ -58,6 +59,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                 listaDeIds.add(exerciseId);
                 Log.d("Lista de ids", listaDeIds.toString());
                 Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
+                IdList.getInstance().add(exerciseId);
 
                 //toast that shows the current list of ids
 //                Toast.makeText(view.getContext(), listaDeIds.toString(), Toast.LENGTH_SHORT).show();

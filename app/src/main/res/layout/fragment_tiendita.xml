@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/DETLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentRel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgrounblack"
-    tools:context=".GrupoSeleccionado">
+    android:background="@drawable/backgrounblack">
+
     <ImageView
-        android:id="@+id/DETBotonBack"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
+        android:id="@+id/TiButtonBack"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_flechanegrodorado"
@@ -21,26 +19,27 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/DETtituloejerciciosGS"
-        android:layout_below="@id/DETBotonBack"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/TiTitle"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/TiButtonBack"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
-        android:text=""
+        android:text="Seleccion de ejercicios"
+        android:textAlignment="center"
         android:textColor="@color/bottomNavigationTintColor"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="wrap_content">
+
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/DETRecycler"
-        android:layout_below="@id/DETtituloejerciciosGS"
+        android:id="@+id/TiRecycler"
+        android:layout_below="@id/TiTitle"
         android:layout_marginBottom="50dp"
         android:clipToPadding="false"
-        android:paddingTop="8dp"
+        android:layout_marginTop="20dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,5 +48,5 @@
         android:paddingEnd="20dp"
         android:paddingBottom="50dp"
         />
-</RelativeLayout>
 
+</RelativeLayout>

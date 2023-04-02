@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.gymbud.db.Entidades.IdList;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,8 +78,12 @@ public class CreacionDeRutinas extends Fragment {
     Spinner spinner;
     String item;
     Button btn;
-
     int pos;
+
+    ArrayList<Integer> listaIds = new ArrayList<>();
+    private ImageView imageViewToolbar;
+
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -81,12 +91,18 @@ public class CreacionDeRutinas extends Fragment {
         // You can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Creacion de Rutinas");
 
+
+        listaIds = IdList.getInstance();
+        Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds);
+
+
         Fragment fragment = new DetallesEjerciciosTiendita();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Bundle args = new Bundle();
 
         spinner = view.findViewById(R.id.CRSpinner);
         btn = view.findViewById(R.id.CRButton);
+        imageViewToolbar = view.findViewById(R.id.TBlogoTienda);
 
 
         ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
@@ -99,7 +115,17 @@ public class CreacionDeRutinas extends Fragment {
         spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
         spinner.setPadding(10, 10, 10, 10);
 
-
+        imageViewToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new Tiendita();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         spinner.setAdapter(adap1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
