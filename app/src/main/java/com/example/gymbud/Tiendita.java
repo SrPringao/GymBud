@@ -3,10 +3,13 @@ package com.example.gymbud;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,9 +65,23 @@ public class Tiendita extends Fragment {
         return inflater.inflate(R.layout.fragment_tiendita, container, false);
     }
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can now set the text of a TextView
+        ImageView imagenatras = view.findViewById(R.id.TiButtonBack);
+        imagenatras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment firstFragment = new CreacionDeRutinas();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 }
