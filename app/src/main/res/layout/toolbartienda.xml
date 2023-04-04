@@ -23,7 +23,7 @@
 <!--            app:srcCompat="@drawable/gblogo2" />-->
 
         <ImageView
-            android:id="@+id/logoTienda"
+            android:id="@+id/TBlogoTienda"
             android:layout_width="49dp"
             android:clickable="true"
             android:layout_height="match_parent"

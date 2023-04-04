@@ -8,25 +8,25 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgrounblack"
     tools:context=".GrupoSeleccionado">
-
-
-    <include
-        android:id="@+id/DETtoolbar"
-        layout="@layout/toolbartienda"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+    <ImageView
+        android:id="@+id/DETBotonBack"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_flechanegrodorado"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
 
     <TextView
         android:id="@+id/DETtituloejerciciosGS"
-        android:layout_below="@id/DETtoolbar"
+        android:layout_below="@id/DETBotonBack"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/lato"
         android:paddingTop="5dp"
         android:text=""

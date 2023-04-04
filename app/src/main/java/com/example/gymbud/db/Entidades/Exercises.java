@@ -13,6 +13,7 @@ public class Exercises {
         return Name;
     }
 
+
     public void setName(String name) {
         Name = name;
     }

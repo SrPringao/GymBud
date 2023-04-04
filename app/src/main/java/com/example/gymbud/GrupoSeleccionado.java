@@ -142,6 +142,7 @@ public class GrupoSeleccionado extends Fragment {
         TextView textView = view.findViewById(R.id.tituloejerciciosGS);
         textView.setText(nombreMusculo);
 
+
 //Esta funcion te regresa al fragment anterior y manda los datos id y el nombre del musculo en un bundle
         imagenatras.setOnClickListener(new View.OnClickListener() {
             @Override
