@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
-import com.example.gymbud.Modulos.InfoPersonal.infopersonal;
+import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
 import com.example.gymbud.Modulos.Sucursales.Sucursales;
 
@@ -61,7 +61,7 @@ public class FragmentContainer extends AppCompatActivity {
                 }else if (item.getId() == 2){
                     fragment = new Rutinas();
                 }else{
-                    fragment = new infopersonal();
+                    fragment = new FragmentInfoPersonal();
                 }
                 loadFragment(fragment);
             }
@@ -120,7 +120,7 @@ public class FragmentContainer extends AppCompatActivity {
                         fragmentManager.popBackStack();
                     }
 
-                    fragment = new infopersonal();
+                    fragment = new FragmentInfoPersonal();
                 }
                 loadFragment(fragment);
             }

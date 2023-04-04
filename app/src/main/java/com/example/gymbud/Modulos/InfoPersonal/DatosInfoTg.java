@@ -116,7 +116,7 @@ public class DatosInfoTg extends Fragment {
                 db.execSQL(update);
 
 
-                    Fragment firstFragment = new infopersonal();
+                    Fragment firstFragment = new FragmentInfoPersonal();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -132,7 +132,7 @@ public class DatosInfoTg extends Fragment {
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment firstFragment = new infopersonal();
+                Fragment firstFragment = new FragmentInfoPersonal();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);

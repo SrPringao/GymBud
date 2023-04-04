@@ -34,10 +34,10 @@ import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link infopersonal#newInstance} factory method to
+ * Use the {@link FragmentInfoPersonal#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class infopersonal extends Fragment {
+public class FragmentInfoPersonal extends Fragment {
 
 
 
@@ -55,7 +55,7 @@ public class infopersonal extends Fragment {
     Button botonson;
     EditText editadon;
 
-    public infopersonal() {
+    public FragmentInfoPersonal() {
         // Required empty public constructor
     }
 
@@ -68,8 +68,8 @@ public class infopersonal extends Fragment {
      * @return A new instance of fragment infopersonal.
      */
     // TODO: Rename and change types and number of parameters
-    public static infopersonal newInstance(String param1, String param2) {
-        infopersonal fragment = new infopersonal();
+    public static FragmentInfoPersonal newInstance(String param1, String param2) {
+        FragmentInfoPersonal fragment = new FragmentInfoPersonal();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -169,7 +169,7 @@ public class infopersonal extends Fragment {
         cardpeso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment secondFragment = new DatosInfoPersonal();
+                Fragment secondFragment = new CardInfoPeso();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
@@ -182,7 +182,7 @@ public class infopersonal extends Fragment {
         cardimc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment secondFragment = new DatosInfoImc();
+                Fragment secondFragment = new CardInfoImc();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
 
