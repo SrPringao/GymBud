@@ -152,7 +152,6 @@ PersonInfo personInfo;
 
         //este toast es pa verificar que el url se cree bien
 
-        //Toast.makeText(this, url,Toast.LENGTH_SHORT).show();
 
         JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -204,6 +203,7 @@ PersonInfo personInfo;
         RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
         lanzarPeticion.add(pet);
         lanzarPeticion.start();
+
     }
     //Esta funcion es en caso de que presionen que se quieren registrar, los manda a la pantalla registro
     public void LinkRegistrarse(View view) {

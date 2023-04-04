@@ -3,7 +3,9 @@ package com.example.gymbud;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.gymbud.Adaptadores.JsonPreguntas;
+import com.example.gymbud.db.DbQuery;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -77,13 +80,17 @@ public class Encuesta extends Fragment {
         return inflater.inflate(R.layout.fragment_encuesta, container, false);
     }
 
-    private int[] Resultado = new int[10];
+    public int[] Resultado = new int[20];
+
     TextView Pregunta1;
     RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
     Button Confirmado;
     int i=1;
+    int pos = 0;
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Resultado= new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         super.onViewCreated(view, savedInstanceState);
+        RutinaAuto();
         Pregunta1 = view.findViewById(R.id.Pregunta);
         Respuesta1 = view.findViewById(R.id.Respuesta1);
         Respuesta2 = view.findViewById(R.id.Respuesta2);
@@ -131,51 +138,59 @@ public class Encuesta extends Fragment {
                 }
             }
         });
+
         Confirmado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int l=i+1;
+
+                if(i==25){
+                    pos=4;
+                } else if (i==39) {
+                    pos=8;
+                } else if (i==56) {
+                    pos=14;
+                } else if (i==69) {
+                    pos=17;
+                }
 
                 if(Respuesta1.isChecked()){
-                    Resultado[i-1]=opcion1;
+                    i+=opcion1;
+                    Resultado[pos] = 1;
+                    pos +=1;
                 }else if(Respuesta2.isChecked()){
-                    if(l==3){
-                        Resultado[i-1]=opcion2;
-                        i++ ;
-                        l=i+1;
-                    }
-                    if(i==8){
-                        i++ ;
-                        l=i+1;
-
-                    }
-                    Resultado[i-1]=opcion2;
+                    i+=opcion2;
+                    Resultado[pos] = 2;
+                    pos+=1;
                 }else if(Respuesta3.isChecked()){
-                    if(i==8){
-                        i++ ;
-                        l=i+1;
-
-                    }
-                    Resultado[i-1]=opcion3;
+                    i+=opcion3;
+                    Resultado[pos] = 3;
+                    pos+=1;
                 } else if (Respuesta4.isChecked()) {
-                    if(i==8){
-                        i++ ;
-                        l=i+1;
-
-                    }
-                    Resultado[i-1]=opcion4;
+                    i+=opcion4;
+                    Resultado[pos] = 4;
+                    pos+=1;
                 }
+
+
                 Respuesta1.setChecked(false);
                 Respuesta2.setChecked(false);
                 Respuesta3.setChecked(false);
                 Respuesta4.setChecked(false);
-                datos(l++);
-                i++;
+                datos(i);
                 Log.d("I", ""+i);
-                if(i==11){
+                if(i==70){
                     for(int i=0;i<Resultado.length;i++) {
-                        Log.d("Resultado", "" + Resultado[i]);
+                        Log.d("Resultado", "Seleccion "+i +" "+ Resultado[i]);
                     }
+
+                    Bundle bundle = new Bundle();
+                    bundle.putIntArray("Resultado", Resultado);
+                    Fragment firstFragment = new Rutinas();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                 }
             }
         });
@@ -192,7 +207,7 @@ public class Encuesta extends Fragment {
 
             for (int i = 0; i < jsonArray.size(); i++) {
                 jsonObject = jsonArray.get(i).getAsJsonObject();
-                int id = jsonObject.get("id").getAsInt();
+                int id = jsonObject.get("NumPregunta").getAsInt();
                 if (Pregunta == id) {
 
 
@@ -246,4 +261,12 @@ public class Encuesta extends Fragment {
         }
     }
 
+    public void RutinaAuto(){
+        DbQuery dbQuery = new DbQuery(getContext());
+        int[] ids = new int[40];
+        ids = dbQuery.EjerciciosID(1,3,2,2);
+        for(int i=0;i<ids.length;i++){
+            Log.d("Ejercicios", "Ejercicio "+i+" "+ids[i]);
+        }
+    }
 }
