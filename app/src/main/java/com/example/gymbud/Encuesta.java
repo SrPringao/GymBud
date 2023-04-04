@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.gymbud.Adaptadores.JsonPreguntas;
+import com.example.gymbud.db.DbQuery;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -89,6 +90,7 @@ public class Encuesta extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Resultado= new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         super.onViewCreated(view, savedInstanceState);
+        RutinaAuto();
         Pregunta1 = view.findViewById(R.id.Pregunta);
         Respuesta1 = view.findViewById(R.id.Respuesta1);
         Respuesta2 = view.findViewById(R.id.Respuesta2);
@@ -180,6 +182,7 @@ public class Encuesta extends Fragment {
                     for(int i=0;i<Resultado.length;i++) {
                         Log.d("Resultado", "Seleccion "+i +" "+ Resultado[i]);
                     }
+
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Resultado", Resultado);
                     Fragment firstFragment = new Rutinas();
@@ -258,4 +261,12 @@ public class Encuesta extends Fragment {
         }
     }
 
+    public void RutinaAuto(){
+        DbQuery dbQuery = new DbQuery(getContext());
+        int[] ids = new int[40];
+        ids = dbQuery.EjerciciosID(1,3,2,2);
+        for(int i=0;i<ids.length;i++){
+            Log.d("Ejercicios", "Ejercicio "+i+" "+ids[i]);
+        }
+    }
 }

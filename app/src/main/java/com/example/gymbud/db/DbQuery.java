@@ -186,6 +186,34 @@ public class DbQuery extends DbHelper {
         cursorejercicios.close();
         return exercises;
     }
+
+    public int[] EjerciciosID(int MuscularGroup,int CantEjercicios,int tool,int dificultad){
+        Log.d("Exercises", MuscularGroup+"");
+        DbHelper dbHelper = new DbHelper(context);
+        int[] ejercicios = new int[30];
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Exercises exercises = null;
+        Cursor cursorejercicios;
+        try {
+            cursorejercicios = db.rawQuery("SELECT Id FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup + " AND Tool = " + tool + " AND Difficulty =" + dificultad+ " ORDER BY  RANDOM() LIMIT " + CantEjercicios, null);
+            int i = 0;
+            if (cursorejercicios.moveToFirst()) {
+                do{
+                ejercicios[i] = cursorejercicios.getInt(0);
+                i++;
+                }while (cursorejercicios.moveToNext());
+                if (i == CantEjercicios) {
+                    return ejercicios;
+                }
+            }
+            cursorejercicios.close();
+        }catch(Exception e){
+            Log.d("Exercises", e.getMessage());
+        }
+
+        return ejercicios;
+
+    }
     //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
     //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con
     //los valores guardados en values, para retornar la query
