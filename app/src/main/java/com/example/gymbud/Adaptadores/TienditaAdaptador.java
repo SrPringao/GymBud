@@ -1,13 +1,8 @@
 package com.example.gymbud.Adaptadores;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
-import static org.imaginativeworld.whynotimagecarousel.utils.Utils.dpToPx;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.InputType;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,9 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.R;
-import com.example.gymbud.db.Entidades.ExerciseSet;
-import com.example.gymbud.db.Entidades.Exercises;
-import com.example.gymbud.db.Entidades.IdList;
+import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Exercises;
+import com.example.gymbud.Entidades.IdList;
 
 import java.util.ArrayList;
 

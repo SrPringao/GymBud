@@ -1,7 +1,6 @@
 package com.example.gymbud.Adaptadores;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.R;
-import com.example.gymbud.db.Entidades.Sucursal;
+import com.example.gymbud.Entidades.Sucursal;
 
 import java.util.ArrayList;
 

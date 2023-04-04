@@ -7,7 +7,7 @@
     xmlns:gl="http://schemas.android.com/apk/res-auto"
     style="@style/parent.contentLayout"
     android:background="@drawable/backgrounblack"
-    tools:context=".DatosInfoPersonal">
+    tools:context=".Modulos.InfoPersonal.DatosInfoPersonal">
 
     <ImageView
         android:id="@+id/botonback1"
