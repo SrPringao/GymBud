@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgrounblack"
     style="@style/parent.contentLayout"
-    tools:context=".GrupoSeleccionado">
+    tools:context=".Modulos.SeleccionEjercicios.GrupoSeleccionado">
 
 
 

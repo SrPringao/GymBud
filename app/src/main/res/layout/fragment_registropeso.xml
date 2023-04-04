@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registropeso"
+    tools:context=".Modulos.SeleccionEjercicios.registropeso"
     android:background="@drawable/backgrounblack">
 
     <Button

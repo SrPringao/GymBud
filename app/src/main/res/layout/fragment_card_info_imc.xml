@@ -9,8 +9,10 @@
     android:background="@drawable/backgrounblack"
     tools:context=".Modulos.InfoPersonal.CardInfoPeso">
 
+
     <ImageView
-        android:id="@+id/botonback3"
+        android:id="@+id/botonback2"
+
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/ic_flechanegrodorado"
@@ -52,10 +54,11 @@
                 style="@style/viewParent.headerText.HomeCardTitle"
                 android:layout_marginBottom="20dp"
                 android:paddingBottom="10dp"
-                android:text="Calcular tasa de grasa" />
+                android:text="Indice de masa corporal" />
+
 
             <EditText
-                android:id="@+id/etInfo2"
+                android:id="@+id/etInfo1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Pregunta"
@@ -65,49 +68,32 @@
 
                 android:background="@drawable/background_edittext"
                 android:cursorVisible="true"
-                android:hint="Edad"
-                android:inputType="text"
+                android:hint="Ingresa tu estatura en metros"
+                android:inputType="numberDecimal"
                 android:paddingStart="10dp"
-
                 android:paddingTop="10dp"
+
+
                 android:paddingBottom="10dp"
                 android:textColor="@color/black"
+
                 android:textCursorDrawable="@color/black">
 
             </EditText>
-
-            <Spinner
-                android:id="@+id/SpinnerSex"
-                android:layout_width="350dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/etInfo2"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/background_edittext"
-                android:cursorVisible="true"
-
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@color/black">
-
-
-            </Spinner>
 
             <Button
                 android:id="@+id/Calc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/SpinnerSex"
+                android:layout_below="@+id/etInfo1"
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="70dp"
                 android:background="@drawable/background_forget_password"
-                android:text="boton"
+                android:text="Calcular imc"
                 android:textColor="@color/colorIdentidad6">
-
             </Button>
+
 
 
         </RelativeLayout>

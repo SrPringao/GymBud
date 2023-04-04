@@ -1,21 +1,15 @@
 package com.example.gymbud.Adaptadores;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbud.Ejercicios;
-import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.R;
-import com.example.gymbud.db.Entidades.Exercises;
-import com.example.gymbud.fragment_ejercicio_seleccionado;
+import com.example.gymbud.Entidades.Exercises;
 
 import java.util.ArrayList;
 
@@ -38,7 +32,7 @@ public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptado
     @NonNull
     @Override
     public EjerciciosAdaptador.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ejercicio_seleccionado, parent, false);
         return new EjerciciosViewHolder(view, listener);
     }
 

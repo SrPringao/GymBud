@@ -26,7 +26,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".olvidos"
+            android:name=".Modulos.Login.olvidos"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -34,16 +34,16 @@
         </activity>
 
         <activity
-            android:name=".Registro"
+            android:name=".Modulos.Login.Registro"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Modulos.Login.MainActivity"
             android:exported="false">
         </activity>
 
         <activity
-            android:name=".intro"
+            android:name=".Modulos.Login.intro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

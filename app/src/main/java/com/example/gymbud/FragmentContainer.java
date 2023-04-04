@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
+import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
+import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
+import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
+import com.example.gymbud.Modulos.Sucursales.Sucursales;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,7 +61,7 @@ public class FragmentContainer extends AppCompatActivity {
                 }else if (item.getId() == 2){
                     fragment = new Rutinas();
                 }else{
-                    fragment = new infopersonal();
+                    fragment = new FragmentInfoPersonal();
                 }
                 loadFragment(fragment);
             }
@@ -118,7 +120,7 @@ public class FragmentContainer extends AppCompatActivity {
                         fragmentManager.popBackStack();
                     }
 
-                    fragment = new infopersonal();
+                    fragment = new FragmentInfoPersonal();
                 }
                 loadFragment(fragment);
             }
