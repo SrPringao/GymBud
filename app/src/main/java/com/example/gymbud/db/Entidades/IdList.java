@@ -10,7 +10,6 @@ public class IdList {
     }
 
     //method to eliminate an id from the list
-
     public static void removeId(int id) {
         for (int i = 0; i < idList.size(); i++) {
             if (idList.get(i) == id) {

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -27,6 +28,9 @@ public class FragmentContainer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         UID = getIntent().getExtras().getInt("UID");
         Log.d("UID", "Llego el UID " + UID);
+
+        //esto hace que cuando se abra el teclado no se mueva la pantalla
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
         super.onCreate(savedInstanceState);
