@@ -3,6 +3,7 @@ package com.example.gymbud.Adaptadores;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.InputType;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -110,6 +111,8 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     seriesEditText.setId(R.id.edittext_series);
                     seriesEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
                     seriesEditText.setHint("Sets");
+                    //add text as 1
+                    seriesEditText.setText("1");
                     seriesEditText.setLayoutParams(params);
                     linearLayout.addView(seriesEditText);
 
@@ -129,6 +132,8 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     //center text
                     repsEditText.setGravity(Gravity.CENTER);
                     repsEditText.setHint("Reps");
+                    //add text as 1
+                    repsEditText.setText("1");
                     repsEditText.setLayoutParams(params);
                     linearLayout.addView(repsEditText);
 
@@ -149,7 +154,8 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
 
                             //add exercise to the list
                             exerciseSet[0] = new ExerciseSet(exerciseId, numSeries, numReps);
-                            IdList.getInstance().add(exerciseId);
+                            Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
+                            IdList.getInstance().add(exerciseSet[0]);
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
                         }
                     });
