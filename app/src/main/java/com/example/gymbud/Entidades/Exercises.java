@@ -98,6 +98,22 @@ public class Exercises {
         this.stats = stats;
     }
 
+    public void setSets(int sets){
+        this.sets = sets;
+    }
+
+    public void setReps(int reps){
+        this.reps = reps;
+    }
+
+    public int getSets(){
+        return sets;
+    }
+
+    public int getReps(){
+        return reps;
+    }
+
     public int Id;
     public String Name;
     public int MuscularGroup;
@@ -111,5 +127,6 @@ public class Exercises {
     public int Difficulty;
     public int stats;
 
-
+    public int sets;
+    public int reps;
 }

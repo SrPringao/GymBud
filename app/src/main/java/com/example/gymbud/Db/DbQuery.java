@@ -8,6 +8,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
@@ -268,18 +269,53 @@ public class DbQuery extends DbHelper {
         return stats;
 }
 
-    public ArrayList<Exercises> MostrarEjercicios(ArrayList<Integer> ids) {
+    public ArrayList<Exercises> MostrarEjercicios(ArrayList<ExerciseSet> sets) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        // Crear una lista de objetos Exercise
         ArrayList<Exercises> listaEjercicios = new ArrayList<>();
         Exercises ejercicios = null;
-        String commaSeparatedIds = ids.toString().replace("[", "").replace("]", ""); // Convertir la lista en una cadena separada por comas para usar en la cláusula IN
+        ExerciseSet setsEjercicios = null;
+
+        //si la lista recibida esta vacia, retornar la lista vacia
+        if (sets.isEmpty()) {
+            return listaEjercicios;
+        }
+
+        // Construir una cadena con los ids de los objetos ExerciseSet recibidos para usar en la cláusula IN de la consulta
+        String commaSeparatedIds = "";
+        for (ExerciseSet set : sets) {
+            commaSeparatedIds += set.getId() + ",";
+        }
+
+        //construir una lista con el numero de series del objeto ExerciseSet para asignarselo al objeto Exercise
+        ArrayList<Integer> series = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            series.add(set.getNumSeries());
+        }
+
+        //construir una lista con el numero de repeticiones del objeto ExerciseSet para asignarselo al objeto Exercise
+        ArrayList<Integer> reps = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            reps.add(set.getNumReps());
+        }
+
+
+        // Eliminar la última coma
+        commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
+
+        // Ejecutar la consulta
         Cursor cursorEjercicios = null;
         cursorEjercicios = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE + " WHERE id IN (" + commaSeparatedIds + ")", null);
+
         if (cursorEjercicios.moveToFirst()) {
+            int index = 0; //agrega una variable de índice
             do {
+                // Crear un objeto Exercise
                 ejercicios = new Exercises();
+
+                // Asignar los valores del cursor al objeto Exercise
                 ejercicios.setId(cursorEjercicios.getInt(0));
                 ejercicios.setName(cursorEjercicios.getString(1));
                 ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
@@ -293,11 +329,29 @@ public class DbQuery extends DbHelper {
                 ejercicios.setDifficulty(cursorEjercicios.getInt(10));
                 ejercicios.setStats(cursorEjercicios.getInt(11));
 
+                // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
+                ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
+                ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
+
+                // Incrementar el índice
+                index++;
+
+                // Agregar el objeto Exercise a la lista
                 listaEjercicios.add(ejercicios);
+
+                //el while se ejecuta hasta que el cursor llegue al ultimo registro
             } while (cursorEjercicios.moveToNext());
         }
+
+
+        // Cerrar el cursor
         cursorEjercicios.close();
+
+
+
+        // Retornar la lista de objetos Exercise
         return listaEjercicios;
     }
+
 
 }
