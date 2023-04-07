@@ -1,6 +1,11 @@
 package com.example.gymbud.Entidades;
 
 public class Exercises {
+
+    private int Id ,MuscularGroup, Tool, Category, Difficulty, stats,sets,reps;
+    private String Name, Focus , ForeSeeing, Execution, Details;
+    private byte[] Image;
+
     public int getId() {
         return Id;
     }
@@ -12,7 +17,6 @@ public class Exercises {
     public String getName() {
         return Name;
     }
-
 
     public void setName(String name) {
         Name = name;
@@ -109,24 +113,8 @@ public class Exercises {
     public int getSets(){
         return sets;
     }
-
     public int getReps(){
         return reps;
     }
 
-    public int Id;
-    public String Name;
-    public int MuscularGroup;
-    public String Focus;
-    public String ForeSeeing;
-    public String Execution;
-    public String Details;
-    public byte[] Image;
-    public int Tool;
-    public int Category;
-    public int Difficulty;
-    public int stats;
-
-    public int sets;
-    public int reps;
 }

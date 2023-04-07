@@ -175,6 +175,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
     Bundle mbundle = getArguments();
     String sucursal=mbundle.getString("Nombre","NO DATA");
+
     double Lat=20.637847141785972
             ,Long=-103.41884252155718;
     switch(sucursal){

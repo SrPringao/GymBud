@@ -75,8 +75,10 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
                     return;
                 }else{
+
                     //si no está, se agrega
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
 
                     //Establecer título del diálogo y centrarlo
 
@@ -89,6 +91,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     title.setGravity(Gravity.CENTER);
                     title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     builder.setCustomTitle(title);
+
 
                     LinearLayout layout = new LinearLayout(view.getContext());
                     layout.setOrientation(LinearLayout.VERTICAL);
@@ -113,7 +116,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     seriesEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
                     seriesEditText.setHint("Sets");
                     //add text as 1
-                    seriesEditText.setText("1");
+                    seriesEditText.setText("");
                     seriesEditText.setLayoutParams(params);
                     linearLayout.addView(seriesEditText);
 
@@ -134,7 +137,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     repsEditText.setGravity(Gravity.CENTER);
                     repsEditText.setHint("Reps");
                     //add text as 1
-                    repsEditText.setText("1");
+                    repsEditText.setText("");
                     repsEditText.setLayoutParams(params);
                     linearLayout.addView(repsEditText);
 
