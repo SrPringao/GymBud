@@ -20,6 +20,7 @@ import com.example.gymbud.Adaptadores.CarritoEjerciciosAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
+import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
@@ -112,6 +113,16 @@ public class Tiendita extends Fragment {
           CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjercicios(listaIds));
           Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
           recyclerView.setAdapter(adapter);
+
+          button.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+
+                  Routine routine = new Routine("Rutina Lunes", listaIds, 1);
+                  dbQuery.insertRoutine(routine);
+              }
+          });
+
 
 
         imagenatras.setOnClickListener(new View.OnClickListener() {

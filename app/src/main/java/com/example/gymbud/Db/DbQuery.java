@@ -362,9 +362,9 @@ public class DbQuery extends DbHelper {
 
         // Crear un objeto ContentValues para insertar los valores en la tabla
         ContentValues values = new ContentValues();
-        values.put("day_of_week", routine.getDayOfWeek());
-        values.put("name", routine.getName());
-        values.put("exercise_list", exerciseListJson);
+        values.put("DayOfWeek", routine.getDayOfWeek());
+        values.put("Name", routine.getName());
+        values.put("ExerciseList", exerciseListJson);
 
         // Ejecutar la consulta
         long id = db.insert(TABLE_ROUTINE, null, values);
