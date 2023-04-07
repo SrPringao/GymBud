@@ -19,4 +19,13 @@ public class IdList {
             }
         }
     }
+
+    public static boolean containsExerciseWithId(ArrayList<ExerciseSet> list, int id) {
+        for (ExerciseSet exercise : list) {
+            if (exercise.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

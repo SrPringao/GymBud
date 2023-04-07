@@ -1,5 +1,7 @@
 package com.example.gymbud.Adaptadores;
 
+import static com.example.gymbud.Entidades.IdList.containsExerciseWithId;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.InputType;
@@ -68,12 +70,11 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
             public void onClick(View view) {
                 int exerciseId = exercise.getId();
 
-                //si el id ya está en la lista, no se agrega
-                if (IdList.getInstance().contains(exerciseId)) {
-                    //toast mas rapido
+
+                if (containsExerciseWithId(IdList.getInstance(), exerciseId)){
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
+                }else{
                     //si no está, se agrega
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
@@ -153,6 +154,8 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
 
 
                             //add exercise to the list
+                            listaDeIds.add(exerciseId);
+
                             exerciseSet[0] = new ExerciseSet(exerciseId, numSeries, numReps);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
