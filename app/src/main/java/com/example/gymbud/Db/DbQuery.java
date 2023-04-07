@@ -390,6 +390,7 @@ public class DbQuery extends DbHelper {
         }
     }
 
+    //query para verificar si el dia de la semana ya tiene una rutina asignada
     public boolean routineDayAlreadyFilled (int dayOfWeek) {
         // Obtener una instancia de la base de datos en modo lectura
         DbHelper dbHelper = new DbHelper(context);
@@ -411,7 +412,5 @@ public class DbQuery extends DbHelper {
         // Devolver verdadero si la consulta devolvió al menos una fila, falso en caso contrario
         return numRows > 0;
     }
-
-
 
 }
