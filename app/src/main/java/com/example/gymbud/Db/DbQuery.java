@@ -301,16 +301,18 @@ public class DbQuery extends DbHelper {
             reps.add(set.getNumReps());
         }
 
-
         // Eliminar la última coma
         commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
 
         // Ejecutar la consulta
         Cursor cursorEjercicios = null;
-        cursorEjercicios = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE + " WHERE id IN (" + commaSeparatedIds + ")", null);
+
+        //query para obtener id y nombre de los ejercicios
+        cursorEjercicios = db.rawQuery("SELECT Id, Name FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
 
         if (cursorEjercicios.moveToFirst()) {
             int index = 0; //agrega una variable de índice
+
             do {
                 // Crear un objeto Exercise
                 ejercicios = new Exercises();
@@ -318,16 +320,6 @@ public class DbQuery extends DbHelper {
                 // Asignar los valores del cursor al objeto Exercise
                 ejercicios.setId(cursorEjercicios.getInt(0));
                 ejercicios.setName(cursorEjercicios.getString(1));
-                ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
-                ejercicios.setFocus(cursorEjercicios.getString(3));
-                ejercicios.setForeSeeing(cursorEjercicios.getString(4));
-                ejercicios.setExecution(cursorEjercicios.getString(5));
-                ejercicios.setDetails(cursorEjercicios.getString(6));
-                ejercicios.setImage(cursorEjercicios.getBlob(7));
-                ejercicios.setTool(cursorEjercicios.getInt(8));
-                ejercicios.setCategory(cursorEjercicios.getInt(9));
-                ejercicios.setDifficulty(cursorEjercicios.getInt(10));
-                ejercicios.setStats(cursorEjercicios.getInt(11));
 
                 // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
                 ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
@@ -343,15 +335,10 @@ public class DbQuery extends DbHelper {
             } while (cursorEjercicios.moveToNext());
         }
 
-
         // Cerrar el cursor
         cursorEjercicios.close();
-
-
 
         // Retornar la lista de objetos Exercise
         return listaEjercicios;
     }
-
-
 }

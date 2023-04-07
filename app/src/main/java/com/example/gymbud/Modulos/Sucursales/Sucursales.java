@@ -150,9 +150,6 @@ public class Sucursales extends Fragment {
                             Log.d("NO SIRVIO", "NO SIRVIO");
                             Log.d("JSONException", ""+e);
                         }
-
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
