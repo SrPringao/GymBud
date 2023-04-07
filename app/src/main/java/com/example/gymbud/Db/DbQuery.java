@@ -3,8 +3,10 @@ package com.example.gymbud.Db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -351,24 +353,65 @@ public class DbQuery extends DbHelper {
         return listaEjercicios;
     }
 
-    public void insertRoutine (Routine routine){
+    public boolean insertRoutine(Routine routine) throws SQLException {
         // Obtener una instancia de la base de datos en modo escritura
-        SQLiteDatabase db = getWritableDatabase();
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         // Convertir la lista de ejercicios a una cadena JSON
         String exerciseListJson = new Gson().toJson(routine.getExerciseList());
 
-        // Construir la consulta SQL
-        String query = "INSERT INTO TABLE_ROUTINE (day_of_week,name, exercise_list) VALUES (?, ?, ?)";
+        try {
+            // Crear un objeto ContentValues para insertar los valores en la tabla
+            ContentValues values = new ContentValues();
+            // Convertir day of week a String
+            String dayOfWeek = String.valueOf(routine.getDayOfWeek());
+            values.put("DayOfWeek", dayOfWeek);
+            values.put("Name", routine.getName());
+            values.put("ExerciseList", exerciseListJson);
 
-        // Crear un objeto ContentValues para insertar los valores en la tabla
-        ContentValues values = new ContentValues();
-        values.put("DayOfWeek", routine.getDayOfWeek());
-        values.put("Name", routine.getName());
-        values.put("ExerciseList", exerciseListJson);
+            // Insertar los valores en la tabla, reemplazando cualquier fila existente con el mismo valor de clave primaria
+            long result = db.insertWithOnConflict("ROUTINE", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            Log.d("INSERT", "INSERTADO");
+            Log.d("VALOR DE RESULT", String.valueOf(result));
+            // Cerrar la conexión a la base de datos
+            db.close();
+            // Devolver verdadero si la inserción fue exitosa, falso en caso contrario
+            return result != -1;
+
+        } catch (SQLException e) {
+            Log.d("INSERT", "NO INSERTADO");
+            // Manejar la excepción SQL
+            e.printStackTrace();
+            // Cerrar la conexión a la base de datos
+            db.close();
+            // Devolver falso porque la inserción falló
+            return false;
+        }
+    }
+
+    public boolean routineDayAlreadyFilled (int dayOfWeek) {
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // Ejecutar la consulta
-        long id = db.insert(TABLE_ROUTINE, null, values);
-        Log.d("ID", String.valueOf(id));
+        //esta consulta devuelve el numero de filas que coinciden con el dia de la semana
+        Cursor cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Obtener el número de filas devueltas por la consulta
+        int numRows = cursor.getCount();
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+        // Devolver verdadero si la consulta devolvió al menos una fila, falso en caso contrario
+        return numRows > 0;
     }
+
+
 
 }

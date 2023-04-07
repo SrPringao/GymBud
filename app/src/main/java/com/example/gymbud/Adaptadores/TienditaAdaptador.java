@@ -116,7 +116,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     seriesEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
                     seriesEditText.setHint("Sets");
                     //add text as 1
-                    seriesEditText.setText("");
+                    seriesEditText.setText("4");
                     seriesEditText.setLayoutParams(params);
                     linearLayout.addView(seriesEditText);
 
@@ -137,7 +137,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     repsEditText.setGravity(Gravity.CENTER);
                     repsEditText.setHint("Reps");
                     //add text as 1
-                    repsEditText.setText("");
+                    repsEditText.setText("10");
                     repsEditText.setLayoutParams(params);
                     linearLayout.addView(repsEditText);
 
