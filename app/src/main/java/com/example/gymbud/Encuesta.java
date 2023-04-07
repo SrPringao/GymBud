@@ -88,7 +88,7 @@ public class Encuesta extends Fragment {
     int i=1;
     int pos = 0;
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Resultado= new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Resultado= new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
         super.onViewCreated(view, savedInstanceState);
         RutinaAuto();
         Pregunta1 = view.findViewById(R.id.Pregunta);
@@ -140,35 +140,75 @@ public class Encuesta extends Fragment {
         });
 
         Confirmado.setOnClickListener(new View.OnClickListener() {
+            int dias=0;
+            int l=1;
             @Override
             public void onClick(View v) {
+                switch (i) {
 
-                if(i==25){
-                    pos=4;
-                } else if (i==39) {
-                    pos=8;
-                } else if (i==56) {
-                    pos=14;
-                } else if (i==69) {
-                    pos=17;
+                    case 25:
+                        pos=4;
+                        break;
+
+                        case 39:
+                        pos=8;
+                        break;
+
+                    case 41:
+
+                        if(Resultado[pos]==1){
+                            dias=3;
+                        }else if(Resultado[pos]==2) {
+                            dias = 5;
+                        }else{
+                            dias=6;
+                        }
+                        break;
+
+                    case 44:
+                        int[] TiempoxDia = new int[dias];
+                            Pregunta1.setText("¿Cuanto tiempo tienes para entrenar el dia " + l + "?");
+                            if(Respuesta1.isChecked()){
+                                TiempoxDia[l] = 1;
+                            }else if(Respuesta2.isChecked()){
+                                TiempoxDia[l] = 2;
+                            }else if(Respuesta3.isChecked()){
+                                TiempoxDia[l] = 3;
+                            }
+                            Log.d("Tiempo", "onClick: " + TiempoxDia[l]);
+                        Log.d("Tiempo", "ele: " + l);
+                            l++;
+                        break;
+
+                        case 56:
+                        pos=14;
+                        break;
+
+                        case 69:
+                        pos=17;
+                        break;
                 }
-
-                if(Respuesta1.isChecked()){
-                    i+=opcion1;
-                    Resultado[pos] = 1;
-                    pos +=1;
-                }else if(Respuesta2.isChecked()){
-                    i+=opcion2;
-                    Resultado[pos] = 2;
-                    pos+=1;
-                }else if(Respuesta3.isChecked()){
-                    i+=opcion3;
-                    Resultado[pos] = 3;
-                    pos+=1;
-                } else if (Respuesta4.isChecked()) {
-                    i+=opcion4;
-                    Resultado[pos] = 4;
-                    pos+=1;
+                if (l<dias && i==44) {
+                    Log.d("Entre", "ESTOY DENTRO");
+                }
+                else {
+                    if (Respuesta1.isChecked()) {
+                        i += opcion1;
+                        Resultado[pos] = 1;
+                        pos += 1;
+                    } else if (Respuesta2.isChecked()) {
+                        i += opcion2;
+                        Resultado[pos] = 2;
+                        pos += 1;
+                    } else if (Respuesta3.isChecked()) {
+                        i += opcion3;
+                        Resultado[pos] = 3;
+                        pos += 1;
+                    } else if (Respuesta4.isChecked()) {
+                        i += opcion4;
+                        Resultado[pos] = 4;
+                        pos += 1;
+                    }
                 }
 
 
@@ -178,11 +218,10 @@ public class Encuesta extends Fragment {
                 Respuesta4.setChecked(false);
                 datos(i);
                 Log.d("I", ""+i);
+                for(int i=0;i<Resultado.length;i++) {
+                    Log.d("Resultado", "Seleccion "+i +" "+ Resultado[i]);
+                }
                 if(i==70){
-                    for(int i=0;i<Resultado.length;i++) {
-                        Log.d("Resultado", "Seleccion "+i +" "+ Resultado[i]);
-                    }
-
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Resultado", Resultado);
                     Fragment firstFragment = new Rutinas();
@@ -192,7 +231,11 @@ public class Encuesta extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }
+
+
+
             }
+
         });
     }
     private int opcion1, opcion2, opcion3, opcion4;
@@ -264,6 +307,9 @@ public class Encuesta extends Fragment {
     public void RutinaAuto(){
         DbQuery dbQuery = new DbQuery(getContext());
         int[] ids = new int[40];
+        for(int i=0;i<ids.length;i++){
+            ids[i]=0;
+        }
         ids = dbQuery.EjerciciosID(1,3,2,2);
         for(int i=0;i<ids.length;i++){
             Log.d("Ejercicios", "Ejercicio "+i+" "+ids[i]);
