@@ -273,11 +273,15 @@ public class DbQuery extends DbHelper {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-
         // Crear una lista de objetos Exercise
         ArrayList<Exercises> listaEjercicios = new ArrayList<>();
         Exercises ejercicios = null;
         ExerciseSet setsEjercicios = null;
+
+        //si la lista recibida esta vacia, retornar la lista vacia
+        if (sets.isEmpty()) {
+            return listaEjercicios;
+        }
 
         // Construir una cadena con los ids de los objetos ExerciseSet recibidos para usar en la cláusula IN de la consulta
         String commaSeparatedIds = "";
@@ -342,6 +346,8 @@ public class DbQuery extends DbHelper {
 
         // Cerrar el cursor
         cursorEjercicios.close();
+
+
 
         // Retornar la lista de objetos Exercise
         return listaEjercicios;
