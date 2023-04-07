@@ -1,7 +1,5 @@
 package com.example.gymbud.Adaptadores;
 
-import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,16 +43,9 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CarritoEjerciciosAdapter.EjerciciosViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull CarritoEjerciciosAdapter.EjerciciosViewHolder holder, int position) {
         Exercises exercise = ListasEjercicios.get(position);
         holder.Nombre.setText(exercise.getName());
-        holder.sets.setText(String.valueOf(exercise.getSets()));
-        holder.reps.setText(String.valueOf(exercise.getReps()));
-
-        Log.d("CarritoEjerciciosAdapter ", "nombre:  " + exercise.getName());
-        Log.d("CarritoEjerciciosAdapter ", "series:  " + exercise.getSets());
-        Log.d("CarritoEjerciciosAdapter ", "repes:  " + exercise.getReps());
-
         holder.Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,9 +73,6 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
     public class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
         final TextView Nombre;
-        final TextView sets;
-        final TextView reps;
-
 
         final ImageView Button;
 
@@ -93,8 +81,6 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
             itemView.setOnClickListener(this);
             this.listener = listener;
             Nombre = itemView.findViewById(R.id.TiNombreEjercicio);
-            sets = itemView.findViewById(R.id.TiSeries);
-            reps = itemView.findViewById(R.id.TiRepes);
             Button = itemView.findViewById(R.id.TiClearIcon);
         }
 

@@ -11,10 +11,6 @@ public class ExerciseSet {
         this.numReps = numReps;
     }
 
-    public ExerciseSet(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

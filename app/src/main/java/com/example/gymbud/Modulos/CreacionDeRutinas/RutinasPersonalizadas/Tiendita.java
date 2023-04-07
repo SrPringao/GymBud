@@ -18,7 +18,6 @@ import android.widget.Spinner;
 
 import com.example.gymbud.Adaptadores.CarritoEjerciciosAdapter;
 import com.example.gymbud.Db.DbQuery;
-import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
 import com.example.gymbud.R;
 
@@ -79,7 +78,7 @@ public class Tiendita extends Fragment {
     }
 
 
-    ArrayList<ExerciseSet> listaIds = new ArrayList<>();
+    ArrayList<Integer> listaIds = new ArrayList<>();
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -106,12 +105,11 @@ public class Tiendita extends Fragment {
 
 
 
-          DbQuery dbQuery = new DbQuery (getContext());
-          listaIds = IdList.getInstance();
-
-          CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjercicios(listaIds));
-          Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
-          recyclerView.setAdapter(adapter);
+        DbQuery dbQuery = new DbQuery (getContext());
+        listaIds = IdList.getInstance();
+        CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjercicios(listaIds));
+        Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
+        recyclerView.setAdapter(adapter);
 
 
         imagenatras.setOnClickListener(new View.OnClickListener() {

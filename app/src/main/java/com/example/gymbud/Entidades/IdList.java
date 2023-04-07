@@ -3,29 +3,18 @@ package com.example.gymbud.Entidades;
 import java.util.ArrayList;
 
 public class IdList {
-    private static ArrayList<ExerciseSet> idList = new ArrayList<>();
+    private static ArrayList<Integer> idList = new ArrayList<>();
 
-    public static ArrayList<ExerciseSet> getInstance() {
+    public static ArrayList<Integer> getInstance() {
         return idList;
     }
 
     //method to eliminate an id from the list
     public static void removeId(int id) {
-        ExerciseSet idEjercicio = new ExerciseSet(id);
-
         for (int i = 0; i < idList.size(); i++) {
-            if (idList.get(i).getId() == idEjercicio.getId()) {
+            if (idList.get(i) == id) {
                 idList.remove(i);
             }
         }
-    }
-
-    public static boolean containsExerciseWithId(ArrayList<ExerciseSet> list, int id) {
-        for (ExerciseSet exercise : list) {
-            if (exercise.getId() == id) {
-                return true;
-            }
-        }
-        return false;
     }
 }

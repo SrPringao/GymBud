@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
 import com.example.gymbud.R;
 
@@ -81,7 +80,7 @@ public class CreacionDeRutinas extends Fragment {
     Button btn;
     int pos;
 
-    ArrayList<ExerciseSet> listaIds = new ArrayList<>();
+    ArrayList<Integer> listaIds = new ArrayList<>();
     private ImageView imageViewToolbar;
 
 
