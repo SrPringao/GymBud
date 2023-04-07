@@ -18,8 +18,10 @@ import java.util.ArrayList;
 
 
 public class DbQuery extends DbHelper {
+    //Declaramos las variables que vamos a usar
     Context context;
 
+    //Constructor de la clase
     public DbQuery(@Nullable Context context) {
         super(context);
         this.context = context;
@@ -96,6 +98,9 @@ public class DbQuery extends DbHelper {
         return frase;
     }
 
+    //Esta funcion lo que hace es de tipo long y lo que hace es insertar informacion en la base de datos de sqlite
+    //todos los datos que recibe son las diferentes columnas de la tabla, y lo que hacemos es instanciar un objeto DbHelper
+    //Para despues usar el metodo get writable database que lo que hace es preparar la bd para realizar cambios, despues
     public ArrayList<PersonInfo> MostrarPersonInfo(){
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -160,7 +165,6 @@ public class DbQuery extends DbHelper {
     }
     //Esta funcion tambien como fue mencionado anteriormente realiza lo mismo con la tabla ejercicio, creando un pojo y guardando los datos para poder
     //mostrarlos haciendo una query a la tabla ejercicios con su respectivo id y retornando el objeto exercises
-
     public Exercises EjerciciosVER(int id){
         Log.d("Exercises", id+"");
         DbHelper dbHelper = new DbHelper(context);
@@ -188,6 +192,10 @@ public class DbQuery extends DbHelper {
         return exercises;
     }
 
+    //Esta funcion es la que se encarga de crear el array de ejercicios que se van a mostrar en el recyclerview de la rutina,
+    //Primero creamos el arreglo y lo inicializamos, como ya fue mencionado anteriormente creamos el dbHelper y lo inicializamos con el contexto de la view,
+    //Despues hacemos una query de la tabla exercise a la bd buscando el id e iteramos todos los datos hasta tener todos los que tengan ese id en especifico,
+    //despues retornamos la lista
     public int[] EjerciciosID(int MuscularGroup,int CantEjercicios,int tool,int dificultad){
         Log.d("Exercises", MuscularGroup+"");
         DbHelper dbHelper = new DbHelper(context);

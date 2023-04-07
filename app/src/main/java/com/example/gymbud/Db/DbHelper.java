@@ -25,6 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
 
+    
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_PERSONINFO + "(" + " UserId INTEGER PRIMARY KEY AUTOINCREMENT," +
