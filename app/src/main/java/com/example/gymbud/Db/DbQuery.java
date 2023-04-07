@@ -12,7 +12,9 @@ import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
+import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Entidades.Stats;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,6 @@ public class DbQuery extends DbHelper {
     public long InsertarInfoPerson(int UserId,int Assists,int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age,String Phrase) {
         long id = 0;
         try {
-
 
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -349,4 +350,25 @@ public class DbQuery extends DbHelper {
         // Retornar la lista de objetos Exercise
         return listaEjercicios;
     }
+
+    public void insertRoutine (Routine routine){
+        // Obtener una instancia de la base de datos en modo escritura
+        SQLiteDatabase db = getWritableDatabase();
+        // Convertir la lista de ejercicios a una cadena JSON
+        String exerciseListJson = new Gson().toJson(routine.getExerciseList());
+
+        // Construir la consulta SQL
+        String query = "INSERT INTO TABLE_ROUTINE (day_of_week,name, exercise_list) VALUES (?, ?, ?)";
+
+        // Crear un objeto ContentValues para insertar los valores en la tabla
+        ContentValues values = new ContentValues();
+        values.put("day_of_week", routine.getDayOfWeek());
+        values.put("name", routine.getName());
+        values.put("exercise_list", exerciseListJson);
+
+        // Ejecutar la consulta
+        long id = db.insert(TABLE_ROUTINE, null, values);
+        Log.d("ID", String.valueOf(id));
+    }
+
 }
