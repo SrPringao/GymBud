@@ -38,22 +38,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Age INTEGER NOT NULL," +
                 "Phrase TEXT REFERENCES PHRASE (Id))");
 
-//        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_ROUTINENAME + "(" + "Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                "Routine TEXT REFERENCES ROUTINE (RoutineName))");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_PHRASE + "(" + "Id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "Motivation TEXT NOT NULL)");
 
-//        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_ROUTINE + "(" + "Id INTEGER PRIMARY KEY AUTOINCREMENT," +
-//                "RoutineName TEXT UNIQUE NOT NULL," +
-//                "EXC1 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC2 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC3 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC4 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC5 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC6 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC7 TEXT REFERENCES EXERCISE (Id)," +
-//                "EXC8 TEXT REFERENCES EXERCISE (Id))");
+
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_ROUTINE + "(" +

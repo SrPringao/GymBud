@@ -17,7 +17,9 @@ import com.example.gymbud.Entidades.Phrase;
 import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Entidades.Stats;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -287,7 +289,6 @@ public class DbQuery extends DbHelper {
         // Crear una lista de objetos Exercise
         ArrayList<Exercises> listaEjercicios = new ArrayList<>();
         Exercises ejercicios = null;
-        ExerciseSet setsEjercicios = null;
 
         //si la lista recibida esta vacia, retornar la lista vacia
         if (sets.isEmpty()) {
@@ -411,6 +412,130 @@ public class DbQuery extends DbHelper {
 
         // Devolver verdadero si la consulta devolvió al menos una fila, falso en caso contrario
         return numRows > 0;
+    }
+
+    //query para obtener la rutina de un dia especifico
+    public Routine getRoutineByDay (int dayOfWeek) {
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //log para verificar que se esta ejecutando la consulta
+
+        Cursor cursor = null;
+
+        // Ejecutar la consulta
+        cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Crear una lista de objetos Exercises
+        Exercises ejercicios = null;
+
+        // Crear un objeto Routine
+        Routine routine = null;
+
+        //si la lista recibida esta vacia, retornar la lista vacia
+        if (cursor.getCount() == 0) {
+            //Se retorna la lista vacia
+            Log.d("LISTA VACIA", "LISTA VACIA");
+            return routine;
+        }
+
+        ArrayList<Exercises> listaEjercicios = new ArrayList<>();
+
+
+        // Ejecutar la consulta
+        if (cursor.moveToFirst()) {
+            // Crear un objeto Routine
+            routine = new Routine();
+
+            // Asignar los valores del cursor al objeto Routine
+            routine.setDayOfWeek(cursor.getInt(0));
+            routine.setName(cursor.getString(1));
+            // Convertir la cadena JSON a una ArrayList de objetos ExerciseSet
+            Type listType = new TypeToken<ArrayList<ExerciseSet>>(){}.getType();
+            //esta linea setea la lista de ejercicios de la rutina
+            routine.setExerciseList(new Gson().fromJson(cursor.getString(2), listType));
+        }
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+
+//        // Construir una cadena con los ids de los objetos routine recibidos
+//        String commaSeparatedIds = "";
+//        for (ExerciseSet set : routine.getExerciseList()) {
+//            commaSeparatedIds += set.getId() + ",";
+//        }
+//
+//        // Eliminar la última coma
+//        commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
+//
+//        //construir una lista con el numero de series del objeto routine para asignarselo al objeto Exercise
+//        ArrayList<Integer> series = new ArrayList<>();
+//        for (ExerciseSet set : routine.getExerciseList()) {
+//            series.add(set.getNumSeries());
+//        }
+//
+//        //construir una lista con el numero de repeticiones del objeto routine para asignarselo al objeto Exercise
+//        ArrayList<Integer> reps = new ArrayList<>();
+//        for (ExerciseSet set : routine.getExerciseList()) {
+//            reps.add(set.getNumReps());
+//        }
+//
+//        //Consulta para crear una lista de grupos musculares segun los ids de los ejercicios de la rutina
+//        cursor = db.rawQuery("SELECT * FROM EXERCISE WHERE Id IN (" + commaSeparatedIds + ")", null);
+//
+//        //si la lista recibida esta vacia, retornar la lista vacia
+//        if (cursor.getCount() == 0) {
+//            //Se retorna la lista vacia
+//            Log.d("LISTA VACIA", "LISTA VACIA");
+//            return routine;
+//        }
+//
+//        // Crear un objeto Exercise
+//        Exercises ejercicio = null;
+//
+//        // Crear un objeto ExerciseSet
+//
+//        // Ejecutar la consulta
+//        if (cursor.moveToFirst()) {
+//            int index = 0; //agrega una variable de índice
+//
+//            do {
+//                // Crear un objeto Exercise
+//                ejercicio = new Exercises();
+//
+//                // Asignar los valores del cursor al objeto Exercise
+//                ejercicio.setId(cursor.getInt(0));
+//                ejercicio.setName(cursor.getString(1));
+//
+//                int muscularGroup = cursor.getInt(2);
+//                ejercicio.setMuscularGroup(muscularGroup);
+//                // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
+//                ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
+//                ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
+//
+//                // Incrementar el índice
+//                index++;
+//                // Agregar el objeto Exercise a la lista
+//                listaEjercicios.add(ejercicio);
+//            } while (cursor.moveToNext());
+//        }
+//
+//        // Cerrar el cursor
+//        cursor.close();
+//
+//        // Cerrar la conexión a la base de datos
+//        db.close();
+//
+//        //Log de los datos que tiene la lista de ejercicios
+//        Log.d("LISTA DE EJERCICIOS Finalisima", listaEjercicios.toString());
+
+        Log.d("RUTINA", routine.toString());
+        Log.d("LISTA DE EJERCICIOS", routine.getExerciseList().toString());
+        return routine;
     }
 
 }

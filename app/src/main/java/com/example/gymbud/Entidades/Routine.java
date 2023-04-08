@@ -14,6 +14,8 @@ public class Routine {
         this.dayOfWeek = dayOfWeek;
     }
 
+    public Routine(){}
+
     public String getName() {
         return name;
     }
@@ -24,5 +26,18 @@ public class Routine {
 
     public int getDayOfWeek() {
         return dayOfWeek;
+    }
+
+   //setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExerciseList(List<ExerciseSet> exerciseList) {
+        this.exerciseList = exerciseList;
+    }
+
+    public void setDayOfWeek(int dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 }

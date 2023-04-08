@@ -9,6 +9,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.gymbud.Db.DbQuery;
@@ -29,6 +31,7 @@ import com.example.gymbud.R;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
+import java.util.Calendar;
 import java.util.Random;
 
 
@@ -127,9 +130,53 @@ public class FragmentInfoPersonal extends Fragment {
         GradientRelativeLayout cardimc = view.findViewById(R.id.cardimc);
         GradientRelativeLayout cardgrasa = view.findViewById(R.id.cardgrasa);
 
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int numberDayOfWeek = ((dayOfWeek - Calendar.SUNDAY + 7) % 7);
+        if (numberDayOfWeek == 0) {
+            numberDayOfWeek = 7;
+        }
+
+
+        Log.d("dia de la semana ", String.valueOf(numberDayOfWeek));
+
+
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
 
+//        if (dbQuery.routineDayAlreadyFilled(numberDayOfWeek)){
+//        }
+
+        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
+
+        View separdor = view.findViewById(R.id.separadorGM);
+        ImageView imgGM1 = view.findViewById(R.id.imagenGM1);
+        ImageView imgGM2 = view.findViewById(R.id.imagenGM2);
+        TextView textoGMROutine = view.findViewById(R.id.textViewSub2Title);
+
+
+        String dayName="";
+
+        if (!dbQuery.routineDayAlreadyFilled(numberDayOfWeek)) {
+            dayName = "El dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1] + " no tiene rutina asignada";
+            textoGMROutine.setText(dayName);
+            Log.d("Error sin rutina", "El dia no tiene ninguna rutina asignada");
+            separdor.setVisibility(View.GONE);
+            imgGM2.setVisibility(View.GONE);
+            //layout_centerInParent = true to img1
+            imgGM1.setVisibility(View.VISIBLE);
+            imgGM1.setImageResource(R.drawable.icmg_cruz);
+            //center image in parent
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
+            params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            imgGM1.setLayoutParams(params);
+        }else {
+            //using strings.xml set day name to textview
+            dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
+            textoGMROutine.setText(dayName);
+        }
+
+        dbQuery.getRoutineByDay(numberDayOfWeek);
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);

@@ -111,33 +111,46 @@
                 app:cardCornerRadius="15dp"
                 app:cardPreventCornerOverlap="true">
 
-
                 <net.colindodd.gradientlayout.GradientRelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:minHeight="100dp"
                     android:padding="10dp"
                     gl:end_color="@color/colorIdentidad6"
                     gl:orientation="LEFT_RIGHT"
                     gl:start_color="@color/colorIdentidad5">
 
-
                     <TextView
                         android:id="@+id/textViewSub2Title"
+                        android:layout_marginBottom="10dp"
+                        android:textAlignment="center"
                         style="@style/viewParent.headerText.HomeCardTitle"
                         android:text="Rutina de hoy" />
 
+                    <View
+                        android:id="@+id/separadorGM"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_centerInParent="true" />
 
                     <ImageView
-                        android:layout_width="230dp"
-                        android:layout_height="131dp"
-                        android:layout_below="@+id/textViewSub2Title"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/gblogo">
+                        android:id="@+id/imagenGM1"
+                        android:layout_width="129dp"
+                        android:layout_height="143dp"
+                        android:layout_below="@id/textViewSub2Title"
+                        android:layout_toStartOf="@id/separadorGM"
+                        android:src="@drawable/icmg_bicep"/>
 
-                    </ImageView>
+                    <ImageView
+                        android:id="@+id/imagenGM2"
+                        android:layout_width="129dp"
+                        android:layout_height="143dp"
+                        android:layout_toEndOf="@+id/separadorGM"
+                        android:layout_below="@id/textViewSub2Title"
+                        android:src="@drawable/icmg_abs" />
 
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -232,6 +245,7 @@
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/dias"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="50dp">
 
