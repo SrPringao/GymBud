@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.gymbud.Adaptadores.JsonPreguntas;
@@ -22,8 +20,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,7 +76,7 @@ public class Encuesta extends Fragment {
         return inflater.inflate(R.layout.fragment_encuesta, container, false);
     }
 
-    public int[] Resultado = new int[20];
+    public int[] Resultadosinprocesar = new int[20];
 
     TextView Pregunta1;
     RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
@@ -88,9 +84,8 @@ public class Encuesta extends Fragment {
     int i=1;
     int pos = 0;
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Resultado= new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
+        Resultadosinprocesar = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         super.onViewCreated(view, savedInstanceState);
-        RutinaAuto();
         Pregunta1 = view.findViewById(R.id.Pregunta);
         Respuesta1 = view.findViewById(R.id.Respuesta1);
         Respuesta2 = view.findViewById(R.id.Respuesta2);
@@ -151,14 +146,14 @@ public class Encuesta extends Fragment {
                         break;
 
                         case 39:
-                        pos=8;
+                        pos=7;
                         break;
 
                     case 41:
 
-                        if(Resultado[pos]==1){
+                        if(Resultadosinprocesar[pos]==1){
                             dias=3;
-                        }else if(Resultado[pos]==2) {
+                        }else if(Resultadosinprocesar[pos]==2) {
                             dias = 5;
                         }else{
                             dias=6;
@@ -181,11 +176,11 @@ public class Encuesta extends Fragment {
                         break;
 
                         case 56:
-                        pos=14;
+                        pos=12;
                         break;
 
                         case 69:
-                        pos=17;
+                        pos=15;
                         break;
                 }
                 if (l<dias && i==44) {
@@ -194,19 +189,19 @@ public class Encuesta extends Fragment {
                 else {
                     if (Respuesta1.isChecked()) {
                         i += opcion1;
-                        Resultado[pos] = 1;
+                        Resultadosinprocesar[pos] = 1;
                         pos += 1;
                     } else if (Respuesta2.isChecked()) {
                         i += opcion2;
-                        Resultado[pos] = 2;
+                        Resultadosinprocesar[pos] = 2;
                         pos += 1;
                     } else if (Respuesta3.isChecked()) {
                         i += opcion3;
-                        Resultado[pos] = 3;
+                        Resultadosinprocesar[pos] = 3;
                         pos += 1;
                     } else if (Respuesta4.isChecked()) {
                         i += opcion4;
-                        Resultado[pos] = 4;
+                        Resultadosinprocesar[pos] = 4;
                         pos += 1;
                     }
                 }
@@ -218,12 +213,14 @@ public class Encuesta extends Fragment {
                 Respuesta4.setChecked(false);
                 datos(i);
                 Log.d("I", ""+i);
-                for(int i=0;i<Resultado.length;i++) {
-                    Log.d("Resultado", "Seleccion "+i +" "+ Resultado[i]);
+                for(int i = 0; i< Resultadosinprocesar.length; i++) {
+                    int n = i+1;
+                    Log.d("Resultado", "Seleccion "+ n +" "+ Resultadosinprocesar[i]);
                 }
                 if(i==70){
+                    RutinaAuto(Resultadosinprocesar);
                     Bundle bundle = new Bundle();
-                    bundle.putIntArray("Resultado", Resultado);
+                    bundle.putIntArray("Resultado", Resultadosinprocesar);
                     Fragment firstFragment = new Rutinas();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -304,11 +301,34 @@ public class Encuesta extends Fragment {
         }
     }
 
-    public void RutinaAuto(){
+    public void RutinaAuto(int[] ResultadosSinProcesar) {
+        //Primer resultado es el sexo del usuario(1 es hombre, 2 es mujer)
+        //el segundo es si padece de alguna enfermedad(1 es si, 2 es no)
+        // el tercero es si la enfermedad le dificulta el entrenamiento(1 si 2 no)
+        //El cuarto es en que tren le dificulta la enfermedad: 1 tren superior, 2 tren inferior, 3 ejercicios cardiovasculares,4 todos.
+        //La cinco es si tiene una lesion(1 si 2 no)
+        //el sexto es en que tren se encuentra lesionado: 1 tren superior, 2 tren inferior.
+        //la siete depende si escogio 1:(Es tren superior por lo que las opciones son: 1: Hombro, 2:Pecho, 3:Brazo, 4:espalda)
+        //Si escogio 2:(Es tren inferior por lo que las opciones son: 1: Rodilla, 2:Tobillo, 3:Isquios, 4:Cuadriceps)
+        //la octava es la experiencia en el gimnasio: 1:Novato, 2:Intermedio, 3:Avanzado
+        //La novena es su condicion de fisica actual: 1:Bajo, 2:Medio/Alto
+        //La decima es cuantos dias entrena: 1:3 2:5 3:6
+        //La once pregunta si dispone del mismo dia para entrenar: 1:Si 2:No
+        //La doce pregunta Cuanto tiempo dispone para hacer ejercicio: 1:Menos de 60 mins, 2:Entre 60 y 90 mins, 3:Mas de 90 mins
+        //O en caso de que haya seleccionado 2 en la doce pregunta: 1:Entre 30 y 60 mins, 2:Entre 60 y 90 mins, 3:Mas de 90 mins y se repite la pregunta la cantidad de veces que se selecciono en la pregunta 11
+        //La trece pregunta su objetivo: 1:Ganar masa muscular, 2:Perder peso, 3:Mejorar salud en general, 4:Mantener la forma física actual
+        //La catorce pregunta en que musculos desea enfocarse: 1:Tren superior, 2:Tren inferior, 3:Cuerpo completo.
+        //La quince pregunta si desea agregar abdomen a la rutina: 1:Si 2:No.
+        //La dieciseis pregunta que equipo preferiria usar a la hora de entrenar: 1:Mancuernas, 2:Poleas, 3:Barras, 4:Maquinas
+
+
+
+
+
         DbQuery dbQuery = new DbQuery(getContext());
-        int[] ids = new int[40];
-        for(int i=0;i<ids.length;i++){
-            ids[i]=0;
+        int[] ids;
+        for(int i=0;i<ResultadosSinProcesar.length;i++){
+
         }
         ids = dbQuery.EjerciciosID(1,3,2,2);
         for(int i=0;i<ids.length;i++){

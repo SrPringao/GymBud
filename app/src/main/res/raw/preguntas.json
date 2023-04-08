@@ -85,13 +85,13 @@
     {
       "NumPregunta": 28,
       "pregunta": "¿En que parte es esta lesion?",
-      "Respuesta1": "Pecho",
+      "Respuesta1": "Hombro",
       "opcion1": 11,
-      "Respuesta2": "Brazo",
+      "Respuesta2": "Pecho",
       "opcion2": 11,
-      "Respuesta3": "Espalda",
+      "Respuesta3": "Brazo",
       "opcion3": 11,
-      "Respuesta4": "Hombro",
+      "Respuesta4": "Espalda",
       "opcion4": 11
     },
     {
