@@ -30,6 +30,7 @@ import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.Login.MainActivity;
+import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.example.gymbud.R;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
@@ -133,6 +134,7 @@ public class FragmentInfoPersonal extends Fragment {
         GradientRelativeLayout cardpeso = view.findViewById(R.id.cardpeso);
         GradientRelativeLayout cardimc = view.findViewById(R.id.cardimc);
         GradientRelativeLayout cardgrasa = view.findViewById(R.id.cardgrasa);
+        GradientRelativeLayout cardRutina = view.findViewById(R.id.cardRutina);
 
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
@@ -148,10 +150,7 @@ public class FragmentInfoPersonal extends Fragment {
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
 
-//        if (dbQuery.routineDayAlreadyFilled(numberDayOfWeek)){
-//        }
-
-        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
+//        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
 
         View separdor = view.findViewById(R.id.separadorGM);
         ImageView imgGM1 = view.findViewById(R.id.imagenGM1);
@@ -221,7 +220,23 @@ public class FragmentInfoPersonal extends Fragment {
         }
 
         //get routine by day
-        dbQuery.getRoutineByDay(numberDayOfWeek);
+        //dbQuery.getRoutineByDay(numberDayOfWeek);
+
+        int finalNumberDayOfWeek = numberDayOfWeek;
+        cardRutina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("dia", finalNumberDayOfWeek);
+                Fragment secondFragment = new VerRutinas();
+                secondFragment.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, secondFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);
@@ -269,6 +284,8 @@ public class FragmentInfoPersonal extends Fragment {
                 transaction.commit();
             }
         });
+
+
 
         //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosInfoIMC
         cardimc.setOnClickListener(new View.OnClickListener() {

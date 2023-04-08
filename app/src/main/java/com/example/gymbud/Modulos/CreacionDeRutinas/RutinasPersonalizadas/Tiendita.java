@@ -133,7 +133,7 @@ public class Tiendita extends Fragment {
                         String day = spinner.getSelectedItem().toString();
                         int dayOfWeek = spinner.getSelectedItemPosition() + 1;
                         Routine routine = new Routine("Rutina " + day, listaIds, dayOfWeek);
-                        Log.d("El dia de la semana " + day + "ya cuenta con una rutina", dbQuery.routineDayAlreadyFilled(dayOfWeek) + "");
+//                        Log.d("El dia de la semana " + day + "ya cuenta con una rutina", dbQuery.routineDayAlreadyFilled(dayOfWeek) + "");
 
                         //si el dia de la semana ya cuenta con una rutina, preguntar al usuario si le gustaria reemplazarla o no
                         if (dbQuery.routineDayAlreadyFilled(dayOfWeek)) {
