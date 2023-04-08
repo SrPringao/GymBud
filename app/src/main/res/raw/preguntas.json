@@ -74,24 +74,24 @@
       "NumPregunta": 27,
       "pregunta": "¿En que parte es esta lesion?",
       "Respuesta1": "Rodilla",
-      "opcion1": 1,
+      "opcion1": 12,
       "Respuesta2": "Tobillo",
-      "opcion2": 1,
+      "opcion2": 12,
       "Respuesta3": "Isquios",
-      "opcion3": 1,
+      "opcion3": 12,
       "Respuesta4": "Cuadriceps",
-      "opcion4": 1
+      "opcion4": 12
     },
     {
       "NumPregunta": 28,
       "pregunta": "¿En que parte es esta lesion?",
-      "Respuesta1": "Pecho",
+      "Respuesta1": "Hombro",
       "opcion1": 11,
-      "Respuesta2": "Brazo",
+      "Respuesta2": "Pecho",
       "opcion2": 11,
-      "Respuesta3": "Espalda",
+      "Respuesta3": "Brazo",
       "opcion3": 11,
-      "Respuesta4": "Hombro",
+      "Respuesta4": "Espalda",
       "opcion4": 11
     },
     {
@@ -126,30 +126,30 @@
       "Respuesta2": "5",
       "opcion2": 1,
       "Respuesta3": "6",
-        "opcion3": 1,
+      "opcion3": 1,
       "Respuesta4": "",
       "opcion4": 0
     },
     {
       "NumPregunta": 42,
-        "pregunta": "¿Con cuanto tiempo dispones  para hacer ejercicio?",
-        "Respuesta1": "Menos de 60 mins",
-        "opcion1": 1,
-        "Respuesta2": "Entre 60 y 90 mins",
-        "opcion2": 1,
-        "Respuesta3": "Más de 90 mins",
-        "opcion3": 1,
+      "pregunta": "¿Dispones del mismo tiempo todos los dias?",
+      "Respuesta1": "Si",
+      "opcion1": 1,
+      "Respuesta2": "No",
+      "opcion2": 2,
+      "Respuesta3": "",
+      "opcion3": 0,
       "Respuesta4": "",
       "opcion4": 0
     },{
       "NumPregunta": 43,
-      "pregunta": "¿Dispones del mismo tiempo todos los dias?",
-      "Respuesta1": "Si",
+      "pregunta": "¿Con cuanto tiempo dispones  para hacer ejercicio?",
+      "Respuesta1": "Menos de 60 mins",
       "opcion1": 13,
-      "Respuesta2": "No",
-      "opcion2": 1,
-      "Respuesta3": "",
-      "opcion3": 0,
+      "Respuesta2": "Entre 60 y 90 mins",
+      "opcion2": 13,
+      "Respuesta3": "Más de 90 mins",
+      "opcion3": 13,
       "Respuesta4": "",
       "opcion4": 0
     },{
@@ -165,24 +165,24 @@
       "opcion4": 0
     },{
       "NumPregunta": 56,
-        "pregunta": "¿Cuál es su objetivo principal de entrenamiento?",
-        "Respuesta1": " Ganar masa muscular",
-        "opcion1": 1,
-        "Respuesta2": "Perder peso",
-        "opcion2": 1,
-        "Respuesta3": "Mejorar la salud en general",
-        "opcion3": 1,
-        "Respuesta4": "Mantener la forma física actual",
+      "pregunta": "¿Cuál es su objetivo principal de entrenamiento?",
+      "Respuesta1": " Ganar masa muscular",
+      "opcion1": 1,
+      "Respuesta2": "Ganar Fuerza",
+      "opcion2": 1,
+      "Respuesta3": "Bajar de peso",
+      "opcion3": 1,
+      "Respuesta4": "Mantener la forma física actual",
       "opcion4":1
-      },{
+    },{
       "NumPregunta": 57,
-        "pregunta": "¿En qué músculos desea enfocarse?",
-        "Respuesta1": "Tren Superior",
-        "opcion1": 1,
-        "Respuesta2": "Tren Inferior",
-        "opcion2": 1,
-        "Respuesta3": "Cuerpo completo",
-        "opcion3": 1,
+      "pregunta": "¿En qué músculos desea enfocarse?",
+      "Respuesta1": "Tren Superior",
+      "opcion1": 1,
+      "Respuesta2": "Tren Inferior",
+      "opcion2": 1,
+      "Respuesta3": "Cuerpo completo",
+      "opcion3": 1,
       "Respuesta4": "",
       "opcion4":0
     },{
@@ -197,16 +197,16 @@
       "Respuesta4": "",
       "opcion4":0
     },{
-        "NumPregunta": 69,
-            "pregunta": "¿Que equipo preferirias usar a la hora de entrenar?",
-            "Respuesta1": "Mancuernas",
-            "opcion1": 1,
-            "Respuesta2": "Poleas",
-            "opcion2": 1,
-            "Respuesta3": "Barras",
-            "opcion3": 1,
-            "Respuesta4": "Maquinas",
-            "opcion4": 1
-        }
+      "NumPregunta": 69,
+      "pregunta": "¿Que equipo preferirias usar a la hora de entrenar?",
+      "Respuesta1": "Mancuernas",
+      "opcion1": 1,
+      "Respuesta2": "Poleas",
+      "opcion2": 1,
+      "Respuesta3": "Barras",
+      "opcion3": 1,
+      "Respuesta4": "Maquinas",
+      "opcion4": 1
+    }
   ]
 }
