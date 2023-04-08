@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.IdList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -42,7 +44,7 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
     @NonNull
     @Override
     public VerRutinaDelDiaAdapter.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ejercicios_seleccionados_tiendita, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ver_rutinas, parent, false);
         return new EjerciciosViewHolder(view, listener);
     }
 
@@ -55,11 +57,19 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
 
         ExerciseSet exercise = ListasEjercicios.get(position);
         holder.Nombre.setText(exercise.getName());
-        holder.sets.setText(String.valueOf(exercise.getNumSeries()));
-        holder.reps.setText(String.valueOf(exercise.getNumReps()));
+        holder.Sets.setText(String.valueOf(exercise.getNumSeries()));
+        holder.Reps.setText(String.valueOf(exercise.getNumReps()));
 
-        Log.d("VerRutinaDelDiaAdapter ", "id:  " + exercise.getId());
-        Log.d("VerRutinaDelDiaAdapter ", "nombre:  " + exercise.getName());
+        int muscleGroup = exercise.getMuscleGroup();
+
+        List<String> muscleGroups = Arrays.asList(holder.itemView.getResources().getStringArray(R.array.ListaEjercicios));
+
+        if (muscleGroup > 11){
+            muscleGroup -= 1;
+        }
+
+        Log.d("VerRutinaDelDiaAdapter ", "muscleGroup:  " + muscleGroup);
+        holder.GrupoMuscular.setText("Grupo muscular: "+muscleGroups.get(muscleGroup-1));
 
     }
 
@@ -75,16 +85,19 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
     public class EjerciciosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         EventOnItemClick listener;
         final TextView Nombre;
-        final TextView sets;
-        final TextView reps;
+        final TextView Sets;
+        final TextView Reps;
+
+        final TextView GrupoMuscular;
 
         public EjerciciosViewHolder(@NonNull View itemView, EventOnItemClick listener) {
             super(itemView);
             itemView.setOnClickListener(this);
             this.listener = listener;
-            Nombre = itemView.findViewById(R.id.TiNombreEjercicio);
-            sets = itemView.findViewById(R.id.TiSeries);
-            reps = itemView.findViewById(R.id.TiRepes);
+            Nombre = itemView.findViewById(R.id.VRCardNombreEjercicio);
+            Sets = itemView.findViewById(R.id.VRCardSeries);
+            Reps = itemView.findViewById(R.id.VRCardRepes);
+            GrupoMuscular = itemView.findViewById(R.id.VRCardGrupoMuscular);
         }
 
         @Override

@@ -51,11 +51,11 @@ public class VerEliminarCarritoAdapter extends RecyclerView.Adapter<VerEliminarC
         holder.sets.setText(String.valueOf(exercise.getSets()));
         holder.reps.setText(String.valueOf(exercise.getReps()));
 
-        Log.d("VerEliminarCarritoAdapter ", "id:  " + exercise.getId());
-        Log.d("VerEliminarCarritoAdapter ", "nombre:  " + exercise.getName());
-        Log.d("VerEliminarCarritoAdapter ", "series:  " + exercise.getSets());
-        Log.d("VerEliminarCarritoAdapter ", "repes:  " + exercise.getReps());
-        Log.d("VerEliminarCarritoAdapter ", "musculo:  " + exercise.getMuscularGroup());
+//        Log.d("VerEliminarCarritoAdapter ", "id:  " + exercise.getId());
+//        Log.d("VerEliminarCarritoAdapter ", "nombre:  " + exercise.getName());
+//        Log.d("VerEliminarCarritoAdapter ", "series:  " + exercise.getSets());
+//        Log.d("VerEliminarCarritoAdapter ", "repes:  " + exercise.getReps());
+//        Log.d("VerEliminarCarritoAdapter ", "musculo:  " + exercise.getMuscularGroup());
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
             @Override

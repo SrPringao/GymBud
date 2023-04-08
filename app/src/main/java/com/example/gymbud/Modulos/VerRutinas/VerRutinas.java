@@ -98,7 +98,7 @@ public class VerRutinas extends Fragment {
 
         Bundle bundle = getArguments();
         int numberDayOfWeek = bundle.getInt("dia") - 1;
-        Log.d("Dia recibido: ", String.valueOf(numberDayOfWeek));
+//        Log.d("Dia recibido: ", String.valueOf(numberDayOfWeek));
         spinner.setSelection(numberDayOfWeek);
 
         ImageView botonBack = view.findViewById(R.id.VRButtonBack);
@@ -126,7 +126,7 @@ public class VerRutinas extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int newDayOfWeek = position + 1;
-                Log.d("Dia seleccionado: ", String.valueOf(newDayOfWeek));
+//                Log.d("Dia seleccionado: ", String.valueOf(newDayOfWeek));
                 updateRecyclerView(newDayOfWeek);
             }
 

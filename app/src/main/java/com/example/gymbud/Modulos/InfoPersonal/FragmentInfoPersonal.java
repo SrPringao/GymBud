@@ -150,7 +150,7 @@ public class FragmentInfoPersonal extends Fragment {
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
 
-        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
+//        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
 
         View separdor = view.findViewById(R.id.separadorGM);
         ImageView imgGM1 = view.findViewById(R.id.imagenGM1);
