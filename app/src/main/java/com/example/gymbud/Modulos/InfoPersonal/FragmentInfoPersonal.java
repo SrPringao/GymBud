@@ -3,6 +3,8 @@ package com.example.gymbud.Modulos.InfoPersonal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.widget.NestedScrollView;
@@ -32,6 +34,7 @@ import com.example.gymbud.R;
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 
@@ -156,6 +159,7 @@ public class FragmentInfoPersonal extends Fragment {
 
 
         String dayName="";
+        TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
 
         if (!dbQuery.routineDayAlreadyFilled(numberDayOfWeek)) {
             dayName = "El dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1] + " no tiene rutina asignada";
@@ -174,7 +178,32 @@ public class FragmentInfoPersonal extends Fragment {
             //using strings.xml set day name to textview
             dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
             textoGMROutine.setText(dayName);
-            dbQuery.gruposRepetidos(numberDayOfWeek);
+            List<Integer> Repetidos = dbQuery.gruposRepetidos(numberDayOfWeek);
+
+            if (Repetidos.size()<=1){
+                int index = Repetidos.get(0) - 1;
+                separdor.setVisibility(View.GONE);
+                imgGM2.setVisibility(View.GONE);
+                Drawable drawable = imagenes.getDrawable(index);
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
+                params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+                imgGM1.setLayoutParams(params);
+                imgGM1.setImageDrawable(drawable);
+                imagenes.recycle();
+            }else {
+                int index1 = Repetidos.get(0) - 1;
+                int index2 = Repetidos.get(1) - 1;
+                separdor.setVisibility(View.VISIBLE);
+                imgGM2.setVisibility(View.VISIBLE);
+
+                Drawable drawable1 = imagenes.getDrawable(index1);
+                Drawable drawable2 = imagenes.getDrawable(index2);
+                imgGM1.setImageDrawable(drawable1);
+                imgGM2.setImageDrawable(drawable2);
+
+                imagenes.recycle();
+            }
+
         }
 
         //get routine by day
