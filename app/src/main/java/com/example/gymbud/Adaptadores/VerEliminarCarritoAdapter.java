@@ -18,11 +18,11 @@ import com.example.gymbud.Entidades.IdList;
 import java.util.ArrayList;
 
 
-public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerciciosAdapter.EjerciciosViewHolder> {
+public class VerEliminarCarritoAdapter extends RecyclerView.Adapter<VerEliminarCarritoAdapter.EjerciciosViewHolder> {
 
     ArrayList<Exercises> ListasEjercicios;
 
-    public CarritoEjerciciosAdapter(ArrayList<Exercises> ListasEjercicios) {
+    public VerEliminarCarritoAdapter(ArrayList<Exercises> ListasEjercicios) {
         this.ListasEjercicios = ListasEjercicios;
     }
 
@@ -35,7 +35,7 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
 
     @NonNull
     @Override
-    public CarritoEjerciciosAdapter.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VerEliminarCarritoAdapter.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ejercicios_seleccionados_tiendita, parent, false);
         return new EjerciciosViewHolder(view, listener);
     }
@@ -45,15 +45,17 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CarritoEjerciciosAdapter.EjerciciosViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull VerEliminarCarritoAdapter.EjerciciosViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Exercises exercise = ListasEjercicios.get(position);
         holder.Nombre.setText(exercise.getName());
         holder.sets.setText(String.valueOf(exercise.getSets()));
         holder.reps.setText(String.valueOf(exercise.getReps()));
 
-        Log.d("CarritoEjerciciosAdapter ", "nombre:  " + exercise.getName());
-        Log.d("CarritoEjerciciosAdapter ", "series:  " + exercise.getSets());
-        Log.d("CarritoEjerciciosAdapter ", "repes:  " + exercise.getReps());
+        Log.d("VerEliminarCarritoAdapter ", "id:  " + exercise.getId());
+        Log.d("VerEliminarCarritoAdapter ", "nombre:  " + exercise.getName());
+        Log.d("VerEliminarCarritoAdapter ", "series:  " + exercise.getSets());
+        Log.d("VerEliminarCarritoAdapter ", "repes:  " + exercise.getReps());
+        Log.d("VerEliminarCarritoAdapter ", "musculo:  " + exercise.getMuscularGroup());
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +67,6 @@ public class CarritoEjerciciosAdapter extends RecyclerView.Adapter<CarritoEjerci
                 // Elimina el elemento de la lista de ids
                 int exerciseId = exercise.getId();
                 IdList.removeId(exerciseId);
-
             }
         });
     }

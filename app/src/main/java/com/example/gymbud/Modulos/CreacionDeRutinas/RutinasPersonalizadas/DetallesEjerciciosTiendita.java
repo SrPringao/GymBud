@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gymbud.Adaptadores.TienditaAdaptador;
+import com.example.gymbud.Adaptadores.AgregarEjerciciosCarritoAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
 import com.example.gymbud.R;
@@ -88,7 +88,7 @@ public class DetallesEjerciciosTiendita extends Fragment {
         DbQuery dbQuery = new DbQuery (getContext());
         EjerciciosLista = new ArrayList<>();
 
-        TienditaAdaptador adapter = new TienditaAdaptador(dbQuery.MostrarEjercicios(id));
+        AgregarEjerciciosCarritoAdapter adapter = new AgregarEjerciciosCarritoAdapter(dbQuery.MostrarEjercicios(id));
 //        Log.d("Ejercicios en pantalla 1 para ver como los regresa", dbQuery.MostrarEjercicios(id).toString());
         recyclerView.setAdapter(adapter);
 

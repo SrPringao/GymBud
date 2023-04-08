@@ -3,12 +3,15 @@ package com.example.gymbud.Modulos.InfoPersonal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import android.widget.ImageView;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.gymbud.Db.DbQuery;
@@ -24,11 +28,14 @@ import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta;
+import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.R;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 
@@ -127,9 +134,94 @@ public class FragmentInfoPersonal extends Fragment {
         GradientRelativeLayout cardimc = view.findViewById(R.id.cardimc);
         GradientRelativeLayout cardgrasa = view.findViewById(R.id.cardgrasa);
 
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int numberDayOfWeek = ((dayOfWeek - Calendar.SUNDAY + 7) % 7);
+        if (numberDayOfWeek == 0) {
+            numberDayOfWeek = 7;
+        }
+
+
+        Log.d("dia de la semana ", String.valueOf(numberDayOfWeek));
+
+
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
 
+//        if (dbQuery.routineDayAlreadyFilled(numberDayOfWeek)){
+//        }
+
+        Log.d("Entrando a la query con ", String.valueOf(numberDayOfWeek));
+
+        View separdor = view.findViewById(R.id.separadorGM);
+        ImageView imgGM1 = view.findViewById(R.id.imagenGM1);
+        ImageView imgGM2 = view.findViewById(R.id.imagenGM2);
+        TextView textoGMROutine = view.findViewById(R.id.textViewSub2Title);
+
+
+        String dayName="";
+        TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
+
+        if (!dbQuery.routineDayAlreadyFilled(numberDayOfWeek)) {
+            dayName = "El dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1] + " no tiene rutina asignada";
+            textoGMROutine.setText(dayName);
+            Log.d("Error sin rutina", "El dia no tiene ninguna rutina asignada");
+            separdor.setVisibility(View.GONE);
+            imgGM2.setVisibility(View.GONE);
+            //layout_centerInParent = true to img1
+            imgGM1.setVisibility(View.VISIBLE);
+            imgGM1.setImageResource(R.drawable.icmg_cruz);
+            //center image in parent
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
+            params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            imgGM1.setLayoutParams(params);
+
+            imgGM1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment firstFragment = new CreacionDeRutinas();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+
+        }else {
+            //using strings.xml set day name to textview
+            dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
+            textoGMROutine.setText(dayName);
+            List<Integer> Repetidos = dbQuery.gruposRepetidos(numberDayOfWeek);
+
+            if (Repetidos.size()<=1){
+                int index = Repetidos.get(0) - 1;
+                separdor.setVisibility(View.GONE);
+                imgGM2.setVisibility(View.GONE);
+                Drawable drawable = imagenes.getDrawable(index);
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
+                params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+                imgGM1.setLayoutParams(params);
+                imgGM1.setImageDrawable(drawable);
+                imagenes.recycle();
+            }else {
+                int index1 = Repetidos.get(0) - 1;
+                int index2 = Repetidos.get(1) - 1;
+                separdor.setVisibility(View.VISIBLE);
+                imgGM2.setVisibility(View.VISIBLE);
+
+                Drawable drawable1 = imagenes.getDrawable(index1);
+                Drawable drawable2 = imagenes.getDrawable(index2);
+                imgGM1.setImageDrawable(drawable1);
+                imgGM2.setImageDrawable(drawable2);
+
+                imagenes.recycle();
+            }
+
+        }
+
+        //get routine by day
+        dbQuery.getRoutineByDay(numberDayOfWeek);
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);
