@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,11 +17,16 @@ import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
 import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Entidades.Stats;
+import com.example.gymbud.Funciones.Funciones;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class DbQuery extends DbHelper {
@@ -467,6 +473,66 @@ public class DbQuery extends DbHelper {
         //de aqui solo me interesa la lista de tipo exerciseSet que retorna routine
         // Retornar la lista de objetos Routine
         return routine;
+    }
+
+    public List<Integer> getRoutineByDay (int dayOfWeek, int group){
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //log para verificar que se esta ejecutando la consulta
+
+        Cursor cursor = null;
+
+        // Ejecutar la consulta para obtener la rutina del dia guardada en la bd
+        cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Crear un objeto Routine
+        Routine routine = null;
+
+        ArrayList<Integer> frequentGroups = new ArrayList<>();
+
+
+        // Ejecutar la consulta
+        if (cursor.moveToFirst()) {
+            // Crear un objeto Routine
+            routine = new Routine();
+
+            // Asignar los valores del cursor al objeto Routine
+            routine.setDayOfWeek(cursor.getInt(0));
+            routine.setName(cursor.getString(1));
+            // Convertir la cadena JSON a una ArrayList de objetos ExerciseSet
+            Type listType = new TypeToken<ArrayList<ExerciseSet>>(){}.getType();
+            //esta linea setea la lista de ejercicios de la rutina
+            routine.setExerciseList(new Gson().fromJson(cursor.getString(2), listType));
+        }
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+        Log.d("Lista de ExerciseSet", routine.getExerciseList().toString());
+
+        List<ExerciseSet> exerciseList = routine.getExerciseList();
+
+
+        for(int i = 0; i < exerciseList.size(); i++){
+            frequentGroups.add(exerciseList.get(i).getMuscleGroup());
+        }
+
+
+
+        //Log de la lista de grupos
+        Log.d("Lista de grupos antes de ser filtrados", frequentGroups.toString());
+
+
+        List<Integer> resultado = Funciones.obtenerNumerosMasRepetidos(frequentGroups);
+
+        //Log de la lista de grupos
+        Log.d("Lista de grupos despues de ser filtrados", resultado.toString());
+
+        return resultado;
     }
 
 }

@@ -176,7 +176,10 @@ public class FragmentInfoPersonal extends Fragment {
             textoGMROutine.setText(dayName);
         }
 
-        dbQuery.getRoutineByDay(numberDayOfWeek);
+        //get routine by day
+//        dbQuery.getRoutineByDay(numberDayOfWeek);
+
+        dbQuery.getRoutineByDay(numberDayOfWeek,1);
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);

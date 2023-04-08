@@ -17,7 +17,6 @@ public class ExerciseSet {
         this.muscleGroup = muscleGroup;
         this.name = name;
         this.image = image;
-
     }
 
     public ExerciseSet(int id) {
