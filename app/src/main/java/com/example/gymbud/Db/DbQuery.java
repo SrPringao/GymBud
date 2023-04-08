@@ -475,7 +475,7 @@ public class DbQuery extends DbHelper {
         return routine;
     }
 
-    public List<Integer> getRoutineByDay (int dayOfWeek, int group){
+    public List<Integer> gruposRepetidos (int dayOfWeek){
         // Obtener una instancia de la base de datos en modo lectura
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -516,12 +516,9 @@ public class DbQuery extends DbHelper {
 
         List<ExerciseSet> exerciseList = routine.getExerciseList();
 
-
         for(int i = 0; i < exerciseList.size(); i++){
             frequentGroups.add(exerciseList.get(i).getMuscleGroup());
         }
-
-
 
         //Log de la lista de grupos
         Log.d("Lista de grupos antes de ser filtrados", frequentGroups.toString());

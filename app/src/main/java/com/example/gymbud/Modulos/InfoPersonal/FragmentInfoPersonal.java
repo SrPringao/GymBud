@@ -174,12 +174,11 @@ public class FragmentInfoPersonal extends Fragment {
             //using strings.xml set day name to textview
             dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
             textoGMROutine.setText(dayName);
+            dbQuery.gruposRepetidos(numberDayOfWeek);
         }
 
         //get routine by day
-//        dbQuery.getRoutineByDay(numberDayOfWeek);
-
-        dbQuery.getRoutineByDay(numberDayOfWeek,1);
+        dbQuery.getRoutineByDay(numberDayOfWeek);
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);
