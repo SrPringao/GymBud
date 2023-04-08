@@ -82,7 +82,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                     //Establecer título del diálogo y centrarlo
 
-                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId, 0, 0,0)};
+                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId,"", 0, 0,0,null)};
 
                     //center setTitle
                     TextView title = new TextView(view.getContext());
@@ -155,12 +155,15 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             int numSeries = Integer.parseInt(seriesEditText.getText().toString());
                             int numReps = Integer.parseInt(repsEditText.getText().toString());
                             int muscleId = exercise.getMuscularGroup();
+                            String name = exercise.getName();
+                            //image as a byte array
+                            byte[] imagen = exercise.getImage();
 
 
                             //add exercise to the list
                             listaDeIds.add(exerciseId);
 
-                            exerciseSet[0] = new ExerciseSet(exerciseId, numSeries, numReps, muscleId);
+                            exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();

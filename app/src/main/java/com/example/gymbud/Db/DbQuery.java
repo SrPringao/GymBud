@@ -320,7 +320,7 @@ public class DbQuery extends DbHelper {
         Cursor cursorEjercicios = null;
 
         //query para obtener id y nombre de los ejercicios
-        cursorEjercicios = db.rawQuery("SELECT Id,Name,MuscularGroup FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
+        cursorEjercicios = db.rawQuery("SELECT Id,Name,MuscularGroup,Image FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
 
         if (cursorEjercicios.moveToFirst()) {
             int index = 0; //agrega una variable de índice
@@ -339,6 +339,8 @@ public class DbQuery extends DbHelper {
 
                 // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
                 ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
+                ejercicios.setImage(cursorEjercicios.getBlob(3));
+
 
                 // Incrementar el índice
                 index++;
@@ -461,8 +463,8 @@ public class DbQuery extends DbHelper {
         Log.d("RUTINA", routine.toString());
         Log.d("Dia de la semana", String.valueOf(routine.getDayOfWeek()));
         Log.d("Nombre", routine.getName());
-        Log.d("Lista de ejercicios", routine.getExerciseList().toString());
-
+        Log.d("Lista de ExerciseSet", routine.getExerciseList().toString());
+        //de aqui solo me interesa la lista de tipo exerciseSet que retorna routine
         // Retornar la lista de objetos Routine
         return routine;
     }
