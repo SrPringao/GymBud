@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.gymbud.Adaptadores.CarritoEjerciciosAdapter;
+import com.example.gymbud.Adaptadores.VerEliminarCarritoAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
@@ -110,7 +110,7 @@ public class Tiendita extends Fragment {
           DbQuery dbQuery = new DbQuery (getContext());
           listaIds = IdList.getInstance();
 
-          CarritoEjerciciosAdapter adapter = new CarritoEjerciciosAdapter(dbQuery.MostrarEjercicios(listaIds));
+          VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds));
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
           recyclerView.setAdapter(adapter);
 
@@ -140,6 +140,7 @@ public class Tiendita extends Fragment {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle("Ya existe una rutina para el dia " + day);
                             builder.setMessage("¿Desea reemplazarla?");
+
                             builder.setPositiveButton("Si", (dialog, which) -> {
                                 dbQuery.insertRoutine(routine);
                                 dialog.dismiss();

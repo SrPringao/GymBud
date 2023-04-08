@@ -320,7 +320,7 @@ public class DbQuery extends DbHelper {
         Cursor cursorEjercicios = null;
 
         //query para obtener id y nombre de los ejercicios
-        cursorEjercicios = db.rawQuery("SELECT Id, Name FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
+        cursorEjercicios = db.rawQuery("SELECT Id,Name,MuscularGroup FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
 
         if (cursorEjercicios.moveToFirst()) {
             int index = 0; //agrega una variable de índice
@@ -337,10 +337,11 @@ public class DbQuery extends DbHelper {
                 ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
                 ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
 
+                // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
+                ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
+
                 // Incrementar el índice
                 index++;
-
-                // Agregar el objeto Exercise a la lista
                 listaEjercicios.add(ejercicios);
 
                 //el while se ejecuta hasta que el cursor llegue al ultimo registro
@@ -423,11 +424,8 @@ public class DbQuery extends DbHelper {
 
         Cursor cursor = null;
 
-        // Ejecutar la consulta
+        // Ejecutar la consulta para obtener la rutina del dia guardada en la bd
         cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
-
-        // Crear una lista de objetos Exercises
-        Exercises ejercicios = null;
 
         // Crear un objeto Routine
         Routine routine = null;
@@ -438,9 +436,6 @@ public class DbQuery extends DbHelper {
             Log.d("LISTA VACIA", "LISTA VACIA");
             return routine;
         }
-
-        ArrayList<Exercises> listaEjercicios = new ArrayList<>();
-
 
         // Ejecutar la consulta
         if (cursor.moveToFirst()) {
@@ -463,78 +458,12 @@ public class DbQuery extends DbHelper {
         db.close();
 
 
-//        // Construir una cadena con los ids de los objetos routine recibidos
-//        String commaSeparatedIds = "";
-//        for (ExerciseSet set : routine.getExerciseList()) {
-//            commaSeparatedIds += set.getId() + ",";
-//        }
-//
-//        // Eliminar la última coma
-//        commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
-//
-//        //construir una lista con el numero de series del objeto routine para asignarselo al objeto Exercise
-//        ArrayList<Integer> series = new ArrayList<>();
-//        for (ExerciseSet set : routine.getExerciseList()) {
-//            series.add(set.getNumSeries());
-//        }
-//
-//        //construir una lista con el numero de repeticiones del objeto routine para asignarselo al objeto Exercise
-//        ArrayList<Integer> reps = new ArrayList<>();
-//        for (ExerciseSet set : routine.getExerciseList()) {
-//            reps.add(set.getNumReps());
-//        }
-//
-//        //Consulta para crear una lista de grupos musculares segun los ids de los ejercicios de la rutina
-//        cursor = db.rawQuery("SELECT * FROM EXERCISE WHERE Id IN (" + commaSeparatedIds + ")", null);
-//
-//        //si la lista recibida esta vacia, retornar la lista vacia
-//        if (cursor.getCount() == 0) {
-//            //Se retorna la lista vacia
-//            Log.d("LISTA VACIA", "LISTA VACIA");
-//            return routine;
-//        }
-//
-//        // Crear un objeto Exercise
-//        Exercises ejercicio = null;
-//
-//        // Crear un objeto ExerciseSet
-//
-//        // Ejecutar la consulta
-//        if (cursor.moveToFirst()) {
-//            int index = 0; //agrega una variable de índice
-//
-//            do {
-//                // Crear un objeto Exercise
-//                ejercicio = new Exercises();
-//
-//                // Asignar los valores del cursor al objeto Exercise
-//                ejercicio.setId(cursor.getInt(0));
-//                ejercicio.setName(cursor.getString(1));
-//
-//                int muscularGroup = cursor.getInt(2);
-//                ejercicio.setMuscularGroup(muscularGroup);
-//                // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
-//                ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
-//                ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
-//
-//                // Incrementar el índice
-//                index++;
-//                // Agregar el objeto Exercise a la lista
-//                listaEjercicios.add(ejercicio);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        // Cerrar el cursor
-//        cursor.close();
-//
-//        // Cerrar la conexión a la base de datos
-//        db.close();
-//
-//        //Log de los datos que tiene la lista de ejercicios
-//        Log.d("LISTA DE EJERCICIOS Finalisima", listaEjercicios.toString());
-
         Log.d("RUTINA", routine.toString());
-        Log.d("LISTA DE EJERCICIOS", routine.getExerciseList().toString());
+        Log.d("Dia de la semana", String.valueOf(routine.getDayOfWeek()));
+        Log.d("Nombre", routine.getName());
+        Log.d("Lista de ejercicios", routine.getExerciseList().toString());
+
+        // Retornar la lista de objetos Routine
         return routine;
     }
 
