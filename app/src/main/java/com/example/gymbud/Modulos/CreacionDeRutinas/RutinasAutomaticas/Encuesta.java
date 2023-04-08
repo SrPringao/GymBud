@@ -333,72 +333,39 @@ public class Encuesta extends Fragment {
         //La dieciseis pregunta que equipo preferiria usar a la hora de entrenar: 1:Mancuernas, 2:Poleas, 3:Barras, 4:Maquinas
 
 
-
+        //Notas:
+        //Buscar los ids de los ejercicios que se van a usar
+        //Insertar los ids a la tabla de las rutinas
 
         //Crear la query concatenando strings dependiendo del usuario
+
         DbQuery dbQuery = new DbQuery(getContext());
-        int[] ids;
+
+        boolean Enfermedad = false; //Esta variable es para saber si el usuario tiene alguna enfermedad que le dificulte el entrenamiento.
         boolean EjerciciosCapaces=false; //Esta variable es para saber si se disminuyen los ejercicios que se le van a asignar o se quitar completamente.
         boolean Lesionado=false; //Esta variable es para saber si el usuario esta lesionado y asi no asignarle ejercicios que le puedan causar mas daño.
         boolean MismoTiempo=false; //Esta variable es para saber si el usuario dispone del mismo tiempo para entrenar todos los dias.
         int CantEjercicios=0;
-        String MusculoLesionado="";
-        if(Resultadosinprocesar[1]==1) {
-            if (Resultadosinprocesar[2]==1){
-                EjerciciosCapaces=true;
-            }else{
-                EjerciciosCapaces=false;
-            }
-            //Acceder a la posicion 3 y agarrar el tren que se dificulta
-        }
-        if(Resultadosinprocesar[4]==1) {
-            Lesionado = true;
-            if(Resultadosinprocesar[5]==1) {
-                switch (Resultadosinprocesar[6]) {
-                    case 1:
-                        MusculoLesionado= "Hombro";
-                        break;
-                    case 2:
-                        MusculoLesionado= "Pecho";
-                        break;
-                    case 3:
-                        MusculoLesionado= "Brazo";
-                        break;
-                    case 4:
-                        MusculoLesionado= "Espalda";
-                        break;
-                }
-            }else {
-                switch (Resultadosinprocesar[6]) {
-                    case 1:
-                        MusculoLesionado = "Rodilla";
-                        break;
-                    case 2:
-                        MusculoLesionado = "Tobillo";
-                        break;
-                    case 3:
-                        MusculoLesionado = "Isquios";
-                        break;
-                    case 4:
-                        MusculoLesionado = "Cuadriceps";
-                        break;
-                }
-            }
-        }
-        //acceder a la posicion 7 del arreglo y agarrar la experiencia del usuario
-//acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
-//acceder a la posicion 9 del arreglo y agarrar los dias que entrena
+        int MusculoLesionado=0;
+
+        int Reps=0;
+        int Series=0;
+        boolean abs=false;
+
         HashMap<Integer,Integer> Tiempos = new HashMap<>();
         Tiempos.put(1,6);
-        Tiempos.put(2,8);
+        Tiempos.put(2,10);
         Tiempos.put(3,12);
+        boolean dia1=false,dia2=false,dia3=false,dia4=false,dia5=false,dia6=false;
+        int Lunes=0,Martes=0,Miercoles=0,Jueves=0,Viernes=0,Sabado=0;
+        //acceder a la posicion 9 del arreglo y agarrar los dias que entrena
         if(Resultadosinprocesar[10]==1) {
 
-            CantEjercicios=Tiempos.get(ResultadosSinProcesar[12]);
+            CantEjercicios=Tiempos.get(ResultadosSinProcesar[11]);
 
         }else{
 
-            int Lunes,Martes,Miercoles,Jueves,Viernes,Sabado;
+
             for(int i=0;i<TiempoxDia[11];i++){
                 switch (i){
                     case 0:
@@ -422,9 +389,53 @@ public class Encuesta extends Fragment {
                 }
             }
         }
-        int Reps=0;
-        int Series=0;
-        boolean abs=false;
+
+        if(Resultadosinprocesar[1]==1) {
+            Enfermedad=true;
+            if (Resultadosinprocesar[2]==1){
+                EjerciciosCapaces=true;
+            }else{
+                EjerciciosCapaces=false;
+            }
+            //Acceder a la posicion 3 y agarrar el tren que se dificulta
+        }
+        if(Resultadosinprocesar[4]==1) {
+            Lesionado = true;
+            if(Resultadosinprocesar[5]==1) {
+                switch (Resultadosinprocesar[6]) {
+                    case 1:
+                        MusculoLesionado= 1;
+                        break;
+                    case 2:
+                        MusculoLesionado= 3;
+                        break;
+                    case 3:
+                        MusculoLesionado= 2;
+                        break;
+                    case 4:
+                        MusculoLesionado= 11;
+                        break;
+                }
+            }else {
+                switch (Resultadosinprocesar[6]) {
+                    case 1:
+                    case 4:
+                        MusculoLesionado = 7;
+                        break;
+                    case 2:
+                        MusculoLesionado = 15;
+                        break;
+                    case 3:
+                        MusculoLesionado = 14;
+                        break;
+                }
+            }
+        }
+        //acceder a la posicion 7 del arreglo y agarrar la experiencia del usuario
+//acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
+
+
+
         if(Resultadosinprocesar[12]==1||Resultadosinprocesar[12]==3||Resultadosinprocesar[12]==4) {
             Series=4;
             Reps=12;
@@ -437,9 +448,124 @@ public class Encuesta extends Fragment {
             abs=true;
         }
 
-        ids = dbQuery.EjerciciosID(1,3,2,2);
-        for(int i=0;i<ids.length;i++){
-            Log.d("Ejercicios", "Ejercicio "+i+" "+ids[i]);
+        switch (ResultadosSinProcesar[9]) {
+
+            case 1:
+                //Dia 1
+                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 2
+                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 3
+                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                break;
+
+            case 2:
+                //Dia 1
+                Dias(5,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(5,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(5,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(5,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(5,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 2
+                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                //Dia 3
+                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 4
+                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 5
+                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                break;
+
+            case 3:
+
+                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 2
+                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 3
+                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                //Dia 4
+                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 5
+                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                //Dia 6
+                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                break;
         }
+
+
     }
-}
+
+    private void Dias(int cantMusculos,int musculo, int[] ResultadosSinProcesar,boolean EjerciciosCapaces,boolean Lesionado, int MusculoLesionado,boolean Enfermedad,double CantEjercicios,int Lunes,int Martes,int Miercoles,int Jueves,int Viernes,int Sabado,int tren) {
+        int[] ids;
+        DbQuery dbQuery = new DbQuery(getContext());
+        HashMap<Integer, String> TrenSup = new HashMap<>();
+        TrenSup.put(1, "Hombro");
+        TrenSup.put(2, "Bicep");
+        TrenSup.put(3, "Pecho");
+        TrenSup.put(4, "Abs");
+        TrenSup.put(5, "Oblicuos");
+        TrenSup.put(6, "Antebrazo");
+        TrenSup.put(8, "Trapecios");
+        TrenSup.put(9, "Dorsal");
+        TrenSup.put(10, "Triceps");
+        TrenSup.put(11, "Espalda");
+
+
+        boolean Group1=false,Group2=false,Group3=false;
+        double EjerciciosPorMusculo=2;
+
+            String Query = " WHERE MuscularGroup = ";
+
+
+                    Query += musculo;
+                    Query += " AND Tool = " + ResultadosSinProcesar[15];
+                    if (ResultadosSinProcesar[7] == 1) {
+                        Query += " AND Difficulty = " + ResultadosSinProcesar[7];
+                        Query += " ORDER BY Difficulty ASC ";
+                    }else{
+                        Query += " ORDER BY Difficulty Desc ";
+                    }
+                    if(Resultadosinprocesar[10]==1) {
+                        EjerciciosPorMusculo = Math.floor(CantEjercicios/cantMusculos);
+                    }
+                    if ((EjerciciosCapaces == true|| Lesionado == true)&& (MusculoLesionado==musculo && Resultadosinprocesar[3]==tren)) {
+                        Query += "LIMIT 0";
+                    }else if((EjerciciosCapaces == false && Enfermedad==true)) {
+                        Query+="LIMIT "+ Math.ceil(EjerciciosPorMusculo/2);
+                    }else{
+                        Query+="LIMIT "+ EjerciciosPorMusculo;
+                    }
+        Log.d("Ejercicios", Query);
+                    ids = dbQuery.EjerciciosID(Query);
+                    for(int i=0;i<ids.length;i++){
+                        Log.d("Ejercicios", "Ejercicio del musculo "+TrenSup.get(musculo)+" "+ids[i]);
+                    }
+                }
+            }

@@ -196,32 +196,36 @@ public class DbQuery extends DbHelper {
     //Primero creamos el arreglo y lo inicializamos, como ya fue mencionado anteriormente creamos el dbHelper y lo inicializamos con el contexto de la view,
     //Despues hacemos una query de la tabla exercise a la bd buscando el id e iteramos todos los datos hasta tener todos los que tengan ese id en especifico,
     //despues retornamos la lista
-    public int[] EjerciciosID(int MuscularGroup,int CantEjercicios,int tool,int dificultad){
-        Log.d("Exercises", MuscularGroup+"");
+
+    //"SELECT Id FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup + " AND Tool = " + tool + " AND Difficulty =" + dificultad+ " ORDER BY  RANDOM() LIMIT " + CantEjercicios
+    public int[] EjerciciosID(String query) {
         DbHelper dbHelper = new DbHelper(context);
-        int[] ejercicios = new int[30];
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Exercises exercises = null;
-        Cursor cursorejercicios;
+        Cursor cursor = null;
+        ArrayList<Integer> ejerciciosList = new ArrayList<Integer>();
         try {
-            cursorejercicios = db.rawQuery("SELECT Id FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup + " AND Tool = " + tool + " AND Difficulty =" + dificultad+ " ORDER BY  RANDOM() LIMIT " + CantEjercicios, null);
-            int i = 0;
-            if (cursorejercicios.moveToFirst()) {
-                do{
-                ejercicios[i] = cursorejercicios.getInt(0);
-                i++;
-                }while (cursorejercicios.moveToNext());
-                if (i == CantEjercicios) {
-                    return ejercicios;
-                }
+            cursor = db.rawQuery("SELECT Id FROM " + TABLE_EXERCISE + query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    ejerciciosList.add(cursor.getInt(0));
+                } while (cursor.moveToNext());
             }
-            cursorejercicios.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.d("Exercises", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+
+        // Convertir ArrayList en un arreglo de int antes de devolverlo
+        int[] ejercicios = new int[ejerciciosList.size()];
+        for (int i = 0; i < ejerciciosList.size(); i++) {
+            ejercicios[i] = ejerciciosList.get(i);
         }
 
         return ejercicios;
-
     }
     //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
     //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con

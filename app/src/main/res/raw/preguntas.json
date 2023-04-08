@@ -29,7 +29,7 @@
       "Respuesta1": "Si",
       "opcion1": 1,
       "Respuesta2": "No",
-      "opcion2": 12,
+      "opcion2": 1,
       "Respuesta3": "",
       "opcion3": 0,
       "Respuesta4": "",
@@ -199,11 +199,11 @@
     },{
       "NumPregunta": 69,
       "pregunta": "¿Que equipo preferirias usar a la hora de entrenar?",
-      "Respuesta1": "Mancuernas",
+      "Respuesta1": "Polea",
       "opcion1": 1,
-      "Respuesta2": "Poleas",
+      "Respuesta2": "Barra",
       "opcion2": 1,
-      "Respuesta3": "Barras",
+      "Respuesta3": "Mancuerna",
       "opcion3": 1,
       "Respuesta4": "Maquinas",
       "opcion4": 1
