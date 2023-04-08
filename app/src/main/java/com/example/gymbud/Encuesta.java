@@ -21,6 +21,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Encuesta#newInstance} factory method to
@@ -83,6 +85,7 @@ public class Encuesta extends Fragment {
     Button Confirmado;
     int i=1;
     int pos = 0;
+    int[] TiempoxDia;
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Resultadosinprocesar = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         super.onViewCreated(view, savedInstanceState);
@@ -161,7 +164,7 @@ public class Encuesta extends Fragment {
                         break;
 
                     case 44:
-                        int[] TiempoxDia = new int[dias];
+                        TiempoxDia = new int[dias];
                             Pregunta1.setText("¿Cuanto tiempo tienes para entrenar el dia " + l + "?");
                             if(Respuesta1.isChecked()){
                                 TiempoxDia[l] = 1;
@@ -218,7 +221,7 @@ public class Encuesta extends Fragment {
                     Log.d("Resultado", "Seleccion "+ n +" "+ Resultadosinprocesar[i]);
                 }
                 if(i==70){
-                    RutinaAuto(Resultadosinprocesar);
+                    RutinaAuto(Resultadosinprocesar,TiempoxDia);
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Resultado", Resultadosinprocesar);
                     Fragment firstFragment = new Rutinas();
@@ -301,7 +304,7 @@ public class Encuesta extends Fragment {
         }
     }
 
-    public void RutinaAuto(int[] ResultadosSinProcesar) {
+    public void RutinaAuto(int[] ResultadosSinProcesar,int[] TiempoxDia) {
         //Primer resultado es el sexo del usuario(1 es hombre, 2 es mujer)
         //el segundo es si padece de alguna enfermedad(1 es si, 2 es no)
         // el tercero es si la enfermedad le dificulta el entrenamiento(1 si 2 no)
@@ -313,10 +316,10 @@ public class Encuesta extends Fragment {
         //la octava es la experiencia en el gimnasio: 1:Novato, 2:Intermedio, 3:Avanzado
         //La novena es su condicion de fisica actual: 1:Bajo, 2:Medio/Alto
         //La decima es cuantos dias entrena: 1:3 2:5 3:6
-        //La once pregunta si dispone del mismo dia para entrenar: 1:Si 2:No
+        //La once pregunta si dispone del mismo tiempo para entrenar todos los dias: 1:Si 2:No
         //La doce pregunta Cuanto tiempo dispone para hacer ejercicio: 1:Menos de 60 mins, 2:Entre 60 y 90 mins, 3:Mas de 90 mins
         //O en caso de que haya seleccionado 2 en la doce pregunta: 1:Entre 30 y 60 mins, 2:Entre 60 y 90 mins, 3:Mas de 90 mins y se repite la pregunta la cantidad de veces que se selecciono en la pregunta 11
-        //La trece pregunta su objetivo: 1:Ganar masa muscular, 2:Perder peso, 3:Mejorar salud en general, 4:Mantener la forma física actual
+        //La trece pregunta su objetivo: 1:Ganar masa muscular, 2:Ganar Fuerza, 3:Perder peso, 4:Mantener la forma física actual
         //La catorce pregunta en que musculos desea enfocarse: 1:Tren superior, 2:Tren inferior, 3:Cuerpo completo.
         //La quince pregunta si desea agregar abdomen a la rutina: 1:Si 2:No.
         //La dieciseis pregunta que equipo preferiria usar a la hora de entrenar: 1:Mancuernas, 2:Poleas, 3:Barras, 4:Maquinas
@@ -324,12 +327,108 @@ public class Encuesta extends Fragment {
 
 
 
-
+        //Crear la query concatenando strings dependiendo del usuario
         DbQuery dbQuery = new DbQuery(getContext());
         int[] ids;
-        for(int i=0;i<ResultadosSinProcesar.length;i++){
-
+        boolean EjerciciosCapaces=false; //Esta variable es para saber si se disminuyen los ejercicios que se le van a asignar o se quitar completamente.
+        boolean Lesionado=false; //Esta variable es para saber si el usuario esta lesionado y asi no asignarle ejercicios que le puedan causar mas daño.
+        boolean MismoTiempo=false; //Esta variable es para saber si el usuario dispone del mismo tiempo para entrenar todos los dias.
+        int CantEjercicios=0;
+        String MusculoLesionado="";
+        if(Resultadosinprocesar[1]==1) {
+            if (Resultadosinprocesar[2]==1){
+                EjerciciosCapaces=true;
+            }else{
+                EjerciciosCapaces=false;
+            }
+            //Acceder a la posicion 3 y agarrar el tren que se dificulta
         }
+        if(Resultadosinprocesar[4]==1) {
+            Lesionado = true;
+           if(Resultadosinprocesar[5]==1) {
+               switch (Resultadosinprocesar[6]) {
+                   case 1:
+                       MusculoLesionado= "Hombro";
+                       break;
+                   case 2:
+                       MusculoLesionado= "Pecho";
+                       break;
+                   case 3:
+                       MusculoLesionado= "Brazo";
+                       break;
+                   case 4:
+                       MusculoLesionado= "Espalda";
+                       break;
+               }
+           }else {
+               switch (Resultadosinprocesar[6]) {
+                   case 1:
+                       MusculoLesionado = "Rodilla";
+                       break;
+                   case 2:
+                       MusculoLesionado = "Tobillo";
+                       break;
+                   case 3:
+                       MusculoLesionado = "Isquios";
+                       break;
+                   case 4:
+                       MusculoLesionado = "Cuadriceps";
+                       break;
+               }
+           }
+        }
+        //acceder a la posicion 7 del arreglo y agarrar la experiencia del usuario
+//acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
+//acceder a la posicion 9 del arreglo y agarrar los dias que entrena
+        HashMap<Integer,Integer> Tiempos = new HashMap<>();
+        Tiempos.put(1,6);
+        Tiempos.put(2,8);
+        Tiempos.put(3,12);
+        if(Resultadosinprocesar[10]==1) {
+
+          CantEjercicios=Tiempos.get(ResultadosSinProcesar[12]);
+
+        }else{
+
+            int Lunes,Martes,Miercoles,Jueves,Viernes,Sabado;
+            for(int i=0;i<TiempoxDia[11];i++){
+                switch (i){
+                    case 0:
+                        Lunes=Tiempos.get(TiempoxDia[i]);
+                        break;
+                    case 1:
+                        Martes=Tiempos.get(TiempoxDia[i]);
+                        break;
+                    case 2:
+                        Miercoles=Tiempos.get(TiempoxDia[i]);
+                        break;
+                    case 3:
+                        Jueves=Tiempos.get(TiempoxDia[i]);
+                        break;
+                    case 4:
+                        Viernes=Tiempos.get(TiempoxDia[i]);
+                        break;
+                    case 5:
+                        Sabado=Tiempos.get(TiempoxDia[i]);
+                        break;
+                }
+            }
+        }
+        int Reps=0;
+        int Series=0;
+        boolean abs=false;
+        if(Resultadosinprocesar[12]==1||Resultadosinprocesar[12]==3||Resultadosinprocesar[12]==4) {
+            Series=4;
+            Reps=12;
+        }else{
+            Series=4;
+            Reps=8;
+        }
+        if(Resultadosinprocesar[14]==1)
+        {
+            abs=true;
+        }
+
         ids = dbQuery.EjerciciosID(1,3,2,2);
         for(int i=0;i<ids.length;i++){
             Log.d("Ejercicios", "Ejercicio "+i+" "+ids[i]);
