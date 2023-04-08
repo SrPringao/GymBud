@@ -32,4 +32,24 @@
         <item>Domingo</item>
     </string-array>
 
+    <array name="imagenes">
+        <item>@drawable/icmg_hombro</item>
+        <item>@drawable/icmg_bicep</item>
+        <item>@drawable/icmg_pecho</item>
+        <item>@drawable/icmg_abs</item>
+        <item>@drawable/icmg_abs</item>
+        <item>@drawable/icmg_antebrazos</item>
+        <item>@drawable/icmg_quads</item>
+        <item>@drawable/icmg_hombro</item>
+        <item>@drawable/icmg_espalda</item>
+        <item>@drawable/icmg_tricep</item>
+        <item>@drawable/icmg_espalda</item>\
+<!--pa saltarse el 12-->
+        <item>@drawable/icmg_espalda</item>
+
+        <item>@drawable/icmg_gluteo</item>
+        <item>@drawable/icmg_femoral</item>
+        <item>@drawable/icmg_panto</item>
+    </array>
+
 </resources>

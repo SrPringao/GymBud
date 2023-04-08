@@ -3,8 +3,11 @@ package com.example.gymbud.Db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -12,9 +15,18 @@ import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
+import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Entidades.Stats;
+import com.example.gymbud.Funciones.Funciones;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class DbQuery extends DbHelper {
@@ -35,7 +47,6 @@ public class DbQuery extends DbHelper {
     public long InsertarInfoPerson(int UserId,int Assists,int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age,String Phrase) {
         long id = 0;
         try {
-
 
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -288,7 +299,6 @@ public class DbQuery extends DbHelper {
         // Crear una lista de objetos Exercise
         ArrayList<Exercises> listaEjercicios = new ArrayList<>();
         Exercises ejercicios = null;
-        ExerciseSet setsEjercicios = null;
 
         //si la lista recibida esta vacia, retornar la lista vacia
         if (sets.isEmpty()) {
@@ -320,7 +330,7 @@ public class DbQuery extends DbHelper {
         Cursor cursorEjercicios = null;
 
         //query para obtener id y nombre de los ejercicios
-        cursorEjercicios = db.rawQuery("SELECT Id, Name FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
+        cursorEjercicios = db.rawQuery("SELECT Id,Name,MuscularGroup,Image FROM " + TABLE_EXERCISE + " WHERE Id IN (" + commaSeparatedIds + ")", null);
 
         if (cursorEjercicios.moveToFirst()) {
             int index = 0; //agrega una variable de índice
@@ -337,10 +347,13 @@ public class DbQuery extends DbHelper {
                 ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
                 ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
 
+                // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
+                ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
+                ejercicios.setImage(cursorEjercicios.getBlob(3));
+
+
                 // Incrementar el índice
                 index++;
-
-                // Agregar el objeto Exercise a la lista
                 listaEjercicios.add(ejercicios);
 
                 //el while se ejecuta hasta que el cursor llegue al ultimo registro
@@ -353,4 +366,174 @@ public class DbQuery extends DbHelper {
         // Retornar la lista de objetos Exercise
         return listaEjercicios;
     }
+
+    public boolean insertRoutine(Routine routine) throws SQLException {
+        // Obtener una instancia de la base de datos en modo escritura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Convertir la lista de ejercicios a una cadena JSON
+        String exerciseListJson = new Gson().toJson(routine.getExerciseList());
+
+        try {
+            // Crear un objeto ContentValues para insertar los valores en la tabla
+            ContentValues values = new ContentValues();
+            // Convertir day of week a String
+            String dayOfWeek = String.valueOf(routine.getDayOfWeek());
+            values.put("DayOfWeek", dayOfWeek);
+            values.put("Name", routine.getName());
+            values.put("ExerciseList", exerciseListJson);
+
+            // Insertar los valores en la tabla, reemplazando cualquier fila existente con el mismo valor de clave primaria
+            long result = db.insertWithOnConflict("ROUTINE", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            Log.d("INSERT", "INSERTADO");
+            Log.d("VALOR DE RESULT", String.valueOf(result));
+            // Cerrar la conexión a la base de datos
+            db.close();
+            // Devolver verdadero si la inserción fue exitosa, falso en caso contrario
+            return result != -1;
+
+        } catch (SQLException e) {
+            Log.d("INSERT", "NO INSERTADO");
+            // Manejar la excepción SQL
+            e.printStackTrace();
+            // Cerrar la conexión a la base de datos
+            db.close();
+            // Devolver falso porque la inserción falló
+            return false;
+        }
+    }
+
+    //query para verificar si el dia de la semana ya tiene una rutina asignada
+    public boolean routineDayAlreadyFilled (int dayOfWeek) {
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // Ejecutar la consulta
+        //esta consulta devuelve el numero de filas que coinciden con el dia de la semana
+        Cursor cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Obtener el número de filas devueltas por la consulta
+        int numRows = cursor.getCount();
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+        // Devolver verdadero si la consulta devolvió al menos una fila, falso en caso contrario
+        return numRows > 0;
+    }
+
+    //query para obtener la rutina de un dia especifico
+    public Routine getRoutineByDay (int dayOfWeek) {
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //log para verificar que se esta ejecutando la consulta
+
+        Cursor cursor = null;
+
+        // Ejecutar la consulta para obtener la rutina del dia guardada en la bd
+        cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Crear un objeto Routine
+        Routine routine = null;
+
+        //si la lista recibida esta vacia, retornar la lista vacia
+        if (cursor.getCount() == 0) {
+            //Se retorna la lista vacia
+            Log.d("LISTA VACIA", "LISTA VACIA");
+            return routine;
+        }
+
+        // Ejecutar la consulta
+        if (cursor.moveToFirst()) {
+            // Crear un objeto Routine
+            routine = new Routine();
+
+            // Asignar los valores del cursor al objeto Routine
+            routine.setDayOfWeek(cursor.getInt(0));
+            routine.setName(cursor.getString(1));
+            // Convertir la cadena JSON a una ArrayList de objetos ExerciseSet
+            Type listType = new TypeToken<ArrayList<ExerciseSet>>(){}.getType();
+            //esta linea setea la lista de ejercicios de la rutina
+            routine.setExerciseList(new Gson().fromJson(cursor.getString(2), listType));
+        }
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+
+        Log.d("RUTINA", routine.toString());
+        Log.d("Dia de la semana", String.valueOf(routine.getDayOfWeek()));
+        Log.d("Nombre", routine.getName());
+        Log.d("Lista de ExerciseSet", routine.getExerciseList().toString());
+        //de aqui solo me interesa la lista de tipo exerciseSet que retorna routine
+        // Retornar la lista de objetos Routine
+        return routine;
+    }
+
+    public List<Integer> gruposRepetidos (int dayOfWeek){
+        // Obtener una instancia de la base de datos en modo lectura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        //log para verificar que se esta ejecutando la consulta
+
+        Cursor cursor = null;
+
+        // Ejecutar la consulta para obtener la rutina del dia guardada en la bd
+        cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
+
+        // Crear un objeto Routine
+        Routine routine = null;
+
+        ArrayList<Integer> frequentGroups = new ArrayList<>();
+
+
+        // Ejecutar la consulta
+        if (cursor.moveToFirst()) {
+            // Crear un objeto Routine
+            routine = new Routine();
+
+            // Asignar los valores del cursor al objeto Routine
+            routine.setDayOfWeek(cursor.getInt(0));
+            routine.setName(cursor.getString(1));
+            // Convertir la cadena JSON a una ArrayList de objetos ExerciseSet
+            Type listType = new TypeToken<ArrayList<ExerciseSet>>(){}.getType();
+            //esta linea setea la lista de ejercicios de la rutina
+            routine.setExerciseList(new Gson().fromJson(cursor.getString(2), listType));
+        }
+
+        // Cerrar el cursor
+        cursor.close();
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+
+        Log.d("Lista de ExerciseSet", routine.getExerciseList().toString());
+
+        List<ExerciseSet> exerciseList = routine.getExerciseList();
+
+        for(int i = 0; i < exerciseList.size(); i++){
+            frequentGroups.add(exerciseList.get(i).getMuscleGroup());
+        }
+
+        //Log de la lista de grupos
+        Log.d("Lista de grupos antes de ser filtrados", frequentGroups.toString());
+
+
+        List<Integer> resultado = Funciones.obtenerNumerosMasRepetidos(frequentGroups);
+
+        //Log de la lista de grupos
+        Log.d("Lista de grupos despues de ser filtrados", resultado.toString());
+
+        return resultado;
+    }
+
 }

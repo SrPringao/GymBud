@@ -29,13 +29,13 @@ import java.util.ArrayList;
 
 
 
-public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.EjerciciosViewHolder> {
+public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<AgregarEjerciciosCarritoAdapter.EjerciciosViewHolder> {
 
     ArrayList<Exercises> ListasEjercicios;
     ArrayList<Integer> listaDeIds = new ArrayList<>(); // Aquí se declara la lista de ids
 
 
-    public TienditaAdaptador(ArrayList<Exercises> ListasEjercicios) {
+    public AgregarEjerciciosCarritoAdapter(ArrayList<Exercises> ListasEjercicios) {
         this.ListasEjercicios = ListasEjercicios;
 
     }
@@ -48,7 +48,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
 
     @NonNull
     @Override
-    public TienditaAdaptador.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AgregarEjerciciosCarritoAdapter.EjerciciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_ejercicios_tiendita, parent, false);
         return new EjerciciosViewHolder(view, listener);
     }
@@ -59,7 +59,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
 
 
     @Override
-    public void onBindViewHolder(@NonNull TienditaAdaptador.EjerciciosViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AgregarEjerciciosCarritoAdapter.EjerciciosViewHolder holder, int position) {
         Exercises exercise = ListasEjercicios.get(position);
         holder.Nombre.setText(exercise.getName());
         holder.Enfoque.setText(exercise.getFocus());
@@ -82,7 +82,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
 
                     //Establecer título del diálogo y centrarlo
 
-                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId, 0, 0)};
+                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId,"", 0, 0,0,null)};
 
                     //center setTitle
                     TextView title = new TextView(view.getContext());
@@ -116,7 +116,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     seriesEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
                     seriesEditText.setHint("Sets");
                     //add text as 1
-                    seriesEditText.setText("");
+                    seriesEditText.setText("4");
                     seriesEditText.setLayoutParams(params);
                     linearLayout.addView(seriesEditText);
 
@@ -137,7 +137,7 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                     repsEditText.setGravity(Gravity.CENTER);
                     repsEditText.setHint("Reps");
                     //add text as 1
-                    repsEditText.setText("");
+                    repsEditText.setText("10");
                     repsEditText.setLayoutParams(params);
                     linearLayout.addView(repsEditText);
 
@@ -154,12 +154,16 @@ public class TienditaAdaptador extends RecyclerView.Adapter<TienditaAdaptador.Ej
                             }
                             int numSeries = Integer.parseInt(seriesEditText.getText().toString());
                             int numReps = Integer.parseInt(repsEditText.getText().toString());
+                            int muscleId = exercise.getMuscularGroup();
+                            String name = exercise.getName();
+                            //image as a byte array
+                            byte[] imagen = exercise.getImage();
 
 
                             //add exercise to the list
                             listaDeIds.add(exerciseId);
 
-                            exerciseSet[0] = new ExerciseSet(exerciseId, numSeries, numReps);
+                            exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
