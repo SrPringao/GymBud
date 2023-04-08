@@ -28,6 +28,7 @@ import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta;
+import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.R;
 
@@ -174,6 +175,19 @@ public class FragmentInfoPersonal extends Fragment {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
             params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
             imgGM1.setLayoutParams(params);
+
+            imgGM1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment firstFragment = new CreacionDeRutinas();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+
         }else {
             //using strings.xml set day name to textview
             dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
