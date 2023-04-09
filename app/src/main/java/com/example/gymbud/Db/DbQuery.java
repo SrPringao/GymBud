@@ -436,11 +436,18 @@ public class DbQuery extends DbHelper {
 
         Cursor cursor = null;
 
+
         // Ejecutar la consulta para obtener la rutina del dia guardada en la bd
         cursor = db.rawQuery("SELECT * FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek, null);
 
         // Crear un objeto Routine
         Routine routine = null;
+
+        /*routineDayAlreadyFilled(dayOfWeek);
+        if (!routineDayAlreadyFilled(dayOfWeek)) {
+            //si no tiene rutina asignada, retornar null
+            return new Routine();
+        }*/
 
         //si la lista recibida esta vacia, retornar la lista vacia
         if (cursor.getCount() == 0) {

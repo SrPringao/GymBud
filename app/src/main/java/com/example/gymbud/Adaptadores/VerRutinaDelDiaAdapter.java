@@ -29,9 +29,15 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
     List<ExerciseSet> ListasEjercicios;
 
 
+
     public VerRutinaDelDiaAdapter(Routine routine) {
         this.routine = routine;
-        ListasEjercicios = routine.getExerciseList();
+
+        if (routine == null) {
+            ListasEjercicios = new ArrayList<>();
+        } else {
+            ListasEjercicios = routine.getExerciseList();
+        }
     }
 
     public interface EventOnItemClick {

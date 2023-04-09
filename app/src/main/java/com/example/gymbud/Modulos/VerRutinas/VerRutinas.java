@@ -17,13 +17,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gymbud.Adaptadores.VerRutinaDelDiaAdapter;
 import com.example.gymbud.Db.DbQuery;
+import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -118,16 +123,45 @@ public class VerRutinas extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.VRRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         DbQuery dbQuery = new DbQuery (getContext());
-        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(numberDayOfWeek));
-        recyclerView.setAdapter(adapter);
+
+        Log.d("Existencia de rutina en carga ", String.valueOf(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)));
+
+
+//
+//        ExerciseSet exercis = new ExerciseSet(1,"", 3, 12,1,null);
+//        ArrayList<ExerciseSet> routines = new ArrayList<>();
+//        routines.add(exercis);
+//
+//        Routine dummyRoutine = new Routine("Rutina de prueba" , routines, 1);
+//
+//        if(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)) {
+//            Log.d("Rutina existente: ", String.valueOf(numberDayOfWeek+1));
+////            VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(numberDayOfWeek));
+////            recyclerView.setAdapter(adapter);
+//        }else {
+//            Log.d("Rutina no existente: ", String.valueOf(numberDayOfWeek+1));
+////            VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dummyRoutine);
+////            recyclerView.setAdapter(adapter);
+//        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 int newDayOfWeek = position + 1;
-//                Log.d("Dia seleccionado: ", String.valueOf(newDayOfWeek));
-                updateRecyclerView(newDayOfWeek);
+                Log.d("Existencia de rutina en spinner actualizado", String.valueOf(dbQuery.routineDayAlreadyFilled(newDayOfWeek)) + "  " + String.valueOf(newDayOfWeek));
+
+                if (dbQuery.routineDayAlreadyFilled(newDayOfWeek)) {
+                    updateRecyclerView(newDayOfWeek);
+                    Log.d("Rutina que se mostrara " , String.valueOf(dbQuery.getRoutineByDay(newDayOfWeek)));
+                } else {
+                    Log.d("Rutina que se mostrara " , String.valueOf(dbQuery.getRoutineByDay(newDayOfWeek)));
+                    updateRecyclerView(newDayOfWeek);
+                    Toast.makeText(getContext(), "No hay rutina para este día", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -140,15 +174,12 @@ public class VerRutinas extends Fragment {
     }
 
     private void updateRecyclerView(int dayOfWeek) {
-        // Actualiza el valor de numberDayOfWeek
-        int numberDayOfWeek = dayOfWeek;
-
         // Actualiza el recycler view
         RecyclerView recyclerView = getView().findViewById(R.id.VRRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DbQuery dbQuery = new DbQuery (getContext());
-        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(numberDayOfWeek));
+        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(dayOfWeek));
         recyclerView.setAdapter(adapter);
     }
 
