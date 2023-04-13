@@ -24,6 +24,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         android:scaleType="centerCrop"
+        app:strokeColor="@null"
         app:srcCompat="@drawable/jim">
 
     </com.google.android.material.imageview.ShapeableImageView>
@@ -36,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         android:paddingBottom="15dp"
-
+        app:strokeColor="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"

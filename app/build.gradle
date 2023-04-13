@@ -70,6 +70,8 @@ dependencies {
     //    implementation 'androidx.fragment:fragment:1.6.0-alpha04'
 
 
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
 
 
 

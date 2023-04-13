@@ -1,8 +1,15 @@
 package com.example.gymbud.Modulos.Sucursales;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,12 +29,21 @@ import com.android.volley.toolbox.Volley;
 import com.example.gymbud.Adaptadores.SucursalesAdaptador;
 import com.example.gymbud.Entidades.Sucursal;
 import com.example.gymbud.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,23 +83,106 @@ public class Sucursales extends Fragment {
         return fragment;
     }
 
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationCallback locationCallback;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        createLocationCallback();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    private void createLocationCallback() {
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    return;
+                }
+                // Aquí puedes usar la ubicación actual
+                Location location = locationResult.getLastLocation();
+                Log.d("Ubicacion Callback", "Latitud: " + location.getLatitude() + " Longitud: " + location.getLongitude());
+            }
+        };
+    }
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Solicitar permisos si no están concedidos
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
+        }
+        fusedLocationClient.requestLocationUpdates(createLocationRequest(), locationCallback, null /* Looper */);
+    }
+
+    private LocationRequest createLocationRequest() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000); // Intervalo de actualización de la ubicación
+        locationRequest.setFastestInterval(5000); // Intervalo de actualización más rápido
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY); // Precisión alta
+        return locationRequest;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        stopLocationUpdates();
+    }
+
+    private void stopLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback);
+    }
+
     RecyclerView recyclerView;
     ArrayList<Sucursal> SucursalesLista;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceSttate){
+    public void onViewCreated(View view, Bundle savedInstanceSttate) {
         Context context = getContext();
         SucursalesLista = new ArrayList<>();
         recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerSucursales);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
+        if (ActivityCompat.checkSelfPermission(getContext() , Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Ubicación actual obtenida exitosamente
+                        if (location != null) {
+                            Log.d("Ubicacion", "Latitud: " + location.getLatitude() + ", Longitud: " + location.getLongitude());
+                        }
+                    }
+                })
+                .addOnFailureListener(getActivity(), new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // No se pudo obtener la ubicación actual
+                        Log.w("FALLO", "getLastLocation:onFailure", e);
+                    }
+                });
 
         MostrarResultado();
 
@@ -117,6 +216,7 @@ public class Sucursales extends Fragment {
                                 for (int i = 0;i<array.length();i++) {
                                     JSONObject Obj = (JSONObject) array.get(i);
                                     Log.d("ID",""+Obj.getInt("id"));
+                                    // Agregar sucursales obtenidas a la lista
                                     SucursalesLista.add(new Sucursal(
                                             Obj.getInt("id"),
                                             Obj.getInt("CurrentUsers"),
@@ -125,8 +225,42 @@ public class Sucursales extends Fragment {
                                             Obj.getString("Location"),
                                             Obj.getString("ImageLink"),
                                             Obj.getString("Schedule"),
-                                            Obj.getInt("ContactNumber")
+                                            Obj.getInt("ContactNumber"),
+                                            Obj.getString("Latitud"),
+                                            Obj.getString("Longitud")
                                     ));
+
+                                    // Ordenar la lista de sucursales según la ubicación actual
+
+
+                                    LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
+                                    //Si no se tiene acceso a la ubicación actual, se ordena por ID
+                                    @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                                    //Si se tiene acceso a la ubicación actual, se ordena por distancia
+                                    if (location != null) {
+
+                                        //Obtener ubicación actual
+                                        final double latActual = location.getLatitude();
+                                        final double lonActual = location.getLongitude();
+
+                                        //Comparador para ordenar la lista de sucursales
+                                        Comparator<Sucursal> comparador = new Comparator<Sucursal>() {
+                                            @Override
+                                            public int compare(Sucursal sucursal1, Sucursal sucursal2) {
+                                                //convert string to double
+                                                double dist1 = distancia(latActual, lonActual, Double.parseDouble(sucursal1.getLatitud()), Double.parseDouble(sucursal1.getLongitud()));
+                                                double dist2 = distancia(latActual, lonActual, Double.parseDouble(sucursal2.getLatitud()), Double.parseDouble(sucursal2.getLongitud()));
+                                                return Double.compare(dist1, dist2);
+                                            }
+                                        };
+                                        Collections.sort(SucursalesLista, comparador);
+                                        //Log de prueba
+                                        for (int j = 0; j < SucursalesLista.size(); j++) {
+                                            Log.d("Distancia", "" + distancia(latActual, lonActual, Double.parseDouble(SucursalesLista.get(j).getLatitud()), Double.parseDouble(SucursalesLista.get(j).getLongitud())));
+                                        }
+                                    }
                                     SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(int position) {
@@ -159,5 +293,19 @@ public class Sucursales extends Fragment {
         });
         Volley.newRequestQueue(getContext()).add(stringRequest);
 
+    }
+
+    // Método para calcular la distancia entre dos puntos
+    //Formula de Haversine
+    public double distancia(double lat1, double lon1, double lat2, double lon2) {
+        double R = 6371; // Radio de la Tierra en kilómetros
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = R * c; // Distancia en kilómetros
+        return d;
     }
 }
