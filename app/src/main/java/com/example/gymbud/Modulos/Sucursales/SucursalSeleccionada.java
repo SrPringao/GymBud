@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,6 +39,9 @@ import com.synnapps.carouselview.ImageListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,7 +103,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
 
     }
 
-    TextView Sucursal,Personas,Ubicacion;
+    TextView Sucursal,Personas,Ubicacion,TextoRating;
     public int[] imagenes(String sucursal){
         int [] mImages = new int[]{};
         switch (sucursal){
@@ -143,7 +149,9 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     ImageView botonBack,imagen1,imagen2,imagen3,imagen4,imagen5,imagen6;
     RatingBar ratingBarAvg, ratingBarMaquinas, ratingBarStaff, ratingBarVestidores;
     GoogleMap mMap;
+    String calificacion1,calificacion2,calificacion3;
     Button botonCalificacion;
+
      public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //id de los elementos de la vista
@@ -156,6 +164,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         Ubicacion = (TextView) view.findViewById(R.id.ssUbicacionSucursales);
         CarouselView carouselView = view.findViewById(R.id.carouselView);
         botonCalificacion = view.findViewById(R.id.ssBotonCalificacion);
+        TextoRating = view.findViewById(R.id.ssTvratingValue);
 
         //obtener los datos de la sucursal seleccionada
          Extras(view);
@@ -165,10 +174,21 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
          String Ubi= mbundle.getString("Ubicacion");
          String Rating= mbundle.getString("Rating");
          String Horario= mbundle.getString("Horario");
+         int id = mbundle.getInt("ID");
+
+         FragmentContainer activity = (FragmentContainer) getActivity();
+         int UID = activity.UIDUSR();
+         Log.d("id recibida", String.valueOf(id));
+
 
          //asignar los datos a los elementos de la vista
          Sucursal.setText(sucursal);
          Ubicacion.setText(Ubi);
+         //truncar el rating a 1 decimal
+         String rating = String.format("%.1f", Float.parseFloat(Rating));
+         TextoRating.setText(rating);
+
+         ratingBarAvg.setRating(Float.parseFloat(Rating));
          carouselView.setImageListener(imageListener);
          carouselView.setPageCount(Imagenes.length);
 
@@ -189,8 +209,44 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 //Request to server add values to database with php
+                calificacion1 = String.valueOf(ratingBarMaquinas.getRating());
+                calificacion2 = String.valueOf(ratingBarStaff.getRating());
+                calificacion3 = String.valueOf(ratingBarVestidores.getRating());
 
+                Toast.makeText(getContext(), "Calificación enviada", Toast.LENGTH_SHORT).show();
+                Log.d("Calificacion",calificacion1);
+                Log.d("Calificacion",calificacion2);
+                Log.d("Calificacion",calificacion3);
 
+                //enviar calificaciones a la base de datos
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://francoaldrete.com/GymBud/rating.php?uid="+UID+"&sucursal="+id+"&cal1="+calificacion1+"&cal2="+calificacion2+"&cal3="+calificacion3,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                                Log.d("Response",response);
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                Log.d("Error",error.toString());
+                            }
+                        }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("uid","1");
+                        params.put("sucursal",String.valueOf(id));
+                        params.put("calificacion1",calificacion1);
+                        params.put("calificacion2",calificacion2);
+                        params.put("calificacion3",calificacion3);
+                        return params;
+                    }
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                requestQueue.add(stringRequest);
             }
         });
 

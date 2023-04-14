@@ -69,7 +69,7 @@ WHERE s.id = '$sucursal'";
     $result_update_sub = $link->query($sql_update_sub);
     if ($result_update_sub) {
         // Mostrar mensaje de éxito
-        echo "Se ha actualizado el promedio de calificación de la sucursal";
+        echo "\nSe ha actualizado el promedio de calificación de la sucursal";
     } else {
         // Mostrar mensaje de error
         echo "\nNo se ha podido actualizar el promedio de calificación de la sucursal\n";

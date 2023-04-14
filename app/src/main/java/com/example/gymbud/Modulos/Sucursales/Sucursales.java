@@ -220,7 +220,7 @@ public class Sucursales extends Fragment {
                                     SucursalesLista.add(new Sucursal(
                                             Obj.getInt("id"),
                                             Obj.getInt("CurrentUsers"),
-                                            Obj.getInt("Rating"),
+                                            Obj.getDouble("Rating"),
                                             Obj.getString("SubName"),
                                             Obj.getString("Location"),
                                             Obj.getString("ImageLink"),
@@ -279,6 +279,7 @@ public class Sucursales extends Fragment {
                                             args.putString("Rating", ""+SucursalesLista.get(position).getRating());
                                             args.putInt("ID", SucursalesLista.get(position).getId());
                                             Log.d("ID", ""+SucursalesLista.get(position).getId());
+
 
                                             fragment.setArguments(args);
                                             transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
