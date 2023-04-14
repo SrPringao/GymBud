@@ -9,7 +9,9 @@ public class ExerciseSet {
     private int numSeries;
     private int numReps;
     private int muscleGroup;
+    public ExerciseSet() {
 
+    }
     public ExerciseSet(int id, String name, int numSeries, int numReps, int muscleGroup, byte[] image) {
         this.id = id;
         this.numSeries = numSeries;

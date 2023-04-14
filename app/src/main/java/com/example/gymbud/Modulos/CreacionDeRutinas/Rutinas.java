@@ -1,5 +1,6 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
@@ -71,12 +73,23 @@ public class Rutinas extends Fragment {
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment firstFragment = new Encuesta();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
-                transaction.replace(R.id.navFragmentContainer, firstFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Cualquier rutina creada con anterioridad sera remplazada");
+                builder.setMessage("¿Desea continuar?");
+
+                builder.setPositiveButton("Si", (dialog, which) -> {
+                    dialog.dismiss();
+                    Fragment firstFragment = new Encuesta();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, firstFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                });
+                builder.setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                builder.show();
             }
         });
 

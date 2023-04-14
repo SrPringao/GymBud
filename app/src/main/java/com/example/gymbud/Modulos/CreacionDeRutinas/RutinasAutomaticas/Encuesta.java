@@ -1,5 +1,7 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas;
 
+import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +15,13 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gymbud.Adaptadores.JsonPreguntas;
+import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
+import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.R;
 import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
 import com.google.gson.JsonArray;
@@ -29,7 +35,10 @@ import com.google.gson.JsonParser;
  * create an instance of this fragment.
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +86,9 @@ public class Encuesta extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -229,7 +241,7 @@ public class Encuesta extends Fragment {
                     Log.d("Resultado", "Seleccion "+ n +" "+ Resultadosinprocesar[i]);
                 }
                 if(i==70){
-                    RutinaAuto(Resultadosinprocesar,TiempoxDia);
+                            RutinaAuto(Resultadosinprocesar,TiempoxDia);
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Resultado", Resultadosinprocesar);
                     Fragment firstFragment = new Rutinas();
@@ -312,7 +324,7 @@ public class Encuesta extends Fragment {
         }
     }
 
-    public void RutinaAuto(int[] ResultadosSinProcesar,int[] TiempoxDia) {
+    public void  RutinaAuto(int[] ResultadosSinProcesar,int[] TiempoxDia) {
         //Primer resultado es el sexo del usuario(1 es hombre, 2 es mujer)
         //el segundo es si padece de alguna enfermedad(1 es si, 2 es no)
         // el tercero es si la enfermedad le dificulta el entrenamiento(1 si 2 no)
@@ -344,7 +356,6 @@ public class Encuesta extends Fragment {
         boolean Enfermedad = false; //Esta variable es para saber si el usuario tiene alguna enfermedad que le dificulte el entrenamiento.
         boolean EjerciciosCapaces=false; //Esta variable es para saber si se disminuyen los ejercicios que se le van a asignar o se quitar completamente.
         boolean Lesionado=false; //Esta variable es para saber si el usuario esta lesionado y asi no asignarle ejercicios que le puedan causar mas daño.
-        boolean MismoTiempo=false; //Esta variable es para saber si el usuario dispone del mismo tiempo para entrenar todos los dias.
         int CantEjercicios=0;
         int MusculoLesionado=0;
 
@@ -356,9 +367,8 @@ public class Encuesta extends Fragment {
         Tiempos.put(1,6);
         Tiempos.put(2,10);
         Tiempos.put(3,12);
-        boolean dia1=false,dia2=false,dia3=false,dia4=false,dia5=false,dia6=false;
-        int Lunes=0,Martes=0,Miercoles=0,Jueves=0,Viernes=0,Sabado=0;
-        //acceder a la posicion 9 del arreglo y agarrar los dias que entrena
+        int Dia1=0,Dia2=0,Dia3=0,Dia4=0,Dia5=0,Dia6=0;
+        //acceder a la posicion 9 del arreglo y agarrar los dias que en trena
         if(Resultadosinprocesar[10]==1) {
 
             CantEjercicios=Tiempos.get(ResultadosSinProcesar[11]);
@@ -369,22 +379,22 @@ public class Encuesta extends Fragment {
             for(int i=0;i<TiempoxDia[11];i++){
                 switch (i){
                     case 0:
-                        Lunes=Tiempos.get(TiempoxDia[i]);
+                        Dia1=Tiempos.get(TiempoxDia[i]);
                         break;
                     case 1:
-                        Martes=Tiempos.get(TiempoxDia[i]);
+                        Dia2=Tiempos.get(TiempoxDia[i]);
                         break;
                     case 2:
-                        Miercoles=Tiempos.get(TiempoxDia[i]);
+                        Dia3=Tiempos.get(TiempoxDia[i]);
                         break;
                     case 3:
-                        Jueves=Tiempos.get(TiempoxDia[i]);
+                        Dia4=Tiempos.get(TiempoxDia[i]);
                         break;
                     case 4:
-                        Viernes=Tiempos.get(TiempoxDia[i]);
+                        Dia5=Tiempos.get(TiempoxDia[i]);
                         break;
                     case 5:
-                        Sabado=Tiempos.get(TiempoxDia[i]);
+                        Dia6=Tiempos.get(TiempoxDia[i]);
                         break;
                 }
             }
@@ -432,7 +442,7 @@ public class Encuesta extends Fragment {
             }
         }
         //acceder a la posicion 7 del arreglo y agarrar la experiencia del usuario
-//acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
+        //acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
 
 
 
@@ -447,82 +457,130 @@ public class Encuesta extends Fragment {
         {
             abs=true;
         }
-
+        ArrayList<ExerciseSet> listaCompleta = new ArrayList<>();
+        dbQuery.deleteRoutines();
         switch (ResultadosSinProcesar[9]) {
 
             case 1:
                 //Dia 1
-                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                AgregarRutina("Lunes",1,listaCompleta);
+                listaCompleta.clear();
                 //Dia 2
-                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
+                listaCompleta.addAll(Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
+                if(abs==true)
+                {
+                    listaCompleta.addAll(Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                }
+                AgregarRutina("Miercoles",3,listaCompleta);
+                listaCompleta.clear();
                 //Dia 3
-                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                AgregarRutina("Viernes",5,listaCompleta);
+                listaCompleta.clear();
                 break;
 
             case 2:
                 //Dia 1
-                Dias(5,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(5,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(5,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(5,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(5,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(5,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(5,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(5,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(5,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(5,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                AgregarRutina("Lunes",1,listaCompleta);
+                listaCompleta.clear();
                 //Dia 2
-                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                if(abs==true)
+                {
+                    listaCompleta.addAll(Dias(5,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,4,12));
+                }
+                AgregarRutina("Martes",2,listaCompleta);
+                listaCompleta.clear();
                 //Dia 3
-                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,1,Series,Reps));
+                AgregarRutina("Miercoles",3,listaCompleta);
+                listaCompleta.clear();
                 //Dia 4
-                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,Series,Reps));
+                listaCompleta.addAll(Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,Series,Reps));
+                if(abs==true)
+                {
+                    listaCompleta.addAll(Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,4,12));
+                }
+                AgregarRutina("Jueves",4,listaCompleta);
+                listaCompleta.clear();
                 //Dia 5
-                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,2,Series,Reps));
+                AgregarRutina("Viernes",5,listaCompleta);
+                listaCompleta.clear();
                 break;
 
             case 3:
 
-                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
+                AgregarRutina("Lunes",1,listaCompleta);
+                listaCompleta.clear();
                 //Dia 2
-                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
+                listaCompleta.addAll(Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
+                if(abs==true)
+                {
+                    listaCompleta.addAll(Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,4,12));
+                }
+                AgregarRutina("Martes",2,listaCompleta);
+                listaCompleta.clear();
                 //Dia 3
-                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
+                AgregarRutina("Miercoles",3,listaCompleta);
+                listaCompleta.clear();
                 //Dia 4
-                Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,Series,Reps));
+                listaCompleta.addAll(Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia4,1,Series,Reps));
+                AgregarRutina("Jueves",4,listaCompleta);
+                listaCompleta.clear();
                 //Dia 5
-                Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
-                Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,1);
+                listaCompleta.addAll(Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,1,Series,Reps));
+                listaCompleta.addAll(Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,1,Series,Reps));
+                if(abs==true)
+                {
+                   listaCompleta.addAll( Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia5,1,4,12));
+                }
+                AgregarRutina("Viernes",5,listaCompleta);
+                listaCompleta.clear();
                 //Dia 6
-                Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
-                Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,2);
+                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia6,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia6,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia6,2,Series,Reps));
+                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia6,2,Series,Reps));
+                AgregarRutina("Sabado",6,listaCompleta);
+                listaCompleta.clear();
                 break;
         }
-
-
+        Regresamos();
     }
 
-    private void Dias(int cantMusculos,int musculo, int[] ResultadosSinProcesar,boolean EjerciciosCapaces,boolean Lesionado, int MusculoLesionado,boolean Enfermedad,double CantEjercicios,int Lunes,int Martes,int Miercoles,int Jueves,int Viernes,int Sabado,int tren) {
+    private ArrayList<ExerciseSet> Dias(int cantMusculos,int musculo, int[] ResultadosSinProcesar,boolean EjerciciosCapaces,boolean Lesionado, int MusculoLesionado,boolean Enfermedad,double CantEjercicios,int Dia,int tren,int series,int reps) {
         int[] ids;
         DbQuery dbQuery = new DbQuery(getContext());
         HashMap<Integer, String> TrenSup = new HashMap<>();
@@ -537,35 +595,73 @@ public class Encuesta extends Fragment {
         TrenSup.put(10, "Triceps");
         TrenSup.put(11, "Espalda");
 
+        HashMap<Integer, String> TrenInf = new HashMap<>();
+        TrenInf.put(7, "Cuadriceps");
+        TrenInf.put(13, "Gluteo");
+        TrenInf.put(14, "Femoral");
+        TrenInf.put(15,"Pantorrilla");
 
-        boolean Group1=false,Group2=false,Group3=false;
+        ArrayList<ExerciseSet> Rutina = new ArrayList<>();
+        ExerciseSet ejercicios = new ExerciseSet();
         double EjerciciosPorMusculo=2;
-
-            String Query = " WHERE MuscularGroup = ";
-
-
+         String Query = " WHERE MuscularGroup = ";
                     Query += musculo;
                     Query += " AND Tool = " + ResultadosSinProcesar[15];
                     if (ResultadosSinProcesar[7] == 1) {
                         Query += " AND Difficulty = " + ResultadosSinProcesar[7];
+                        //Query +=" ORDER BY RAND()";
                         Query += " ORDER BY Difficulty ASC ";
                     }else{
+                        //Query +=" ORDER BY RAND()";
                         Query += " ORDER BY Difficulty Desc ";
                     }
                     if(Resultadosinprocesar[10]==1) {
                         EjerciciosPorMusculo = Math.floor(CantEjercicios/cantMusculos);
+                    }else{
+                        EjerciciosPorMusculo = Math.ceil(Dia/cantMusculos);
                     }
                     if ((EjerciciosCapaces == true|| Lesionado == true)&& (MusculoLesionado==musculo && Resultadosinprocesar[3]==tren)) {
                         Query += "LIMIT 0";
                     }else if((EjerciciosCapaces == false && Enfermedad==true)) {
                         Query+="LIMIT "+ Math.ceil(EjerciciosPorMusculo/2);
                     }else{
-                        Query+="LIMIT "+ EjerciciosPorMusculo;
-                    }
+                        if(musculo==2||musculo==10||musculo==6||musculo==8||musculo==15||musculo==4){
+                            Query+="LIMIT "+ 3;
+                        }else {
+                            Query += "LIMIT " + EjerciciosPorMusculo;
+                        }
+                        }
         Log.d("Ejercicios", Query);
                     ids = dbQuery.EjerciciosID(Query);
                     for(int i=0;i<ids.length;i++){
+                        String MusculoTexto;
+                        if(TrenSup.containsValue(musculo)){
+                            MusculoTexto=TrenSup.get(musculo);
+                        }else{
+                            MusculoTexto=TrenInf.get(musculo);
+                        }
+                        ejercicios = new ExerciseSet(ids[i],MusculoTexto,series,reps,musculo,null);
+                        Rutina.add(ejercicios);
                         Log.d("Ejercicios", "Ejercicio del musculo "+TrenSup.get(musculo)+" "+ids[i]);
                     }
+                    return Rutina;
                 }
+
+
+    private void AgregarRutina(String day, int dayOfWeek, ArrayList<ExerciseSet> listaIds){
+
+        DbQuery dbQuery = new DbQuery(getContext());
+        Routine routine = new Routine("Rutina " + day, listaIds, dayOfWeek);
+        Log.d("El dia de la semana " + day + "ya cuenta con una rutina", dbQuery.routineDayAlreadyFilled(dayOfWeek) + "");
+                dbQuery.insertRoutine(routine);
+                Toast.makeText(getContext(), "Rutina del dia " + day+ " actualizada correctamente", Toast.LENGTH_SHORT).show();
+                listaIds.clear();
+    }
+    private void Regresamos(){
+        Fragment firstFragment = new Rutinas();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
             }
+
+
