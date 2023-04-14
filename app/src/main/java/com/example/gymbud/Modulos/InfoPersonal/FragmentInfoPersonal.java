@@ -189,35 +189,38 @@ public class FragmentInfoPersonal extends Fragment {
             });
 
         }else {
-            //using strings.xml set day name to textview
-            dayName = "Rutina del dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
-            textoGMROutine.setText(dayName);
-            List<Integer> Repetidos = dbQuery.gruposRepetidos(numberDayOfWeek);
+            try {
+                //using strings.xml set day name to textview
+                dayName = "Rutina del dia " + getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
+                textoGMROutine.setText(dayName);
+                List<Integer> Repetidos = dbQuery.gruposRepetidos(numberDayOfWeek);
 
-            if (Repetidos.size()<=1){
-                int index = Repetidos.get(0) - 1;
-                separdor.setVisibility(View.GONE);
-                imgGM2.setVisibility(View.GONE);
-                Drawable drawable = imagenes.getDrawable(index);
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
-                params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-                imgGM1.setLayoutParams(params);
-                imgGM1.setImageDrawable(drawable);
-                imagenes.recycle();
-            }else {
-                int index1 = Repetidos.get(0) - 1;
-                int index2 = Repetidos.get(1) - 1;
-                separdor.setVisibility(View.VISIBLE);
-                imgGM2.setVisibility(View.VISIBLE);
+                if (Repetidos.size() <= 1) {
+                    int index = Repetidos.get(0) - 1;
+                    separdor.setVisibility(View.GONE);
+                    imgGM2.setVisibility(View.GONE);
+                    Drawable drawable = imagenes.getDrawable(index);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) imgGM1.getLayoutParams();
+                    params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+                    imgGM1.setLayoutParams(params);
+                    imgGM1.setImageDrawable(drawable);
+                    imagenes.recycle();
+                } else {
+                    int index1 = Repetidos.get(0) - 1;
+                    int index2 = Repetidos.get(1) - 1;
+                    separdor.setVisibility(View.VISIBLE);
+                    imgGM2.setVisibility(View.VISIBLE);
 
-                Drawable drawable1 = imagenes.getDrawable(index1);
-                Drawable drawable2 = imagenes.getDrawable(index2);
-                imgGM1.setImageDrawable(drawable1);
-                imgGM2.setImageDrawable(drawable2);
+                    Drawable drawable1 = imagenes.getDrawable(index1);
+                    Drawable drawable2 = imagenes.getDrawable(index2);
+                    imgGM1.setImageDrawable(drawable1);
+                    imgGM2.setImageDrawable(drawable2);
 
-                imagenes.recycle();
+                    imagenes.recycle();
+                }
+            }catch (Exception e){
+                Log.d("Error", "Error al cargar las imagenes");
             }
-
         }
 
         //get routine by day

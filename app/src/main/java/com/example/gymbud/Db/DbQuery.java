@@ -536,4 +536,15 @@ public class DbQuery extends DbHelper {
         return resultado;
     }
 
+    public void deleteRoutines(){
+        // Obtener una instancia de la base de datos en modo escritura
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Ejecutar la consulta
+        db.execSQL("DELETE FROM ROUTINE");
+
+        // Cerrar la conexión a la base de datos
+        db.close();
+    }
 }
