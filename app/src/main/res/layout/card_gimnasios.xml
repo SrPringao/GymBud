@@ -35,70 +35,87 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cgAlignView"
-
         android:background="@drawable/backgroundcornerinverted">
 
-        <View
-            android:id="@+id/cgAlignView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+
+        <RelativeLayout
             android:layout_centerInParent="true"
-            >
-        </View>
-
-        <RelativeLayout
-            android:id="@+id/cgP1"
             android:layout_width="wrap_content"
-            android:layout_toStartOf="@id/cgAlignView2"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/SubName"
-                style="@style/sucursalesgod"
+
+            <RelativeLayout
+                android:id="@+id/cgPart2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/cgAlignView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    >
+                </View>
+
+                <RelativeLayout
+                    android:id="@+id/cgP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/cgAlignView2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    >
+
+                    <TextView
+                        android:id="@+id/SubName"
+                        style="@style/sucursalesgod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
+                        android:text="La calma"
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cgP2"
+                    android:layout_toEndOf="@id/cgAlignView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    >
+
+                    <TextView
+                        android:id="@+id/Location"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="Av. La Calma, esq. Calle Casiopea 4481, Col. La Calma 45070. Guadalajara, Jalisco"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="20dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <RatingBar
+                android:id="@+id/Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:progress="@integer/material_motion_duration_long_2"
+                android:progressTint="@color/colorIdentidad2"
+                android:secondaryProgressTint="@color/colorIdentidad2"
+                android:rating="5"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:layout_below="@+id/cgPart2"
                 android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="La calma"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/bottomNavigationBackground"
                 />
-
-
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/cgP2"
-            android:layout_toEndOf="@id/cgAlignView2"
-            android:layout_width="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/Location"
-                style="@style/viewParent.headerText.homeCardContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="Av. La Calma, esq. Calle Casiopea 4481, Col. La Calma 45070. Guadalajara, Jalisco"
-                android:textColor="@color/bottomNavigationBackground"
-                android:textSize="20dp" />
-        </RelativeLayout>
-
-        <RatingBar
-            android:id="@+id/Rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:progress="@integer/material_motion_duration_long_2"
-            android:progressTint="@color/colorIdentidad2"
-            android:secondaryProgressTint="@color/colorIdentidad2"
-            android:rating="5"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
-            android:layout_centerHorizontal="true"
-            />
     </RelativeLayout>
 </RelativeLayout>
