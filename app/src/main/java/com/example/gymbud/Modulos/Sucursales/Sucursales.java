@@ -231,35 +231,38 @@ public class Sucursales extends Fragment {
                                     ));
 
                                     // Ordenar la lista de sucursales según la ubicación actual
+                                    try {
+                                        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
+                                        //Si no se tiene acceso a la ubicación actual, se ordena por ID
+                                        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-                                    LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+                                        //Si se tiene acceso a la ubicación actual, se ordena por distancia
+                                        if (location != null) {
 
-                                    //Si no se tiene acceso a la ubicación actual, se ordena por ID
-                                    @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                            //Obtener ubicación actual
+                                            final double latActual = location.getLatitude();
+                                            final double lonActual = location.getLongitude();
 
-                                    //Si se tiene acceso a la ubicación actual, se ordena por distancia
-                                    if (location != null) {
-
-                                        //Obtener ubicación actual
-                                        final double latActual = location.getLatitude();
-                                        final double lonActual = location.getLongitude();
-
-                                        //Comparador para ordenar la lista de sucursales
-                                        Comparator<Sucursal> comparador = new Comparator<Sucursal>() {
-                                            @Override
-                                            public int compare(Sucursal sucursal1, Sucursal sucursal2) {
-                                                //convert string to double
-                                                double dist1 = distancia(latActual, lonActual, Double.parseDouble(sucursal1.getLatitud()), Double.parseDouble(sucursal1.getLongitud()));
-                                                double dist2 = distancia(latActual, lonActual, Double.parseDouble(sucursal2.getLatitud()), Double.parseDouble(sucursal2.getLongitud()));
-                                                return Double.compare(dist1, dist2);
+                                            //Comparador para ordenar la lista de sucursales
+                                            Comparator<Sucursal> comparador = new Comparator<Sucursal>() {
+                                                @Override
+                                                public int compare(Sucursal sucursal1, Sucursal sucursal2) {
+                                                    //convert string to double
+                                                    double dist1 = distancia(latActual, lonActual, Double.parseDouble(sucursal1.getLatitud()), Double.parseDouble(sucursal1.getLongitud()));
+                                                    double dist2 = distancia(latActual, lonActual, Double.parseDouble(sucursal2.getLatitud()), Double.parseDouble(sucursal2.getLongitud()));
+                                                    return Double.compare(dist1, dist2);
+                                                }
+                                            };
+                                            Collections.sort(SucursalesLista, comparador);
+                                            //Log de prueba
+                                            for (int j = 0; j < SucursalesLista.size(); j++) {
+                                                Log.d("Distancia", "" + distancia(latActual, lonActual, Double.parseDouble(SucursalesLista.get(j).getLatitud()), Double.parseDouble(SucursalesLista.get(j).getLongitud())));
                                             }
-                                        };
-                                        Collections.sort(SucursalesLista, comparador);
-                                        //Log de prueba
-                                        for (int j = 0; j < SucursalesLista.size(); j++) {
-                                            Log.d("Distancia", "" + distancia(latActual, lonActual, Double.parseDouble(SucursalesLista.get(j).getLatitud()), Double.parseDouble(SucursalesLista.get(j).getLongitud())));
                                         }
+
+                                    }catch (Exception e){
+                                        Log.d("Error",e.getMessage());
                                     }
                                     SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
                                         @Override

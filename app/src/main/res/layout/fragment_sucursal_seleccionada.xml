@@ -117,7 +117,7 @@
 
 
                     <RatingBar
-                        android:id="@+id/myRatingBar"
+                        android:id="@+id/ssRatingBarAvg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ssUbicacionSucursales"
@@ -138,7 +138,7 @@
                         android:id="@+id/ratingValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/myRatingBar"
+                        android:layout_below="@+id/ssRatingBarAvg"
                         android:layout_centerHorizontal="true"
                         android:text="4.5"
                         android:textSize="20sp"
@@ -210,6 +210,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/ssLayoutServicios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ssLayoutPersonas"
@@ -230,61 +231,174 @@
                         android:textSize="25sp"
                         android:textStyle="bold"/>
 
-
                         <LinearLayout
+                            android:id="@+id/ssLayoutImagenesServicios"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/ssServiciosTexto"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="30dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            >
 
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra1"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center_horizontal"
+                                >
 
-                                />
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra1"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
 
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra2"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra2"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra3"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
 
-                                />
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra3"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                />
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra5"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                />
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra4"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                />
+                            </LinearLayout>
 
-                            <ImageView
-                                android:visibility="gone"
-                                android:id="@+id/Extra6"
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra4"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
+                                
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra5"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:id="@+id/Extra6"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    />
+                            </LinearLayout>
                         </LinearLayout>
                 </RelativeLayout>
+                
+                <LinearLayout
+                    android:layout_below="@+id/ssLayoutServicios"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_alignStart="@+id/ssLayoutMap"
+                    android:layout_alignEnd="@+id/ssLayoutMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Estado de las maquinas"
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                    <RatingBar
+                        android:id="@+id/ssRatingBarMaquinas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:stepSize="0.5"
+                        android:isIndicator="false"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:secondaryProgressTint="@color/colorIdentidad2"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Atencion del staff"
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                    <RatingBar
+                        android:id="@+id/ssRatingBarStaff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:stepSize="0.5"
+                        android:isIndicator="false"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:secondaryProgressTint="@color/colorIdentidad2"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Cuidado de los vestidores"
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                    <RatingBar
+                        android:id="@+id/ssRatingBarVestidores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:stepSize="0.5"
+                        android:isIndicator="false"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:secondaryProgressTint="@color/colorIdentidad2"
+                        />
+
+                    <Button
+                        android:id="@+id/ssBotonCalificacion"
+                        android:layout_width="wrap_content"
+                        android:padding="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Enviar Calificacion"
+                        android:background="@drawable/backgroundcorner"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </RelativeLayout>

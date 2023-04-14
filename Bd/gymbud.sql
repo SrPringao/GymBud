@@ -31,6 +31,9 @@ CREATE TABLE `rating` (
   `Id` int(11) NOT NULL,
   `UserId` int(11) NOT NULL,
   `SubId` int(11) NOT NULL,
+   `Cal1` double NOT NULL
+    `Cal2` double NOT NULL
+     `Cal3` double NOT NULL
   `average` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
