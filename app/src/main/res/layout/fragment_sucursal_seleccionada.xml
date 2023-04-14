@@ -199,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato"
                         android:paddingTop="5dp"
-                        android:text="15"
+                        android:text="Cargando..."
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
@@ -281,7 +281,6 @@
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>
-
     </androidx.core.widget.NestedScrollView>
 
 
