@@ -1,6 +1,7 @@
 package com.example.gymbud.Adaptadores;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,9 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
         holder.SubName.setText(ListasSucursales.get(position).getSubName());
         holder.Location.setText(ListasSucursales.get(position).getLocation());
         holder.rating.setRating(ListasSucursales.get(position).getRating());
+
+
+        Log.d("Recycler Sucursales: " + position, "onBindViewHolder: " + ListasSucursales.get(position).getRating());
 
         setPosicion(position);
     }
