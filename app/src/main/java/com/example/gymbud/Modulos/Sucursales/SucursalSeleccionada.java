@@ -157,6 +157,9 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         Bundle mbundle = getArguments();
         Imagenes = imagenes(mbundle.getString("Nombre"));
         String sucursal= mbundle.getString("Nombre");
+        String Ubicacion= mbundle.getString("Ubicacion");
+        String Rating= mbundle.getString("Rating");
+        String Horario= mbundle.getString("Horario");
         Sucursal = (TextView) view.findViewById(R.id.TituloSucursales);
         Sucursal.setText(sucursal);
         CarouselView carouselView = view.findViewById(R.id.carouselView);
