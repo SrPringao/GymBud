@@ -1,109 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="wrap_content"
     android:id="@+id/layoutGimnasios"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:gravity="center"
-    android:background="@color/uruguayo"
-    android:orientation="vertical">
+    android:layout_marginTop="15dp"
+   >
 
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:paddingTop="15dp"
+    <RelativeLayout
+        android:id="@+id/cgPart1"
         android:layout_width="match_parent"
-        android:layout_height="197dp"
-        app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/jim">
+        android:layout_height="wrap_content">
 
-    </com.google.android.material.imageview.ShapeableImageView>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView2"
+            android:layout_width="match_parent"
+            android:layout_height="197dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            app:srcCompat="@drawable/jim"
+            app:strokeColor="@null"/>
+    </RelativeLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+    <View
+        android:id="@+id/cgAlignView"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="150dp"
+        android:layout_width="0dp"
+        >
+    </View>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="238dp"
-        android:layout_marginTop="156dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:paddingBottom="15dp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        app:srcCompat="@drawable/backgroundcornerinverted" />
-
-    <TextView
-        android:id="@+id/SubName"
-        style="@style/sucursalesgod"
-        android:layout_width="187dp"
-        android:layout_height="124dp"
-
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingHorizontal="10dp"
-        android:paddingTop="10dp"
-
-        android:text="La calma"
-
-        android:textColor="@color/bottomNavigationBackground"
-        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
-        app:layout_constraintVertical_bias="0.131"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Location"
-        style="@style/viewParent.headerText.homeCardContent"
-        android:layout_width="164dp"
-        android:layout_height="199dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:paddingHorizontal="10dp"
-
-        android:paddingTop="10dp"
-        android:text="Av. La Calma, esq. Calle Casiopea 4481, Col. La Calma 45070. Guadalajara, Jalisco"
-
-        android:textColor="@color/bottomNavigationBackground"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/SubName"
-        app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
-        app:layout_constraintVertical_bias="0.384"
-        tools:ignore="MissingConstraints" />
-
-    <RatingBar
-        android:id="@+id/Rating"
-        android:layout_width="239dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="20dp"
-        android:numStars="5"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cgAlignView"
+        android:background="@drawable/backgroundcornerinverted">
 
 
-        android:paddingTop="10dp"
-        android:progress="@integer/material_motion_duration_long_2"
-        android:progressTint="@color/colorIdentidad2"
-        android:rating="1.3"
-        android:secondaryProgressTint="@color/colorIdentidad2"
-        app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
-        app:layout_constraintEnd_toStartOf="@+id/Location"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SubName"
-        app:layout_constraintVertical_bias="0.388"
-        tools:ignore="MissingConstraints" />
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <RelativeLayout
+                android:id="@+id/cgPart2"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
+
+                <View
+                    android:id="@+id/cgAlignView2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    >
+                </View>
+
+                <RelativeLayout
+                    android:id="@+id/cgP1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/cgAlignView2"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    >
+
+                    <TextView
+                        android:id="@+id/SubName"
+                        style="@style/sucursalesgod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
+                        android:text="Javier Mina"
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cgP2"
+                    android:layout_toEndOf="@id/cgAlignView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    >
+
+                    <TextView
+                        android:id="@+id/Location"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="Av,Javier Mina esq. Calle Ag"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="20dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <RatingBar
+                android:id="@+id/Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:progress="@integer/material_motion_duration_long_2"
+                android:progressTint="@color/colorIdentidad2"
+                android:secondaryProgressTint="@color/colorIdentidad2"
+                android:rating="5"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:layout_below="@+id/cgPart2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

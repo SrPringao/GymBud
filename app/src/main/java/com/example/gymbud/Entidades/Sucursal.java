@@ -3,6 +3,8 @@ package com.example.gymbud.Entidades;
 import java.math.BigInteger;
 
 public class Sucursal {
+
+
     public int getId() {
         return Id;
     }
@@ -71,7 +73,12 @@ public class Sucursal {
     private String SubName,Location,ImageLink,Schedule;
     private int ContactNumber;
 
-    public Sucursal(int id, int currentUsers, int rating, String subName, String location, String imageLink, String schedule, int contactNumber){
+    private String Latitud;
+    private String Longitud;
+
+
+
+    public Sucursal(int id, int currentUsers, int rating, String subName, String location, String imageLink, String schedule, int contactNumber, String Latitud,String Longitud){
         this.Id = id;
         this.CurrentUsers = currentUsers;
         this.Rating = rating;
@@ -80,7 +87,24 @@ public class Sucursal {
         this.ImageLink = imageLink;
         this.Schedule = schedule;
         this.ContactNumber = contactNumber;
+        this.Latitud = Latitud;
+        this.Longitud = Longitud;
     }
 
 
+    public String getLatitud() {
+        return Latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        Latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return Longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        Longitud = longitud;
+    }
 }

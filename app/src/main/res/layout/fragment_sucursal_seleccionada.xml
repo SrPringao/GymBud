@@ -1,182 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgrounblack"
     xmlns:map="http://schemas.android.com/apk/res-auto"
-    style="@style/parent.contentLayout">
+   >
 
-    <ImageView
-        android:id="@+id/Extra5"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="84dp"
-        map:layout_constraintEnd_toStartOf="@+id/Extra3"
-        map:layout_constraintStart_toEndOf="@+id/Extra1"
-        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="55dp"
+        >
 
-    <ImageView
-        android:id="@+id/Extra4"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="84dp"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/Extra6"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="84dp"
+            <RelativeLayout
+                android:id="@+id/ssPart1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        android:layout_marginEnd="12dp"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintTop_toBottomOf="@+id/textView6" />
+                <com.synnapps.carouselview.CarouselView
+                    android:id="@+id/carouselView"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:fillColor="#FFFFFFFF"
+                    app:layout_constraintVertical_bias="0.271"
+                    app:pageColor="#00000000"
+                    app:radius="6dp"
+                    app:slideInterval="3000"
+                    app:strokeColor="#FF777777"
+                    app:strokeWidth="1dp" />
 
-    <ImageView
-        android:id="@+id/botonbackselec"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_flechanegrodorado"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.002"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002">
+                <RelativeLayout
+                    android:id="@+id/ssLayoutBoton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/background_circular"
+                    >
 
-    </ImageView>
+                    <ImageView
+                        android:id="@+id/botonbackselec"
+                        android:padding="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_flechanegrodorado"
+                        >
+                    </ImageView>
+                </RelativeLayout>
 
-    <TextView
-        android:id="@+id/TituloSucursales"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
-        android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonbackselec"
-        tools:ignore="MissingConstraints" />
 
-    <com.synnapps.carouselview.CarouselView
-        android:id="@+id/carouselView"
-        android:layout_width="296dp"
-        android:layout_height="164dp"
-        app:fillColor="#FFFFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TituloSucursales"
+            </RelativeLayout>
 
-        app:layout_constraintVertical_bias="0.271"
-        app:pageColor="#00000000"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#FF777777"
-        app:strokeWidth="1dp" />
+            <View
+                android:id="@+id/ssAlignView"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:layout_height="250dp"
+                android:layout_width="0dp"
+                android:layout_below="@id/ssPart1"
+                >
+            </View>
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="385dp"
-        android:layout_height="223dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        map:cameraZoom="18"
-        map:mapId="8c4e92551812a7a2"
-        map:uiZoomControls="true"></fragment>
+            <RelativeLayout
+                android:id="@+id/ssPart2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/ssAlignView"
+                android:background="@drawable/backgroundcornerinverted"
+                tools:ignore="NotSibling">
 
-    <TextView
-        android:id="@+id/TextoPersonas"
-        android:layout_width="177dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
-        android:text="Personas en la sucursal"
-        android:textAlignment="center"
-        android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map"
-        tools:ignore="MissingConstraints" />
+                <RelativeLayout
+                    android:id="@+id/ssLayoutTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ssLayoutBoton"
+                    android:layout_marginTop="30dp"
+                    android:layout_alignStart="@+id/ssLayoutMap"
+                    android:layout_alignEnd="@+id/ssLayoutMap"
+                    >
 
-    <TextView
-        android:id="@+id/Personas"
-        android:layout_width="101dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
-        android:text="15"
-        android:textAlignment="center"
-        android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextoPersonas"
-        tools:ignore="MissingConstraints" />
+                    <TextView
+                        android:id="@+id/TituloSucursales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Sucursal la Calma"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="177dp"
-        android:layout_height="69dp"
-        android:fontFamily="@font/lato"
-        android:text="Servicios extra de la sucursal"
-        android:textAlignment="center"
-        android:textColor="@color/bottomNavigationTintColor"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toEndOf="@+id/TextoPersonas"
-        app:layout_constraintTop_toBottomOf="@+id/map"
-        app:layout_constraintVertical_bias="0.167">
+                    <TextView
+                        android:id="@+id/ssUbicacionSucursales"
+                        android:layout_below="@+id/TituloSucursales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:layout_marginTop="2dp"
+                        android:textAlignment="center"
+                        android:text="Av De La Calma 4481, 45070 Zapopan, Jal."
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="15sp"
+                        />
 
-    </TextView>
 
-    <ImageView
-        android:id="@+id/Extra1"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    <RatingBar
+                        android:id="@+id/myRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ssUbicacionSucursales"
+                        android:layout_marginTop="5dp"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:stepSize="0.5"
+                        android:isIndicator="true"
+                        android:layout_gravity="start"
+                        android:layout_centerHorizontal="true"
+                        android:scaleX="0.8"
+                        android:scaleY="0.8"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:secondaryProgressTint="@color/colorIdentidad2"
+                        />
 
-    <ImageView
-        android:id="@+id/Extra2"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/Extra3"
-        app:layout_constraintStart_toEndOf="@+id/Extra1"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    <TextView
+                        android:id="@+id/ratingValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/myRatingBar"
+                        android:layout_centerHorizontal="true"
+                        android:text="4.5"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:layout_gravity="center_vertical"/>
+                </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/Extra3"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="24dp"
+                <RelativeLayout
+                    android:id="@+id/ssLayoutMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/ssLayoutTitulo"
+                    android:layout_centerHorizontal="true"
+                    android:padding="5dp"
+                    android:background="@drawable/rounded_background">
 
-        android:layout_marginEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_centerInParent="true"
+                        map:cameraZoom="18"
+                        map:mapId="8c4e92551812a7a2"
+                        map:uiZoomControls="true" />
+                </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <RelativeLayout
+                    android:id="@+id/ssLayoutPersonas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ssLayoutMap"
+                    android:layout_marginTop="30dp"
+                    android:layout_alignStart="@+id/ssLayoutMap"
+                    android:layout_alignEnd="@+id/ssLayoutMap"
+                    >
+
+                    <TextView
+                        android:id="@+id/TextoPersonas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Personas en la sucursal"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/Personas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:paddingTop="5dp"
+                        android:text="Cargando..."
+                        android:textAlignment="center"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:layout_below="@+id/TextoPersonas"
+                        android:layout_centerHorizontal="true"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ssLayoutPersonas"
+                    android:layout_marginTop="30dp"
+                    android:layout_alignStart="@+id/ssLayoutMap"
+                    android:layout_alignEnd="@+id/ssLayoutMap"
+                    >
+
+                    <TextView
+                        android:id="@+id/ssServiciosTexto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato"
+                        android:text="Servicios extra de la sucursal"
+                        android:textAlignment="center"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/bottomNavigationBackground"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ssServiciosTexto"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="30dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra1"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+
+                                />
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra2"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra3"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra5"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra4"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra6"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                        </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
