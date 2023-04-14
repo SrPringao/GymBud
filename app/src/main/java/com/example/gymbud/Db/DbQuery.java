@@ -209,16 +209,20 @@ public class DbQuery extends DbHelper {
     //despues retornamos la lista
 
     //"SELECT Id FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup + " AND Tool = " + tool + " AND Difficulty =" + dificultad+ " ORDER BY  RANDOM() LIMIT " + CantEjercicios
-    public int[] EjerciciosID(String query) {
+    public ArrayList <Exercises> EjerciciosID(String query) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = null;
-        ArrayList<Integer> ejerciciosList = new ArrayList<Integer>();
+        ArrayList <Exercises> Ejercicios = new ArrayList<Exercises>();
+
         try {
-            cursor = db.rawQuery("SELECT Id FROM " + TABLE_EXERCISE + query, null);
+            cursor = db.rawQuery("SELECT Id,Name FROM " + TABLE_EXERCISE + query, null);
             if (cursor.moveToFirst()) {
                 do {
-                    ejerciciosList.add(cursor.getInt(0));
+                    Exercises exercises = new Exercises();
+                    exercises.setId(cursor.getInt(0));
+                    exercises.setName(cursor.getString(1));
+                    Ejercicios.add(exercises);
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
@@ -231,12 +235,7 @@ public class DbQuery extends DbHelper {
         }
 
         // Convertir ArrayList en un arreglo de int antes de devolverlo
-        int[] ejercicios = new int[ejerciciosList.size()];
-        for (int i = 0; i < ejerciciosList.size(); i++) {
-            ejercicios[i] = ejerciciosList.get(i);
-        }
-
-        return ejercicios;
+        return Ejercicios;
     }
     //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
     //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con

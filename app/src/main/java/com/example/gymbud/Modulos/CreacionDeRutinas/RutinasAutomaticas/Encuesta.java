@@ -21,7 +21,9 @@ import com.example.gymbud.Adaptadores.JsonPreguntas;
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.Routine;
+import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
 import com.example.gymbud.R;
 import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
 import com.google.gson.JsonArray;
@@ -185,7 +187,7 @@ public class Encuesta extends Fragment {
 
                     case 44:
                         TiempoxDia = new int[dias];
-                        Pregunta1.setText("¿Cuanto tiempo tienes para entrenar el dia " + l + "?");
+                        Pregunta1.setText("¿Cuanto tiempo tienes para entrenar el dia " + l+1  + "?");
                         if(Respuesta1.isChecked()){
                             TiempoxDia[l] = 1;
                         }else if(Respuesta2.isChecked()){
@@ -275,7 +277,11 @@ public class Encuesta extends Fragment {
 
 
                     String pregunta = jsonObject.get("pregunta").getAsString();
-                    Pregunta1.setText(pregunta);
+                    if(Pregunta==44) {
+
+                    }else {
+                        Pregunta1.setText(pregunta);
+                    }
 
                     String respuesta1 = jsonObject.get("Respuesta1").getAsString();
                     Respuesta1.setText(respuesta1);
@@ -603,22 +609,22 @@ public class Encuesta extends Fragment {
 
         ArrayList<ExerciseSet> Rutina = new ArrayList<>();
         ExerciseSet ejercicios = new ExerciseSet();
-        double EjerciciosPorMusculo=2;
+        double EjerciciosPorMusculo;
          String Query = " WHERE MuscularGroup = ";
                     Query += musculo;
                     Query += " AND Tool = " + ResultadosSinProcesar[15];
                     if (ResultadosSinProcesar[7] == 1) {
                         Query += " AND Difficulty = " + ResultadosSinProcesar[7];
-                        //Query +=" ORDER BY RAND()";
-                        Query += " ORDER BY Difficulty ASC ";
+                        Query +=" ORDER BY RANDOM()";
+                        //Query += " ORDER BY Difficulty ASC ";
                     }else{
-                        //Query +=" ORDER BY RAND()";
-                        Query += " ORDER BY Difficulty Desc ";
+                        Query +=" ORDER BY RANDOM()";
+                        //Query += " ORDER BY Difficulty Desc ";
                     }
                     if(Resultadosinprocesar[10]==1) {
                         EjerciciosPorMusculo = Math.floor(CantEjercicios/cantMusculos);
                     }else{
-                        EjerciciosPorMusculo = Math.ceil(Dia/cantMusculos);
+                        EjerciciosPorMusculo = Math.floor(Dia/cantMusculos);
                     }
                     if ((EjerciciosCapaces == true|| Lesionado == true)&& (MusculoLesionado==musculo && Resultadosinprocesar[3]==tren)) {
                         Query += "LIMIT 0";
@@ -632,17 +638,15 @@ public class Encuesta extends Fragment {
                         }
                         }
         Log.d("Ejercicios", Query);
-                    ids = dbQuery.EjerciciosID(Query);
-                    for(int i=0;i<ids.length;i++){
-                        String MusculoTexto;
-                        if(TrenSup.containsValue(musculo)){
-                            MusculoTexto=TrenSup.get(musculo);
-                        }else{
-                            MusculoTexto=TrenInf.get(musculo);
-                        }
-                        ejercicios = new ExerciseSet(ids[i],MusculoTexto,series,reps,musculo,null);
+                    ArrayList <Exercises> ejercicios1;
+                    ejercicios1 = dbQuery.EjerciciosID(Query);
+                    for(int i=0;i<ejercicios1.size();i++){
+                        Log.d("Ejercicios", "Ejercicio del musculo "+ejercicios1.get(i).getName()+" "+ejercicios1.get(i).getId());
+                    }
+                    for(int i=0;i<ejercicios1.size();i++){
+                        ejercicios = new ExerciseSet(ejercicios1.get(i).getId(),ejercicios1.get(i).getName(),series,reps,musculo,null);
                         Rutina.add(ejercicios);
-                        Log.d("Ejercicios", "Ejercicio del musculo "+TrenSup.get(musculo)+" "+ids[i]);
+                        Log.d("Ejercicios", "Ejercicio del musculo "+TrenSup.get(musculo)+" "+ejercicios1.get(i).getId());
                     }
                     return Rutina;
                 }
