@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.example.gymbud.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -319,32 +320,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.crossfit);
+                                            imagen1.setImageResource(R.drawable.ic_crossfit);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.crossfit);
+                                            imagen2.setImageResource(R.drawable.ic_crossfit);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.crossfit);
+                                            imagen3.setImageResource(R.drawable.ic_crossfit);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.crossfit);
+                                            imagen4.setImageResource(R.drawable.ic_crossfit);
                                             imagen4.setVisibility(View.VISIBLE);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.crossfit);
+                                            imagen5.setImageResource(R.drawable.ic_crossfit);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.crossfit);
+                                            imagen6.setImageResource(R.drawable.ic_crossfit);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }
@@ -353,32 +354,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.telas);
+                                            imagen1.setImageResource(R.drawable.ic_telas);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.telas);
+                                            imagen2.setImageResource(R.drawable.ic_telas);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.telas);
+                                            imagen3.setImageResource(R.drawable.ic_telas);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.telas);
+                                            imagen4.setImageResource(R.drawable.ic_telas);
                                             imagen4.setVisibility(View.VISIBLE);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.telas);
+                                            imagen5.setImageResource(R.drawable.ic_telas);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.telas);
+                                            imagen6.setImageResource(R.drawable.ic_telas);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }
@@ -387,32 +388,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.aberca);
+                                            imagen1.setImageResource(R.drawable.ic_alberca2);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.aberca);
+                                            imagen2.setImageResource(R.drawable.ic_alberca2);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.aberca);
+                                            imagen3.setImageResource(R.drawable.ic_alberca2);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.aberca);
+                                            imagen4.setImageResource(R.drawable.ic_alberca2);
                                             imagen4.setVisibility(View.VISIBLE);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.aberca);
+                                            imagen5.setImageResource(R.drawable.ic_alberca2);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.aberca);
+                                            imagen6.setImageResource(R.drawable.ic_alberca2);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }
@@ -421,32 +422,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.box);
+                                            imagen1.setImageResource(R.drawable.ic_box1);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.box);
+                                            imagen2.setImageResource(R.drawable.ic_box1);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.box);
+                                            imagen3.setImageResource(R.drawable.ic_box1);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.box);
+                                            imagen4.setImageResource(R.drawable.ic_box1);
                                             imagen4.setVisibility(View.VISIBLE);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.box);
+                                            imagen5.setImageResource(R.drawable.ic_box1);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.box);
+                                            imagen6.setImageResource(R.drawable.ic_box1);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }
@@ -455,32 +456,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.sauna);
+                                            imagen1.setImageResource(R.drawable.ic_sauna);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.sauna);
+                                            imagen2.setImageResource(R.drawable.ic_sauna);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.sauna);
+                                            imagen3.setImageResource(R.drawable.ic_sauna);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.sauna);
+                                            imagen4.setImageResource(R.drawable.ic_sauna);
                                             imagen4.setVisibility(View.VISIBLE);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.sauna);
+                                            imagen5.setImageResource(R.drawable.ic_sauna);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.sauna);
+                                            imagen6.setImageResource(R.drawable.ic_sauna);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }
@@ -489,32 +490,32 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                                     switch (i){
                                         case 0:
                                             imagen1 = view.findViewById(R.id.Extra1);
-                                            imagen1.setImageResource(R.drawable.masaje);
+                                            imagen1.setImageResource(R.drawable.ic_masaje2);
                                             imagen1.setVisibility(View.VISIBLE);
                                             break;
                                         case 1:
                                             imagen2 = view.findViewById(R.id.Extra2);
-                                            imagen2.setImageResource(R.drawable.masaje);
+                                            imagen2.setImageResource(R.drawable.ic_masaje2);
                                             imagen2.setVisibility(View.VISIBLE);
                                             break;
                                         case 2:
                                             imagen3 = view.findViewById(R.id.Extra3);
-                                            imagen3.setImageResource(R.drawable.masaje);
+                                            imagen3.setImageResource(R.drawable.ic_masaje2);
                                             imagen3.setVisibility(View.VISIBLE);
                                             break;
                                         case 3:
                                             imagen4.setVisibility(View.VISIBLE);
                                             imagen4 = view.findViewById(R.id.Extra4);
-                                            imagen4.setImageResource(R.drawable.masaje);
+                                            imagen4.setImageResource(R.drawable.ic_masaje2);
                                             break;
                                         case 4:
                                             imagen5 = view.findViewById(R.id.Extra5);
-                                            imagen5.setImageResource(R.drawable.masaje);
+                                            imagen5.setImageResource(R.drawable.ic_masaje2);
                                             imagen5.setVisibility(View.VISIBLE);
                                             break;
                                         case 5:
                                             imagen6 = view.findViewById(R.id.Extra6);
-                                            imagen6.setImageResource(R.drawable.masaje);
+                                            imagen6.setImageResource(R.drawable.ic_masaje2);
                                             imagen6.setVisibility(View.VISIBLE);
                                             break;
                                     }

@@ -230,54 +230,57 @@
                         android:textSize="25sp"
                         android:textStyle="bold"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ssServiciosTexto"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="30dp"
-                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra1"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ssServiciosTexto"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="30dp"
+                            android:orientation="horizontal">
 
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra2"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra3"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra5"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra4"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra1"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
 
-                        <ImageView
-                            android:visibility="gone"
-                            android:id="@+id/Extra6"
-                            android:layout_width="47dp"
-                            android:layout_height="45dp"
-                            />
-                    </LinearLayout>
+                                />
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra2"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra3"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra5"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra4"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:id="@+id/Extra6"
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                />
+                        </LinearLayout>
                 </RelativeLayout>
             </RelativeLayout>
         </RelativeLayout>

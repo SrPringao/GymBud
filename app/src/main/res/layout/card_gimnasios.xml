@@ -46,8 +46,12 @@
 
             <RelativeLayout
                 android:id="@+id/cgPart2"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                >
 
                 <View
                     android:id="@+id/cgAlignView2"
@@ -73,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginTop="20dp"
-                        android:text="La calma"
+                        android:text="Javier Mina"
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground" />
 
@@ -95,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:text="Av. La Calma, esq. Calle Casiopea 4481, Col. La Calma 45070. Guadalajara, Jalisco"
+                        android:text="Av,Javier Mina esq. Calle Ag"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="20dp" />
                 </RelativeLayout>
@@ -113,6 +117,7 @@
                 android:scaleY="0.6"
                 android:layout_below="@+id/cgPart2"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
                 />
         </RelativeLayout>
 
