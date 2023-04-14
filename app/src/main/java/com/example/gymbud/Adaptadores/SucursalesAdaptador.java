@@ -73,7 +73,7 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(), "Posicion: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(view.getContext(), "Posicion: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                     listener.onItemClick(getAdapterPosition());
                 }
             });

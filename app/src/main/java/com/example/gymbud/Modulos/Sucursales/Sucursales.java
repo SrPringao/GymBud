@@ -269,8 +269,14 @@ public class Sucursales extends Fragment {
                                             Bundle args = new Bundle();
                                             args.putString("Nombre", SucursalesLista.get(position).getSubName());
                                             Log.d("Nombre", SucursalesLista.get(position).getSubName());
+                                            args.putString("Ubicacion", SucursalesLista.get(position).getLocation());
+                                            Log.d("Ubicacion", SucursalesLista.get(position).getLocation());
+                                            args.putString("Horario", SucursalesLista.get(position).getSchedule());
+                                            Log.d("Horario", SucursalesLista.get(position).getSchedule());
+                                            args.putString("Rating", ""+SucursalesLista.get(position).getRating());
                                             args.putInt("ID", SucursalesLista.get(position).getId());
                                             Log.d("ID", ""+SucursalesLista.get(position).getId());
+
                                             fragment.setArguments(args);
                                             transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                                             transaction.replace(R.id.navFragmentContainer, fragment);

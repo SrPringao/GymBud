@@ -91,7 +91,8 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_sucursal_seleccionada, container, false);
+        return inflater.inflate(R.layout.fragment_sucursal_seleccionada, container,false);
+
     }
 
     TextView Sucursal,Personas;
@@ -155,7 +156,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         });
         Bundle mbundle = getArguments();
         Imagenes = imagenes(mbundle.getString("Nombre"));
-        String sucursal=mbundle.getString("Nombre");
+        String sucursal= mbundle.getString("Nombre");
         Sucursal = (TextView) view.findViewById(R.id.TituloSucursales);
         Sucursal.setText(sucursal);
         CarouselView carouselView = view.findViewById(R.id.carouselView);
