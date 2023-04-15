@@ -193,12 +193,14 @@
                         android:max="100"
                         android:progressTint="@color/black"
                         android:progressBackgroundTint="@color/white"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/progressback"
+                        style="@style/CustomProgressBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Texto1Peso"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginStart="50dp">
+                        android:layout_marginStart="50dp"
+                        android:layout_marginBottom="10dp">
 
 
                     </ProgressBar>
@@ -207,6 +209,7 @@
                         android:id="@+id/Pesos"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_below="@id/progress"
+
                         android:layout_centerHorizontal="true"
                         android:text="Peso actual: X | Meta de peso: N" />
 
@@ -249,14 +252,18 @@
                         android:id="@+id/progress2"
                         android:progressTint="@color/black"
                         android:progressBackgroundTint="@color/white"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:progressDrawable="@drawable/progressback"
+                        style="@style/CustomProgressBar"
                         android:max="100"
                         android:min="-50"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/dias"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginStart="50dp">
+                        android:layout_marginStart="50dp"
+                        android:layout_marginBottom="10dp"
+                        >
+
 
 
                     </ProgressBar>

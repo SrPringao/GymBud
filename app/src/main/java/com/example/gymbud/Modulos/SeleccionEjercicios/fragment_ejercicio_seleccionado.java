@@ -86,29 +86,29 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         String musculo = args.getString("Musculo");
         Log.d("idchikito", ""+id);
         Log.d("IDGRANDOTE", ""+ID);
-        Log.d("Musculo", musculo);
+
         HashMap<String, Integer> Tren = new HashMap<>();
         Tren.put( "Hombro",1);
         Tren.put( "Bicep",2);
         Tren.put( "Pecho",3);
         Tren.put( "Abs",4);
         Tren.put( "Oblicuos",5);
-        Tren.put( "Cuadriceps",7);
         Tren.put( "Antebrazo",6);
+        Tren.put( "Cuadriceps",7);
         Tren.put( "Trapecios",8);
         Tren.put( "Dorsal",9);
         Tren.put( "Triceps",10);
-        Tren.put( "Espalda",11);
+        Tren.put( "Espalda media",11);
         Tren.put( "Gluteo",13);
         Tren.put( "Femoral",14);
         Tren.put("Pantorrilla",15);
-
-
         int Musculo = Tren.get(musculo);
+        Log.d("Musculo",musculo);
+
         recyclerView=view.findViewById(R.id.RecyclerViewParecido);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        EjercicioParecidoAdaptador ejercicioParecidoAdaptador = new EjercicioParecidoAdaptador(dbQuery.EjerciciosParecidos(Musculo));
+        EjercicioParecidoAdaptador ejercicioParecidoAdaptador = new EjercicioParecidoAdaptador(dbQuery.EjerciciosParecidos(Musculo,id));
         recyclerView.setAdapter(ejercicioParecidoAdaptador);
 
         exercises = dbQuery.EjerciciosVER(id);

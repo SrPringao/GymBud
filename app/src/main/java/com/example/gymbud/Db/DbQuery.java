@@ -563,12 +563,12 @@ public class DbQuery extends DbHelper {
         db.close();
     }
 
-    public ArrayList<Exercises> EjerciciosParecidos(int MuscularGroup) {
+    public ArrayList<Exercises> EjerciciosParecidos(int MuscularGroup,int id) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursorejercicios = null;
         ArrayList<Exercises> Ejercicios = new ArrayList<Exercises>();
-        cursorejercicios = db.rawQuery("SELECT Id,Name FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup + " ORDER BY RANDOM() LIMIT 3", null);
+        cursorejercicios = db.rawQuery("SELECT Id,Name FROM " + TABLE_EXERCISE + " WHERE MuscularGroup = " + MuscularGroup +" AND Id != "+id+ " ORDER BY RANDOM() LIMIT 3", null);
         try {
             if (cursorejercicios.moveToFirst()) {
                 do {
