@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -99,6 +100,11 @@ public class stats extends Fragment {
         View view;
         view = inflater.inflate(R.layout.fragment_stats, container, false);
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
+        fechas.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
+        fechas.setPopupBackgroundResource(R.drawable.pop_up_background);
+        fechas.setPadding(10, 10, 10, 10);
+
+
         Bundle args = getArguments();
         int id = args.getInt("id");//id del ejercicio seleccionado
         FragmentContainer activity = (FragmentContainer) getActivity();
@@ -118,7 +124,7 @@ public class stats extends Fragment {
         DbQuery dbQuery = new DbQuery(context);
         TextView Carga,Reps,Tiempo,Reps2;
         ImageView Back = view.findViewById(R.id.botonback);
-        ImageView agregar = view.findViewById(R.id.Agregar);
+        Button agregar = view.findViewById(R.id.fsButtonAgregar);
         Bundle args = getArguments();
         int id = args.getInt("id");//id del ejercicio seleccionado
         int ID = args.getInt("ID");//id del musculo seleccionado
@@ -231,7 +237,7 @@ public class stats extends Fragment {
         List<AxisValue> axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
         AxisValue tempAxisValue;
 
-        Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
+        Line line = new Line(values).setColor(Color.parseColor("#E1C675")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
 
         
 
@@ -255,14 +261,14 @@ public class stats extends Fragment {
        Axis axis = new Axis(axisValues);
         axis.setTextSize(10);
         axis.setName("Fecha");
-        axis.setTextColor(Color.parseColor("#9C27B0"));
+        axis.setTextColor(Color.parseColor("#E1C675"));
         data.setValueLabelTextSize(10);
         data.setAxisXBottom(axis);
 
        Axis yAxis = new Axis(yAxisValues);
         yAxis.setTextSize(10);
         yAxis.setName("Peso");
-        yAxis.setTextColor(Color.parseColor("#03A9F4"));
+        yAxis.setTextColor(Color.parseColor("#FCFCFC"));
         data.setValueLabelTextSize(10);
         data.setAxisYLeft(yAxis);
 

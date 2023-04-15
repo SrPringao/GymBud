@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,224 +8,264 @@
     android:background="@drawable/backgrounblack"
     tools:context=".Modulos.SeleccionEjercicios.stats">
 
-    <TextView
-        android:id="@+id/Repeticiones2"
-        android:layout_width="41dp"
-        android:layout_height="37dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="0"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723">
+    <RelativeLayout
+        android:id="@+id/fsPart1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content">
 
-    </TextView>
+        <ImageView
+            android:id="@+id/botonback"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_flechanegrodorado"
+            android:layout_alignParentStart="true"
+           >
 
-    <TextView
-        android:id="@+id/X"
-        android:layout_width="41dp"
-        android:layout_height="37dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="X"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.721"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723">
+        </ImageView>
 
-    </TextView>
+        <TextView
+            android:id="@+id/fsTvProgreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/botonback"
+            android:layout_centerHorizontal="true"
+            android:text="Progreso"
+            android:textAlignment="center"
+            android:fontFamily="@font/lato"
+            android:textColor="@color/bottomNavigationTintColor"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            />
 
-    <ImageView
-        android:background="@drawable/otisparado"
-        android:id="@+id/Agregar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.389" />
+    </RelativeLayout>
 
-    <Spinner
-        android:id="@+id/SpinnerProgre"
-        android:layout_width="168dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
+    <RelativeLayout
+        android:id="@+id/fsPart2"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/fsPart1"
+        android:layout_alignStart="@+id/fsPart1"
+        android:layout_alignEnd="@+id/fsPart1"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Tiempo"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Repeticiones"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645" />
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/Grafica"
+            android:layout_width="350dp"
+            android:layout_height="155dp"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Historial"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.236"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Carga"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@+id/fsPart2"
+        android:layout_alignParentBottom="true"
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="261dp"
-        android:layout_height="53dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:text="PROGRESO"
+        >
 
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundcornerinverted"
+        >
 
-    <ImageView
-        android:id="@+id/botonback"
+        <TextView
+            android:id="@+id/fsTvRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
 
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_flechanegrodorado"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023">
+            android:layout_marginTop="20dp"
+            android:text="Registros"
+            android:textAlignment="center"
+            android:fontFamily="@font/lato"
+            android:textColor="@color/bottomNavigationTintColor"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
 
-    </ImageView>
+        <Spinner
+            android:id="@+id/SpinnerProgre"
+            android:layout_below="@+id/fsTvRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:dropDownVerticalOffset="70dp"
+            android:gravity="center"
+            android:spinnerMode="dropdown"
+            android:textAlignment="center"
+            android:textColor="@color/colorIdentidad3"
+            />
 
-    <TextView
-        android:id="@+id/Carga"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:textColorHint="@color/white"
-        android:hint="0Kg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538">
 
-    </TextView>
+        <LinearLayout
+            android:id="@+id/fsLinearInfo"
+            android:layout_below="@+id/SpinnerProgre"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/Repeticiones"
-        android:layout_width="41dp"
-        android:layout_height="37dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="0"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723">
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/fsTextoRepeticiones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-    </TextView>
+                    android:fontFamily="@font/lato"
+                    android:gravity="center"
+                    android:text="Repeticiones"
+                    android:textColor="@color/bottomNavigationTextColor"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
 
-    <TextView
-        android:id="@+id/Tiempo"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898"
-        android:gravity="center"
-        android:hint="0 Mins">
+                    />
 
-    </TextView>
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/Grafica"
-        android:layout_width="350dp"
-        android:layout_height="155dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.167" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/Repeticiones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/fsTvX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" x "
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/Repeticiones2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Carga"
+
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/Carga"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:text="0kg"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="25sp"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Tiempo"
+
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/Tiempo"
+
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+
+                android:text="0 Mins"
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/fsButtonAgregar"
+            android:layout_below="@+id/fsLinearInfo"
+            android:padding="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:text="Añadir registro"
+            android:background="@drawable/backgroundcorner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Button>
+    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>
