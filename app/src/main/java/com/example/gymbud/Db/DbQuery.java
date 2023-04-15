@@ -240,8 +240,8 @@ public class DbQuery extends DbHelper {
     //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
     //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con
     //los valores guardados en values, para retornar la query
-    public long StatsInsert(int weight, int reps,int reps2,float time, String Date,int IdEjercicio){
-        long query=0;
+    public void StatsInsert(int weight, int reps,int reps2,float time, String Date,int IdEjercicio,int IdUsr){
+
         try {
             DbHelper dbHelper = new DbHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -253,24 +253,25 @@ public class DbQuery extends DbHelper {
             values.put("Time", time);
             values.put("Date", Date);
             values.put("IdEjercicio", IdEjercicio);
+            values.put("IdUsr", IdUsr);
 
-            query = db.insert(TABLE_STATS, null, values);
+            db.insert(TABLE_STATS, null, values);
         } catch (Exception ex) {
             ex.toString();
         }
-        return query;
     }
 
     //Esta funcion sirve para mostrar las stats, como ya fue mencionado antes se crea un pojo llamado stats y creamos el objeto dbhelper para preparar la bd
     //para escritura, despues realizar un selectr a la tabla stats con el id recibido y se almacenan los datos en el pojo, para despues retornar stats.
-    public Stats verStats(int id){
+    public Stats verStats(int id,int usr){
 
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Stats stats = null;
         Cursor cursorsote;
         try {
-            cursorsote = db.rawQuery("SELECT * FROM " + TABLE_STATS + " WHERE IdEjercicio = " + id ,null);
+            Log.d("UID", ""+usr);
+            cursorsote = db.rawQuery("SELECT * FROM " + TABLE_STATS + " WHERE IdUsr = " + usr +" AND IdEjercicio= " +id ,null);
             if (cursorsote.moveToFirst()) {
                 stats = new Stats();
                 stats.setID_Stats(cursorsote.getInt(0));
@@ -279,6 +280,7 @@ public class DbQuery extends DbHelper {
                 stats.setReps2(cursorsote.getInt(3));
                 stats.setTime(cursorsote.getFloat(4));
                 stats.setDate(cursorsote.getString(5));
+                Log.d("Stats",""+stats.getWeight()+" "+stats.getReps()+" "+stats.getReps2()+" "+stats.getTime()+" "+stats.getDate()+"");
                 cursorsote.close();
 
             }

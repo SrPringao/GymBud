@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.Stats;
+import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.R;
 
 
@@ -90,6 +91,7 @@ public class stats extends Fragment {
     }
     ArrayList<String> ListaStats;
     ArrayList<Stats> StatsLista;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,11 +101,14 @@ public class stats extends Fragment {
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
         Bundle args = getArguments();
         int id = args.getInt("id");//id del ejercicio seleccionado
-        ConsultarDatos(id);
+        FragmentContainer activity = (FragmentContainer) getActivity();
+        int UID = activity.UIDUSR();
+        ConsultarDatos(id,UID);
         ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,ListaStats);
         fechas.setAdapter(adapter);
         return view;
     }
+
     Spinner fechas;
     Stats stats;
     @Override
@@ -145,7 +150,9 @@ public class stats extends Fragment {
 
 
         try {
-            stats = dbQuery.verStats(id); //Esta es la query verstats con el id del ejercicio seleccionado
+            FragmentContainer activity = (FragmentContainer) getActivity();
+            int UID = activity.UIDUSR();
+            stats = dbQuery.verStats(id,UID); //Esta es la query verstats con el id del ejercicio seleccionado
             //Este if ingresa los datos registrados de la bd en caso de que si haya algo, si no inserta 0 en todo en el id del ejercicio
             if(stats != null) {
                 Carga.setText("" + stats.getWeight());
@@ -266,14 +273,14 @@ public class stats extends Fragment {
         grafica.setCurrentViewport(viewport);
     }
     //Funcion para recuperar la info de la base de datos e insertarla al spinner
-    private void ConsultarDatos(int id) {
+    private void ConsultarDatos(int id,int usr) {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Stats stats = null;
         StatsLista = new ArrayList<Stats>();
 
-        Cursor cursor = db.rawQuery(" SELECT * FROM "+DbQuery.TABLE_STATS+" WHERE IdEjercicio =" + id,null);
+        Cursor cursor = db.rawQuery(" SELECT * FROM "+DbQuery.TABLE_STATS+" WHERE IdEjercicio =" + id +" AND IdUsr= "+ usr,null);
 
         while (cursor.moveToNext()){
             stats = new Stats();

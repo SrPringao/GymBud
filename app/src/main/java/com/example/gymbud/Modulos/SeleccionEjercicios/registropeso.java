@@ -127,7 +127,9 @@ public class registropeso extends Fragment {
             //    String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ "+ WHERE ID_Ejercicio = " + id;
 
                 DbQuery dbQuery = new DbQuery(context);
-                long query = dbQuery.StatsInsert(carga,reps,reps2,Time,FechaAct,id);
+                FragmentContainer activity = (FragmentContainer) getActivity();
+                int UID =activity.UIDUSR();
+                dbQuery.StatsInsert(carga,reps,reps2,Time,FechaAct,id,UID);
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 args.putInt("id",id);
