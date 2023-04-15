@@ -44,10 +44,11 @@
 
     <RelativeLayout
         android:id="@+id/fsPart2"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/fsPart1"
         android:layout_alignStart="@+id/fsPart1"
         android:layout_alignEnd="@+id/fsPart1"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -58,12 +59,45 @@
             android:layout_height="155dp"
             android:layout_centerHorizontal="true"
             />
+    </RelativeLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="60dp"
+        android:layout_below="@+id/fsPart2"
+        android:layout_alignParentBottom="true"
+
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundcornerinverted"
+        >
+
+        <TextView
+            android:id="@+id/fsTvRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="20dp"
+            android:text="Registros"
+            android:textAlignment="center"
+            android:fontFamily="@font/lato"
+            android:textColor="@color/bottomNavigationTintColor"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            />
 
         <Spinner
             android:id="@+id/SpinnerProgre"
-            android:layout_below="@+id/Grafica"
+            android:layout_below="@+id/fsTvRegistro"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -73,164 +107,165 @@
             android:spinnerMode="dropdown"
             android:textAlignment="center"
             android:textColor="@color/colorIdentidad3"
-           />
+            />
 
-        <TextView
-            android:id="@+id/fsTextoRepeticiones"
+
+        <LinearLayout
+            android:id="@+id/fsLinearInfo"
             android:layout_below="@+id/SpinnerProgre"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/fsTextoRepeticiones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lato"
+                    android:gravity="center"
+                    android:text="Repeticiones"
+                    android:textColor="@color/bottomNavigationTextColor"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/Repeticiones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/fsTvX"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" x "
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/Repeticiones2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lato"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="25sp"
+                    >
+
+                </TextView>
+
+
+            </LinearLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Carga"
+
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/Carga"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:text="0kg"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="25sp"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Tiempo"
+
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/Tiempo"
+
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+
+                android:text="0 Mins"
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/fsButtonAgregar"
+            android:layout_below="@+id/fsLinearInfo"
+            android:padding="20dp"
             android:layout_centerHorizontal="true"
-
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:text="Sets X Reps"
-            android:textColor="@color/bottomNavigationTextColor"
-            android:textSize="30dp"
-            android:textStyle="bold"
-
-            android:layout_marginBottom="10dp"
-            />
-
-
-        <TextView
-            android:id="@+id/Repeticiones2"
+            android:layout_marginBottom="20dp"
+            android:text="Añadir registro"
+            android:background="@drawable/backgroundcorner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fsTextoRepeticiones"
-            android:gravity="center"
-            android:layout_toStartOf="@+id/fsTvX"
-            android:text="0"
-
-            android:textAlignment="center"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/bottomNavigationTintColor"
-            android:textSize="30sp"
-            android:textStyle="bold"
-           >
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/fsTvX"
-            android:layout_below="@+id/fsTextoRepeticiones"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:gravity="center"
-            android:text="X"
-            android:layout_centerHorizontal="true"
-
-            android:textAlignment="center"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/bottomNavigationTintColor"
-            android:textSize="30sp"
-            android:textStyle="bold"
-          >
-
-        </TextView>
-
-        <ImageView
-            android:visibility="gone"
-
-            android:background="@drawable/otisparado"
-            android:id="@+id/Agregar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            />
-
-
-
-        <TextView
-            android:visibility="gone"
-
-            android:id="@+id/textView4"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:text="Tiempo"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            />
-
-
-
-        <TextView
-            android:visibility="gone"
-
-            android:id="@+id/textView5"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:text="Historial"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            />
-
-        <TextView
-            android:visibility="gone"
-
-            android:id="@+id/textView2"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:text="Carga"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            />
-
-
-
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/Carga"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:textColorHint="@color/white"
-            android:hint="0Kg"
-          >
-
-        </TextView>
-
-        <TextView
-            android:visibility="gone"
-
-            android:id="@+id/Repeticiones"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:fontFamily="@font/lato"
-            android:gravity="center"
-            android:hint="0"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-          >
-
-        </TextView>
-
-        <TextView
-            android:visibility="gone"
-
-            android:id="@+id/Tiempo"
-            android:layout_width="204dp"
-            android:layout_height="38dp"
-            android:fontFamily="@font/lato"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-
-            android:gravity="center"
-            android:hint="0 Mins">
-        </TextView>
-
+            android:layout_height="wrap_content">
+        </Button>
     </RelativeLayout>
-
-
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
