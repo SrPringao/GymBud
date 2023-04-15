@@ -201,6 +201,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RecyclerViewParecido"
                         android:layout_width="353dp"
                         android:layout_height="168dp"
                         android:layout_marginTop="12dp"

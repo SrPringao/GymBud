@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="130dp"
+    android:background="@drawable/backgroundcorner">
+
+    <TextView
+        style="@style/viewParent.headerText.homeCardContent"
+        android:id="@+id/NombreEjercicio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Curl Concentrado"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="51dp"
+        android:padding="5dp"/>
+</RelativeLayout>
