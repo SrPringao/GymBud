@@ -52,21 +52,7 @@ PersonInfo personInfo;
         btnIngreso = findViewById(R.id.botonIngresar);
         TVRegistro = findViewById(R.id.TVRegistro);
         TVRecuperar = findViewById(R.id.TVRecuperar);
-      //  MACABRO = findViewById(R.id.botonMACABRO);
 
-       /* MACABRO.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DbHelper dbHelper = new DbHelper(MainActivity.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                if(db!=null) {
-                    Toast.makeText(MainActivity.this,"SE CREO LA BD",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(MainActivity.this,"NO SE CREO UE",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        */
 
 
         shared = sharedPrefs.getInt("UID",0);
@@ -76,6 +62,119 @@ PersonInfo personInfo;
             startActivity(i);
             finish();
         }
+
+        //La funcion ClickInicio lo que hace es que recibe los dos datos ingresados en los editText, para despues comprobar si alguno de estos esta vacio mandar error
+        //, si esta completo realiza la query al servidor con el php designado, con la contraseña y usuario registrado, si si esta registrado acacede a la pantalla de
+        //info usuario, si no existe manda un error y pide al usuario que reingrese sus credenciales
+        btnIngreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo", MODE_PRIVATE);
+
+                final String usuario = ETusr.getText().toString().trim();
+                final String correo = ETcontra.getText().toString().trim();
+
+                if (usuario.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Ingrese un nombre de usuario para continuar", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (correo.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Ingrese una contraseña para continuar", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String ContraseñaEncriptada = ETcontra.getText().toString();
+
+                //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
+
+                try {
+                    MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                    byte[] textBytes = ContraseñaEncriptada.getBytes(StandardCharsets.UTF_8);
+                    digest.update(textBytes);
+                    byte[] hashBytes = digest.digest();
+
+                    StringBuilder hexString = new StringBuilder();
+                    for (byte hashByte : hashBytes) {
+                        String hex = Integer.toHexString(0xff & hashByte);
+                        if (hex.length() == 1) hexString.append('0');
+                        hexString.append(hex);
+                    }
+                    String hashText = hexString.toString();
+
+                    Log.d("MainActivity", "Hash SHA-256 de " + ContraseñaEncriptada + ": " + hashText);
+                    ContraseñaEncriptada = hashText;
+
+
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+
+                String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
+                url = url + Uri.encode(ETusr.getText().toString());
+                url = url + "&pass=";
+                url = url + Uri.encode(ContraseñaEncriptada);
+
+                //este toast es pa verificar que el url se cree bien
+
+
+                JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
+                            if (response.getInt("UID") != -1) {
+                                int UID = response.getInt("UID");
+                                DbQuery dbQuery = new DbQuery(MainActivity.this);
+                                personInfo = dbQuery.verinfo(UID);
+                                if (personInfo != null) {
+                                    Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                                    i.putExtra("UID",UID);
+
+
+                                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                                    editor.putInt("UID", UID);
+                                    editor.commit();
+
+
+                                    startActivity(i);
+                                    finish();
+
+                                } else {
+
+                                    long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
+                                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                                    editor.putInt("UID", UID);
+                                    editor.commit();
+
+                                    Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+                                    i.putExtra("UID",UID);
+                                    startActivity(i);
+                                    finish();
+
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("yo", error.getMessage());
+                    }
+                });
+                RequestQueue lanzarPeticion= Volley.newRequestQueue(MainActivity.this);
+                lanzarPeticion.add(pet);
+                lanzarPeticion.start();
+
+            }
+            //Esta funcion es en caso de que presionen que se quieren registrar, los manda a la pantalla registro
+            public void LinkRegistrarse(View view) {
+                Intent Registro = new Intent(MainActivity.this, Registro.class);
+                startActivity(Registro);
+                finish();
+            }
+        });
 
 
 
@@ -102,114 +201,6 @@ PersonInfo personInfo;
 
     }
 
-    //La funcion ClickInicio lo que hace es que recibe los dos datos ingresados en los editText, para despues comprobar si alguno de estos esta vacio mandar error
-    //, si esta completo realiza la query al servidor con el php designado, con la contraseña y usuario registrado, si si esta registrado acacede a la pantalla de
-    //info usuario, si no existe manda un error y pide al usuario que reingrese sus credenciales
-    public void clickInicio(View view) {
-        SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo", MODE_PRIVATE);
-
-        final String usuario = ETusr.getText().toString().trim();
-        final String correo = ETcontra.getText().toString().trim();
-
-        if (usuario.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Ingrese un nombre de usuario para continuar", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (correo.isEmpty()) {
-            Toast.makeText(MainActivity.this, "Ingrese una contraseña para continuar", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String ContraseñaEncriptada = ETcontra.getText().toString();
-
-        //Toast.makeText(this, "picon",Toast.LENGTH_SHORT).show();
-
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] textBytes = ContraseñaEncriptada.getBytes(StandardCharsets.UTF_8);
-            digest.update(textBytes);
-            byte[] hashBytes = digest.digest();
-
-            StringBuilder hexString = new StringBuilder();
-            for (byte hashByte : hashBytes) {
-                String hex = Integer.toHexString(0xff & hashByte);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-            String hashText = hexString.toString();
-
-            Log.d("MainActivity", "Hash SHA-256 de " + ContraseñaEncriptada + ": " + hashText);
-            ContraseñaEncriptada = hashText;
 
 
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        String url = "http://francoaldrete.com/GymBud/bd.php?usr=";
-        url = url + Uri.encode(ETusr.getText().toString());
-        url = url + "&pass=";
-        url = url + Uri.encode(ContraseñaEncriptada);
-
-        //este toast es pa verificar que el url se cree bien
-
-
-        JsonObjectRequest pet = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
-                    if (response.getInt("UID") != -1) {
-                        int UID = response.getInt("UID");
-                        DbQuery dbQuery = new DbQuery(MainActivity.this);
-                        personInfo = dbQuery.verinfo(UID);
-                        if (personInfo != null) {
-                            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
-                            i.putExtra("UID",UID);
-
-
-                            SharedPreferences.Editor editor = sharedPrefs.edit();
-                            editor.putInt("UID", UID);
-                            editor.commit();
-
-
-                            startActivity(i);
-                            finish();
-
-                        } else {
-
-                            long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
-                            SharedPreferences.Editor editor = sharedPrefs.edit();
-                            editor.putInt("UID", UID);
-                            editor.commit();
-
-                            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
-                            i.putExtra("UID",UID);
-                            startActivity(i);
-                            finish();
-
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                // Toast.makeText(MainActivity.this,response.toString(),Toast.LENGTH_SHORT).show(); //Esta mamada muestra todos los datos del user
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("yo", error.getMessage());
-            }
-        });
-        RequestQueue lanzarPeticion= Volley.newRequestQueue(this);
-        lanzarPeticion.add(pet);
-        lanzarPeticion.start();
-
-    }
-    //Esta funcion es en caso de que presionen que se quieren registrar, los manda a la pantalla registro
-    public void LinkRegistrarse(View view) {
-        Intent Registro = new Intent(MainActivity.this, Registro.class);
-        startActivity(Registro);
-        finish();
-
-    }
 }
