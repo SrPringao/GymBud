@@ -87,13 +87,13 @@ public class registropeso extends Fragment {
         int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
-        ImageView Back = view.findViewById(R.id.botonback);
+        ImageView Back = view.findViewById(R.id.frpBotonBack);
         EditText CargaR, RepsR, RepsR2, TiempoR;
-        CargaR = view.findViewById(R.id.CargaR);
-        RepsR = view.findViewById(R.id.RepsR);
-        RepsR2 = view.findViewById(R.id.RepsR2);
-        TiempoR = view.findViewById(R.id.TiempoR);
-        Button Guardar = view.findViewById(R.id.GuardadoR);
+        CargaR = view.findViewById(R.id.frpCargaR);
+        RepsR = view.findViewById(R.id.frpRepsR);
+        RepsR2 = view.findViewById(R.id.frpRepsR2);
+        TiempoR = view.findViewById(R.id.frpTiempoR);
+        Button Guardar = view.findViewById(R.id.frpBotonGuardar);
         //Este boton esta vinculado a la imagen de la flecha hacia atras y lo unico que hace es regresarte a la pantalla anterior,
         //mandando los datos id,ID y musculo a esta pantalla anterior para despues utilizarlos y evitar la perdida del musculo seleccionado o
         //el ejercicio seleccionado, todos estos se mandan en un bundle.

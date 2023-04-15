@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,192 +8,245 @@
     tools:context=".Modulos.SeleccionEjercicios.registropeso"
     android:background="@drawable/backgrounblack">
 
-    <Button
-        android:id="@+id/GuardadoR"
 
-        android:background="@color/dorado"
-        android:layout_width="171dp"
-        android:layout_height="49dp"
-        android:textColorHint="@color/black"
-        android:hint="GUARDAR"
-        android:fontFamily="@font/lato"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="Mins"
-        android:textColorHint="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753"></TextView>
 
-    <ImageView
-        android:id="@+id/botonback"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_flechanegrodorado"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"></ImageView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        >
 
-    <EditText
-        android:id="@+id/CargaR"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196" />
+        <RelativeLayout
+            android:id="@+id/fsPart1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/RepsR"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:inputType="number"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481" />
+            <ImageView
+                android:id="@+id/frpBotonBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_flechanegrodorado"
+                android:layout_alignParentStart="true"
+                >
+            </ImageView>
 
-    <EditText
-        android:id="@+id/RepsR2"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:inputType="number"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481" />
+            <TextView
+                android:id="@+id/frgRegistroDatos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/frpBotonBack"
+                android:layout_centerHorizontal="true"
+                android:text="Registro de datos"
+                android:textAlignment="center"
+                android:fontFamily="@font/lato"
+                android:textColor="@color/bottomNavigationTintColor"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Carga"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108"></TextView>
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="KG"
-        android:textColorHint="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.196"></TextView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:hint="X"
-        android:textColorHint="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.481"></TextView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/backgroundcornerinverted"
+                >
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Repeticiones"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.382" />
+                <LinearLayout
+                    android:id="@+id/fsLinearInfo"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="204dp"
-        android:layout_height="38dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:text="Tiempo"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.655" />
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/fsTextoRepeticiones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
-    <EditText
-        android:id="@+id/TiempoR"
-        android:layout_width="52dp"
-        android:layout_height="54dp"
-        android:fontFamily="@font/lato"
-        android:gravity="center"
-        android:inputType="number"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753" />
+                        android:fontFamily="@font/lato"
+                        android:gravity="center"
+                        android:text="Repeticiones"
+                        android:textColor="@color/bottomNavigationTextColor"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/frpRepsR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:textColorHint="@color/bottomNavigationTintColor"
+
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"
+
+                            android:textAlignment="center"
+                            android:fontFamily="@font/lato"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"
+                            >
+                        </EditText>
+
+                        <TextView
+                            android:id="@+id/fsTvX"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=" x "
+                            android:textAlignment="center"
+                            android:fontFamily="@font/lato"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"
+                            >
+                        </TextView>
+
+                        <EditText
+                            android:id="@+id/frpRepsR2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:inputType="number"
+                            android:textColorHint="@color/bottomNavigationTintColor"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/lato"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"
+                            >
+                        </EditText>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Carga"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/lato"
+                        android:textColor="@color/bottomNavigationTintColor"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/frpCargaR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:singleLine="true"
+                            android:imeOptions="actionDone"
+                            android:textColorHint="@color/bottomNavigationTintColor"                            android:fontFamily="@font/lato"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"
+                            android:inputType="number"
+                            >
+                        </EditText>
+
+                        <TextView
+                            android:text=" Kg"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/lato"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Tiempo"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/lato"
+                        android:textColor="@color/bottomNavigationTintColor"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </TextView>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/frpTiempoR"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:hint="0"
+                        android:textColorHint="@color/bottomNavigationTintColor"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/lato"
+                        android:textColor="@color/bottomNavigationTintColor"
+                        android:textSize="25sp"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:imeOptions="actionDone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </EditText>
+
+                    <TextView
+                        android:text=" Mins"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/lato"
+                        android:textColor="@color/bottomNavigationTintColor"
+                        android:textSize="25sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    </TextView>
+                </LinearLayout>
+
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/frpBotonGuardar"
+                    android:layout_below="@+id/fsLinearInfo"
+                    android:padding="20dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:text="Añadir registro"
+                    android:background="@drawable/backgroundcorner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </Button>
+            </RelativeLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+</RelativeLayout>

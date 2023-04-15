@@ -89,7 +89,7 @@
             android:textAlignment="center"
             android:fontFamily="@font/lato"
             android:textColor="@color/bottomNavigationTintColor"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             />
 
