@@ -25,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.gymbud.FragmentContainer;
+import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.Tiendita;
 import com.example.gymbud.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -237,7 +238,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String,String> params = new HashMap<String, String>();
-                        params.put("uid","1");
+                        params.put("uid",String.valueOf(UID));
                         params.put("sucursal",String.valueOf(id));
                         params.put("calificacion1",calificacion1);
                         params.put("calificacion2",calificacion2);
@@ -247,6 +248,23 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 requestQueue.add(stringRequest);
+
+
+                Fragment fragment = new Sucursales();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                Bundle args = new Bundle();
+//                args.putString("Nombre", sucursal);
+//                args.putString("Ubicacion", Ubi);
+//                args.putString("Horario",  Horario);
+//                args.putString("Rating", Rating);
+//                args.putInt("ID", id);
+
+
+//                fragment.setArguments(args);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

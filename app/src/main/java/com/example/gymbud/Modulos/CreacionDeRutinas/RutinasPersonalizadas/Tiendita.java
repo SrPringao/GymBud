@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymbud.Adaptadores.VerEliminarCarritoAdapter;
@@ -26,6 +27,7 @@ import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,12 +86,13 @@ public class Tiendita extends Fragment {
 
     ArrayList<ExerciseSet> listaIds = new ArrayList<>();
 
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can now set the text of a TextView
         ImageView imagenatras = view.findViewById(R.id.TiButtonBack);
-
+        TextView tvTiempo = view.findViewById(R.id.TeTiempoEstimado);
         RecyclerView recyclerView = view.findViewById(R.id.TiRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Spinner spinner = view.findViewById(R.id.TiWeekSelector);
@@ -110,10 +113,11 @@ public class Tiendita extends Fragment {
           DbQuery dbQuery = new DbQuery (getContext());
           listaIds = IdList.getInstance();
 
-          VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds));
+
+
+          VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds),tvTiempo);
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
           recyclerView.setAdapter(adapter);
-
 
 
           button.setOnClickListener(new View.OnClickListener() {
@@ -177,10 +181,7 @@ public class Tiendita extends Fragment {
 
               }
           });
-
-
-
-        imagenatras.setOnClickListener(new View.OnClickListener() {
+          imagenatras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment firstFragment = new CreacionDeRutinas();

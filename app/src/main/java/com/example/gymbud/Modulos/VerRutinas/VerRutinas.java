@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gymbud.Adaptadores.VerRutinaDelDiaAdapter;
@@ -77,6 +78,7 @@ public class VerRutinas extends Fragment {
         }
     }
 
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class VerRutinas extends Fragment {
         spinner.setPadding(10, 10, 10, 10);
 
         spinner.setAdapter(adap1);
+
 
         Bundle bundle = getArguments();
         int numberDayOfWeek = bundle.getInt("dia") - 1;
@@ -127,24 +130,7 @@ public class VerRutinas extends Fragment {
         DbQuery dbQuery = new DbQuery (getContext());
 
         Log.d("Existencia de rutina en carga ", String.valueOf(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)));
-
-
-//
-//        ExerciseSet exercis = new ExerciseSet(1,"", 3, 12,1,null);
-//        ArrayList<ExerciseSet> routines = new ArrayList<>();
-//        routines.add(exercis);
-//
-//        Routine dummyRoutine = new Routine("Rutina de prueba" , routines, 1);
-//
-//        if(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)) {
-//            Log.d("Rutina existente: ", String.valueOf(numberDayOfWeek+1));
-////            VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(numberDayOfWeek));
-////            recyclerView.setAdapter(adapter);
-//        }else {
-//            Log.d("Rutina no existente: ", String.valueOf(numberDayOfWeek+1));
-////            VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dummyRoutine);
-////            recyclerView.setAdapter(adapter);
-//        }
+        
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -173,13 +159,15 @@ public class VerRutinas extends Fragment {
 
     }
 
+    
     private void updateRecyclerView(int dayOfWeek) {
         // Actualiza el recycler view
+        TextView TvTiempoEstimado = getView().findViewById(R.id.VRTvTiempoEstimado);
         RecyclerView recyclerView = getView().findViewById(R.id.VRRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DbQuery dbQuery = new DbQuery (getContext());
-        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(dayOfWeek));
+        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(dayOfWeek),TvTiempoEstimado);
         recyclerView.setAdapter(adapter);
     }
 
