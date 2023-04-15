@@ -2,6 +2,7 @@ package com.example.gymbud.Entidades;
 
 public class Sucursal {
 
+    public Sucursal(){}
 
     public int getId() {
         return Id;
@@ -23,7 +24,7 @@ public class Sucursal {
         return Rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         Rating = rating;
     }
 
