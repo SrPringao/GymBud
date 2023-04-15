@@ -41,9 +41,9 @@
       "opcion1": 11,
       "Respuesta2": "Ejercicios de tren inferior",
       "opcion2": 11,
-      "Respuesta3": "Ejercicios cardiovasculares",
+      "Respuesta3": "",
       "opcion3": 11,
-      "Respuesta4": "TODOS",
+      "Respuesta4": "",
       "opcion4": 11
     },
 
@@ -154,7 +154,7 @@
       "opcion4": 0
     },{
       "NumPregunta": 44,
-      "pregunta": "Cuanto tiempo tienes para entrenar el dia 1",
+      "pregunta": "",
       "Respuesta1": "Menos de 60 minutos",
       "opcion1": 12,
       "Respuesta2": "Entre 60 y 90 minutos",
