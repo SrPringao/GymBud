@@ -230,7 +230,7 @@ public class stats extends Fragment {
         List<AxisValue> axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
         AxisValue tempAxisValue;
 
-        Line line = new Line(values).setColor(Color.parseColor("#9C27B0")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
+        Line line = new Line(values).setColor(Color.parseColor("#E1C675")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
 
         
 
@@ -254,14 +254,14 @@ public class stats extends Fragment {
        Axis axis = new Axis(axisValues);
         axis.setTextSize(10);
         axis.setName("Fecha");
-        axis.setTextColor(Color.parseColor("#9C27B0"));
+        axis.setTextColor(Color.parseColor("#E1C675"));
         data.setValueLabelTextSize(10);
         data.setAxisXBottom(axis);
 
        Axis yAxis = new Axis(yAxisValues);
         yAxis.setTextSize(10);
         yAxis.setName("Peso");
-        yAxis.setTextColor(Color.parseColor("#03A9F4"));
+        yAxis.setTextColor(Color.parseColor("#FCFCFC"));
         data.setValueLabelTextSize(10);
         data.setAxisYLeft(yAxis);
 
