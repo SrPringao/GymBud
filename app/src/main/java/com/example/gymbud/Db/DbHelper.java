@@ -73,7 +73,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Time REAL," +
                 "Date TEXT," +
                 "IdEjercicio INTEGER," +
-                "IdUsr INTTEGER)");
+                "IdUsr INTEGER)");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_MUSCULARGROUP + "(" + "ID_Muscle INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "Muscle TEXT)");

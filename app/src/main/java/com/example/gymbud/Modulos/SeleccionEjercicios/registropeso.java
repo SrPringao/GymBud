@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
@@ -119,13 +120,17 @@ public class registropeso extends Fragment {
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            int carga = Integer.parseInt(CargaR.getText().toString());
-            int reps = Integer.parseInt(RepsR.getText().toString());
-            int reps2 = Integer.parseInt(RepsR2.getText().toString());
-            float Time = Float.parseFloat(TiempoR.getText().toString());
-                String FechaAct = activity.FechaAct();
-            //    String update = "UPDATE STATS SET Weight = "+carga+",Reps = "+reps+",Reps2 = "+reps2+",Time = "+Time+",Date = "+FechaG+ "+ WHERE ID_Ejercicio = " + id;
 
+
+            if (CargaR.getText().toString().isEmpty() || RepsR.getText().toString().isEmpty() || RepsR2.getText().toString().isEmpty() || TiempoR.getText().toString().isEmpty()){
+                Toast.makeText(context, "No se permiten campos vacios", Toast.LENGTH_SHORT).show();
+            }else{
+                int carga = Integer.parseInt(CargaR.getText().toString());
+                int reps = Integer.parseInt(RepsR.getText().toString());
+                int reps2 = Integer.parseInt(RepsR2.getText().toString());
+                float Time = Float.parseFloat(TiempoR.getText().toString());
+
+                String FechaAct = activity.FechaAct();
                 DbQuery dbQuery = new DbQuery(context);
                 FragmentContainer activity = (FragmentContainer) getActivity();
                 int UID =activity.UIDUSR();
@@ -139,6 +144,7 @@ public class registropeso extends Fragment {
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+            }
             }
         });
     }
