@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.gymbud.Adaptadores.EjercicioParecidoAdaptador;
+import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.R;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +72,7 @@ public class fragment_ejercicio_seleccionado extends Fragment {
         }
     }
     Exercises exercises;
+    RecyclerView recyclerView;
     @Override
 public void onViewCreated(View view,Bundle savedInstanceState){
 
@@ -73,13 +81,35 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Context context = view.getContext();
         DbQuery dbQuery = new DbQuery(context);
         Bundle args = getArguments();
-
         int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
         Log.d("idchikito", ""+id);
         Log.d("IDGRANDOTE", ""+ID);
         Log.d("Musculo", musculo);
+        HashMap<String, Integer> Tren = new HashMap<>();
+        Tren.put( "Hombro",1);
+        Tren.put( "Bicep",2);
+        Tren.put( "Pecho",3);
+        Tren.put( "Abs",4);
+        Tren.put( "Oblicuos",5);
+        Tren.put( "Cuadriceps",7);
+        Tren.put( "Antebrazo",6);
+        Tren.put( "Trapecios",8);
+        Tren.put( "Dorsal",9);
+        Tren.put( "Triceps",10);
+        Tren.put( "Espalda",11);
+        Tren.put( "Gluteo",13);
+        Tren.put( "Femoral",14);
+        Tren.put("Pantorrilla",15);
+
+
+        int Musculo = Tren.get(musculo);
+        recyclerView=view.findViewById(R.id.RecyclerViewParecido);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        EjercicioParecidoAdaptador ejercicioParecidoAdaptador = new EjercicioParecidoAdaptador(dbQuery.EjerciciosParecidos(Musculo));
+        recyclerView.setAdapter(ejercicioParecidoAdaptador);
 
         exercises = dbQuery.EjerciciosVER(id);
         TextView Titulo,PreparacionD,EjecucionD,DetallesD;
@@ -98,6 +128,21 @@ public void onViewCreated(View view,Bundle savedInstanceState){
             @Override
             public void onClick(View view) {
                 Fragment fragment = new stats();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Bundle args = new Bundle();
+                args.putInt("id",id);
+                args.putInt("ID",ID);
+                args.putString("Musculo",musculo);
+                fragment.setArguments(args);
+                transaction.replace(R.id.navFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        ejercicioParecidoAdaptador.setOnClickListener(new EjercicioParecidoAdaptador.EventOnItemClick() {
+            @Override
+            public void OnItemClick(int id) {
+                Fragment fragment = new fragment_ejercicio_seleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putInt("id",id);

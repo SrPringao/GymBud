@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class EjerciciosAdaptador extends RecyclerView.Adapter<EjerciciosAdaptador.EjerciciosViewHolder> {
 
-    ArrayList<Exercises> ListasEjercicios;
+    ArrayList<Exercises> ListasEjercicios = new ArrayList<>();
 
     public EjerciciosAdaptador(ArrayList<Exercises> ListasEjercicios) {
         this.ListasEjercicios = ListasEjercicios;
