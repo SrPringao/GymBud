@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/GuardadoR"
+
         android:background="@color/dorado"
         android:layout_width="171dp"
         android:layout_height="49dp"
