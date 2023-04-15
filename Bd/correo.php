@@ -2,9 +2,10 @@
 if ($_SERVER['REQUEST_METHOD']=='GET') 
 {
     require_once("conexion.php");
-    $id = $_GET["usr"];
-    $pass =$_GET["pass"];
-    $query = "SELECT * FROM user WHERE  User= '$id' AND Password = '$pass'";
+    $mail = $_GET["mail"];
+
+
+    $query = "SELECT * FROM user WHERE mail='$mail'";
     $result = $link ->query($query);
 
     if ($link -> affected_rows > 0) {

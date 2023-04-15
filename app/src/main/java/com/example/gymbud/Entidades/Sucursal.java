@@ -1,8 +1,8 @@
 package com.example.gymbud.Entidades;
 
-import java.math.BigInteger;
-
 public class Sucursal {
+
+
     public int getId() {
         return Id;
     }
@@ -19,7 +19,7 @@ public class Sucursal {
         CurrentUsers = currentUsers;
     }
 
-    public int getRating() {
+    public float getRating() {
         return Rating;
     }
 
@@ -67,20 +67,42 @@ public class Sucursal {
         ContactNumber = contactNumber;
     }
 
-    private int Id,CurrentUsers,Rating;
+    private int Id,CurrentUsers;
+    private float Rating;
     private String SubName,Location,ImageLink,Schedule;
     private int ContactNumber;
+    private String Latitud;
+    private String Longitud;
 
-    public Sucursal(int id, int currentUsers, int rating, String subName, String location, String imageLink, String schedule, int contactNumber){
+
+
+    public Sucursal(int id, int currentUsers, double rating, String subName, String location, String imageLink, String schedule, int contactNumber, String Latitud,String Longitud){
         this.Id = id;
         this.CurrentUsers = currentUsers;
-        this.Rating = rating;
+        this.Rating = (float) rating;
         this.SubName = subName;
         this.Location = location;
         this.ImageLink = imageLink;
         this.Schedule = schedule;
         this.ContactNumber = contactNumber;
+        this.Latitud = Latitud;
+        this.Longitud = Longitud;
     }
 
 
+    public String getLatitud() {
+        return Latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        Latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return Longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        Longitud = longitud;
+    }
 }
