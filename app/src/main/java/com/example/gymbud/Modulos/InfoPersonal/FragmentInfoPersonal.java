@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.gymbud.Db.DbQuery;
@@ -111,11 +113,14 @@ public class FragmentInfoPersonal extends Fragment {
 
     }
     ProgressBar progressBar1,progressBar2;
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         progressBar1 = view.findViewById(R.id.progress);
         progressBar2 = view.findViewById(R.id.progress2);
+
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
@@ -144,6 +149,8 @@ public class FragmentInfoPersonal extends Fragment {
 
 
         Log.d("dia de la semana ", String.valueOf(numberDayOfWeek));
+
+
 
 
         DbQuery dbQuery = new DbQuery(getContext());
@@ -330,35 +337,62 @@ public class FragmentInfoPersonal extends Fragment {
         int RachaGuardada = sharedPrefs.getInt("RACHA",0);
         double imc = 0;
         double grasa;
-       // Log.d("abububub", Integer.toString(UID));
+        TextView progress1 = (TextView) getView().findViewById(R.id.Tvporcentaje1);
+        TextView progress2 = (TextView) getView().findViewById(R.id.Tvporcentaje2);
 
-        imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
-      //  Log.d("IMC", Double.toString(imc));
-        imc = Math.round(imc);
-        grasa = ((1.20*imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
-        grasa = Math.round(grasa);
+        if(personInfo.getHeight() != 0 && personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
+            imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
+            //  Log.d("IMC", Double.toString(imc));
+            imc = Math.round(imc);
 
-        pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
-        IMC.setText("IMC:"+ imc +"| Ideal:"+" 18.5 – 24.9");
-        TG.setText("Tu tasa de grasa es del " + grasa+"%");
-        racha.setText(String.valueOf(RachaGuardada));
-        if(personInfo.getCurrentWeight()!=0 && personInfo.getWeightGoal()!=0) {
-            int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
-
-            if(Progreso>100){
-                Progreso=100-(Progreso-100);
-            }
-            progressBar1.setProgress(Progreso);
-            Log.d("Peso", Integer.toString(Progreso));
+        }else{
+            imc = 0;
+            progress2.setText("Rellena todos los datos anteriores para calcular tu IMC");
         }
-        if(imc>0){
-            int ProgresoIMC = (int) (imc * 100 / 24.9);
-            if(ProgresoIMC>100){
-                ProgresoIMC=100-(ProgresoIMC-100);
-            }
-            Log.d("IMC", Integer.toString(ProgresoIMC));
-            progressBar2.setProgress(ProgresoIMC);
+
+        Log.d("TAG", "rellenado: " + personInfo.getAge() + " " + personInfo.getGender() + " " + personInfo.getHeight() + " " + personInfo.getCurrentWeight());
+        if (imc != 0 && personInfo.getAge() != 0 && personInfo.getGender() != 0 && personInfo.getHeight() != 0) {
+            grasa = ((1.20 * imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
+            grasa = Math.round(grasa);
+        } else {
+            grasa = 0;
+            TG.setText("Rellena los datos anteriores para calcular tu tasa de grasa");
         }
+
+        Log.d("Valor de grasa ", String.valueOf(grasa));
+
+
+
+            pesos.setText("Peso actual: " + personInfo.getCurrentWeight() + " | Meta de peso:" + personInfo.getWeightGoal());
+            IMC.setText("IMC:" + imc + "| Ideal:" + " 18.5 – 24.9");
+            TG.setText("Tu tasa de grasa es del " + grasa + "%");
+            racha.setText(String.valueOf(RachaGuardada));
+            if (personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
+                int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
+
+                if (Progreso > 100) {
+                    Progreso = 100 - (Progreso - 100);
+                }
+                progressBar1.setProgress(Progreso);
+                progress1.setText(Progreso + "%");
+                Log.d("Peso", Integer.toString(Progreso));
+            }
+
+            if (imc > 0) {
+                int ProgresoIMC = (int) (imc * 100 / 24.9);
+                if (ProgresoIMC > 100) {
+                    ProgresoIMC = 100 - (ProgresoIMC - 100);
+                }
+                Log.d("IMC", Integer.toString(ProgresoIMC));
+                progressBar2.setProgress(ProgresoIMC);
+                progress2.setText(ProgresoIMC + "%");
+            }
+
+
+
+        //poner porcentaje de proressbar en el textview
+
+
 
     }
 
