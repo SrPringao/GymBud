@@ -25,7 +25,6 @@ public class VerEliminarCarritoAdapter extends RecyclerView.Adapter<VerEliminarC
     ArrayList<Exercises> ListasEjercicios;
     ArrayList<Integer> listaSeries = new ArrayList<>();
     ArrayList<Integer>listaReps = new ArrayList<>();
-
     TextView tiempoEstimadoTextView;
 
 
