@@ -189,6 +189,10 @@
 
                     <ProgressBar
                         android:id="@+id/progress"
+                        android:min="-20"
+                        android:max="100"
+                        android:progressTint="@color/black"
+                        android:progressBackgroundTint="@color/white"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -243,7 +247,11 @@
 
                     <ProgressBar
                         android:id="@+id/progress2"
+                        android:progressTint="@color/black"
+                        android:progressBackgroundTint="@color/white"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:max="100"
+                        android:min="-50"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/dias"

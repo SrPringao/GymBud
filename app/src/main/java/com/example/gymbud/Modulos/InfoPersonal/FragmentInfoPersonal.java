@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,8 +61,6 @@ public class FragmentInfoPersonal extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button botonson;
-    EditText editadon;
 
     public FragmentInfoPersonal() {
         // Required empty public constructor
@@ -111,11 +110,12 @@ public class FragmentInfoPersonal extends Fragment {
         return v;
 
     }
-
+    ProgressBar progressBar1,progressBar2;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        progressBar1 = view.findViewById(R.id.progress);
+        progressBar2 = view.findViewById(R.id.progress2);
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
@@ -124,7 +124,6 @@ public class FragmentInfoPersonal extends Fragment {
         String FechaAct = activity.FechaAct();
         float FechaC = activity.FechaLONG();
         ImageView imgLogout = view.findViewById(R.id.imglogout);
-
 
         ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
@@ -318,6 +317,7 @@ public class FragmentInfoPersonal extends Fragment {
             }
         });
 
+
     }
 
     //Esta funcion lo que hace es rellenar las tarjetas con la informacion ya guardada en la base de datos anteriormente, recibe un objeto tipo PersonInfo
@@ -339,9 +339,27 @@ public class FragmentInfoPersonal extends Fragment {
         grasa = Math.round(grasa);
 
         pesos.setText("Peso actual: " + personInfo.getCurrentWeight() +" | Meta de peso:"+personInfo.getWeightGoal());
-        IMC.setText("IMC:"+ imc +"| Ideal:"+" 25.0 – 29.9");
+        IMC.setText("IMC:"+ imc +"| Ideal:"+" 18.5 – 24.9");
         TG.setText("Tu tasa de grasa es del " + grasa+"%");
         racha.setText(String.valueOf(RachaGuardada));
+        if(personInfo.getCurrentWeight()!=0 && personInfo.getWeightGoal()!=0) {
+            int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
+
+            if(Progreso>100){
+                Progreso=100-(Progreso-100);
+            }
+            progressBar1.setProgress(Progreso);
+            Log.d("Peso", Integer.toString(Progreso));
+        }
+        if(imc>0){
+            int ProgresoIMC = (int) (imc * 100 / 24.9);
+            if(ProgresoIMC>100){
+                ProgresoIMC=100-(ProgresoIMC-100);
+            }
+            Log.d("IMC", Integer.toString(ProgresoIMC));
+            progressBar2.setProgress(ProgresoIMC);
+        }
+
     }
 
     //Esta funcion realiza una comparacion con la fecha previamente registrada en los shared preferencees que seria la ultima fecha que el usuario
