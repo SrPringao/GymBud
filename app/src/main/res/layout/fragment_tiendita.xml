@@ -38,10 +38,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/TiRecycler"
         android:layout_below="@id/TiTitle"
+        android:layout_above="@+id/TiTiempoEstimado"
         android:layout_marginBottom="10dp"
         android:clipToPadding="false"
         android:layout_marginTop="20dp"
-        android:layout_above="@+id/TiConfirmButton"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,6 +51,17 @@
         android:paddingBottom="50dp"
         />
 
+    <include
+        android:id="@+id/TiTiempoEstimado"
+        android:layout_above="@+id/TiConfirmButton"
+        layout="@layout/card_tiempoestimado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        />
+
     <Spinner
         android:id="@+id/TiWeekSelector"
         android:layout_width="match_parent"
@@ -58,7 +69,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_below="@+id/TiRecycler"
+        android:layout_below="@+id/TiTiempoEstimado"
         android:layout_toEndOf="@+id/TiConfirmButton"
         android:gravity="center"
         android:layout_marginBottom="90dp"

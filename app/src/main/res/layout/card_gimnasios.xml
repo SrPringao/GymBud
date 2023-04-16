@@ -9,9 +9,6 @@
     android:gravity="center"
     android:background="@color/uruguayo"
     android:orientation="vertical">
-    android:layout_marginTop="15dp"
-   >
-
 
     <RelativeLayout
         android:id="@+id/cgPart1"
@@ -129,6 +126,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
+                android:isIndicator="true"
+                android:focusable="false"
+                android:clickable="false"
                 android:progressTint="@color/colorIdentidad2"
                 android:secondaryProgressTint="@color/colorIdentidad2"
                 android:scaleX="0.6"
@@ -140,7 +140,5 @@
                 />
 
         </RelativeLayout>
-
-
     </RelativeLayout>
 </RelativeLayout>

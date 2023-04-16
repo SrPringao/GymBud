@@ -38,16 +38,69 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
 
     Routine routine;
     List<ExerciseSet> ListasEjercicios;
+    ArrayList<Integer> listaSeries = new ArrayList<>();
+    ArrayList<Integer>listaReps = new ArrayList<>();
+    TextView tiempoEstimadoTextView;
+
 
 
 FragmentManager fragmentManager;
-    public VerRutinaDelDiaAdapter(Routine routine, FragmentManager fragmentManager) {
+    public VerRutinaDelDiaAdapter(Routine routine, TextView tiempoEstimadoTextView,FragmentManager fragmentManager) {
         this.routine = routine;
-        this.fragmentManager =fragmentManager ;
+        this.tiempoEstimadoTextView = tiempoEstimadoTextView;
+this.fragmentManager =fragmentManager ;
+
         if (routine == null) {
             ListasEjercicios = new ArrayList<>();
+            tiempoEstimadoTextView.setText("0");
+
         } else {
             ListasEjercicios = routine.getExerciseList();
+
+            //añadir a la lista de series y reps el numero de series y reps que tiene cada ejercicio
+            for (int i = 0; i < ListasEjercicios.size(); i++) {
+                listaSeries.add(ListasEjercicios.get(i).getNumSeries());
+                listaReps.add(ListasEjercicios.get(i).getNumReps());
+            }
+
+            tiempoEstimadoTextView.setText(String.valueOf(tiempoEstimadoFunc(listaSeries, listaReps)));
+            Log.d("Lista de series", listaSeries.toString());
+            Log.d("Lista de reps", listaReps.toString());
+        }
+    }
+
+    public int tiempoEstimadoFunc(ArrayList<Integer> listaSeries, ArrayList<Integer> listaReps){
+        double tiempo = 0;
+        double tiempoDescanso = 0;
+
+        if (listaSeries.size() == 0 || listaReps.size() == 0){
+            return 0;
+        }else {
+            //tiempo de descanso entre ejercicios
+            //tomando en cuenta que se descansara 2 minutos entre ejercicios mas tiempos muertos
+            tiempoDescanso += listaSeries.size() * 2;
+            Log.d("Tiempo entre ejercicios", String.valueOf(tiempoDescanso));
+
+            //tiempo de descansos entre series
+            //tomando en cuenta que se descansara 1 minuto y medio entre series mas tiempos muertos
+            for (int i = 0; i < listaSeries.size(); i++) {
+                tiempoDescanso += listaSeries.get(i)*1.5;
+            }
+
+            Log.d("Tiempo de descanso total", String.valueOf(tiempoDescanso));
+
+            //total de repeticiones
+            //tomando en cuenta que por cada repeticion se tarda 5 segundos
+            for (int i = 0; i < listaReps.size(); i++) {
+                tiempo += (((listaReps.get(i) * listaSeries.get(i)) * 5)/60f );
+            }
+
+            Log.d("Tiempo de repeticiones", String.valueOf(tiempo));
+
+            //tiempo total
+            Log.d("Tiempo total", String.valueOf(tiempo + tiempoDescanso));
+
+            return (int) (tiempo + tiempoDescanso);
         }
     }
 
