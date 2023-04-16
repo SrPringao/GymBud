@@ -3,7 +3,9 @@ package com.example.gymbud.Adaptadores;
 import static com.example.gymbud.Entidades.IdList.containsExerciseWithId;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
@@ -26,7 +28,7 @@ import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.IdList;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 
 public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<AgregarEjerciciosCarritoAdapter.EjerciciosViewHolder> {
@@ -34,8 +36,12 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
     ArrayList<Exercises> ListasEjercicios;
     ArrayList<Integer> listaDeIds = new ArrayList<>(); // Aquí se declara la lista de ids
 
+    ArrayList<Integer> listaDeGrupos = new ArrayList<>(); // Aquí se declara la lista de grupos
 
-    public AgregarEjerciciosCarritoAdapter(ArrayList<Exercises> ListasEjercicios) {
+
+
+
+    public AgregarEjerciciosCarritoAdapter(ArrayList<Exercises> ListasEjercicios ) {
         this.ListasEjercicios = ListasEjercicios;
 
     }
@@ -162,10 +168,33 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                             //add exercise to the list
                             listaDeIds.add(exerciseId);
+                            listaDeGrupos.add(muscleId);
+
 
                             exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
+
+                            //if iflist.size() == 0, then the list is empty
+                            if (IdList.getInstance().size() == 9) {
+                                //popUp
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("¡Cuidado!");
+                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //go to the next activity
+                                    }
+                                });
+
+
+                                builder.show();
+                            }
+
+
+
+
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -180,6 +209,37 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
     }
 
 
+    public void checkForRepeatedValues(ArrayList<Integer> values, Context context) {
+
+        // Creamos un HashMap para contar cuántas veces aparece cada valor
+        HashMap<Integer, Integer> valueCounts = new HashMap<>();
+        for (Integer value : values) {
+            if (valueCounts.containsKey(value)) {
+                valueCounts.put(value, valueCounts.get(value) + 1);
+            } else {
+                valueCounts.put(value, 1);
+            }
+        }
+
+        // Buscamos los valores que se repiten más de 4 veces
+        ArrayList<Integer> repeatedValues = new ArrayList<>();
+        for (Integer value : valueCounts.keySet()) {
+            if (valueCounts.get(value) > 4) {
+                repeatedValues.add(value);
+            }
+        }
+
+        // Si encontramos algún valor repetido, mostramos un Toast con los valores
+        if (!repeatedValues.isEmpty()) {
+            StringBuilder message = new StringBuilder();
+            message.append("Los valores que se repiten más de 4 veces son: ");
+            for (Integer value : repeatedValues) {
+                message.append(value).append(", ");
+            }
+            message.delete(message.length() - 2, message.length()); // Quitamos la última coma y el espacio
+            Toast.makeText(context, message.toString(), Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     public int getItemCount() {
