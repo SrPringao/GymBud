@@ -149,6 +149,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 args.putInt("ID",ID);
                 args.putString("Musculo",musculo);
                 fragment.setArguments(args);
+                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

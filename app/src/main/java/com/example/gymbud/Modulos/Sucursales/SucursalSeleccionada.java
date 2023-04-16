@@ -24,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.example.gymbud.Entidades.Sucursal;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.Tiendita;
 import com.example.gymbud.R;
@@ -267,7 +268,34 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 transaction.commit();
             }
         });
+        StringRequest request= new StringRequest(Request.Method.POST, "https://francoaldrete.com/GymBud/GetStars.php?Usr="+UID+"&SubId="+id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            for (int i = 0;i<array.length();i++) {
+                                JSONObject Obj = (JSONObject) array.get(i);
+                                //convert obj.getDouble to float
 
+                                     ratingBarMaquinas.setRating((float)Obj.getDouble("Cal1"));
+                                     ratingBarStaff.setRating((float)Obj.getDouble("Cal2"));
+                                     ratingBarVestidores.setRating((float)Obj.getDouble("Cal3"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                        Log.d("Error",error.toString());
+                    }
+                });
+         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+         requestQueue.add(request);
         personas(view);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
