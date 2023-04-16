@@ -111,7 +111,9 @@ public class DatosInfoTg extends Fragment {
                     sexo = 2;
                 }
                     int UID = activity.UIDUSR();
-                String update = "UPDATE PERSONINFO SET Gender = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
+                String update = "UPDATE PERSONINFO SET Age = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
+                Log.d("Edad registrada", Edad.getText().toString());
+                Log.d("Query update", update);
                 Log.d("UPDATE", update);
                 db.execSQL(update);
 

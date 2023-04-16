@@ -1,5 +1,11 @@
 package com.example.gymbud.Modulos.Sucursales;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +30,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+
+import com.example.gymbud.Adaptadores.SucursalesAdaptador;
+import com.example.gymbud.Db.DbHelper;
+
 import com.example.gymbud.Entidades.Sucursal;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.Tiendita;
@@ -42,6 +52,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,6 +166,12 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     String calificacion1,calificacion2,calificacion3;
     Button botonCalificacion;
 
+    String sucursal;
+    String Ubi;
+
+    int id;
+
+
      public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //id de los elementos de la vista
@@ -172,29 +190,27 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
          Extras(view);
          Bundle mbundle = getArguments();
          Imagenes = imagenes(mbundle.getString("Nombre"));
-         String sucursal= mbundle.getString("Nombre");
-         String Ubi= mbundle.getString("Ubicacion");
+         sucursal= mbundle.getString("Nombre");
+         Ubi= mbundle.getString("Ubicacion");
          String Rating= mbundle.getString("Rating");
          String Horario= mbundle.getString("Horario");
-         int id = mbundle.getInt("ID");
+         id = mbundle.getInt("ID");
 
          FragmentContainer activity = (FragmentContainer) getActivity();
          int UID = activity.UIDUSR();
          Log.d("id recibida", String.valueOf(id));
 
 
+
          //asignar los datos a los elementos de la vista
          Sucursal.setText(sucursal);
          Ubicacion.setText(Ubi);
-         //truncar el rating a 1 decimal
-         String rating = String.format("%.1f", Float.parseFloat(Rating));
-         TextoRating.setText(rating);
 
-         ratingBarAvg.setRating(Float.parseFloat(Rating));
+         Rating(id);
          carouselView.setImageListener(imageListener);
          carouselView.setPageCount(Imagenes.length);
 
-         //boton de regreso
+
         botonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,17 +267,15 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 requestQueue.add(stringRequest);
 
 
-                Fragment fragment = new Sucursales();
+                Fragment fragment = new SucursalSeleccionada();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                Bundle args = new Bundle();
-//                args.putString("Nombre", sucursal);
-//                args.putString("Ubicacion", Ubi);
-//                args.putString("Horario",  Horario);
-//                args.putString("Rating", Rating);
-//                args.putInt("ID", id);
+                Bundle args = new Bundle();
+                args.putString("Nombre", sucursal);
+                args.putString("Ubicacion",Ubi);
+                args.putInt("ID",id);
 
 
-//                fragment.setArguments(args);
+                fragment.setArguments(args);
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
@@ -666,6 +680,42 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
          RequestQueue lanzarPeticion = Volley.newRequestQueue(getContext());
          lanzarPeticion.add(extra);
          lanzarPeticion.start();
+     }
+
+
+     private void Rating(int id){
+         Log.d("Actualizacion", "Se entro a la funcion de rating");
+         RequestQueue queue = Volley.newRequestQueue(getContext());
+         String url = "https://francoaldrete.com/GymBud/sucursal.php";
+
+         Sucursal sucursal = new Sucursal();
+
+         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                 new Response.Listener<String>() {
+                     @Override
+                     public void onResponse(String response) {
+                         try {
+                             JSONArray array = new JSONArray(response);
+                             sucursal.setRating(Float.parseFloat(array.getJSONObject(id-1).getString("Rating")));
+
+                             String rating = String.format("%.1f", Float.parseFloat(String.valueOf(sucursal.getRating())));
+                             TextoRating.setText(rating);
+                             ratingBarAvg.setRating(Float.parseFloat(rating));
+                             Log.d("Sucursal", "Rating Macabro con id: "+ id +" Rating:" + rating);
+
+                         }catch (JSONException e){
+                             Log.d("NO SIRVIO", "NO SIRVIO");
+                             Log.d("JSONException", ""+e);
+                         }
+                     }
+                 }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+
+             }
+         });
+
+         Volley.newRequestQueue(getContext()).add(stringRequest);
      }
 
  }
