@@ -30,7 +30,7 @@
         android:gravity="center"
         android:spinnerMode="dropdown"
         android:textAlignment="center"
-        android:textColor="@color/colorIdentidad3" >
+        android:textColor="@color/black" >
 
     </Spinner>
 

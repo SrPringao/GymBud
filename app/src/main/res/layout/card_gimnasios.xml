@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/layoutGimnasios"
-
+    android:focusable="true"
+    android:clickable="true"
     android:layout_marginTop="5dp"
     android:gravity="center"
     android:background="@color/uruguayo"

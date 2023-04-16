@@ -395,6 +395,7 @@
                         android:padding="30dp"
                         android:layout_marginTop="10dp"
                         android:text="Enviar Calificacion"
+                        android:textColor="@color/black"
                         android:background="@drawable/backgroundcorner"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
