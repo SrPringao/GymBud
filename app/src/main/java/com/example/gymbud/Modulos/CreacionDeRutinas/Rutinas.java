@@ -3,6 +3,7 @@ package com.example.gymbud.Modulos.CreacionDeRutinas;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -69,6 +70,20 @@ public class Rutinas extends Fragment {
 
         Button botonAutomatica = view.findViewById(R.id.botonRutinaAutomatica);
         Button botonPersonalizada = view.findViewById(R.id.botonRutinaPersonalizada);
+        CardView card1 = view.findViewById(R.id.tarjetaRutinaPersonalizada);
+        CardView card2 = view.findViewById(R.id.tarjetaRutinaAutomatica);
+
+        // Animacion de las tarjetas
+
+        card1.setX(3000);
+        card2.setX(-3000);
+
+
+
+        card1.animate().translationX(0).setDuration(500).setStartDelay(0);
+        card2.animate().translationX(0).setDuration(500).setStartDelay(0);
+
+
 
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -120,6 +121,32 @@ public class FragmentInfoPersonal extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         progressBar1 = view.findViewById(R.id.progress);
         progressBar2 = view.findViewById(R.id.progress2);
+        CardView ipCard1 = view.findViewById(R.id.ipCard1);
+        CardView ipCard2 = view.findViewById(R.id.ipCard2);
+        CardView ipCard3 = view.findViewById(R.id.ipCard3);
+        CardView ipCard4 = view.findViewById(R.id.ipCard4);
+        CardView ipCard5 = view.findViewById(R.id.ipCard5);
+        CardView ipCard6 = view.findViewById(R.id.ipCard6);
+        CardView ipCard7 = view.findViewById(R.id.ipCard7);
+
+
+        ipCard1.setX(-3000);
+        ipCard2.setX(-3000);
+        ipCard3.setX(-3000);
+        ipCard4.setX(-3000);
+        ipCard5.setX(-3000);
+        ipCard6.setX(-3000);
+        ipCard7.setX(-3000);
+
+        ipCard1.animate().translationX(0).setDuration(400).setStartDelay(0);
+        ipCard2.animate().translationX(0).setDuration(500).setStartDelay(0);
+        ipCard3.animate().translationX(0).setDuration(600).setStartDelay(0);
+        ipCard4.animate().translationX(0).setDuration(700).setStartDelay(0);
+        ipCard5.animate().translationX(0).setDuration(800).setStartDelay(0);
+        ipCard6.animate().translationX(0).setDuration(500).setStartDelay(0);
+        ipCard7.animate().translationX(0).setDuration(500).setStartDelay(0);
+
+
 
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);

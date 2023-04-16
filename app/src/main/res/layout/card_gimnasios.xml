@@ -14,12 +14,14 @@
     <RelativeLayout
         android:id="@+id/cgPart1"
         android:layout_width="match_parent"
+        android:background="@drawable/backgroundcornerinverted"
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView2"
             android:layout_width="match_parent"
             android:layout_height="197dp"
+            android:padding="2dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:srcCompat="@drawable/jim"
@@ -43,38 +45,33 @@
 
 
         <RelativeLayout
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
 
 
             <RelativeLayout
                 android:id="@+id/cgPart2"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                >
+                android:layout_marginEnd="10dp">
 
                 <View
                     android:id="@+id/cgAlignView2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_centerInParent="true"
-                    >
-                </View>
-
+                    android:layout_centerInParent="true"></View>
 
 
                 <RelativeLayout
                     android:id="@+id/cgP1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/cgAlignView2"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    >
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/cgAlignView2">
 
                     <TextView
                         android:id="@+id/SubName"
@@ -93,11 +90,10 @@
 
                 <RelativeLayout
                     android:id="@+id/cgP2"
-                    android:layout_toEndOf="@id/cgAlignView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    >
+                    android:layout_toEndOf="@id/cgAlignView2">
 
                     <TextView
                         android:id="@+id/Location"
@@ -114,31 +110,30 @@
 
             <View
                 android:id="@+id/ssSeparador"
-                android:layout_below="@id/cgPart2"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:layout_marginBottom="10dp"
+                android:layout_below="@id/cgPart2"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/background_edittext"/>
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_edittext" />
 
             <RatingBar
                 android:id="@+id/Rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:numStars="5"
-                android:isIndicator="true"
-                android:focusable="false"
-                android:clickable="false"
-                android:progressTint="@color/colorIdentidad2"
-                android:secondaryProgressTint="@color/colorIdentidad2"
-                android:scaleX="0.6"
-                android:scaleY="0.6"
-                android:rating="3.4"
                 android:layout_below="@+id/ssSeparador"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                />
+                android:clickable="false"
+                android:focusable="false"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="@color/colorIdentidad2"
+                android:rating="3.4"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:secondaryProgressTint="@color/colorIdentidad2" />
 
         </RelativeLayout>
     </RelativeLayout>
