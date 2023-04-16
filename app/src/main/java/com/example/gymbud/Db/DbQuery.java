@@ -590,4 +590,24 @@ public class DbQuery extends DbHelper {
         }
         return Ejercicios;
     }
+//    public void StarsInsert(float starMaquinas, float starAt, float starVes) {
+//
+//        try {
+//            DbHelper dbHelper = new DbHelper(context);
+//            SQLiteDatabase db = dbHelper.getWritableDatabase();
+//
+//            ContentValues values = new ContentValues();
+//            values.put("Weight", weight);
+//            values.put("Reps", reps);
+//            values.put("Reps2", reps2);
+//            values.put("Time", time);
+//            values.put("Date", Date);
+//            values.put("IdEjercicio", IdEjercicio);
+//            values.put("IdUsr", IdUsr);
+//
+//            db.insert(TABLE_STATS, null, values);
+//        } catch (Exception ex) {
+//            ex.toString();
+//        }
+//    }
 }
