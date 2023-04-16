@@ -27,6 +27,7 @@ import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
+import com.example.gymbud.Modulos.SeleccionEjercicios.fragment_ejercicio_seleccionado;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class VerRutinas extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ver_rutinas, container, false);
     }
-
+    private int newDayOfWeek;
     @Override
     @SuppressLint("UseCompatLoadingForDrawables")
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -127,6 +128,7 @@ public class VerRutinas extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
+
         DbQuery dbQuery = new DbQuery (getContext());
 
         Log.d("Existencia de rutina en carga ", String.valueOf(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)));
@@ -136,7 +138,7 @@ public class VerRutinas extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                int newDayOfWeek = position + 1;
+                newDayOfWeek = position + 1;
                 Log.d("Existencia de rutina en spinner actualizado", String.valueOf(dbQuery.routineDayAlreadyFilled(newDayOfWeek)) + "  " + String.valueOf(newDayOfWeek));
 
                 if (dbQuery.routineDayAlreadyFilled(newDayOfWeek)) {
@@ -149,14 +151,16 @@ public class VerRutinas extends Fragment {
                 }
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
-
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     
@@ -167,7 +171,9 @@ public class VerRutinas extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DbQuery dbQuery = new DbQuery (getContext());
-        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(dayOfWeek),TvTiempoEstimado);
+
+        VerRutinaDelDiaAdapter adapter = new VerRutinaDelDiaAdapter(dbQuery.getRoutineByDay(dayOfWeek),TvTiempoEstimado,getFragmentManager());
+
         recyclerView.setAdapter(adapter);
     }
 
