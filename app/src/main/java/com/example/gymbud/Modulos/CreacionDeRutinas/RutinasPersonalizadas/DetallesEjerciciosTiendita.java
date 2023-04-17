@@ -21,6 +21,9 @@ import com.example.gymbud.R;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
 public class DetallesEjerciciosTiendita extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -87,6 +90,8 @@ public class DetallesEjerciciosTiendita extends Fragment {
 
         DbQuery dbQuery = new DbQuery (getContext());
         EjerciciosLista = new ArrayList<>();
+
+
 
         AgregarEjerciciosCarritoAdapter adapter = new AgregarEjerciciosCarritoAdapter(dbQuery.MostrarEjercicios(id));
 //        Log.d("Ejercicios en pantalla 1 para ver como los regresa", dbQuery.MostrarEjercicios(id).toString());

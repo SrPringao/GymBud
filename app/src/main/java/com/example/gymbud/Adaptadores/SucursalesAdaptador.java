@@ -13,8 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gymbud.R;
 import com.example.gymbud.Entidades.Sucursal;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -49,6 +52,17 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
         holder.SubName.setText(ListasSucursales.get(position).getSubName());
         holder.Location.setText(ListasSucursales.get(position).getLocation());
         holder.rating.setRating(ListasSucursales.get(position).getRating());
+        String url = ListasSucursales.get(position).getImageLink();
+
+        Picasso.get().load(url)
+                .placeholder(R.drawable.backgroundcornerinverted) // imagen de relleno
+                .error(R.drawable.backgroundcornerinverted) // imagen de error si no se puede cargar la imagen
+                .into(holder.imagen);
+
+//        Glide.with(holder.itemView.getContext())
+//                .load(url)
+//                .placeholder(R.drawable.loading_icon)
+//                .into(holder.imagen);
 
 
         Log.d("Recycler Sucursales: " + position, "onBindViewHolder: " + ListasSucursales.get(position).getRating());
@@ -67,13 +81,14 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
         int posicion = getAdapterPosition();
         TextView SubName,Location;
         RatingBar rating;
-        ImageView imagen;
+        ShapeableImageView imagen;
 
         public SucursalesViewHolder(@NonNull View itemView){
             super(itemView);
             SubName = itemView.findViewById(R.id.SubName);
             Location = itemView.findViewById(R.id.Location);
             rating = itemView.findViewById(R.id.Rating);
+            imagen = itemView.findViewById(R.id.shapeableImageView2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -2,23 +2,21 @@ package com.example.gymbud.Modulos.SeleccionEjercicios;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.example.gymbud.Adaptadores.EjercicioParecidoAdaptador;
-import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.R;
@@ -118,11 +116,20 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         EjecucionD = view.findViewById(R.id.EjecucionData);
         DetallesD = view.findViewById(R.id.DetallesData);
         Stats = view.findViewById(R.id.Stats);
+        ImageView ImagenEjercicio = view.findViewById(R.id.esGif);
 
         Titulo.setText(exercises.getName());
         PreparacionD.setText(exercises.getForeSeeing());
         EjecucionD.setText(exercises.getExecution());
         DetallesD.setText(exercises.getDetails());
+
+
+        Glide.with(context)
+                .load("https://gymvisual.com/img/p/4/7/2/1/4731.gif")
+                .placeholder(R.drawable.loading_icon)
+                .into(ImagenEjercicio);
+
+
 
         Stats.setOnClickListener(new View.OnClickListener() {
             @Override

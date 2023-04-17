@@ -60,7 +60,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "ForeSeeing TEXT," +
                 "Execution TEXT," +
                 "Details TEXT," +
-                "Image BLOB," +
+                "Image TEXT," +
                 "Tool INTEGER REFERENCES TOOLS (ID_Tools)," +
                 "Category INTEGER REFERENCES CATEGORY (ID_Cat)," +
                 "Difficulty INTEGER REFERENCES DIFFICULTY (ID_Difficulty)," +
@@ -138,7 +138,7 @@ public class DbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo en polea con cuerda',1,'Fortalecimiento muscular','Ajusta la altura de la polea según tu altura y coloca una cuerda en cada lado de la polea','Eleva las manos hacia los lados, manteniendo los codos ligeramente doblados y llevando las manos hacia arriba hasta la altura de los hombros\n" +
                 "Baja las manos lentamente a la posición inicial y repite el ejercicio\n','Asegúrate de mantener la espalda recta y el abdomen contraído durante todo el ejercicio\n" +
                 "Puedes variar la intensidad del ejercicio ajustando la resistencia de la polea\n" +
-                "Puedes realizar el ejercicio con un agarre prono (palmas hacia abajo) o supino (palmas hacia arriba) para trabajar diferentes partes de los músculos del hombro\n','Image',1,2,2,1)");
+                "Puedes realizar el ejercicio con un agarre prono (palmas hacia abajo) o supino (palmas hacia arriba) para trabajar diferentes partes de los músculos del hombro\n','https://educacion30.b-cdn.net/wp-content/uploads/2019/06/homer.gif',1,2,2,1)");
 
 
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones posteriores de pie con polea baja',1,'Fortalecimiento de los hombros','Coloca una polea baja en una máquina de cables o en un anclaje de pared.\n" +

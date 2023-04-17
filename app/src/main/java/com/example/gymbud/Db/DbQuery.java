@@ -165,7 +165,7 @@ public class DbQuery extends DbHelper {
                 ejercicios.setForeSeeing(cursorejercicios.getString(4));
                 ejercicios.setExecution(cursorejercicios.getString(5));
                 ejercicios.setDetails(cursorejercicios.getString(6));
-                ejercicios.setImage(cursorejercicios.getBlob(7));
+                ejercicios.setImage(cursorejercicios.getString(7));
                 ejercicios.setTool(cursorejercicios.getInt(8));
                 ejercicios.setCategory(cursorejercicios.getInt(9));
                 ejercicios.setDifficulty(cursorejercicios.getInt(10));
@@ -196,7 +196,7 @@ public class DbQuery extends DbHelper {
             exercises.setForeSeeing(cursorejercicios.getString(4));
             exercises.setExecution(cursorejercicios.getString(5));
             exercises.setDetails(cursorejercicios.getString(6));
-            exercises.setImage(cursorejercicios.getBlob(7));
+            exercises.setImage(cursorejercicios.getString(7));
             exercises.setTool(cursorejercicios.getInt(8));
             exercises.setCategory(cursorejercicios.getInt(9));
             exercises.setDifficulty(cursorejercicios.getInt(10));
@@ -355,7 +355,7 @@ public class DbQuery extends DbHelper {
 
                 // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
                 ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
-                ejercicios.setImage(cursorEjercicios.getBlob(3));
+                ejercicios.setImage(cursorEjercicios.getString(3));
 
 
                 // Incrementar el índice

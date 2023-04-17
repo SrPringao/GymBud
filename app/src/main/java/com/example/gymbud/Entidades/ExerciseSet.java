@@ -2,17 +2,16 @@ package com.example.gymbud.Entidades;
 
 public class ExerciseSet {
     private int id;
-
     private String name;
-
-    private byte[] image;
+    private String image;
     private int numSeries;
     private int numReps;
     private int muscleGroup;
     public ExerciseSet() {
 
     }
-    public ExerciseSet(int id, String name, int numSeries, int numReps, int muscleGroup, byte[] image) {
+
+    public ExerciseSet(int id, String name, int numSeries, int numReps, int muscleGroup, String image) {
         this.id = id;
         this.numSeries = numSeries;
         this.numReps = numReps;
@@ -24,7 +23,6 @@ public class ExerciseSet {
     public ExerciseSet(int id) {
         this.id = id;
     }
-
     public int getId() {
         return id;
     }
@@ -45,7 +43,7 @@ public class ExerciseSet {
         return name;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 }

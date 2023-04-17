@@ -163,7 +163,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             int muscleId = exercise.getMuscularGroup();
                             String name = exercise.getName();
                             //image as a byte array
-                            byte[] imagen = exercise.getImage();
+                            String imagen = exercise.getImage();
 
 
                             //add exercise to the list
@@ -172,6 +172,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
                             exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
+
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
 
@@ -187,8 +188,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                         //go to the next activity
                                     }
                                 });
-
-
                                 builder.show();
                             }
 

@@ -106,6 +106,7 @@ public class CardInfoImc extends Fragment {
                     String update = "UPDATE PERSONINFO SET Height = "+testo.getText().toString()+ " WHERE UserId = " + UID;
                     Log.d("UPDATE", update);
                     db.execSQL(update);
+                    db.close();
 
                     Fragment firstFragment = new FragmentInfoPersonal();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();

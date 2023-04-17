@@ -1,10 +1,10 @@
 package com.example.gymbud.Modulos.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymbud.R;
 
@@ -22,6 +22,6 @@ public class intro extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
             }
-        },50);  //2500
+        },2500);  //50
     }
 }

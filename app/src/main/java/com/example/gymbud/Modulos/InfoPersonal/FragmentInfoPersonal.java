@@ -1,13 +1,16 @@
 package com.example.gymbud.Modulos.InfoPersonal;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,11 +22,8 @@ import android.view.ViewGroup;
 
 import android.widget.ImageView;
 
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.gymbud.Db.DbQuery;
@@ -35,6 +35,8 @@ import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.Creaci
 import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.example.gymbud.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
@@ -88,6 +90,10 @@ public class FragmentInfoPersonal extends Fragment {
 
     NestedScrollView scroll;
 
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationCallback locationCallback;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +103,20 @@ public class FragmentInfoPersonal extends Fragment {
             scroll = scroll.findViewById(R.id.scroll);
         }
 
-
-
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
     }
+
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Solicitar permisos si no están concedidos
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
+        }
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -118,8 +134,36 @@ public class FragmentInfoPersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        startLocationUpdates();
+
         progressBar1 = view.findViewById(R.id.progress);
         progressBar2 = view.findViewById(R.id.progress2);
+        CardView ipCard1 = view.findViewById(R.id.ipCard1);
+        CardView ipCard2 = view.findViewById(R.id.ipCard2);
+        CardView ipCard3 = view.findViewById(R.id.ipCard3);
+        CardView ipCard4 = view.findViewById(R.id.ipCard4);
+        CardView ipCard5 = view.findViewById(R.id.ipCard5);
+        CardView ipCard6 = view.findViewById(R.id.ipCard6);
+        CardView ipCard7 = view.findViewById(R.id.ipCard7);
+
+
+        ipCard1.setX(-3000);
+        ipCard2.setX(-3000);
+        ipCard3.setX(-3000);
+        ipCard4.setX(-3000);
+//        ipCard5.setX(-3000);
+//        ipCard6.setX(-3000);
+//        ipCard7.setX(-3000);
+
+        ipCard1.animate().translationX(0).setDuration(400).setStartDelay(0);
+        ipCard2.animate().translationX(0).setDuration(500).setStartDelay(0);
+        ipCard3.animate().translationX(0).setDuration(600).setStartDelay(0);
+        ipCard4.animate().translationX(0).setDuration(700).setStartDelay(0);
+//        ipCard5.animate().translationX(0).setDuration(800).setStartDelay(0);
+//        ipCard6.animate().translationX(0).setDuration(500).setStartDelay(0);
+//        ipCard7.animate().translationX(0).setDuration(500).setStartDelay(0);
+
+
 
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
@@ -314,7 +358,7 @@ public class FragmentInfoPersonal extends Fragment {
         cardgrasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment secondFragment = new DatosInfoTg();
+                Fragment secondFragment = new CardInfoTg();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);

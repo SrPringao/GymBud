@@ -80,10 +80,10 @@
                 app:layout_constraintBottom_toTopOf="@+id/nested"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/esGif" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/esGif"
                 android:layout_width="221dp"
                 android:layout_height="254dp"
 
@@ -160,6 +160,7 @@
                         style="@style/nestedTextTitle"
                         android:text="Musculatura"
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
+                        android:layout_marginBottom="10dp"
                         tools:ignore="MissingConstraints" />
 
 
@@ -170,22 +171,10 @@
                         android:background="@drawable/otisparado"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.502"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
-                        app:layout_constraintVertical_bias="0.165" />
-
-                    <ImageView
-                        android:id="@+id/Musculatura2"
-                        android:layout_width="179dp"
-                        android:layout_height="171dp"
-                        android:background="@drawable/otisparado"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/DetallesData"
-                        app:layout_constraintVertical_bias="0.163" />
+                        app:layout_constraintVertical_bias="0.172" />
 
                     <TextView
                         android:id="@+id/EjercicioSimi"
