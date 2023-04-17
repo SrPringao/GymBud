@@ -1,14 +1,17 @@
 package com.example.gymbud.Modulos.InfoPersonal;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,6 +39,10 @@ import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.Creaci
 import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.example.gymbud.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
@@ -89,6 +96,10 @@ public class FragmentInfoPersonal extends Fragment {
 
     NestedScrollView scroll;
 
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationCallback locationCallback;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,10 +109,20 @@ public class FragmentInfoPersonal extends Fragment {
             scroll = scroll.findViewById(R.id.scroll);
         }
 
-
-
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
     }
+
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Solicitar permisos si no están concedidos
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
+        }
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,6 +140,8 @@ public class FragmentInfoPersonal extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        startLocationUpdates();
+
         progressBar1 = view.findViewById(R.id.progress);
         progressBar2 = view.findViewById(R.id.progress2);
         CardView ipCard1 = view.findViewById(R.id.ipCard1);

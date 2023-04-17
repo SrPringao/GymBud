@@ -128,24 +128,21 @@ public class Sucursales extends Fragment {
         return locationRequest;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        startLocationUpdates();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        stopLocationUpdates();
-    }
-
-    private void stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback);
-    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        stopLocationUpdates();
+//    }
+//
+//    private void stopLocationUpdates() {
+//        fusedLocationClient.removeLocationUpdates(locationCallback);
+//    }
 
     RecyclerView recyclerView;
     ArrayList<Sucursal> SucursalesLista;
+    Boolean permiso = false;
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceSttate) {
@@ -154,17 +151,15 @@ public class Sucursales extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerSucursales);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        // Llamar a MostrarResultado antes de crear el adaptador
-        MostrarResultado();
 
-        SucursalesAdaptador adaptador = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
+        //verificar si el permiso esta concedido o no y asignar valor a permiso
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            permiso = true;
+        }
 
-            }
-        });
+        Log.wtf("Permiso", permiso.toString());
 
-        recyclerView.setAdapter(adaptador);
+        MostrarResultado(permiso);
     }
 
     @Override
@@ -179,8 +174,7 @@ public class Sucursales extends Fragment {
     private static final long FASTEST_INTERVAL = 60000; // 1 minuto
 
 
-    private void MostrarResultado(){
-        Log.d("MostrarResultado","MostrarResultado");
+    private void MostrarResultado(Boolean permiso) {
         String url = "https://francoaldrete.com/GymBud/sucursal.php";
 
 
@@ -190,119 +184,108 @@ public class Sucursales extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONArray array = new JSONArray(response);
-                                for (int i = 0;i<array.length();i++) {
-                                    JSONObject Obj = (JSONObject) array.get(i);
-                                    Log.d("ID",""+Obj.getInt("id"));
-                                    // Agregar sucursales obtenidas a la lista
-                                    SucursalesLista.add(new Sucursal(
-                                            Obj.getInt("id"),
-                                            Obj.getInt("CurrentUsers"),
-                                            Obj.getDouble("Rating"),
-                                            Obj.getString("SubName"),
-                                            Obj.getString("Location"),
-                                            Obj.getString("ImageLink"),
-                                            Obj.getString("Schedule"),
-                                            Obj.getInt("ContactNumber"),
-                                            Obj.getString("Latitud"),
-                                            Obj.getString("Longitud")
-                                    ));
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject Obj = (JSONObject) array.get(i);
+                                Log.d("ID", "" + Obj.getInt("id"));
+                                // Agregar sucursales obtenidas a la lista
+                                SucursalesLista.add(new Sucursal(
+                                        Obj.getInt("id"),
+                                        Obj.getInt("CurrentUsers"),
+                                        Obj.getDouble("Rating"),
+                                        Obj.getString("SubName"),
+                                        Obj.getString("Location"),
+                                        Obj.getString("ImageLink"),
+                                        Obj.getString("Schedule"),
+                                        Obj.getInt("ContactNumber"),
+                                        Obj.getString("Latitud"),
+                                        Obj.getString("Longitud")
+                                ));
+                                }
 
-                                    try {
-                                        // Verificar si se tiene acceso a la ubicación actual
-                                        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-                                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                            // Pedir permiso para acceder a la ubicación
-                                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-                                            return;
-                                        }
+                            if (permiso) {
+                                LocationRequest locationRequest = LocationRequest.create();
+                                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+                                locationRequest.setInterval(UPDATE_INTERVAL);
+                                locationRequest.setFastestInterval(FASTEST_INTERVAL);
+                                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                }
+                                LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(locationRequest, new LocationCallback() {
+                                    @Override
+                                    public void onLocationResult(LocationResult locationResult) {
+                                        Location location = locationResult.getLastLocation();
 
                                         // Obtener ubicación actual
-                                        LocationRequest locationRequest = LocationRequest.create();
-                                        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-                                        locationRequest.setInterval(UPDATE_INTERVAL);
-                                        locationRequest.setFastestInterval(FASTEST_INTERVAL);
-                                        LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(locationRequest, new LocationCallback() {
+                                        final double latActual = location.getLatitude();
+                                        final double lonActual = location.getLongitude();
+
+                                        // Comparador para ordenar la lista de sucursales
+                                        Comparator<Sucursal> comparador = new Comparator<Sucursal>() {
                                             @Override
-                                            public void onLocationResult(LocationResult locationResult) {
-                                                if (locationResult != null && locationResult.getLastLocation() != null) {
-                                                    Location location = locationResult.getLastLocation();
-
-                                                    // Obtener ubicación actual
-                                                    final double latActual = location.getLatitude();
-                                                    final double lonActual = location.getLongitude();
-
-                                                    // Comparador para ordenar la lista de sucursales
-                                                    Comparator<Sucursal> comparador = new Comparator<Sucursal>() {
-                                                        @Override
-                                                        public int compare(Sucursal sucursal1, Sucursal sucursal2) {
-                                                            double dist1 = distancia(latActual, lonActual, Double.parseDouble(sucursal1.getLatitud()), Double.parseDouble(sucursal1.getLongitud()));
-                                                            double dist2 = distancia(latActual, lonActual, Double.parseDouble(sucursal2.getLatitud()), Double.parseDouble(sucursal2.getLongitud()));
-                                                            return Double.compare(dist1, dist2);
-                                                        }
-                                                    };
-                                                    Collections.sort(SucursalesLista, comparador);
-
-                                                    SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
-                                                        @Override
-                                                        public void onItemClick(int position) {
-                                                            Fragment fragment = new SucursalSeleccionada();
-                                                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                                            Bundle args = new Bundle();
-                                                            args.putString("Nombre", SucursalesLista.get(position).getSubName());
-                                                            Log.d("Nombre", SucursalesLista.get(position).getSubName());
-                                                            args.putString("Ubicacion", SucursalesLista.get(position).getLocation());
-                                                            Log.d("Ubicacion", SucursalesLista.get(position).getLocation());
-                                                            args.putString("Horario", SucursalesLista.get(position).getSchedule());
-                                                            Log.d("Horario", SucursalesLista.get(position).getSchedule());
-                                                            args.putString("Rating", ""+SucursalesLista.get(position).getRating());
-                                                            args.putInt("ID", SucursalesLista.get(position).getId());
-                                                            Log.d("ID", ""+SucursalesLista.get(position).getId());
-
-                                                            fragment.setArguments(args);
-                                                            transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
-                                                            transaction.replace(R.id.navFragmentContainer, fragment);
-                                                            transaction.addToBackStack(null);
-                                                            transaction.commit();
-                                                        }
-                                                    });
-                                                    recyclerView.setAdapter(adapter);
-
-                                                } else {
-                                                    Log.d("Ubicación", "No se pudo obtener la ubicación actual");
-                                                    // Mostrar un mensaje de error al usuario
-                                                    Toast.makeText(getContext(), "No se pudo obtener la ubicación actual. Verifica que has dado permiso para acceder a tu ubicación.", Toast.LENGTH_LONG).show();
-                                                    SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
-                                                        @Override
-                                                        public void onItemClick(int position) {
-                                                            Fragment fragment = new SucursalSeleccionada();
-                                                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                                            Bundle args = new Bundle();
-                                                            args.putString("Nombre", SucursalesLista.get(position).getSubName());
-                                                            Log.d("Nombre", SucursalesLista.get(position).getSubName());
-                                                            args.putString("Ubicacion", SucursalesLista.get(position).getLocation());
-                                                            Log.d("Ubicacion", SucursalesLista.get(position).getLocation());
-                                                            args.putString("Horario", SucursalesLista.get(position).getSchedule());
-                                                            Log.d("Horario", SucursalesLista.get(position).getSchedule());
-                                                            args.putString("Rating", ""+SucursalesLista.get(position).getRating());
-                                                            args.putInt("ID", SucursalesLista.get(position).getId());
-                                                            Log.d("ID", ""+SucursalesLista.get(position).getId());
-
-                                                            fragment.setArguments(args);
-                                                            transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
-                                                            transaction.replace(R.id.navFragmentContainer, fragment);
-                                                            transaction.addToBackStack(null);
-                                                            transaction.commit();
-                                                        }
-                                                    });
-                                                    recyclerView.setAdapter(adapter);
-                                                }
+                                            public int compare(Sucursal sucursal1, Sucursal sucursal2) {
+                                                double dist1 = distancia(latActual, lonActual, Double.parseDouble(sucursal1.getLatitud()), Double.parseDouble(sucursal1.getLongitud()));
+                                                double dist2 = distancia(latActual, lonActual, Double.parseDouble(sucursal2.getLatitud()), Double.parseDouble(sucursal2.getLongitud()));
+                                                return Double.compare(dist1, dist2);
                                             }
-                                        }, Looper.getMainLooper());
-                                    } catch (Exception e) {
-                                        Log.d("Error", e.getMessage());
-                                    }
+                                        };
+                                        Collections.sort(SucursalesLista, comparador);
+                                        SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(int position) {
+                                                Fragment fragment = new SucursalSeleccionada();
+                                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                                Bundle args = new Bundle();
+                                                args.putString("Nombre", SucursalesLista.get(position).getSubName());
+                                                Log.d("Nombre", SucursalesLista.get(position).getSubName());
+                                                args.putString("Ubicacion", SucursalesLista.get(position).getLocation());
+                                                Log.d("Ubicacion", SucursalesLista.get(position).getLocation());
+                                                args.putString("Horario", SucursalesLista.get(position).getSchedule());
+                                                Log.d("Horario", SucursalesLista.get(position).getSchedule());
+                                                args.putString("Rating", "" + SucursalesLista.get(position).getRating());
+                                                args.putInt("ID", SucursalesLista.get(position).getId());
+                                                Log.d("ID", "" + SucursalesLista.get(position).getId());
 
-                                }
+                                                fragment.setArguments(args);
+                                                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                                                transaction.replace(R.id.navFragmentContainer, fragment);
+                                                transaction.addToBackStack(null);
+                                                transaction.commit();
+                                            }
+                                        });
+                                        recyclerView.setAdapter(adapter);
+                                    }
+                                }, Looper.getMainLooper());
+                            }else {
+                                Toast.makeText(getContext(), "No se pudo obtener la ubicación actual", Toast.LENGTH_SHORT).show();
+
+                                Log.d("Ubicación", "No se pudo obtener la ubicación actual");
+                                // Mostrar un mensaje de error al usuario
+
+                                SucursalesAdaptador adapter = new SucursalesAdaptador(SucursalesLista, new SucursalesAdaptador.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(int position) {
+                                        Fragment fragment = new SucursalSeleccionada();
+                                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                        Bundle args = new Bundle();
+                                        args.putString("Nombre", SucursalesLista.get(position).getSubName());
+                                        Log.d("Nombre", SucursalesLista.get(position).getSubName());
+                                        args.putString("Ubicacion", SucursalesLista.get(position).getLocation());
+                                        Log.d("Ubicacion", SucursalesLista.get(position).getLocation());
+                                        args.putString("Horario", SucursalesLista.get(position).getSchedule());
+                                        Log.d("Horario", SucursalesLista.get(position).getSchedule());
+                                        args.putString("Rating", "" + SucursalesLista.get(position).getRating());
+                                        args.putInt("ID", SucursalesLista.get(position).getId());
+                                        Log.d("ID", "" + SucursalesLista.get(position).getId());
+
+                                        fragment.setArguments(args);
+                                        transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                                        transaction.replace(R.id.navFragmentContainer, fragment);
+                                        transaction.addToBackStack(null);
+                                        transaction.commit();
+                                    }
+                                });
+                                recyclerView.setAdapter(adapter);
+                            }
+
                         }catch (JSONException e){
                             Log.d("NO SIRVIO", "NO SIRVIO");
                             Log.d("JSONException", ""+e);
