@@ -122,6 +122,7 @@ public class CardInfoPeso extends Fragment {
                     String update = "UPDATE PERSONINFO SET CurrentWeight = " + PAct + ",WeightGoal = " + MP + " WHERE UserId = " + UID;
                     Log.d("UPDATE", update);
                     db.execSQL(update);
+                    db.close();
 
 
                     Fragment firstFragment = new FragmentInfoPersonal();

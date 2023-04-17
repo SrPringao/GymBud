@@ -23,10 +23,10 @@ import com.example.gymbud.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DatosInfoTg#newInstance} factory method to
+ * Use the {@link CardInfoTg#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DatosInfoTg extends Fragment {
+public class CardInfoTg extends Fragment {
     Spinner opciones;
     int sexo = 0;
     // TODO: Rename parameter arguments, choose names that match
@@ -38,7 +38,7 @@ public class DatosInfoTg extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DatosInfoTg() {
+    public CardInfoTg() {
         // Required empty public constructor
     }
 
@@ -49,11 +49,11 @@ public class DatosInfoTg extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DatosInfoTg.
+     * @return A new instance of fragment CardInfoTg.
      */
     // TODO: Rename and change types and number of parameters
-    public static DatosInfoTg newInstance(String param1, String param2) {
-        DatosInfoTg fragment = new DatosInfoTg();
+    public static CardInfoTg newInstance(String param1, String param2) {
+        CardInfoTg fragment = new CardInfoTg();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -116,6 +116,7 @@ public class DatosInfoTg extends Fragment {
                 Log.d("Query update", update);
                 Log.d("UPDATE", update);
                 db.execSQL(update);
+                db.close();
 
 
                     Fragment firstFragment = new FragmentInfoPersonal();

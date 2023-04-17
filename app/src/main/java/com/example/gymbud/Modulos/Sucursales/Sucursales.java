@@ -186,7 +186,7 @@ public class Sucursales extends Fragment {
                             JSONArray array = new JSONArray(response);
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject Obj = (JSONObject) array.get(i);
-                                Log.d("ID", "" + Obj.getInt("id"));
+//                                Log.d("ID", "" + Obj.getInt("id"));
                                 // Agregar sucursales obtenidas a la lista
                                 SucursalesLista.add(new Sucursal(
                                         Obj.getInt("id"),
@@ -208,6 +208,7 @@ public class Sucursales extends Fragment {
                                 locationRequest.setInterval(UPDATE_INTERVAL);
                                 locationRequest.setFastestInterval(FASTEST_INTERVAL);
                                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                    return;
                                 }
                                 LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(locationRequest, new LocationCallback() {
                                     @Override

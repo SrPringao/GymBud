@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -23,11 +22,8 @@ import android.view.ViewGroup;
 
 import android.widget.ImageView;
 
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.gymbud.Db.DbQuery;
@@ -41,8 +37,6 @@ import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.example.gymbud.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
@@ -364,7 +358,7 @@ public class FragmentInfoPersonal extends Fragment {
         cardgrasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment secondFragment = new DatosInfoTg();
+                Fragment secondFragment = new CardInfoTg();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, secondFragment);
