@@ -163,7 +163,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             int muscleId = exercise.getMuscularGroup();
                             String name = exercise.getName();
                             //image as a byte array
-                            byte[] imagen = exercise.getImage();
+                            String imagen = exercise.getImage();
 
 
                             //add exercise to the list

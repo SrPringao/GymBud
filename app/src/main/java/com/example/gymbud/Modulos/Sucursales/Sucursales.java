@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -40,9 +39,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
-import jp.wasabeef.recyclerview.animators.LandingAnimator;
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -202,15 +198,23 @@ public class Sucursales extends Fragment {
                                 ));
                                 }
 
+                            //este if es para verificar si el permiso esta concedido o no
                             if (permiso) {
                                 LocationRequest locationRequest = LocationRequest.create();
                                 locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
                                 locationRequest.setInterval(UPDATE_INTERVAL);
                                 locationRequest.setFastestInterval(FASTEST_INTERVAL);
+
+                                if (getContext() == null) {
+                                    Log.d("Context", "Context is null af");
+                                    return;
+                                }
+
+                                // Verificar permisos
                                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                     return;
                                 }
-                                LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(locationRequest, new LocationCallback() {
+                                    LocationServices.getFusedLocationProviderClient(getContext()).requestLocationUpdates(locationRequest, new LocationCallback() {
                                     @Override
                                     public void onLocationResult(LocationResult locationResult) {
                                         Location location = locationResult.getLastLocation();

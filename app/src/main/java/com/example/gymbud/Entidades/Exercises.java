@@ -4,7 +4,7 @@ public class Exercises {
 
     private int Id ,MuscularGroup, Tool, Category, Difficulty, stats,sets,reps;
     private String Name, Focus , ForeSeeing, Execution, Details;
-    private byte[] Image;
+    private String Image;
 
     public int getId() {
         return Id;
@@ -62,11 +62,11 @@ public class Exercises {
         Details = details;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         Image = image;
     }
 

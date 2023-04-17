@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         >
 
-
         <TextView
             android:id="@+id/TiNombreEjercicio"
             style="@style/viewParent.headerText.homeCardContent"
