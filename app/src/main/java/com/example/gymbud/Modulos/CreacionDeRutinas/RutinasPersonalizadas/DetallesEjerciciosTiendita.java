@@ -95,7 +95,6 @@ public class DetallesEjerciciosTiendita extends Fragment {
 
         AgregarEjerciciosCarritoAdapter adapter = new AgregarEjerciciosCarritoAdapter(dbQuery.MostrarEjercicios(id));
 //        Log.d("Ejercicios en pantalla 1 para ver como los regresa", dbQuery.MostrarEjercicios(id).toString());
-//        recyclerView.setItemAnimator(new SlideInUpAnimator());
         recyclerView.setAdapter(adapter);
 
         imagenatras.setOnClickListener(new View.OnClickListener() {

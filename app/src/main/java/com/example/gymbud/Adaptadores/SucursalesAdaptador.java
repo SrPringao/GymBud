@@ -30,7 +30,6 @@ public class SucursalesAdaptador extends RecyclerView.Adapter<SucursalesAdaptado
         void onItemClick(int position);
     }
     public SucursalesAdaptador(ArrayList<Sucursal> ListasSucursales,SucursalesAdaptador.OnItemClickListener listener){
-        setHasStableIds(true);
         this.ListasSucursales = ListasSucursales;
         this.listener = listener;
     }

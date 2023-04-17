@@ -164,7 +164,6 @@ public class Sucursales extends Fragment {
             }
         });
 
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
         recyclerView.setAdapter(adaptador);
     }
 
@@ -266,7 +265,6 @@ public class Sucursales extends Fragment {
                                                             transaction.commit();
                                                         }
                                                     });
-                                                    recyclerView.setItemAnimator(new LandingAnimator());
                                                     recyclerView.setAdapter(adapter);
 
                                                 } else {
@@ -296,7 +294,6 @@ public class Sucursales extends Fragment {
                                                             transaction.commit();
                                                         }
                                                     });
-                                                    recyclerView.setItemAnimator(new SlideInUpAnimator());
                                                     recyclerView.setAdapter(adapter);
                                                 }
                                             }

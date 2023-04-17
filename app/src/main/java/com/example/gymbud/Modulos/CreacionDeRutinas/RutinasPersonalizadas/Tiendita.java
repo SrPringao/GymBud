@@ -119,7 +119,6 @@ public class Tiendita extends Fragment {
 
           VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds),tvTiempo);
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
 
         recyclerView.setAdapter(adapter);
 
