@@ -255,7 +255,7 @@ public class Sucursales extends Fragment {
                                     }
                                 }, Looper.getMainLooper());
                             }else {
-                                Toast.makeText(getContext(), "No se pudo obtener la ubicación actual", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getContext(), "No se pudo obtener la ubicación actual", Toast.LENGTH_SHORT).show();
 
                                 Log.d("Ubicación", "No se pudo obtener la ubicación actual");
                                 // Mostrar un mensaje de error al usuario
