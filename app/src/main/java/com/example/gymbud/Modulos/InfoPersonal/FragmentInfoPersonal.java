@@ -134,17 +134,17 @@ public class FragmentInfoPersonal extends Fragment {
         ipCard2.setX(-3000);
         ipCard3.setX(-3000);
         ipCard4.setX(-3000);
-        ipCard5.setX(-3000);
-        ipCard6.setX(-3000);
-        ipCard7.setX(-3000);
+//        ipCard5.setX(-3000);
+//        ipCard6.setX(-3000);
+//        ipCard7.setX(-3000);
 
         ipCard1.animate().translationX(0).setDuration(400).setStartDelay(0);
         ipCard2.animate().translationX(0).setDuration(500).setStartDelay(0);
         ipCard3.animate().translationX(0).setDuration(600).setStartDelay(0);
         ipCard4.animate().translationX(0).setDuration(700).setStartDelay(0);
-        ipCard5.animate().translationX(0).setDuration(800).setStartDelay(0);
-        ipCard6.animate().translationX(0).setDuration(500).setStartDelay(0);
-        ipCard7.animate().translationX(0).setDuration(500).setStartDelay(0);
+//        ipCard5.animate().translationX(0).setDuration(800).setStartDelay(0);
+//        ipCard6.animate().translationX(0).setDuration(500).setStartDelay(0);
+//        ipCard7.animate().translationX(0).setDuration(500).setStartDelay(0);
 
 
 

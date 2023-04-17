@@ -77,7 +77,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
 
-
-
-
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
 }

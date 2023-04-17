@@ -76,7 +76,7 @@
         android:spinnerMode="dropdown"
         android:textAlignment="center"
         android:dropDownVerticalOffset="70dp"
-        android:textColor="@color/colorIdentidad3" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/TiConfirmButton"

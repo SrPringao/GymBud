@@ -29,6 +29,8 @@ import com.example.gymbud.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Tiendita#newInstance} factory method to
@@ -117,7 +119,9 @@ public class Tiendita extends Fragment {
 
           VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds),tvTiempo);
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
-          recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(new SlideInUpAnimator());
+
+        recyclerView.setAdapter(adapter);
 
 
           button.setOnClickListener(new View.OnClickListener() {

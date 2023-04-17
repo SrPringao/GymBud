@@ -1,20 +1,11 @@
 package com.example.gymbud.Modulos.Sucursales;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,8 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -36,8 +32,6 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +40,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -166,6 +163,8 @@ public class Sucursales extends Fragment {
 
             }
         });
+
+        recyclerView.setItemAnimator(new SlideInUpAnimator());
         recyclerView.setAdapter(adaptador);
     }
 
@@ -267,6 +266,7 @@ public class Sucursales extends Fragment {
                                                             transaction.commit();
                                                         }
                                                     });
+                                                    recyclerView.setItemAnimator(new LandingAnimator());
                                                     recyclerView.setAdapter(adapter);
 
                                                 } else {
@@ -296,6 +296,7 @@ public class Sucursales extends Fragment {
                                                             transaction.commit();
                                                         }
                                                     });
+                                                    recyclerView.setItemAnimator(new SlideInUpAnimator());
                                                     recyclerView.setAdapter(adapter);
                                                 }
                                             }
