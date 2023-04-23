@@ -2,20 +2,26 @@ package com.example.gymbud.Modulos.CreacionDeRutinas;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+<<<<<<< Updated upstream
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+=======
+>>>>>>> Stashed changes
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.FragmentContainer;
-import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta;
+import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.R;
 
 /**
@@ -70,6 +76,7 @@ public class Rutinas extends Fragment {
 
         Button botonAutomatica = view.findViewById(R.id.botonRutinaAutomatica);
         Button botonPersonalizada = view.findViewById(R.id.botonRutinaPersonalizada);
+<<<<<<< Updated upstream
         CardView card1 = view.findViewById(R.id.tarjetaRutinaPersonalizada);
         CardView card2 = view.findViewById(R.id.tarjetaRutinaAutomatica);
 
@@ -84,13 +91,57 @@ public class Rutinas extends Fragment {
         card2.animate().translationX(0).setDuration(500).setStartDelay(0);
 
 
+=======
+        ImageView botoninfo1,botoninfo2;
+        botoninfo1 = view.findViewById(R.id.botonInfo1);
+        botoninfo2 = view.findViewById(R.id.botonInfo2);
+
+        botoninfo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Rutina Automatica\n" +
+                        "(Recomendada para usuarios principiantes)");
+
+                builder.setMessage("Esta rutina se basa en una encuesta que se te presentara, en la cual se " +
+                        "te preguntara sobre tus objetivos, tu experiencia en el gimnasio, tu disponibilidad de " +
+                        "tiempo, etc.\n\n" +
+                        "Con esta informacion se te presentara una rutina que se adapte a tus necesidades.");
+
+                builder.setPositiveButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                builder.show();
+            }
+        });
+
+        botoninfo1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Rutina Personalizada\n" +
+                        "(Recomendada para usuarios avanzados)");
+                builder.setMessage("Esta funcion se basa en que tu crees tu propia rutina, eligiendo los " +
+                        "ejercicios que quieres realizar asi como las series y repeticiones." +
+                        "\n\nEl orden sera conforme los vayas agregando" );
+
+                builder.setPositiveButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                builder.show();
+            }
+        });
+>>>>>>> Stashed changes
 
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Cualquier rutina creada con anterioridad sera remplazada");
-                builder.setMessage("¿Desea continuar?");
+                builder.setTitle("¡Atencion!");
+                builder.setMessage("Al crear una rutina automatica, TODAS tus rutinas previamente creadas " +
+                        "se perderan por completo y seran reemplazadas o eliminadas." +
+                        "\nPosterior a crear tu rutina automatica, contaras con la opcion de reemplazar " +
+                        "cualquier dia con el apartado de rutinas personalizadas\n\n\n¿Desea continuar?");
 
                 builder.setPositiveButton("Si", (dialog, which) -> {
                     dialog.dismiss();

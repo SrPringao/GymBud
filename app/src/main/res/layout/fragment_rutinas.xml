@@ -29,6 +29,16 @@
             gl:orientation="LEFT_RIGHT"
             gl:start_color="@color/colorIdentidad5">
 
+            <ImageView
+                android:id="@+id/botonInfo1"
+                android:layout_alignParentEnd="true"
+                android:layout="@+id/tituloRutinaPersonalizada"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/info_icon"
+                />
+
+
             <TextView
                 android:id="@+id/tituloRutinaPersonalizada"
                 style="@style/viewParent.headerText.HomeCardTitle"
@@ -72,6 +82,15 @@
             gl:end_color="@color/colorIdentidad6"
             gl:orientation="LEFT_RIGHT"
             gl:start_color="@color/colorIdentidad5">
+
+            <ImageView
+                android:id="@+id/botonInfo2"
+                android:layout_alignParentEnd="true"
+                android:layout="@+id/tituloRutinaPersonalizada"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/info_icon"
+                />
 
             <TextView
                 android:id="@+id/tituloRutinaAutomatica"
