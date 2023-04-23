@@ -2,35 +2,26 @@ package com.example.gymbud.Modulos.VerRutinas;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gymbud.Adaptadores.VerRutinaDelDiaAdapter;
 import com.example.gymbud.Db.DbQuery;
-import com.example.gymbud.Entidades.ExerciseSet;
-import com.example.gymbud.Entidades.Exercises;
-import com.example.gymbud.Entidades.Routine;
-import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
-import com.example.gymbud.Modulos.SeleccionEjercicios.fragment_ejercicio_seleccionado;
 import com.example.gymbud.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,16 +84,12 @@ public class VerRutinas extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Spinner spinner = view.findViewById(R.id.VRSpinner);
-        ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
-                (getActivity(), R.array.DiasSemana, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.DiasSemana, R.layout.spinner_item);
 
-        adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setPadding(10, 10, 10, 10);
-
-        spinner.setAdapter(adap1);
+        spinner.setAdapter(adapter);
 
 
         Bundle bundle = getArguments();

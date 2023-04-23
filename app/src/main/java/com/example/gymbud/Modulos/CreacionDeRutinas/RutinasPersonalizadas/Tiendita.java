@@ -2,13 +2,6 @@ package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gymbud.Adaptadores.VerEliminarCarritoAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
@@ -27,9 +25,6 @@ import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,6 +94,7 @@ public class Tiendita extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Spinner spinner = view.findViewById(R.id.TiWeekSelector);
         Button button = view.findViewById(R.id.TiConfirmButton);
+
         ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
                 (getActivity(), R.array.DiasSemana, android.R.layout.simple_spinner_item);
 
@@ -107,7 +103,7 @@ public class Tiendita extends Fragment {
 
         spinner.setSelection(0);
         spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        adap1.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setPadding(10, 10, 10, 10);
 
         spinner.setAdapter(adap1);

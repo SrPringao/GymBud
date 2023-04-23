@@ -107,14 +107,12 @@ public class CreacionDeRutinas extends Fragment {
         imageViewToolbar = view.findViewById(R.id.TBlogoTienda);
 
 
-        ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
-                (getActivity(), R.array.ListaEjercicios, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.ListaEjercicios, R.layout.spinner_item);
 
-        adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //apply rounded background to spinner
-        spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setPadding(10, 10, 10, 10);
+        spinner.setAdapter(adapter);
 
         AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -142,7 +140,7 @@ public class CreacionDeRutinas extends Fragment {
             }
         });
 
-        spinner.setAdapter(adap1);
+//        spinner.setAdapter(adap1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {

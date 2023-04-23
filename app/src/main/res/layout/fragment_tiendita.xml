@@ -62,21 +62,25 @@
         android:layout_marginEnd="20dp"
         />
 
-    <Spinner
-        android:id="@+id/TiWeekSelector"
+    <RelativeLayout
+        android:layout_below="@+id/TiTiempoEstimado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:layout_below="@+id/TiTiempoEstimado"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@+id/TiConfirmButton"
-        android:gravity="center"
-        android:layout_marginBottom="90dp"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        android:dropDownVerticalOffset="70dp"
-        android:textColor="@color/black" />
+        android:layout_alignBottom="@+id/TiConfirmButton"
+        android:layout_alignTop="@+id/TiConfirmButton"
+        android:layout_marginEnd="20dp"
+        >
+
+        <Spinner
+            android:id="@+id/TiWeekSelector"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/black" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/TiConfirmButton"
