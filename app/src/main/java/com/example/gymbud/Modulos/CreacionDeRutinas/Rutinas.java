@@ -2,20 +2,13 @@ package com.example.gymbud.Modulos.CreacionDeRutinas;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-<<<<<<< Updated upstream
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-=======
->>>>>>> Stashed changes
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -76,7 +69,6 @@ public class Rutinas extends Fragment {
 
         Button botonAutomatica = view.findViewById(R.id.botonRutinaAutomatica);
         Button botonPersonalizada = view.findViewById(R.id.botonRutinaPersonalizada);
-<<<<<<< Updated upstream
         CardView card1 = view.findViewById(R.id.tarjetaRutinaPersonalizada);
         CardView card2 = view.findViewById(R.id.tarjetaRutinaAutomatica);
 
@@ -91,7 +83,6 @@ public class Rutinas extends Fragment {
         card2.animate().translationX(0).setDuration(500).setStartDelay(0);
 
 
-=======
         ImageView botoninfo1,botoninfo2;
         botoninfo1 = view.findViewById(R.id.botonInfo1);
         botoninfo2 = view.findViewById(R.id.botonInfo2);
@@ -131,7 +122,6 @@ public class Rutinas extends Fragment {
                 builder.show();
             }
         });
->>>>>>> Stashed changes
 
         botonAutomatica.setOnClickListener(new View.OnClickListener() {
             @Override

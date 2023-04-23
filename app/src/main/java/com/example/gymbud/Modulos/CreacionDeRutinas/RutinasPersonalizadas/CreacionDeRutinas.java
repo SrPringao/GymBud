@@ -1,10 +1,7 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
@@ -110,11 +111,24 @@ public class CreacionDeRutinas extends Fragment {
                 (getActivity(), R.array.ListaEjercicios, android.R.layout.simple_spinner_item);
 
         adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //apply rounded background to spinner
         spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
         spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
         spinner.setPadding(10, 10, 10, 10);
+
+        AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
+                ((TextView) parent.getChildAt(0)).setTextSize(5);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
 
         imageViewToolbar.setOnClickListener(new View.OnClickListener() {
             @Override

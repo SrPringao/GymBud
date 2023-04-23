@@ -59,7 +59,7 @@
         android:spinnerMode="dropdown"
         android:textAlignment="center"
         android:dropDownVerticalOffset="70dp"
-        android:textColor="@color/black" />
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/CRButton"
