@@ -1,6 +1,8 @@
 package com.example.gymbud.Modulos.SeleccionEjercicios;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,6 +78,7 @@ public class fragment_ejercicio_seleccionado extends Fragment {
 public void onViewCreated(View view,Bundle savedInstanceState){
 
         ImageView imagen = view.findViewById(R.id.botonback4);
+        ImageView ImgMusculo = view.findViewById(R.id.Musculatura1);
         Button Stats;
         Context context = view.getContext();
         DbQuery dbQuery = new DbQuery(context);
@@ -82,8 +86,10 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         int id = args.getInt("id");
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
+
         Log.d("idchikito", ""+id);
         Log.d("IDGRANDOTE", ""+ID);
+        Log.d("Musculo recibido",musculo);
 
         HashMap<String, Integer> Tren = new HashMap<>();
         Tren.put( "Hombro",1);
@@ -101,7 +107,18 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Tren.put( "Femoral",14);
         Tren.put("Pantorrilla",15);
         int Musculo = Tren.get(musculo);
-        Log.d("Musculo",musculo);
+
+
+        TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
+
+        Drawable drawable = imagenes.getDrawable(Musculo-1);
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) ImgMusculo.getLayoutParams();
+//        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        ImgMusculo.setLayoutParams(params);
+        ImgMusculo.setImageDrawable(drawable);
+        imagenes.recycle();
+
+        Log.d("Musculo", ""+Musculo);
 
         recyclerView=view.findViewById(R.id.RecyclerViewParecido);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
@@ -125,7 +142,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
 
 
         Glide.with(context)
-                .load("https://gymvisual.com/img/p/4/7/2/1/4731.gif")
+                .load("https://i.pinimg.com/originals/0e/0a/4d/0e0a4dc4931d0572a9a2946f2ccd48c9.gif")
                 .placeholder(R.drawable.loading_icon)
                 .into(ImagenEjercicio);
 

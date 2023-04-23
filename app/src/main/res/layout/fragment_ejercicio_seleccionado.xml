@@ -168,7 +168,6 @@
                         android:id="@+id/Musculatura1"
                         android:layout_width="179dp"
                         android:layout_height="171dp"
-                        android:background="@drawable/otisparado"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.502"

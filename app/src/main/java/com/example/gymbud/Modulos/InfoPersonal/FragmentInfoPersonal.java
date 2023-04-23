@@ -8,6 +8,14 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -15,22 +23,10 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import android.widget.ImageView;
-
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
 import com.example.gymbud.FragmentContainer;
-import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
@@ -174,7 +170,6 @@ public class FragmentInfoPersonal extends Fragment {
         float FechaC = activity.FechaLONG();
         ImageView imgLogout = view.findViewById(R.id.imglogout);
 
-        ImageView imagen = view.findViewById(R.id.otisImg);
         TextView pesos = view.findViewById(R.id.Pesos);
         TextView IMC = view.findViewById(R.id.IMC);
         TextView TG = view.findViewById(R.id.TasaGrasa);
@@ -293,18 +288,6 @@ public class FragmentInfoPersonal extends Fragment {
 
         rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG,FechaAct,frase,FechaC);
-
-        imagen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment secondFragment = new Encuesta();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
-                transaction.replace(R.id.navFragmentContainer, secondFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
 
         //setonclick en caso de que presiones la imagen de logout
