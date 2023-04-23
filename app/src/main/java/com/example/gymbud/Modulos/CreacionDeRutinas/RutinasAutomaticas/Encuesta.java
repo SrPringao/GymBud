@@ -1,12 +1,6 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasAutomaticas;
 
-import android.app.AlertDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,30 +11,23 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.gymbud.Adaptadores.JsonPreguntas;
-import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.Routine;
-import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
-import com.example.gymbud.R;
 import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
+import com.example.gymbud.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Encuesta#newInstance} factory method to
- * create an instance of this fragment.
- */
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -614,6 +601,7 @@ public class Encuesta extends Fragment {
         TrenInf.put(13, "Gluteo");
         TrenInf.put(14, "Femoral");
         TrenInf.put(15,"Pantorrilla");
+        TrenInf.put(16, "Cardio");
 
         ArrayList<ExerciseSet> Rutina = new ArrayList<>();
         ExerciseSet ejercicios = new ExerciseSet();

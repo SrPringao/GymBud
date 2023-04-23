@@ -1,14 +1,11 @@
 package com.example.gymbud.Adaptadores;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,16 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Routine;
-import com.example.gymbud.FragmentContainer;
-import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
-import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.Modulos.SeleccionEjercicios.fragment_ejercicio_seleccionado;
 import com.example.gymbud.R;
-import com.example.gymbud.Entidades.Exercises;
-import com.example.gymbud.Entidades.IdList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -145,6 +136,8 @@ this.fragmentManager =fragmentManager ;
                 Tren.put( 13,"Gluteo");
                 Tren.put( 14,"Femoral");
                 Tren.put(15,"Pantorrilla");
+                Tren.put(16, "Cardio");
+
                 Fragment fragment = new fragment_ejercicio_seleccionado();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Bundle args = new Bundle();

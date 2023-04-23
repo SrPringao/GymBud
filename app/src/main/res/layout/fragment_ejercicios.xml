@@ -213,8 +213,24 @@
             app:layout_constraintVertical_bias="0.655"
             tools:ignore="Deprecated,MissingConstraints" />
 
-
+        <EditText
+            android:id="@+id/etCardio"
+            android:layout_width="127dp"
+            android:layout_height="45dp"
+            android:cursorVisible="true"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Cardio"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.655"
+            tools:ignore="Deprecated,MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,11 +1,6 @@
 package com.example.gymbud.Modulos.SeleccionEjercicios;
 
 import android.os.Bundle;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.R;
 
@@ -240,6 +239,17 @@ public class Ejercicios extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     break;
+
+                case R.id.etCardio:
+                    Log.d("Tag", "onClick: cardio");
+                    args.putInt("ID",16);
+                    args.putString("nombre_musculo", "Cardio");
+                    fragment.setArguments(args);
+                    transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+                    transaction.replace(R.id.navFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                    break;
             }
         }
     };
@@ -326,7 +336,7 @@ public class Ejercicios extends Fragment {
 
 
         int[] editTextIds = {R.id.ethombro, R.id.etbiceps, R.id.etoblicuos,R.id.etpecho,R.id.etabs,R.id.etantebrazos,R.id.etcuadriceps,R.id.ettrapecios,R.id.etriceps,R.id.etfemorales
-        ,R.id.etpantorrillas,R.id.etdorsales,R.id.etespaldamedia,R.id.etgluteos};
+        ,R.id.etpantorrillas,R.id.etdorsales,R.id.etespaldamedia,R.id.etgluteos,R.id.etCardio};
 
         for (int id : editTextIds) {
             EditText editText = view.findViewById(id);

@@ -106,6 +106,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Tren.put( "Gluteo",13);
         Tren.put( "Femoral",14);
         Tren.put("Pantorrilla",15);
+        Tren.put("Cardio",16);
         int Musculo = Tren.get(musculo);
 
 
