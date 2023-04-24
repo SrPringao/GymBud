@@ -91,7 +91,6 @@ public class VerRutinas extends Fragment {
         spinner.setPadding(10, 10, 10, 10);
         spinner.setAdapter(adapter);
 
-
         Bundle bundle = getArguments();
         int numberDayOfWeek = bundle.getInt("dia") - 1;
 //        Log.d("Dia recibido: ", String.valueOf(numberDayOfWeek));
@@ -146,6 +145,21 @@ public class VerRutinas extends Fragment {
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
+
+        ImageView BorrarRubina = view.findViewById(R.id.VRTrashButton);
+
+        BorrarRubina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dbQuery.routineDayAlreadyFilled(newDayOfWeek)) {
+                    dbQuery.DeleteRoutine(newDayOfWeek);
+                    updateRecyclerView(newDayOfWeek);
+                    Toast.makeText(getContext(), "Rutina eliminada", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "No hay rutina para este día", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
