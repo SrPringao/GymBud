@@ -101,7 +101,7 @@ public class Encuesta extends Fragment {
     }
 
     public int[] Resultadosinprocesar = new int[20];
-
+    boolean resp1=false, resp2=false, resp3=false, resp4=false;
     TextView Pregunta1;
     RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
     Button Confirmado;
@@ -119,58 +119,134 @@ public class Encuesta extends Fragment {
         Respuesta4 = view.findViewById(R.id.Respuesta4);
         Confirmado = view.findViewById(R.id.Acepto);
         datos(i);
-        
-            Respuesta1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Log.d("IsChecked", isChecked + "");
-                    if(i!=27&&i!=28){
+        Respuesta1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(i!=27&&i!=28) {
+                    Respuesta2.setChecked(false);
+                    Respuesta3.setChecked(false);
+                    Respuesta4.setChecked(false);
+                    resp2=false;
+                    resp3=false;
+                    resp4=false;
+                }
+                if(resp1==true && Respuesta1.isChecked()){
+                    Respuesta1.setChecked(false);
+                    resp1=false;
+                    return;
+                }
+                resp1=true;
+            }
+        });
+//            Respuesta1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    Log.d("IsChecked", isChecked + "");
+//                    if(i!=27&&i!=28){
+//
+//                        if (isChecked) {
+//                            Respuesta2.setChecked(false);
+//                            Respuesta3.setChecked(false);
+//                            Respuesta4.setChecked(false);
+//                        }
+//                    }
+//                    Log.d("IsChecked", isChecked + "");
+//                }
+//            });
 
-                        if (isChecked) {
-                            Respuesta2.setChecked(false);
-                            Respuesta3.setChecked(false);
-                            Respuesta4.setChecked(false);
-                        }
-                    }
-                    Log.d("IsChecked", isChecked + "");
+        Respuesta2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(i!=27&&i!=28) {
+                    Respuesta1.setChecked(false);
+                    Respuesta3.setChecked(false);
+                    Respuesta4.setChecked(false);
+                    resp1=false;
+                    resp3=false;
+                    resp4=false;
                 }
-            });
-            Respuesta2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(i!=27&&i!=28) {
-                        if (isChecked) {
-                            Respuesta1.setChecked(false);
-                            Respuesta3.setChecked(false);
-                            Respuesta4.setChecked(false);
-                        }
-                    }
+                if(resp2==true && Respuesta2.isChecked()){
+                    Respuesta2.setChecked(false);
+                    resp2=false;
+                    return;
                 }
-            });
-            Respuesta3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(i!=27&&i!=28) {
-                        if (isChecked) {
-                            Respuesta1.setChecked(false);
-                            Respuesta2.setChecked(false);
-                            Respuesta4.setChecked(false);
-                        }
-                    }
+                resp2=true;
+            }
+        });
+//            Respuesta2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if(i!=27&&i!=28) {
+//                        if (isChecked) {
+//                            Respuesta1.setChecked(false);
+//                            Respuesta3.setChecked(false);
+//                            Respuesta4.setChecked(false);
+//                        }
+//                    }
+//                }
+//            });
+        Respuesta3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(i!=27&&i!=28) {
+                    Respuesta2.setChecked(false);
+                    Respuesta1.setChecked(false);
+                    Respuesta4.setChecked(false);
+                    resp1=false;
+                    resp2=false;
+                    resp4=false;
                 }
-            });
-            Respuesta4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(i!=27&&i!=28) {
-                        if (isChecked) {
-                            Respuesta1.setChecked(false);
-                            Respuesta2.setChecked(false);
-                            Respuesta3.setChecked(false);
-                        }
-                    }
+                if(resp3==true && Respuesta3.isChecked()){
+                    Respuesta3.setChecked(false);
+                    resp3=false;
+                    return;
                 }
-            });
+                resp3=true;
+            }
+        });
+//            Respuesta3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if(i!=27&&i!=28) {
+//                        if (isChecked) {
+//                            Respuesta1.setChecked(false);
+//                            Respuesta2.setChecked(false);
+//                            Respuesta4.setChecked(false);
+//                        }
+//                    }
+//                }
+//            });
+        Respuesta4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(i!=27&&i!=28) {
+                    Respuesta2.setChecked(false);
+                    Respuesta3.setChecked(false);
+                    Respuesta1.setChecked(false);
+                    resp1=false;
+                    resp2=false;
+                    resp3=false;
+                }
+                if(resp4==true && Respuesta4.isChecked()){
+                    Respuesta4.setChecked(false);
+                    resp4=false;
+                    return;
+                }
+                resp4=true;
+            }
+                                      });
+//            Respuesta4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if(i!=27&&i!=28) {
+//                        if (isChecked) {
+//                            Respuesta1.setChecked(false);
+//                            Respuesta2.setChecked(false);
+//                            Respuesta3.setChecked(false);
+//                        }
+//                    }
+//                }
+//            });
 
 
         Confirmado.setOnClickListener(new View.OnClickListener() {
@@ -276,6 +352,10 @@ public class Encuesta extends Fragment {
                 Respuesta2.setChecked(false);
                 Respuesta3.setChecked(false);
                 Respuesta4.setChecked(false);
+                resp1=false;
+                resp2=false;
+                resp3=false;
+                resp4=false;
                 datos(i);
                 Log.d("I", ""+i);
                 for(int i = 0; i< Resultadosinprocesar.length; i++) {

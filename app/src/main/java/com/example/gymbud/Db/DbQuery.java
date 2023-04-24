@@ -590,6 +590,28 @@ public class DbQuery extends DbHelper {
         }
         return Ejercicios;
     }
+
+//    public double BigAfWeight(int idEjercicio,int idUsuario) {
+//        int peso=0;
+//        DbHelper dbHelper = new DbHelper(context);
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//        Cursor cursorejercicios = null;
+//        ArrayList<Exercises> Ejercicios = new ArrayList<Exercises>();
+//        cursorejercicios = db.rawQuery("SELECT Weight FROM " + TABLE_STATS + " WHERE IdEjercicio = " + idEjercicio +" AND IdUsr  == "+idUsuario+ " ORDER BY Weight ASC  LIMIT 1", null);
+//        try {
+//            if (cursorejercicios.moveToFirst()) {
+//                peso=cursorejercicios.getInt(0);
+//            }
+//        } catch (Exception e) {
+//            Log.d("BigAfWeight", e.getMessage());
+//        } finally {
+//            if (cursorejercicios != null) {
+//                cursorejercicios.close();
+//            }
+//            db.close();
+//        }
+//        return peso;
+//    }
 //    public void StarsInsert(float starMaquinas, float starAt, float starVes) {
 //
 //        try {
