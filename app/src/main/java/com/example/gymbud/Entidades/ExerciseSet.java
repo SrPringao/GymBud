@@ -7,7 +7,6 @@ public class ExerciseSet {
     private int numSeries;
     private int numReps;
     private int muscleGroup;
-
     private int tiempo;
     public ExerciseSet() {
 
