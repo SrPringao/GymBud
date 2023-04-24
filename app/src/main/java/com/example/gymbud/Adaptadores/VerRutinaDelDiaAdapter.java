@@ -132,7 +132,7 @@ this.fragmentManager =fragmentManager ;
                 Tren.put( 8,"Trapecios");
                 Tren.put( 9,"Dorsal");
                 Tren.put( 10,"Triceps");
-                Tren.put( 11,"Espalda media");
+                Tren.put( 11,"Espalda");
                 Tren.put( 13,"Gluteo");
                 Tren.put( 14,"Femoral");
                 Tren.put(15,"Pantorrilla");

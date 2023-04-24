@@ -2,18 +2,17 @@ package com.example.gymbud.Modulos.SeleccionEjercicios;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.Adaptadores.EjerciciosAdaptador;
 import com.example.gymbud.Db.DbQuery;
@@ -201,7 +200,7 @@ public class GrupoSeleccionado extends Fragment {
             case "Tricep":
                 NumMagico=51;
                 break;
-            case "Espalda Media":
+            case "Espalda":
                 NumMagico=105;
                 break;
 

@@ -219,9 +219,9 @@ public class Ejercicios extends Fragment {
 
                     break;
                 case R.id.etespaldamedia:
-                    Log.d("Tag", "onClick: espalda media");
+                    Log.d("Tag", "onClick: espalda");
                     args.putInt("ID",11);
-                    args.putString("nombre_musculo", "Espalda media");
+                    args.putString("nombre_musculo", "Espalda");
                     fragment.setArguments(args);
                     transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                     transaction.replace(R.id.navFragmentContainer, fragment);

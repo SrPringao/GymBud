@@ -362,7 +362,7 @@
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
-            android:text="Espalda media"
+            android:text="Espalda"
             android:textAlignment="textEnd"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

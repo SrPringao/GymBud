@@ -102,7 +102,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Tren.put( "Trapecios",8);
         Tren.put( "Dorsal",9);
         Tren.put( "Triceps",10);
-        Tren.put( "Espalda media",11);
+        Tren.put( "Espalda",11);
         Tren.put( "Gluteo",13);
         Tren.put( "Femoral",14);
         Tren.put("Pantorrilla",15);
@@ -164,6 +164,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 transaction.commit();
             }
         });
+
         ejercicioParecidoAdaptador.setOnClickListener(new EjercicioParecidoAdaptador.EventOnItemClick() {
             @Override
             public void OnItemClick(int id) {
