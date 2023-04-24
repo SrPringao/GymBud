@@ -49,7 +49,7 @@
     <Spinner
         android:id="@+id/CRSpinner"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textoCR2"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
@@ -59,7 +59,7 @@
         android:spinnerMode="dropdown"
         android:textAlignment="center"
         android:dropDownVerticalOffset="70dp"
-        android:textColor="@color/black" />
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/CRButton"

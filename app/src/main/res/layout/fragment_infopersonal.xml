@@ -91,16 +91,6 @@
                         android:text="dias consecutivos!"
                         tools:ignore="RtlSymmetry" />
 
-
-                    <ImageView
-                        android:id="@+id/otisImg"
-                        style="@style/homeCardImage"
-                        android:layout_toEndOf="@+id/Texto2Dias"
-                        android:maxHeight="90dp"
-                        android:paddingStart="20dp"
-                        android:src="@drawable/otisparado"
-                        tools:ignore="RtlSymmetry" />
-
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
             </androidx.cardview.widget.CardView>
 

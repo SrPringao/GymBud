@@ -121,5 +121,10 @@
         <item name="android:progressDrawable">@drawable/ratingbar</item>
     </style>
 
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textSize">11dp</item>
+        <item name="android:textColor">@color/gradientOrange</item>
+    </style>
+
 
 </resources>

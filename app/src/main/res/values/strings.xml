@@ -15,10 +15,11 @@
         <item>Trapecios</item>
         <item>Dorsal</item>
         <item>Tricep</item>
-        <item>Espalda media</item>
+        <item>Espalda</item>
         <item>Gluteo</item>
         <item>Femoral</item>
         <item>Pantorrilla</item>
+        <item>Cardio</item>
     </string-array>
 
 
@@ -49,6 +50,7 @@
         <item>@drawable/icmg_gluteo</item>
         <item>@drawable/icmg_femoral</item>
         <item>@drawable/icmg_panto</item>
+        <item>@drawable/icmg_cardio</item>
     </array>
 
 

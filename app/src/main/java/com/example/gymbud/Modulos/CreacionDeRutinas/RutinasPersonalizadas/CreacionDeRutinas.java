@@ -1,10 +1,7 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
@@ -96,6 +97,10 @@ public class CreacionDeRutinas extends Fragment {
         listaIds = IdList.getInstance();
         Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds);
 
+        for (int i = 0; i < listaIds.size(); i++) {
+            Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds.get(i).getName());
+        }
+
 
         Fragment fragment = new DetallesEjerciciosTiendita();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -106,15 +111,26 @@ public class CreacionDeRutinas extends Fragment {
         imageViewToolbar = view.findViewById(R.id.TBlogoTienda);
 
 
-        ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
-                (getActivity(), R.array.ListaEjercicios, android.R.layout.simple_spinner_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.ListaEjercicios, R.layout.spinner_item);
 
-        adap1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //apply rounded background to spinner
-        spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setPadding(10, 10, 10, 10);
+        spinner.setAdapter(adapter);
+
+        AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
+                ((TextView) parent.getChildAt(0)).setTextSize(5);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
 
         imageViewToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +144,7 @@ public class CreacionDeRutinas extends Fragment {
             }
         });
 
-        spinner.setAdapter(adap1);
+//        spinner.setAdapter(adap1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {

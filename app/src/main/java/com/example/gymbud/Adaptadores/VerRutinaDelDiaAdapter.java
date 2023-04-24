@@ -1,14 +1,11 @@
 package com.example.gymbud.Adaptadores;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,16 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Routine;
-import com.example.gymbud.FragmentContainer;
-import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
-import com.example.gymbud.Modulos.Login.MainActivity;
 import com.example.gymbud.Modulos.SeleccionEjercicios.fragment_ejercicio_seleccionado;
 import com.example.gymbud.R;
-import com.example.gymbud.Entidades.Exercises;
-import com.example.gymbud.Entidades.IdList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,6 +31,8 @@ public class VerRutinaDelDiaAdapter extends RecyclerView.Adapter<VerRutinaDelDia
     List<ExerciseSet> ListasEjercicios;
     ArrayList<Integer> listaSeries = new ArrayList<>();
     ArrayList<Integer>listaReps = new ArrayList<>();
+
+    ArrayList<Integer>listaTiempo = new ArrayList<>();
     TextView tiempoEstimadoTextView;
 
 
@@ -48,7 +41,7 @@ FragmentManager fragmentManager;
     public VerRutinaDelDiaAdapter(Routine routine, TextView tiempoEstimadoTextView,FragmentManager fragmentManager) {
         this.routine = routine;
         this.tiempoEstimadoTextView = tiempoEstimadoTextView;
-this.fragmentManager =fragmentManager ;
+        this.fragmentManager =fragmentManager ;
 
         if (routine == null) {
             ListasEjercicios = new ArrayList<>();
@@ -61,15 +54,16 @@ this.fragmentManager =fragmentManager ;
             for (int i = 0; i < ListasEjercicios.size(); i++) {
                 listaSeries.add(ListasEjercicios.get(i).getNumSeries());
                 listaReps.add(ListasEjercicios.get(i).getNumReps());
+                listaTiempo.add(ListasEjercicios.get(i).getTiempo());
             }
 
-            tiempoEstimadoTextView.setText(String.valueOf(tiempoEstimadoFunc(listaSeries, listaReps)));
+            tiempoEstimadoTextView.setText(String.valueOf(tiempoEstimadoFunc(listaSeries, listaReps, listaTiempo)));
             Log.d("Lista de series", listaSeries.toString());
             Log.d("Lista de reps", listaReps.toString());
         }
     }
 
-    public int tiempoEstimadoFunc(ArrayList<Integer> listaSeries, ArrayList<Integer> listaReps){
+    public int tiempoEstimadoFunc(ArrayList<Integer> listaSeries, ArrayList<Integer> listaReps, ArrayList<Integer> listaTiempo){
         double tiempo = 0;
         double tiempoDescanso = 0;
 
@@ -100,7 +94,7 @@ this.fragmentManager =fragmentManager ;
             //tiempo total
             Log.d("Tiempo total", String.valueOf(tiempo + tiempoDescanso));
 
-            return (int) (tiempo + tiempoDescanso);
+            return (int) (tiempo + tiempoDescanso + listaTiempo.stream().mapToInt(Integer::intValue).sum());
         }
     }
 
@@ -115,9 +109,21 @@ this.fragmentManager =fragmentManager ;
     public void onBindViewHolder(@NonNull VerRutinaDelDiaAdapter.EjerciciosViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         ExerciseSet exercise = ListasEjercicios.get(position);
+
+
         holder.Nombre.setText(exercise.getName());
-        holder.Sets.setText(String.valueOf(exercise.getNumSeries()));
-        holder.Reps.setText(String.valueOf(exercise.getNumReps()));
+
+        if (exercise.getNumSeries() == 0 && exercise.getNumReps() == 0){
+
+            holder.Sets.setVisibility(View.INVISIBLE);
+            holder.Reps.setVisibility(View.INVISIBLE);
+            holder.ekis.setText(String.valueOf(exercise.getTiempo()) + " Minutos");
+            holder.ekis.setTextSize(25);
+        } else {
+            holder.Sets.setText(String.valueOf(exercise.getNumSeries()));
+            holder.Reps.setText(String.valueOf(exercise.getNumReps()));
+        }
+
 
         int muscleGroup = exercise.getMuscleGroup();
 
@@ -141,10 +147,12 @@ this.fragmentManager =fragmentManager ;
                 Tren.put( 8,"Trapecios");
                 Tren.put( 9,"Dorsal");
                 Tren.put( 10,"Triceps");
-                Tren.put( 11,"Espalda media");
+                Tren.put( 11,"Espalda");
                 Tren.put( 13,"Gluteo");
                 Tren.put( 14,"Femoral");
                 Tren.put(15,"Pantorrilla");
+                Tren.put(16, "Cardio");
+
                 Fragment fragment = new fragment_ejercicio_seleccionado();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Bundle args = new Bundle();
@@ -171,6 +179,8 @@ this.fragmentManager =fragmentManager ;
 
     public class EjerciciosViewHolder extends RecyclerView.ViewHolder  {
         final TextView Nombre;
+
+        final TextView ekis;
         final TextView Sets;
         final TextView Reps;
 
@@ -181,6 +191,7 @@ this.fragmentManager =fragmentManager ;
             Nombre = itemView.findViewById(R.id.VRCardNombreEjercicio);
             Sets = itemView.findViewById(R.id.VRCardSeries);
             Reps = itemView.findViewById(R.id.VRCardRepes);
+            ekis = itemView.findViewById(R.id.VRCardX);
             GrupoMuscular = itemView.findViewById(R.id.VRCardGrupoMuscular);
         }
     }

@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -23,21 +21,22 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class DbQuery extends DbHelper {
     //Declaramos las variables que vamos a usar
-    Context context;
+     Context context;
+
+
 
     //Constructor de la clase
     public DbQuery(@Nullable Context context) {
         super(context);
         this.context = context;
     }
+
+
 
     //Esta funcion lo que hace es de tipo long y lo que hace es insertar informacion en la base de datos de sqlite
     //todos los datos que recibe son las diferentes columnas de la tabla, y lo que hacemos es instanciar un objeto DbHelper
@@ -299,6 +298,7 @@ public class DbQuery extends DbHelper {
     }
 
     public ArrayList<Exercises> MostrarEjercicios(ArrayList<ExerciseSet> sets) {
+
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -317,6 +317,21 @@ public class DbQuery extends DbHelper {
             commaSeparatedIds += set.getId() + ",";
         }
 
+        ArrayList<Integer> time = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            time.add(set.getTiempo());
+        }
+
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            ids.add(set.getId());
+        }
+
+        ArrayList<String> names = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            names.add(set.getName());
+        }
+
         //construir una lista con el numero de series del objeto ExerciseSet para asignarselo al objeto Exercise
         ArrayList<Integer> series = new ArrayList<>();
         for (ExerciseSet set : sets) {
@@ -328,6 +343,10 @@ public class DbQuery extends DbHelper {
         for (ExerciseSet set : sets) {
             reps.add(set.getNumReps());
         }
+
+        Log.d("DbQuery.java Ejercicios", String.valueOf(names));
+        Log.d("DbQuery.java Ejercicios", String.valueOf(series));
+        Log.d("DbQuery.java Ejercicios", String.valueOf(reps));
 
         // Eliminar la última coma
         commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
@@ -346,12 +365,12 @@ public class DbQuery extends DbHelper {
                 ejercicios = new Exercises();
 
                 // Asignar los valores del cursor al objeto Exercise
-                ejercicios.setId(cursorEjercicios.getInt(0));
-                ejercicios.setName(cursorEjercicios.getString(1));
-
+                ejercicios.setId(ids.get(index));
+                ejercicios.setName(names.get(index));
                 // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
                 ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
                 ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
+                ejercicios.setTime(time.get(index));
 
                 // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
                 ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
@@ -368,6 +387,7 @@ public class DbQuery extends DbHelper {
 
         // Cerrar el cursor
         cursorEjercicios.close();
+
 
         // Retornar la lista de objetos Exercise
         return listaEjercicios;
@@ -590,24 +610,32 @@ public class DbQuery extends DbHelper {
         }
         return Ejercicios;
     }
-//    public void StarsInsert(float starMaquinas, float starAt, float starVes) {
-//
-//        try {
-//            DbHelper dbHelper = new DbHelper(context);
-//            SQLiteDatabase db = dbHelper.getWritableDatabase();
-//
-//            ContentValues values = new ContentValues();
-//            values.put("Weight", weight);
-//            values.put("Reps", reps);
-//            values.put("Reps2", reps2);
-//            values.put("Time", time);
-//            values.put("Date", Date);
-//            values.put("IdEjercicio", IdEjercicio);
-//            values.put("IdUsr", IdUsr);
-//
-//            db.insert(TABLE_STATS, null, values);
-//        } catch (Exception ex) {
-//            ex.toString();
-//        }
-//    }
+
+    public void DeleteRoutine (int dayOfWeek){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek);
+        db.close();
+    }
+
+    public int GetMuscularGroup(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = null;
+        int muscularGroup = 0;
+        cursor = db.rawQuery("SELECT MuscularGroup FROM " + TABLE_EXERCISE + " WHERE Id = " + id, null);
+        try {
+            if (cursor.moveToFirst()) {
+                muscularGroup = cursor.getInt(0);
+            }
+        } catch (Exception e) {
+            Log.d("Exercises", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+        return muscularGroup;
+    }
 }

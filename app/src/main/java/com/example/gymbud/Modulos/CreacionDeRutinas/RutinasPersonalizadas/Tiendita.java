@@ -1,13 +1,8 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +14,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gymbud.Adaptadores.VerEliminarCarritoAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.IdList;
 import com.example.gymbud.Entidades.Routine;
+import com.example.gymbud.Funciones.Funciones;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,6 +98,7 @@ public class Tiendita extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Spinner spinner = view.findViewById(R.id.TiWeekSelector);
         Button button = view.findViewById(R.id.TiConfirmButton);
+
         ArrayAdapter<CharSequence> adap1 = ArrayAdapter.createFromResource
                 (getActivity(), R.array.DiasSemana, android.R.layout.simple_spinner_item);
 
@@ -107,7 +107,7 @@ public class Tiendita extends Fragment {
 
         spinner.setSelection(0);
         spinner.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        spinner.setPopupBackgroundResource(R.drawable.pop_up_background);
+        adap1.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setPadding(10, 10, 10, 10);
 
         spinner.setAdapter(adap1);
@@ -115,7 +115,11 @@ public class Tiendita extends Fragment {
           DbQuery dbQuery = new DbQuery (getContext());
           listaIds = IdList.getInstance();
 
-
+          ArrayList<Exercises> ejercicios = dbQuery.MostrarEjercicios(listaIds);
+          //log to check names of exercises
+            for (int i = 0; i < ejercicios.size(); i++) {
+                Log.d("Tiendita.java Ejercicios que se mandan a la query ", ejercicios.get(i).getName());
+            }
 
           VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds),tvTiempo);
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());
@@ -137,48 +141,58 @@ public class Tiendita extends Fragment {
                         transaction.addToBackStack(null);
                         transaction.commit();
                     }else {
+                        //desmenuzando el pollon
+                        ArrayList<Integer> listaGrupos = new ArrayList<>();
+
+                        for (int i = 0; i < listaIds.size(); i++) {
+                            listaGrupos.add(listaIds.get(i).getMuscleGroup());
+                        }
+
+                        Log.wtf("Elementos repetidos " , String.valueOf(Funciones.hayElementoRepetido(listaGrupos)));
+
+
+
                         String day = spinner.getSelectedItem().toString();
                         int dayOfWeek = spinner.getSelectedItemPosition() + 1;
                         Routine routine = new Routine("Rutina " + day, listaIds, dayOfWeek);
-//                        Log.d("El dia de la semana " + day + "ya cuenta con una rutina", dbQuery.routineDayAlreadyFilled(dayOfWeek) + "");
 
-                        //si el dia de la semana ya cuenta con una rutina, preguntar al usuario si le gustaria reemplazarla o no
-                        if (dbQuery.routineDayAlreadyFilled(dayOfWeek)) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                            builder.setTitle("Ya existe una rutina para el dia " + day);
-                            builder.setMessage("¿Desea reemplazarla?");
+                        //si alguno de los grupos muculares se repite mas de 4 veces en la lista mostrar toast
+                        if(Funciones.hayElementoRepetido(listaGrupos)){
 
-                            builder.setPositiveButton("Si", (dialog, which) -> {
-                                dbQuery.insertRoutine(routine);
-                                dialog.dismiss();
-                                Toast.makeText(getContext(), "Rutina del dia " + day+ " actualizada correctamente", Toast.LENGTH_SHORT).show();
-                                listaIds.clear();
-                                Fragment firstFragment = new CreacionDeRutinas();
-                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                            AlertDialog.Builder Advertencia = new AlertDialog.Builder(view.getContext());
+                            Advertencia.setTitle("¡Cuidado!");
+                            Advertencia.setMessage("Parece que añadiste mas de 5 ejercicios de un grupo muscular en especifico\n\n" +
+                                    "No es recomendable agregar más de 5 ejercicios del mismo grupo muscular. " +
+                                    "Esto puede causar fatiga muscular y aumentar el riesgo de lesiones. " +
+                                    "Te recomendamos variar los ejercicios y descansar adecuadamente entre series.”");
 
-                                transaction.replace(R.id.navFragmentContainer, firstFragment);
-                                transaction.addToBackStack(null);
-                                transaction.commit();
-                            });
-                            builder.setNegativeButton("No", (dialog, which) -> {
-                                dialog.dismiss();
-                            });
-                            builder.show();
+                            if (dbQuery.routineDayAlreadyFilled(dayOfWeek)){
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        GuardarRutina(dbQuery,routine, dayOfWeek, day);
+                                    }
+                                });
+                            }else{
+                                Advertencia.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        GuardarRutina(dbQuery,routine, dayOfWeek, day);
+                                    }
+                                });
+
+                                Advertencia.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                });
+                            }
+                            Advertencia.show();
                         }else {
-                            //toast de rutina agregada
-                            dbQuery.insertRoutine(routine);
-                            Toast.makeText(getContext(), "Rutina del dia " + day+ " agregada correctamente", Toast.LENGTH_SHORT).show();
-                            listaIds.clear();
-                            Fragment firstFragment = new CreacionDeRutinas();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-
-                            transaction.replace(R.id.navFragmentContainer, firstFragment);
-                            transaction.addToBackStack(null);
-                            transaction.commit();
-
+                            GuardarRutina(dbQuery,routine, dayOfWeek, day);
                         }
+
+
                     }
 
 
@@ -197,5 +211,49 @@ public class Tiendita extends Fragment {
 
             }
         });
+    }
+
+    void GuardarRutina(DbQuery dbQuery, Routine routine, int dayOfWeek, String day){
+        if (dbQuery.routineDayAlreadyFilled(dayOfWeek)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Ya existe una rutina para el dia " + day);
+            builder.setMessage("¿Desea reemplazarla?");
+
+            builder.setPositiveButton("Si", (dialog, which) -> {
+                dbQuery.insertRoutine(routine);
+                dialog.dismiss();
+                Toast.makeText(getContext(), "Rutina del dia " + day+ " actualizada correctamente", Toast.LENGTH_SHORT).show();
+                listaIds.clear();
+                Fragment firstFragment = new CreacionDeRutinas();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            });
+            builder.setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+            });
+            builder.show();
+
+
+        }else {
+
+            //si alguno de los grupos muculares se repite mas de 4 veces en la lista mostrar toast
+            //toast de rutina agregada
+            dbQuery.insertRoutine(routine);
+            Toast.makeText(getContext(), "Rutina del dia " + day+ " agregada correctamente", Toast.LENGTH_SHORT).show();
+            listaIds.clear();
+            Fragment firstFragment = new CreacionDeRutinas();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+            transaction.replace(R.id.navFragmentContainer, firstFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+        }
     }
 }

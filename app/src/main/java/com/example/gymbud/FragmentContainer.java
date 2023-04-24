@@ -1,7 +1,4 @@
 package com.example.gymbud;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +7,12 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.gymbud.Entidades.UrlDataSingleton;
 import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.Modulos.SeleccionEjercicios.Ejercicios;
@@ -34,13 +36,12 @@ public class FragmentContainer extends AppCompatActivity {
         //esto hace que cuando se abra el teclado no se mueva la pantalla
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_container);
+
+
+
         bottomNav = findViewById(R.id.bottomNav);
-
-
-
         bottomNav.add(new MeowBottomNavigation.Model(1,R.drawable.icinfo));
         bottomNav.add(new MeowBottomNavigation.Model(2,R.drawable.icrutinas));
         bottomNav.add(new MeowBottomNavigation.Model(3,R.drawable.icejercicios));
@@ -73,8 +74,7 @@ public class FragmentContainer extends AppCompatActivity {
         bottomNav.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                //display a toast
-                //Toast.makeText(getApplicationContext(),"Clickeaste "+ item.getId(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -93,6 +93,8 @@ public class FragmentContainer extends AppCompatActivity {
                     }
 
                     fragment = new Sucursales();
+                    UrlDataSingleton.getInstance().setId(null);
+
 
                 }else if (item.getId() == 3){
 
@@ -102,6 +104,8 @@ public class FragmentContainer extends AppCompatActivity {
                     }
 
                     fragment = new Ejercicios();
+
+                    UrlDataSingleton.getInstance().setId(null);
 
 
                 }else if (item.getId() == 2){
@@ -113,6 +117,7 @@ public class FragmentContainer extends AppCompatActivity {
 
                     fragment = new Rutinas();
 
+                    UrlDataSingleton.getInstance().setId(null);
 
                 }else{
                     FragmentManager fragmentManager = getSupportFragmentManager();
@@ -120,14 +125,13 @@ public class FragmentContainer extends AppCompatActivity {
                         fragmentManager.popBackStack();
                     }
 
+                    UrlDataSingleton.getInstance().setId(null);
                     fragment = new FragmentInfoPersonal();
                 }
                 loadFragment(fragment);
             }
         });
 
-        //set count to dashboard item
-//        bottomNav.setCount(3, "10");
     }
 
     @Override
