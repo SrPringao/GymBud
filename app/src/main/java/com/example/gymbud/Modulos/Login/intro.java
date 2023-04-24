@@ -22,6 +22,6 @@ public class intro extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(i);
             }
-        },2500);  //50
+        },50);  //2500
     }
 }

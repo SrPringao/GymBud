@@ -2,6 +2,7 @@ package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymbud.Adaptadores.VerEliminarCarritoAdapter;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.ExerciseSet;
+import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.IdList;
 import com.example.gymbud.Entidades.Routine;
 import com.example.gymbud.R;
@@ -111,7 +113,11 @@ public class Tiendita extends Fragment {
           DbQuery dbQuery = new DbQuery (getContext());
           listaIds = IdList.getInstance();
 
-
+          ArrayList<Exercises> ejercicios = dbQuery.MostrarEjercicios(listaIds);
+          //log to check names of exercises
+            for (int i = 0; i < ejercicios.size(); i++) {
+                Log.d("Tiendita.java Ejercicios que se mandan a la query ", ejercicios.get(i).getName());
+            }
 
           VerEliminarCarritoAdapter adapter = new VerEliminarCarritoAdapter(dbQuery.MostrarEjercicios(listaIds),tvTiempo);
           //Log.d ("Ejercicios", dbQuery.MostrarEjercicios(listaIds).toString());

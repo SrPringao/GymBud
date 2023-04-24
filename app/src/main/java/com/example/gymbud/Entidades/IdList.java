@@ -1,6 +1,7 @@
 package com.example.gymbud.Entidades;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class IdList {
     private static ArrayList<ExerciseSet> idList = new ArrayList<>();
@@ -11,11 +12,11 @@ public class IdList {
 
     //method to eliminate an id from the list
     public static void removeId(int id) {
-        ExerciseSet idEjercicio = new ExerciseSet(id);
-
-        for (int i = 0; i < idList.size(); i++) {
-            if (idList.get(i).getId() == idEjercicio.getId()) {
-                idList.remove(i);
+        Iterator<ExerciseSet> iterator = idList.iterator();
+        while (iterator.hasNext()) {
+            ExerciseSet exercise = iterator.next();
+            if (exercise.getId() == id) {
+                iterator.remove();
             }
         }
     }

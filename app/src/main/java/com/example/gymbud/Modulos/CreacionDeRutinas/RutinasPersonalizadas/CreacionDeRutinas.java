@@ -97,6 +97,10 @@ public class CreacionDeRutinas extends Fragment {
         listaIds = IdList.getInstance();
         Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds);
 
+        for (int i = 0; i < listaIds.size(); i++) {
+            Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds.get(i).getName());
+        }
+
 
         Fragment fragment = new DetallesEjerciciosTiendita();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

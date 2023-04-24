@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -23,10 +21,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class DbQuery extends DbHelper {
@@ -299,6 +294,7 @@ public class DbQuery extends DbHelper {
     }
 
     public ArrayList<Exercises> MostrarEjercicios(ArrayList<ExerciseSet> sets) {
+
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -317,6 +313,21 @@ public class DbQuery extends DbHelper {
             commaSeparatedIds += set.getId() + ",";
         }
 
+        ArrayList<Integer> time = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            time.add(set.getTiempo());
+        }
+
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            ids.add(set.getId());
+        }
+
+        ArrayList<String> names = new ArrayList<>();
+        for (ExerciseSet set : sets) {
+            names.add(set.getName());
+        }
+
         //construir una lista con el numero de series del objeto ExerciseSet para asignarselo al objeto Exercise
         ArrayList<Integer> series = new ArrayList<>();
         for (ExerciseSet set : sets) {
@@ -328,6 +339,10 @@ public class DbQuery extends DbHelper {
         for (ExerciseSet set : sets) {
             reps.add(set.getNumReps());
         }
+
+        Log.d("DbQuery.java Ejercicios", String.valueOf(names));
+        Log.d("DbQuery.java Ejercicios", String.valueOf(series));
+        Log.d("DbQuery.java Ejercicios", String.valueOf(reps));
 
         // Eliminar la última coma
         commaSeparatedIds = commaSeparatedIds.substring(0, commaSeparatedIds.length() - 1); // Eliminar la última coma
@@ -346,12 +361,12 @@ public class DbQuery extends DbHelper {
                 ejercicios = new Exercises();
 
                 // Asignar los valores del cursor al objeto Exercise
-                ejercicios.setId(cursorEjercicios.getInt(0));
-                ejercicios.setName(cursorEjercicios.getString(1));
-
+                ejercicios.setId(ids.get(index));
+                ejercicios.setName(names.get(index));
                 // Asignar las series y repeticiones del objeto ExerciseSet al objeto Exercise
                 ejercicios.setSets(series.get(index)); //usar el índice para obtener la serie correspondiente
                 ejercicios.setReps(reps.get(index)); //usar el índice para obtener las repeticiones correspondientes
+                ejercicios.setTime(time.get(index));
 
                 // Asignar el grupo muscular del objeto ExerciseSet al objeto Exercise
                 ejercicios.setMuscularGroup(cursorEjercicios.getInt(2));
@@ -368,6 +383,7 @@ public class DbQuery extends DbHelper {
 
         // Cerrar el cursor
         cursorEjercicios.close();
+
 
         // Retornar la lista de objetos Exercise
         return listaEjercicios;

@@ -5,7 +5,6 @@ import static com.example.gymbud.Entidades.IdList.containsExerciseWithId;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
@@ -22,10 +21,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gymbud.R;
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.Exercises;
 import com.example.gymbud.Entidades.IdList;
+import com.example.gymbud.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,12 +74,110 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
             @Override
             public void onClick(View view) {
                 int exerciseId = exercise.getId();
+                int exerciseGroup = exercise.getMuscularGroup();
+
+                Log.d("MuscularGroup del click", "MuscularGroup: " + exerciseGroup + "");
 
 
                 if (containsExerciseWithId(IdList.getInstance(), exerciseId)){
+
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
-                    return;
-                }else{
+
+                }else if (exerciseGroup == 16){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+                    //center setTitle
+                    TextView title = new TextView(view.getContext());
+                    title.setText("Agregar ejercicio");
+                    title.setPadding(10, 10, 10, 20);
+                    title.setGravity(Gravity.CENTER);
+                    title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    builder.setCustomTitle(title);
+
+
+                    LinearLayout layout = new LinearLayout(view.getContext());
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    //Agregar margen entre los elementos
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    params.setMargins(0, 16, 0, 16);
+
+                    //Crear línea con ambos elementos
+                    LinearLayout linearLayout = new LinearLayout(view.getContext());
+                    linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    EditText seriesEditText = new EditText(view.getContext());
+                    //center text
+                    seriesEditText.setGravity(Gravity.CENTER);
+                    seriesEditText.setId(R.id.edittext_series);
+                    seriesEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    seriesEditText.setHint("Minutos");
+                    //add text as 1
+                    seriesEditText.setText("10");
+                    seriesEditText.setLayoutParams(params);
+                    linearLayout.addView(seriesEditText);
+
+                    TextView textView = new TextView(view.getContext());
+                    textView.setText(" Minutos");
+                    //add start and end margins
+                    textView.setPadding(16, 0, 16, 0);
+                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+
+                    textView.setLayoutParams(params);
+                    textView.setGravity(Gravity.CENTER);
+                    linearLayout.addView(textView);
+
+                    layout.addView(linearLayout);
+                    builder.setView(layout);
+
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //if series or reps are empty send a error message
+                            if (seriesEditText.getText().toString().isEmpty()) {
+                                Toast.makeText(view.getContext(), "Por favor ingrese un tiempo", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            int tiempo = Integer.parseInt(seriesEditText.getText().toString());
+                            int muscleId = exercise.getMuscularGroup();
+                            String name = exercise.getName();
+
+
+
+                            //add exercise to the list
+                            listaDeIds.add(exerciseId);
+                            listaDeGrupos.add(muscleId);
+
+
+
+                            IdList.getInstance().add(new ExerciseSet(exerciseId, name,muscleId,tiempo));
+
+                            if (IdList.getInstance().size() == 9) {
+                                //popUp
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("¡Cuidado!");
+                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //go to the next activity
+                                    }
+                                });
+                            }
+
+                            Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", null);
+                    builder.show();
+
+                }else {
 
                     //si no está, se agrega
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -172,7 +269,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
                             exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
-
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
 

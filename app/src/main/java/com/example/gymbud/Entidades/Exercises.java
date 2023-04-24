@@ -2,9 +2,17 @@ package com.example.gymbud.Entidades;
 
 public class Exercises {
 
-    private int Id ,MuscularGroup, Tool, Category, Difficulty, stats,sets,reps;
+    private int Id ,MuscularGroup, Tool, Category, Difficulty, stats,sets,reps,time;
     private String Name, Focus , ForeSeeing, Execution, Details;
     private String Image;
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     public int getId() {
         return Id;

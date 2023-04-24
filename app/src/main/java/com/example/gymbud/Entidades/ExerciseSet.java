@@ -7,6 +7,8 @@ public class ExerciseSet {
     private int numSeries;
     private int numReps;
     private int muscleGroup;
+
+    private int tiempo;
     public ExerciseSet() {
 
     }
@@ -18,6 +20,16 @@ public class ExerciseSet {
         this.muscleGroup = muscleGroup;
         this.name = name;
         this.image = image;
+    }
+
+    public ExerciseSet(int id, String name, int muscleGroup, int tiempo) {
+        this.id = id;
+        this.numSeries = 0;
+        this.numReps = 0;
+        this.muscleGroup = muscleGroup;
+        this.name = name;
+        this.image = "";
+        this.tiempo = tiempo;
     }
 
     public ExerciseSet(int id) {
@@ -45,5 +57,13 @@ public class ExerciseSet {
 
     public String getImage() {
         return image;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
     }
 }
