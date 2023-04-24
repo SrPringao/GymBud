@@ -26,13 +26,17 @@ import java.util.List;
 
 public class DbQuery extends DbHelper {
     //Declaramos las variables que vamos a usar
-    Context context;
+     Context context;
+
+
 
     //Constructor de la clase
     public DbQuery(@Nullable Context context) {
         super(context);
         this.context = context;
     }
+
+
 
     //Esta funcion lo que hace es de tipo long y lo que hace es insertar informacion en la base de datos de sqlite
     //todos los datos que recibe son las diferentes columnas de la tabla, y lo que hacemos es instanciar un objeto DbHelper
@@ -612,5 +616,26 @@ public class DbQuery extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("DELETE FROM ROUTINE WHERE DayOfWeek = " + dayOfWeek);
         db.close();
+    }
+
+    public int GetMuscularGroup(int id){
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = null;
+        int muscularGroup = 0;
+        cursor = db.rawQuery("SELECT MuscularGroup FROM " + TABLE_EXERCISE + " WHERE Id = " + id, null);
+        try {
+            if (cursor.moveToFirst()) {
+                muscularGroup = cursor.getInt(0);
+            }
+        } catch (Exception e) {
+            Log.d("Exercises", e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+        return muscularGroup;
     }
 }

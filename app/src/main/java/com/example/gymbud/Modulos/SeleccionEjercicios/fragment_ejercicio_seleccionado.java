@@ -107,12 +107,13 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         Tren.put( "Femoral",14);
         Tren.put("Pantorrilla",15);
         Tren.put("Cardio",16);
+
         int Musculo = Tren.get(musculo);
 
 
         TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
 
-        Drawable drawable = imagenes.getDrawable(Musculo-1);
+        Drawable drawable = imagenes.getDrawable(ID-1);
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) ImgMusculo.getLayoutParams();
 //        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         ImgMusculo.setLayoutParams(params);

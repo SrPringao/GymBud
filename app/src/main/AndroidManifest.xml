@@ -65,8 +65,6 @@
                     android:pathPrefix="//"
                     android:pathPattern=".*id=.*" />
 
-
-
             </intent-filter>
         </activity>
 

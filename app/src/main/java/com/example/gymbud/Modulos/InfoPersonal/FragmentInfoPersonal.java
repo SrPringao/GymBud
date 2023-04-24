@@ -21,14 +21,17 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.PersonInfo;
 import com.example.gymbud.Entidades.Phrase;
+import com.example.gymbud.Entidades.UrlDataSingleton;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas.CreacionDeRutinas;
 import com.example.gymbud.Modulos.Login.MainActivity;
+import com.example.gymbud.Modulos.SeleccionEjercicios.fragment_ejercicio_seleccionado;
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.example.gymbud.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -37,6 +40,7 @@ import com.google.android.gms.location.LocationCallback;
 import net.colindodd.gradientlayout.GradientRelativeLayout;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -131,6 +135,49 @@ public class FragmentInfoPersonal extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         startLocationUpdates();
+
+        String id = UrlDataSingleton.getInstance().getId();
+
+        if (id != null){
+//            Exercises exercises = DbQuery.EjerciciosVER(Integer.parseInt(id));
+            DbQuery dbQuery = new DbQuery(getContext());
+
+            Log.wtf("URLDATAFragent", "onCreate: " + id);
+            Fragment fragment = new fragment_ejercicio_seleccionado();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            Bundle args = new Bundle();
+            args.putInt("id", Integer.parseInt(id));
+            args.putInt("ID", dbQuery.GetMuscularGroup(Integer.parseInt(id)));
+
+            HashMap<Integer, String> Tren = new HashMap<>();
+            Tren.put( 1,"Hombro");
+            Tren.put( 2,"Bicep");
+            Tren.put( 3,"Pecho");
+            Tren.put( 4,"Abs");
+            Tren.put( 5,"Oblicuos");
+            Tren.put( 6,"Antebrazo");
+            Tren.put( 7,"Cuadriceps");
+            Tren.put( 8,"Trapecios");
+            Tren.put( 9,"Dorsal");
+            Tren.put( 10,"Triceps");
+            Tren.put( 11,"Espalda");
+            Tren.put( 13,"Gluteo");
+            Tren.put( 14,"Femoral");
+            Tren.put(15,"Pantorrilla");
+            Tren.put(16, "Cardio");
+
+            String musculo = Tren.get(dbQuery.GetMuscularGroup(Integer.parseInt(id)));
+
+
+            args.putString("Musculo", musculo);
+
+            fragment.setArguments(args);
+            transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
+            transaction.replace(R.id.navFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
 
         progressBar1 = view.findViewById(R.id.progress);
         progressBar2 = view.findViewById(R.id.progress2);
