@@ -77,6 +77,5 @@
             android:text="Confirmar"
             android:textColor="@color/colorIdentidad6" />
 
-
-    </RelativeLayout>
 </RelativeLayout>
+    </RelativeLayout>

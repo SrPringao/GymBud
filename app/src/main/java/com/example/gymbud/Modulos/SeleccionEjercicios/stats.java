@@ -117,12 +117,13 @@ public class stats extends Fragment {
 
     Spinner fechas;
     Stats stats;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Context context = getContext();
         DbQuery dbQuery = new DbQuery(context);
-        TextView Carga,Reps,Tiempo,Reps2;
+        TextView Carga,Reps,Tiempo,Reps2,rm;
         ImageView Back = view.findViewById(R.id.botonback);
         Button agregar = view.findViewById(R.id.fsButtonAgregar);
         Bundle args = getArguments();
@@ -130,11 +131,15 @@ public class stats extends Fragment {
         int ID = args.getInt("ID");//id del musculo seleccionado
         String musculo = args.getString("Musculo");//Nombre del musculo seleccionado
 
+        FragmentContainer activity = (FragmentContainer) getActivity();
+        int UID = activity.UIDUSR();
+
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
         Carga = view.findViewById(R.id.Carga);
         Reps = view.findViewById(R.id.Repeticiones);
         Reps2 = view.findViewById(R.id.Repeticiones2);
         Tiempo = view.findViewById(R.id.Tiempo);
+        rm = view.findViewById(R.id.rm);
 
         fechas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -145,7 +150,8 @@ public class stats extends Fragment {
                 Reps.setText(""+StatsLista.get(position).getReps());
                 Reps2.setText(""+StatsLista.get(position).getReps2());
                 Tiempo.setText(""+StatsLista.get(position).getTime()+ " mins");
-
+                double RM = ((0.0333 * StatsLista.get(position).getWeight()) * StatsLista.get(position).getReps() + StatsLista.get(position).getWeight());
+                rm.setText(RM+" kg");
             }
 
             @Override
@@ -156,8 +162,6 @@ public class stats extends Fragment {
 
 
         try {
-            FragmentContainer activity = (FragmentContainer) getActivity();
-            int UID = activity.UIDUSR();
             stats = dbQuery.verStats(id,UID); //Esta es la query verstats con el id del ejercicio seleccionado
             //Este if ingresa los datos registrados de la bd en caso de que si haya algo, si no inserta 0 en todo en el id del ejercicio
             if(stats != null) {
@@ -165,6 +169,10 @@ public class stats extends Fragment {
                 Reps.setText("" + stats.getReps());
                 Reps2.setText("" + stats.getReps2());
                 Tiempo.setText("" + stats.getTime());
+
+
+
+
             }else{
                /* FragmentContainer activity = (FragmentContainer) getActivity();
                 String FechaAct = activity.FechaAct();
