@@ -148,12 +148,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
                 "También puedes variar la resistencia de la banda o el peso de la mancuerna para ajustar la dificultad.','Image',1,2,3,2)");
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevaciones posteriores de pie con polea baja',1,'Fortalecimiento de los hombros','Coloca una polea baja en una máquina de cables o en un anclaje de pared.\n" +
-                "Coloca una banda de resistencia alrededor de tus pies.\n" +
-                "Coloca una mancuerna o disco de peso en la polea.','De pie frente a la polea, con las piernas ligeramente separadas y las rodillas ligeramente flexionadas, sujeta las manijas de la polea con las manos hacia abajo.\n" +
-                "Eleva los brazos hacia atrás y hacia arriba, manteniendo los codos pegados al cuerpo y manteniendo la espalda recta.\n" +
-                "Lentamente regresa a la posición inicial y repite el movimiento.','Asegúrate de mantener la espalda recta y los codos pegados al cuerpo durante todo el ejercicio.\n" +
-                "También puedes variar la resistencia de la banda o el peso de la mancuerna para ajustar la dificultad.','Image',1,2,3,2)");
+
 
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Remo Vertical con polea',1,'Fortalecimiento de los hombros y la espalda superior','Coloca una polea en una máquina de cables o en un anclaje de pared a una altura que te permita sujetarla con los brazos extendidos.\n" +
                 "Coloca una mancuerna o disco de peso en la polea.\n" +
@@ -809,8 +804,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "Bajar suavemente los talones hacia el suelo y repetir el ejercicio varias veces.\n','Asegúrate de mantener el equilibrio durante todo el ejercicio y evita balancearte. También es importante que no levantes los talones demasiado alto, ya que esto puede causar dolor en los talones.','Image',5,2,1,1)");
 
         //panto panto
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación de talones sentado con barra',15,'Fortalecimiento de la pantorrilla','Sentarse en un banco con una barra sobre los muslos.','Levantar los talones lo maximo que se pueda\n" +
-                "Bajar los talones y repetir el movimiento','También es importante que no levantes los talones demasiado alto, ya que esto puede causar dolor en los talones.','Image',2,2,2,1)");
+
 
         sqLiteDatabase.execSQL("INSERT INTO " + TABLE_EXERCISE + "("+"Name,MuscularGroup,Focus,ForeSeeing,Execution,Details,Image,Tool,Category,Difficulty,Stats)"+" VALUES " + "(" + "'Elevación de talones de pie con variación',15,'Fortalecimiento de la pantorrilla','Colocarse de pie con los pies juntos y los brazos a los costados.','Levantar los talones lo maximo que puedas, dejando solo la punta de los pies en el suelo\n" +
                 "Baje los talones y eleve la punta de los pies dejando solo los talones en el suelo\n" +
