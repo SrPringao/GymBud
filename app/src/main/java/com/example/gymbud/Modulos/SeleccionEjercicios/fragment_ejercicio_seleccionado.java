@@ -3,6 +3,7 @@ package com.example.gymbud.Modulos.SeleccionEjercicios;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -18,7 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.gymbud.Adaptadores.EjercicioParecidoAdaptador;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.Exercises;
@@ -135,7 +136,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         EjecucionD = view.findViewById(R.id.EjecucionData);
         DetallesD = view.findViewById(R.id.DetallesData);
         Stats = view.findViewById(R.id.Stats);
-        ImageView ImagenEjercicio = view.findViewById(R.id.esGif);
+        VideoView ImagenEjercicio = view.findViewById(R.id.esGif);
 
         Titulo.setText(exercises.getName());
         PreparacionD.setText(exercises.getForeSeeing());
@@ -143,12 +144,23 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         DetallesD.setText(exercises.getDetails());
 
 
-        Glide.with(context)
-                .load("https://i.pinimg.com/originals/0e/0a/4d/0e0a4dc4931d0572a9a2946f2ccd48c9.gif")
-                .placeholder(R.drawable.loading_icon)
-                .into(ImagenEjercicio);
+//        // Cargar la miniatura del video utilizando Glide
+//        Glide.with(context)
+//                .load("https://francoaldrete.com/GymBud/Ejercicios/img_4520.mp4")
+//                .placeholder(R.drawable.loading_icon)
+//                .into(ImagenEjercicio);
 
 
+        ImagenEjercicio.setVideoPath("https://francoaldrete.com/GymBud/Ejercicios/img_4575.mp4");
+        ImagenEjercicio.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                // El video ha terminado de reproducirse, reiniciamos la reproducción
+                ImagenEjercicio.start();
+            }
+        });
+
+        ImagenEjercicio.start();
 
         Stats.setOnClickListener(new View.OnClickListener() {
             @Override
