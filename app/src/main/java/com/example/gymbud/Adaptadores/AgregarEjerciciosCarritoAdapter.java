@@ -5,6 +5,7 @@ import static com.example.gymbud.Entidades.IdList.containsExerciseWithId;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.text.InputType;
 import android.util.Log;
 import android.util.TypedValue;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +70,42 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
         Exercises exercise = ListasEjercicios.get(position);
         holder.Nombre.setText(exercise.getName());
         holder.Enfoque.setText(exercise.getFocus());
+
+
+
+        String url = "https://francoaldrete.com/GymBud/Ejercicios/" + exercise.getId() + ".mp4";
+
+        holder.videoView.setVideoPath(url);
+//
+//// Obtener el objeto LayoutParams del VideoView
+//        ViewGroup.LayoutParams layoutParams = holder.videoView.getLayoutParams();
+//
+//// Establecer el ancho y la altura deseados
+//        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        layoutParams.height = 600;
+//
+//// Establecer los nuevos LayoutParams en el VideoView
+//        holder.videoView.setLayoutParams(layoutParams);
+
+        holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setVolume(0f, 0f);
+                // Ocultar el ProgressBar y mostrar el video una vez que esté cargado
+//                holder.videoView.setLayoutParams(layoutParams);
+                holder.videoView.start();
+
+            }
+        });
+
+        holder.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                // El video ha terminado de reproducirse, reiniciamos la reproducción
+
+                holder.videoView.start();
+            }
+        });
 
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
@@ -350,6 +388,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
         final TextView Nombre;
         final TextView Enfoque;
         final Button Button;
+        final VideoView videoView ;
 
 
 
@@ -360,6 +399,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
             Nombre = itemView.findViewById(R.id.CVET1);
             Enfoque = itemView.findViewById(R.id.CVET2);
             Button = itemView.findViewById(R.id.CVEBotonAgregar);
+            videoView = itemView.findViewById(R.id.CVEGif);
         }
 
         @Override
