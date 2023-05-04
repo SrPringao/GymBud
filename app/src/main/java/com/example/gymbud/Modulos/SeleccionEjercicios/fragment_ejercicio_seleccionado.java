@@ -144,14 +144,17 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         DetallesD.setText(exercises.getDetails());
 
 
-//        // Cargar la miniatura del video utilizando Glide
-//        Glide.with(context)
-//                .load("https://francoaldrete.com/GymBud/Ejercicios/img_4520.mp4")
-//                .placeholder(R.drawable.loading_icon)
-//                .into(ImagenEjercicio);
 
         String url = "https://francoaldrete.com/GymBud/Ejercicios/" + id + ".mp4";
         ImagenEjercicio.setVideoPath(url);
+        //mute video
+        ImagenEjercicio.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setVolume(0f,0f);
+            }
+        });
+
         ImagenEjercicio.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -161,6 +164,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         });
 
         ImagenEjercicio.start();
+
 
         Stats.setOnClickListener(new View.OnClickListener() {
             @Override

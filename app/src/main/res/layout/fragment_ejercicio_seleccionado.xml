@@ -84,6 +84,7 @@
 
             <VideoView
                 android:id="@+id/esGif"
+
                 android:layout_width="221dp"
                 android:layout_height="254dp"
                 android:layout_marginTop="35dp"
