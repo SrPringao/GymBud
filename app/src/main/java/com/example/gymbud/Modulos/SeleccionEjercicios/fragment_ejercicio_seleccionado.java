@@ -150,8 +150,8 @@ public void onViewCreated(View view,Bundle savedInstanceState){
 //                .placeholder(R.drawable.loading_icon)
 //                .into(ImagenEjercicio);
 
-
-        ImagenEjercicio.setVideoPath("https://francoaldrete.com/GymBud/Ejercicios/img_4575.mp4");
+        String url = "https://francoaldrete.com/GymBud/Ejercicios/" + id + ".mp4";
+        ImagenEjercicio.setVideoPath(url);
         ImagenEjercicio.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
