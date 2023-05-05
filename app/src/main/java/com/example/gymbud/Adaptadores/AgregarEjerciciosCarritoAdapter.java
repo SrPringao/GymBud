@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -40,9 +42,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
     ArrayList<Integer> listaDeGrupos = new ArrayList<>(); // Aquí se declara la lista de grupos
 
 
-
-
-    public AgregarEjerciciosCarritoAdapter(ArrayList<Exercises> ListasEjercicios ) {
+    public AgregarEjerciciosCarritoAdapter(ArrayList<Exercises> ListasEjercicios) {
         this.ListasEjercicios = ListasEjercicios;
 
     }
@@ -72,20 +72,11 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
         holder.Enfoque.setText(exercise.getFocus());
 
 
-
         String url = "https://francoaldrete.com/GymBud/Ejercicios/" + exercise.getId() + ".mp4";
-
         holder.videoView.setVideoPath(url);
-//
-//// Obtener el objeto LayoutParams del VideoView
-//        ViewGroup.LayoutParams layoutParams = holder.videoView.getLayoutParams();
-//
-//// Establecer el ancho y la altura deseados
-//        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        layoutParams.height = 600;
-//
-//// Establecer los nuevos LayoutParams en el VideoView
-//        holder.videoView.setLayoutParams(layoutParams);
+//        holder.videoView.setVisibility(View.GONE);
+
+
 
         holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -93,19 +84,28 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                 mp.setVolume(0f, 0f);
                 // Ocultar el ProgressBar y mostrar el video una vez que esté cargado
 //                holder.videoView.setLayoutParams(layoutParams);
+                Log.wtf("Video Cargo" , "True");
                 holder.videoView.start();
-
+                holder.ProgressBar.setVisibility(View.GONE);
+                holder.RelativeLayout.setVisibility(View.GONE);
             }
         });
+
 
         holder.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
                 // El video ha terminado de reproducirse, reiniciamos la reproducción
-
                 holder.videoView.start();
             }
         });
+
+
+        if (!holder.videoView.isPlaying()) {
+            Log.wtf("El video se dejo de cargar" , "False");
+            holder.ProgressBar.setVisibility(View.VISIBLE);
+            holder.RelativeLayout.setVisibility(View.VISIBLE);
+        }
 
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
@@ -117,11 +117,11 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                 Log.d("MuscularGroup del click", "MuscularGroup: " + exerciseGroup + "");
 
 
-                if (containsExerciseWithId(IdList.getInstance(), exerciseId)){
+                if (containsExerciseWithId(IdList.getInstance(), exerciseId)) {
 
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
 
-                }else if (exerciseGroup == 16){
+                } else if (exerciseGroup == 16) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 
                     //center setTitle
@@ -186,14 +186,12 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             String name = exercise.getName();
 
 
-
                             //add exercise to the list
                             listaDeIds.add(exerciseId);
                             listaDeGrupos.add(muscleId);
 
 
-
-                            IdList.getInstance().add(new ExerciseSet(exerciseId, name,muscleId,tiempo));
+                            IdList.getInstance().add(new ExerciseSet(exerciseId, name, muscleId, tiempo));
 
                             if (IdList.getInstance().size() == 9) {
                                 //popUp
@@ -215,7 +213,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                     builder.setNegativeButton("Cancelar", null);
                     builder.show();
 
-                }else {
+                } else {
 
                     //si no está, se agrega
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -223,7 +221,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                     //Establecer título del diálogo y centrarlo
 
-                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId,"", 0, 0,0,null)};
+                    final ExerciseSet[] exerciseSet = {new ExerciseSet(exerciseId, "", 0, 0, 0, null)};
 
                     //center setTitle
                     TextView title = new TextView(view.getContext());
@@ -306,7 +304,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             listaDeGrupos.add(muscleId);
 
 
-                            exerciseSet[0] = new ExerciseSet(exerciseId,name, numSeries, numReps, muscleId,imagen);
+                            exerciseSet[0] = new ExerciseSet(exerciseId, name, numSeries, numReps, muscleId, imagen);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
 
@@ -324,8 +322,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 });
                                 builder.show();
                             }
-
-
 
 
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
@@ -388,8 +384,9 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
         final TextView Nombre;
         final TextView Enfoque;
         final Button Button;
-        final VideoView videoView ;
-
+        final VideoView videoView;
+         RelativeLayout RelativeLayout;
+         ProgressBar ProgressBar;
 
 
         public EjerciciosViewHolder(@NonNull View itemView, EventOnItemClick listener) {
@@ -400,6 +397,8 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
             Enfoque = itemView.findViewById(R.id.CVET2);
             Button = itemView.findViewById(R.id.CVEBotonAgregar);
             videoView = itemView.findViewById(R.id.CVEGif);
+            ProgressBar = itemView.findViewById(R.id.CVEProgress);
+            RelativeLayout = itemView.findViewById(R.id.CVETapon);
         }
 
         @Override

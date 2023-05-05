@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parentRel"
     android:layout_width="match_parent"
@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/TiButtonBack"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/ic_flechanegrodorado"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,6 +22,7 @@
     <TextView
         android:id="@+id/TiTitle"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/TiButtonBack"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -30,55 +31,51 @@
         android:textAlignment="center"
         android:textColor="@color/bottomNavigationTintColor"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_height="wrap_content">
+        android:textStyle="bold">
 
     </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/TiRecycler"
-        android:layout_below="@id/TiTitle"
-        android:layout_above="@+id/TiTiempoEstimado"
-        android:layout_marginBottom="10dp"
-        android:clipToPadding="false"
-        android:layout_marginTop="20dp"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/TiTiempoEstimado"
+        android:layout_below="@id/TiTitle"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:clipToPadding="false"
         android:paddingVertical="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="50dp"
-        />
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
     <include
         android:id="@+id/TiTiempoEstimado"
-        android:layout_above="@+id/TiConfirmButton"
         layout="@layout/card_tiempoestimado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_above="@+id/TiConfirmButton"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        />
+        android:layout_marginBottom="5dp" />
 
     <RelativeLayout
-        android:layout_below="@+id/TiTiempoEstimado"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/TiConfirmButton"
-        android:layout_alignBottom="@+id/TiConfirmButton"
+        android:layout_below="@+id/TiTiempoEstimado"
         android:layout_alignTop="@+id/TiConfirmButton"
+        android:layout_alignBottom="@+id/TiConfirmButton"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
-        >
+        android:layout_toEndOf="@+id/TiConfirmButton">
 
         <Spinner
             android:id="@+id/TiWeekSelector"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
             android:gravity="center"
+            android:textAlignment="center"
             android:textColor="@color/black" />
     </RelativeLayout>
 
@@ -86,17 +83,17 @@
         android:id="@+id/TiConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/backgroundcornerinverted"
-        android:text="Crear rutina"
-        android:textSize="20dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="90dp"
+        android:background="@drawable/backgroundcornerinverted"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Crear rutina"
         android:textColor="@color/bottomNavigationTintColor"
-        android:layout_centerHorizontal="false" />
+        android:textSize="20dp" />
 
 </RelativeLayout>

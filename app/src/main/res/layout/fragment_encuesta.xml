@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta"
     android:background="@drawable/backgrounblack"
     android:padding="20dp"
-    >
+    tools:context=".Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta">
 
 
     <RelativeLayout
@@ -21,46 +19,46 @@
         <TextView
             android:id="@+id/Pregunta"
             style="@style/viewParent.headerText.HomeCardTitle"
-            android:layout_marginBottom="20dp"
-            android:textAlignment="center"
             android:layout_centerHorizontal="true"
-            android:text="Pregunta" />
+            android:layout_marginBottom="20dp"
+            android:text="Pregunta"
+            android:textAlignment="center" />
 
         <RadioButton
             android:id="@+id/Respuesta1"
             style="@style/viewParent.headerText.homeCardContent"
             android:layout_below="@id/Pregunta"
-            android:textStyle="bold"
             android:fontFamily="@font/lato"
+            android:text="Respuesta 1"
             android:textSize="20sp"
-            android:text="Respuesta 1" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/Respuesta2"
             style="@style/viewParent.headerText.homeCardContent"
             android:layout_below="@id/Respuesta1"
-            android:textStyle="bold"
             android:fontFamily="@font/lato"
+            android:text="Respuesta 2"
             android:textSize="20sp"
-            android:text="Respuesta 2" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/Respuesta3"
             style="@style/viewParent.headerText.homeCardContent"
             android:layout_below="@id/Respuesta2"
-            android:textStyle="bold"
             android:fontFamily="@font/lato"
+            android:text="Respuesta 3"
             android:textSize="20sp"
-            android:text="Respuesta 3" />
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/Respuesta4"
             style="@style/viewParent.headerText.homeCardContent"
             android:layout_below="@id/Respuesta3"
-            android:textStyle="bold"
             android:fontFamily="@font/lato"
+            android:text="Respuesta 4"
             android:textSize="20sp"
-            android:text="Respuesta 4" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/Acepto"
@@ -77,5 +75,5 @@
             android:text="Confirmar"
             android:textColor="@color/colorIdentidad6" />
 
-</RelativeLayout>
     </RelativeLayout>
+</RelativeLayout>
