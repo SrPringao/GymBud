@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.Adaptadores.VerRutinaDelDiaAdapter;
 import com.example.gymbud.Db.DbQuery;
+import com.example.gymbud.EncuestaFeedback;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.R;
 
@@ -97,6 +100,7 @@ public class VerRutinas extends Fragment {
         spinner.setSelection(numberDayOfWeek);
 
         ImageView botonBack = view.findViewById(R.id.VRButtonBack);
+        RelativeLayout tiempoEstimado = view.findViewById(R.id.VRTiempoEstimado);
         botonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +122,8 @@ public class VerRutinas extends Fragment {
         DbQuery dbQuery = new DbQuery (getContext());
 
         Log.d("Existencia de rutina en carga ", String.valueOf(dbQuery.routineDayAlreadyFilled(numberDayOfWeek+1)));
-        
+
+        Button botonFeedback =  view.findViewById(R.id.VRTFeedbackButton);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -130,9 +135,14 @@ public class VerRutinas extends Fragment {
                 if (dbQuery.routineDayAlreadyFilled(newDayOfWeek)) {
                     updateRecyclerView(newDayOfWeek);
                     Log.d("Rutina que se mostrara " , String.valueOf(dbQuery.getRoutineByDay(newDayOfWeek)));
+                    botonFeedback.setVisibility(View.VISIBLE);
+                    tiempoEstimado.setVisibility(View.VISIBLE);
+
                 } else {
                     Log.d("Rutina que se mostrara " , String.valueOf(dbQuery.getRoutineByDay(newDayOfWeek)));
                     updateRecyclerView(newDayOfWeek);
+                    botonFeedback.setVisibility(View.GONE);
+                    tiempoEstimado.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "No hay rutina para este día", Toast.LENGTH_SHORT).show();
                 }
 
@@ -162,6 +172,25 @@ public class VerRutinas extends Fragment {
                 }
             }
         });
+
+        botonFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment firstFragment = new EncuestaFeedback();
+                Bundle bundle = new Bundle();
+                bundle.putInt("dia", newDayOfWeek);
+                firstFragment.setArguments(bundle);
+                assert getFragmentManager() != null;
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
     }
 
     
@@ -177,6 +206,8 @@ public class VerRutinas extends Fragment {
 
         recyclerView.setAdapter(adapter);
     }
+
+
 
 
 }

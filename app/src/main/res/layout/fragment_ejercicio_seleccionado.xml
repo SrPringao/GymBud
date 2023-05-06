@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgrounblack"
+    android:background="@drawable/backgroundblack2"
     tools:context=".Modulos.InfoPersonal.FragmentInfoPersonal"
 
 
@@ -82,9 +82,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/esGif" />
 
+
+
             <VideoView
                 android:id="@+id/esGif"
-
                 android:layout_width="221dp"
                 android:layout_height="254dp"
                 android:layout_marginTop="35dp"
@@ -92,8 +93,27 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NombreEjercicio"
-
                 />
+
+            <RelativeLayout
+                android:id="@+id/esTapon"
+                android:layout_width="250dp"
+                android:layout_height="260dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/backgroundblack2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NombreEjercicio" >
+
+                <ProgressBar
+                    android:id="@+id/CVEProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/colorIdentidad5">
+
+                </ProgressBar>
+            </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nested"
@@ -115,8 +135,7 @@
                         android:id="@+id/Preparacion"
                         style="@style/nestedTextTitle"
                         android:text="Preparacion"
-                        tools:ignore="MissingConstraints"
-                        />
+                        tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/PreparacionData"
@@ -133,8 +152,8 @@
                         tools:ignore="MissingConstraints" />
 
                     <TextView
-                        style="@style/nestedText"
                         android:id="@+id/EjecucionData"
+                        style="@style/nestedText"
                         app:layout_constraintTop_toBottomOf="@+id/ejecucion"
                         tools:ignore="MissingConstraints" />
 
@@ -155,9 +174,9 @@
                     <TextView
                         android:id="@+id/Musculatura"
                         style="@style/nestedTextTitle"
+                        android:layout_marginBottom="10dp"
                         android:text="Musculatura"
                         app:layout_constraintTop_toBottomOf="@+id/DetallesData"
-                        android:layout_marginBottom="10dp"
                         tools:ignore="MissingConstraints" />
 
 

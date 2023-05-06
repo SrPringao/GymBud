@@ -142,7 +142,12 @@ public class FragmentContainer extends AppCompatActivity {
 
 
     private void loadFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.navFragmentContainer,fragment,null).commit();
+        //replace fragment
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.navFragmentContainer,fragment,null)
+                .commit();
+
     }
 
     //Esta funcion solo retorna el UID del usuario en caso de que se necesite

@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Entidades.ExerciseSet;
 import com.example.gymbud.Entidades.IdList;
+import com.example.gymbud.Modulos.CreacionDeRutinas.Rutinas;
 import com.example.gymbud.R;
 
 import java.util.ArrayList;
@@ -87,14 +88,31 @@ public class CreacionDeRutinas extends Fragment {
 
 
 
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // You can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Creacion de Rutinas");
 
-
+        ImageView BotonBack = view.findViewById(R.id.TBButtonBack);
+        TextView NumeroDeEjercicios = view.findViewById(R.id.CRNumero);
         listaIds = IdList.getInstance();
+
+        NumeroDeEjercicios.setText(String.valueOf(listaIds.size()));
+        BotonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment firstFragment = new Rutinas();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
         Log.d("Lista en pantalla de seleccion", "onViewCreated: " + listaIds);
 
         for (int i = 0; i < listaIds.size(); i++) {

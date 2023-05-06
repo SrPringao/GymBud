@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/CVEParent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CVEParent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-    android:paddingBottom="10dp"
-    android:background="@drawable/backgroundcorner">
+    android:background="@drawable/backgroundcorner"
+    android:paddingBottom="10dp">
 
     <TextView
         android:id="@+id/CVET1"
         android:layout_width="match_parent"
-        android:fontFamily="@font/lato_light"
         android:layout_height="80dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/lato_light"
         android:gravity="center"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
         android:text="Curl Concentrado"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/CVESeparador"
-        android:layout_below="@id/CVET1"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginBottom="10dp"
+        android:layout_below="@id/CVET1"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/background_edittext"/>
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_edittext" />
 
 
     <RelativeLayout
         android:id="@+id/CVEParent2"
         android:layout_width="match_parent"
-        android:layout_below="@id/CVESeparador"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CVESeparador">
 
 
         <RelativeLayout
-            android:layout_toStartOf="@+id/CVEBotonAgregar"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_alignTop="@id/CVESeparador2"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/CVEBotonAgregar"
+            android:padding="10dp">
 
 
             <VideoView
@@ -56,18 +54,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="254dp"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="35dp"
-                android:visibility="visible" />
+                android:layout_marginTop="35dp" />
+
+
+            <RelativeLayout
+                android:id="@+id/CVETapon"
+                android:layout_width="match_parent"
+                android:layout_height="254dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/tapon"
+
+                />
+
+            <ProgressBar
+                android:id="@+id/CVEProgress"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/black">
+
+            </ProgressBar>
 
         </RelativeLayout>
-
 
 
         <Button
             android:id="@+id/CVEBotonAgregar"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"
@@ -81,30 +96,30 @@
 
     <View
         android:id="@+id/CVESeparador2"
-        android:layout_below="@id/CVEParent2"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginBottom="10dp"
+        android:layout_below="@id/CVEParent2"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/background_edittext"/>
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/background_edittext" />
 
     <TextView
         android:id="@+id/CVET2"
         style="@style/viewParent.headerText.homeCardContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/CVESeparador2"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
-        android:textAlignment="center"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
-        android:layout_below="@+id/CVESeparador2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:text="Isometrico"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
 
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -73,10 +74,13 @@ public class fragment_ejercicio_seleccionado extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     Exercises exercises;
     RecyclerView recyclerView;
+
+
     @Override
-public void onViewCreated(View view,Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
 
         ImageView imagen = view.findViewById(R.id.botonback4);
         ImageView ImgMusculo = view.findViewById(R.id.Musculatura1);
@@ -88,49 +92,49 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         int ID = args.getInt("ID");
         String musculo = args.getString("Musculo");
 
-        Log.d("idchikito", ""+id);
-        Log.d("IDGRANDOTE", ""+ID);
-        Log.d("Musculo recibido",musculo);
+        Log.d("idchikito", "" + id);
+        Log.d("IDGRANDOTE", "" + ID);
+        Log.d("Musculo recibido", musculo);
 
         HashMap<String, Integer> Tren = new HashMap<>();
-        Tren.put( "Hombro",1);
-        Tren.put( "Bicep",2);
-        Tren.put( "Pecho",3);
-        Tren.put( "Abs",4);
-        Tren.put( "Oblicuos",5);
-        Tren.put( "Antebrazo",6);
-        Tren.put( "Cuadriceps",7);
-        Tren.put( "Trapecios",8);
-        Tren.put( "Dorsal",9);
-        Tren.put( "Triceps",10);
-        Tren.put( "Espalda",11);
-        Tren.put( "Gluteo",13);
-        Tren.put( "Femoral",14);
-        Tren.put("Pantorrilla",15);
-        Tren.put("Cardio",16);
+        Tren.put("Hombro", 1);
+        Tren.put("Bicep", 2);
+        Tren.put("Pecho", 3);
+        Tren.put("Abs", 4);
+        Tren.put("Oblicuos", 5);
+        Tren.put("Antebrazo", 6);
+        Tren.put("Cuadriceps", 7);
+        Tren.put("Trapecios", 8);
+        Tren.put("Dorsal", 9);
+        Tren.put("Triceps", 10);
+        Tren.put("Espalda", 11);
+        Tren.put("Gluteo", 13);
+        Tren.put("Femoral", 14);
+        Tren.put("Pantorrilla", 15);
+        Tren.put("Cardio", 16);
 
         int Musculo = Tren.get(musculo);
 
 
         TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
 
-        Drawable drawable = imagenes.getDrawable(ID-1);
+        Drawable drawable = imagenes.getDrawable(ID - 1);
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) ImgMusculo.getLayoutParams();
 //        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
         ImgMusculo.setLayoutParams(params);
         ImgMusculo.setImageDrawable(drawable);
         imagenes.recycle();
 
-        Log.d("Musculo", ""+Musculo);
+        Log.d("Musculo", "" + Musculo);
 
-        recyclerView=view.findViewById(R.id.RecyclerViewParecido);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+        recyclerView = view.findViewById(R.id.RecyclerViewParecido);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        EjercicioParecidoAdaptador ejercicioParecidoAdaptador = new EjercicioParecidoAdaptador(dbQuery.EjerciciosParecidos(Musculo,id));
+        EjercicioParecidoAdaptador ejercicioParecidoAdaptador = new EjercicioParecidoAdaptador(dbQuery.EjerciciosParecidos(Musculo, id));
         recyclerView.setAdapter(ejercicioParecidoAdaptador);
 
         exercises = dbQuery.EjerciciosVER(id);
-        TextView Titulo,PreparacionD,EjecucionD,DetallesD;
+        TextView Titulo, PreparacionD, EjecucionD, DetallesD;
         Titulo = view.findViewById(R.id.NombreEjercicio);
         PreparacionD = view.findViewById(R.id.PreparacionData);
         EjecucionD = view.findViewById(R.id.EjecucionData);
@@ -144,6 +148,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         DetallesD.setText(exercises.getDetails());
 
 
+        RelativeLayout tapon = view.findViewById(R.id.esTapon);;
 
         String url = "https://francoaldrete.com/GymBud/Ejercicios/" + id + ".mp4";
         ImagenEjercicio.setVideoPath(url);
@@ -151,8 +156,11 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         ImagenEjercicio.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                mp.setVolume(0f,0f);
+                ImagenEjercicio.start();
+                mp.setVolume(0f, 0f);
+                tapon.setVisibility(View.GONE);
             }
+
         });
 
         ImagenEjercicio.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -163,7 +171,6 @@ public void onViewCreated(View view,Bundle savedInstanceState){
             }
         });
 
-        ImagenEjercicio.start();
 
 
         Stats.setOnClickListener(new View.OnClickListener() {
@@ -172,9 +179,9 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
-                args.putInt("id",id);
-                args.putInt("ID",ID);
-                args.putString("Musculo",musculo);
+                args.putInt("id", id);
+                args.putInt("ID", ID);
+                args.putString("Musculo", musculo);
                 fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
@@ -188,9 +195,9 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 Fragment fragment = new fragment_ejercicio_seleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
-                args.putInt("id",id);
-                args.putInt("ID",ID);
-                args.putString("Musculo",musculo);
+                args.putInt("id", id);
+                args.putInt("ID", ID);
+                args.putString("Musculo", musculo);
                 fragment.setArguments(args);
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
@@ -204,9 +211,9 @@ public void onViewCreated(View view,Bundle savedInstanceState){
                 Fragment fragment = new GrupoSeleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
-                args.putInt("id",id);
-                args.putInt("ID",ID);
-                args.putString("nombre_musculo",musculo);
+                args.putInt("id", id);
+                args.putInt("ID", ID);
+                args.putString("nombre_musculo", musculo);
                 fragment.setArguments(args);
                 transaction.setCustomAnimations(R.anim.pop_in, R.anim.pop_out);
                 transaction.replace(R.id.navFragmentContainer, fragment);
@@ -216,6 +223,7 @@ public void onViewCreated(View view,Bundle savedInstanceState){
         });
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

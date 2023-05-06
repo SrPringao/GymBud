@@ -1,0 +1,39 @@
+{
+  "JsonPreguntasFeedback": [
+    {
+      "NumPregunta": 1,
+      "pregunta": "¿Como sentiste la carga del entrenamiento ?",
+      "Respuesta1": "Pesada",
+      "opcion1": 11,
+      "Respuesta2": "Equilibrada",
+      "opcion2": 11,
+      "Respuesta3": "Ligera",
+      "opcion3": 0,
+      "Respuesta4": "",
+      "opcion4": 0
+    },{
+      "NumPregunta": 2,
+      "pregunta": "¿Como fue tu descanso de el dia de ayer?",
+      "Respuesta1": "6-8 horas",
+      "opcion1": 1,
+      "Respuesta2": "4-6 horas",
+      "opcion2": 13,
+      "Respuesta3": "menos de 4 horas",
+      "opcion3": 0,
+      "Respuesta4": "",
+      "opcion4": 0
+    },
+    {
+      "NumPregunta": 3,
+      "pregunta": "¿Hace cuanto tiempo fue tu ultima comida?",
+      "Respuesta1": "1-2 horas",
+      "opcion1": 1,
+      "Respuesta2": "2-3 horas",
+      "opcion2": 1,
+      "Respuesta3": "3-4 horas",
+      "opcion3": 0,
+      "Respuesta4": "4 horas o mas",
+      "opcion4": 0
+    }
+  ]
+}

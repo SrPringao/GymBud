@@ -7,9 +7,8 @@
     android:padding="20dp"
     tools:context=".Modulos.CreacionDeRutinas.RutinasAutomaticas.Encuesta">
 
-
     <ImageView
-        android:id="@+id/EncuestaBack"
+        android:id="@+id/EfeButtonBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -27,55 +26,55 @@
 
 
         <TextView
-            android:id="@+id/Pregunta"
+            android:id="@+id/EFePregunta"
             style="@style/viewParent.headerText.HomeCardTitle"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:text="Pregunta"
+            android:text="EFePregunta"
             android:textAlignment="center" />
 
         <RadioButton
-            android:id="@+id/Respuesta1"
+            android:id="@+id/EFeRespuesta1"
             style="@style/viewParent.headerText.homeCardContent"
-            android:layout_below="@id/Pregunta"
+            android:layout_below="@id/EFePregunta"
             android:fontFamily="@font/lato"
             android:text="Respuesta 1"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/Respuesta2"
+            android:id="@+id/EFeRespuesta2"
             style="@style/viewParent.headerText.homeCardContent"
-            android:layout_below="@id/Respuesta1"
+            android:layout_below="@id/EFeRespuesta1"
             android:fontFamily="@font/lato"
             android:text="Respuesta 2"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/Respuesta3"
+            android:id="@+id/EFeRespuesta3"
             style="@style/viewParent.headerText.homeCardContent"
-            android:layout_below="@id/Respuesta2"
+            android:layout_below="@id/EFeRespuesta2"
             android:fontFamily="@font/lato"
             android:text="Respuesta 3"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/Respuesta4"
+            android:id="@+id/EFeRespuesta4"
             style="@style/viewParent.headerText.homeCardContent"
-            android:layout_below="@id/Respuesta3"
+            android:layout_below="@id/EFeRespuesta3"
             android:fontFamily="@font/lato"
             android:text="Respuesta 4"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/Acepto"
+            android:id="@+id/EFeAcepto"
             style="@style/viewParent.headerText.homeCardContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/Respuesta4"
+            android:layout_below="@id/EFeRespuesta4"
             android:layout_centerHorizontal="true"
 
             android:layout_marginTop="10dp"

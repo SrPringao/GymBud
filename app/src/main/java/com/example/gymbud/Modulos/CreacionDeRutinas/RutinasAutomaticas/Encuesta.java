@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +92,7 @@ public class Encuesta extends Fragment {
     TextView Pregunta1;
     RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
     Button Confirmado;
+
     int i=1;
     int pos = 0;
     int[] TiempoxDia;
@@ -105,6 +106,24 @@ public class Encuesta extends Fragment {
         Respuesta3 = view.findViewById(R.id.Respuesta3);
         Respuesta4 = view.findViewById(R.id.Respuesta4);
         Confirmado = view.findViewById(R.id.Acepto);
+
+
+        ImageView BotonBack = view.findViewById(R.id.EncuestaBack);
+        BotonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment firstFragment = new Rutinas();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+
+        
+
         if(i==57) {
             i=58;
         }
@@ -112,6 +131,7 @@ public class Encuesta extends Fragment {
             i= 69;
         }
         datos(i,Resultadosinprocesar);
+
 
         Respuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
