@@ -1,6 +1,5 @@
 package com.example.gymbud;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +11,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Adaptadores.JsonFeedBack;
-import com.example.gymbud.Adaptadores.JsonPreguntas;
-import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -150,6 +146,7 @@ public class EncuestaFeedback extends Fragment {
         });
 
         Siguiente.setOnClickListener(new View.OnClickListener() {
+
             int i = 0;
             int[] respuestas = new int[3];
             @Override
@@ -169,11 +166,12 @@ public class EncuestaFeedback extends Fragment {
                 }
                 if(i==2){
                     Log.d("NumItera","Si entre");
-                    Fragment firstFragment = new VerRutinas();
+                    Fragment firstFragment = new FeedbackEncuesta();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Datos", respuestas);
+                    bundle.putInt("dia", newDayOfWeek);
                     firstFragment.setArguments(bundle);
                     transaction.replace(R.id.navFragmentContainer, firstFragment);
                     transaction.addToBackStack(null);
@@ -184,6 +182,10 @@ public class EncuestaFeedback extends Fragment {
                 i++;
                 datos(i);
 
+                Respuesta2.setChecked(false);
+                Respuesta1.setChecked(false);
+                Respuesta4.setChecked(false);
+                Respuesta3.setChecked(false);
             }
         });
     }

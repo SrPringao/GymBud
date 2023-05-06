@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/backgrounblack"
+    tools:context=".FeedbackEncuesta">
+
+    <ImageView
+        android:id="@+id/FBotonback"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_flechanegrodorado" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:fontFamily="@font/lato"
+        android:paddingTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/FBotonback"
+        android:text="Recomendaciones"
+        android:textColor="@color/bottomNavigationTintColor"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:background="@drawable/backgroundcornerinverted"
+        android:padding="30dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/Feed1"
+                android:src="@drawable/ic_alberca2"
+                android:layout_width="150dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_height="150dp"
+                />
+
+            <ImageView
+                android:src="@drawable/ic_box2"
+                android:visibility="visible"
+                android:id="@+id/Feed2"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:src="@drawable/ic_masaje2"
+            android:visibility="visible"
+            android:id="@+id/Feed3"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

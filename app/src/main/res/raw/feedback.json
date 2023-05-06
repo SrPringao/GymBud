@@ -18,10 +18,10 @@
     {
       "NumPregunta": 3,
       "pregunta": "¿Hace cuanto tiempo fue tu ultima comida?",
-      "Respuesta1": "1-2 horas",
-      "Respuesta2": "2-3 horas",
-      "Respuesta3": "3-4 horas",
-      "Respuesta4": "4 horas o mas"
+      "Respuesta1": "30 minutos",
+      "Respuesta2": "1-4 horas",
+      "Respuesta3": "6 horas",
+      "Respuesta4": "7+ horas"
     }
   ]
 }
