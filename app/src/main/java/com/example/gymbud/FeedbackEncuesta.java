@@ -68,6 +68,8 @@ public class FeedbackEncuesta extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ImageView img = (ImageView) getView().findViewById(R.id.FBotonback);
+        int[] Datos ;
+        Datos = getArguments().getIntArray("Datos");
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
