@@ -47,7 +47,6 @@
     </Spinner>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_above="@+id/VRTiempoEstimado"
         android:id="@+id/VRRecycler"
         android:layout_marginBottom="10dp"
         android:clipToPadding="false"
@@ -58,19 +57,41 @@
         android:paddingVertical="20dp"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
+        android:layout_above="@id/VRTBotones"
         />
 
-    <include
-        android:id="@+id/VRTiempoEstimado"
-        android:layout_alignParentBottom="true"
-        layout="@layout/card_tiempoestimado2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/VRTBotones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        />
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
+
+        <Button
+            android:id="@+id/VRTFeedbackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/backgroundcornerinverted"
+            android:padding="10dp"
+            android:text="¿ Como sentiste\n tu entrenaminento  ?"
+            android:textColor="@color/colorIdentidad5"
+            android:visibility="visible" />
+
+
+        <include
+            android:id="@+id/VRTiempoEstimado"
+            layout="@layout/card_tiempoestimado2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
