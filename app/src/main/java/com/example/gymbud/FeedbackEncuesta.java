@@ -1,5 +1,6 @@
 package com.example.gymbud;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
-
-import java.time.DayOfWeek;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,8 +67,9 @@ public class FeedbackEncuesta extends Fragment {
         return inflater.inflate(R.layout.fragment_feedback_encuesta, container, false);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        ImageView img = (ImageView) getView().findViewById(R.id.FBotonback);
+        ImageView img = view.findViewById(R.id.FBotonback);
         int[] Datos ;
         Datos = getArguments().getIntArray("Datos");
         int Dia = getArguments().getInt("dia");
@@ -93,9 +93,9 @@ public class FeedbackEncuesta extends Fragment {
 
         ImageView imagen1 = (ImageView) getView().findViewById(R.id.Feed1);
         if(Datos[0]==1 || Datos[0]==2){//Peso bien
-            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.ic_pesobien));
         }else{//Peso subir
-            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.ic_pesobien));
         }
         imagen1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,9 +129,9 @@ public class FeedbackEncuesta extends Fragment {
         {
             imagen2.setVisibility(View.GONE);
         }else if(Datos[1]==2) {//dormir mejor
-            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.ic_dormirmas));
         }else{//Dormir mejor plus plus
-            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.ic_dormirmasmas));
         }
         imagen2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +147,7 @@ public class FeedbackEncuesta extends Fragment {
 
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("DORMICION");
+                builder.setTitle("DESCANSO");
                 builder.setMessage(Mensajin);
                 builder.setPositiveButton("Ok", (dialog, which) -> {
                     dialog.dismiss();
@@ -163,11 +163,11 @@ public class FeedbackEncuesta extends Fragment {
         {
             imagen3.setVisibility(View.GONE);
         } else if (Datos[2]==1){//Comiste tempra
-            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.ic_comertempra));
         }else if(Datos[2]==3){//Colacion
-            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.ic_colacion));
         }else{//Come algo destripon
-            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.ic_destripon));
         }
         imagen3.setOnClickListener(new View.OnClickListener() {
             @Override
