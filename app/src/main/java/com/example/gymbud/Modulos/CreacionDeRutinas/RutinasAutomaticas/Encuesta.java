@@ -105,7 +105,11 @@ public class Encuesta extends Fragment {
         Respuesta3 = view.findViewById(R.id.Respuesta3);
         Respuesta4 = view.findViewById(R.id.Respuesta4);
         Confirmado = view.findViewById(R.id.Acepto);
+        if(i==57) {
+            i=58;
+        }
         datos(i);
+
         Respuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,7 +246,9 @@ public class Encuesta extends Fragment {
             @Override
             public void onClick(View v) {
                 switch (i) {
-
+                    case 57:
+                        pos=12;
+                        break;
                     case 25:
                         pos = 4;
                         break;
@@ -343,6 +349,9 @@ public class Encuesta extends Fragment {
                 resp2=false;
                 resp3=false;
                 resp4=false;
+                if(i==57) {
+                    i=58;
+                }
                 datos(i);
                 Log.d("I", ""+i);
                 for(int i = 0; i< Resultadosinprocesar.length; i++) {
@@ -376,10 +385,10 @@ public class Encuesta extends Fragment {
             JsonObject jsonObject = elemento.getAsJsonObject();
             JsonArray jsonArray = jsonObject.getAsJsonArray("JsonPreguntas");
 
-
             for (int i = 0; i < jsonArray.size(); i++) {
                 jsonObject = jsonArray.get(i).getAsJsonObject();
                 int id = jsonObject.get("NumPregunta").getAsInt();
+
                 if (Pregunta == id) {
 
 
@@ -787,7 +796,7 @@ public class Encuesta extends Fragment {
                         Query += " AND Tool = " + ResultadosSinProcesar[15];
                     }
                     if (ResultadosSinProcesar[7] == 1) {
-                        Query += " AND Difficulty = " + ResultadosSinProcesar[7];
+                        Query += " AND Difficulty = " + ResultadosSinProcesar[7] + "OR Difficulty = 2";
                         Query +=" ORDER BY RANDOM() ";
                         //Query += " ORDER BY Difficulty ASC ";
                     }else{
@@ -831,7 +840,6 @@ public class Encuesta extends Fragment {
                 listaIds.clear();
     }
     private void Regresamos(){
-        Fragment firstFragment = new Rutinas();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
     }
