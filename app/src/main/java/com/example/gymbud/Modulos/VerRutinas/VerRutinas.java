@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymbud.Adaptadores.VerRutinaDelDiaAdapter;
 import com.example.gymbud.Db.DbQuery;
+import com.example.gymbud.EncuestaFeedback;
 import com.example.gymbud.Modulos.InfoPersonal.FragmentInfoPersonal;
 import com.example.gymbud.R;
 
@@ -175,7 +176,18 @@ public class VerRutinas extends Fragment {
         botonFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
+                Fragment firstFragment = new EncuestaFeedback();
+                Bundle bundle = new Bundle();
+                bundle.putInt("dia", newDayOfWeek);
+                firstFragment.setArguments(bundle);
+                assert getFragmentManager() != null;
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
+
+                transaction.replace(R.id.navFragmentContainer, firstFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
         });
