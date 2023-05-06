@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Modulos.VerRutinas.VerRutinas;
 
+import java.time.DayOfWeek;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FeedbackEncuesta#newInstance} factory method to
@@ -70,10 +72,15 @@ public class FeedbackEncuesta extends Fragment {
         ImageView img = (ImageView) getView().findViewById(R.id.FBotonback);
         int[] Datos ;
         Datos = getArguments().getIntArray("Datos");
+        int Dia = getArguments().getInt("dia");
+
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment firstFragment = new VerRutinas();
+                Bundle bundle = new Bundle();
+                bundle.putInt("dia", Dia);
+                firstFragment.setArguments(bundle);
                 assert getFragmentManager() != null;
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -85,12 +92,29 @@ public class FeedbackEncuesta extends Fragment {
         });
 
         ImageView imagen1 = (ImageView) getView().findViewById(R.id.Feed1);
+        if(Datos[0]==1 || Datos[0]==2){//Peso bien
+            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+        }else{//Peso subir
+            imagen1.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+        }
         imagen1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Mensajin = "";
+                switch (Datos[0]){
+                    case 1:
+                        Mensajin = "Te recomendamos usar una carga que al terminar estes al  borde del fallo MUSCULAR o al fallo total";
+                        break;
+                        case 2:
+                            Mensajin = "El peso que usaste es el adecuado procura acercarte al fallo muscular";
+                            break;
+                    case 3:
+                        Mensajin = "Te recomendamos subir las cargas hasta terminar al borde del fallo MUSCULAR o al fallo total";
+                        break;
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Recomendacion para mejorar tu experiencia durante el entrenamiento");
-                builder.setMessage("Abubububuu");
+                builder.setTitle("RECOMENDACION");
+                builder.setMessage(Mensajin);
                 builder.setPositiveButton("Ok", (dialog, which) -> {
                      dialog.dismiss();
 
@@ -101,12 +125,30 @@ public class FeedbackEncuesta extends Fragment {
         });
 
         ImageView imagen2 = (ImageView) getView().findViewById(R.id.Feed2);
+        if(Datos[1]==1)
+        {
+            imagen2.setVisibility(View.GONE);
+        }else if(Datos[1]==2) {//dormir mejor
+            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+        }else{//Dormir mejor plus plus
+            imagen2.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+        }
         imagen2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String Mensajin = "";
+                switch (Datos[1]){
+                    //Preguntas sobre como fue tu descanso el dia de ayer
+                    case 2:
+                    case 3:
+                        Mensajin = "Te recomendamos que duermas 8 horas diarias para que tu cuerpo se recupere de manera optima";
+                        break;
+
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Recomendacion para mejorar tu experiencia durante el entrenamiento");
-                builder.setMessage("Abubububuu");
+                builder.setTitle("DORMICION");
+                builder.setMessage(Mensajin);
                 builder.setPositiveButton("Ok", (dialog, which) -> {
                     dialog.dismiss();
 
@@ -117,12 +159,40 @@ public class FeedbackEncuesta extends Fragment {
         });
 
         ImageView imagen3 = (ImageView) getView().findViewById(R.id.Feed3);
+        if(Datos[2]==2)
+        {
+            imagen3.setVisibility(View.GONE);
+        } else if (Datos[2]==1){//Comiste tempra
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado2));
+        }else if(Datos[2]==3){//Colacion
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+        }else{//Come algo destripon
+            imagen3.setImageDrawable(getResources().getDrawable(R.drawable.otisparado));
+        }
         imagen3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Recomendacion para mejorar tu experiencia durante el entrenamiento");
-                builder.setMessage("Abubububuu");
+
+                String Mensajin = "";
+                switch (Datos[1]){
+                    //Preguntas sobre tiempos desde tu ultima comida hasta el entrenamiento
+                    case 1:
+                        //30 minutos
+                        Mensajin = "Es recomendable que esperes almenos hora y media antes de entrenar para evitar malestares estomacales";
+                        break;
+                    case 3:
+                        //6 horas
+                        Mensajin = "Es recomendable que consumas alguna colacion antes de entrenar para evitar setirte debil";
+                        break;
+                    case 4:
+                        //7+ horas
+                        Mensajin = "Es recomendable que consumas tus alimentos en las horas correctas para evitar sentirte debil y tener mejores resultados";
+                        break;
+
+                }
+                builder.setTitle("ALIMENTACION");
+                builder.setMessage(Mensajin);
                 builder.setPositiveButton("Ok", (dialog, which) -> {
                     dialog.dismiss();
 

@@ -171,6 +171,7 @@ public class EncuestaFeedback extends Fragment {
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Datos", respuestas);
+                    bundle.putInt("dia", newDayOfWeek);
                     firstFragment.setArguments(bundle);
                     transaction.replace(R.id.navFragmentContainer, firstFragment);
                     transaction.addToBackStack(null);
