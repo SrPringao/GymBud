@@ -108,7 +108,10 @@ public class Encuesta extends Fragment {
         if(i==57) {
             i=58;
         }
-        datos(i);
+        if(i == 58 && Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1){
+            i= 69;
+        }
+        datos(i,Resultadosinprocesar);
 
         Respuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +252,12 @@ public class Encuesta extends Fragment {
                     case 57:
                         pos=12;
                         break;
+                    case 58:
+                        if(Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1) {
+                            pos = 15;
+                            Resultadosinprocesar[14]=2;
+                        }
+                        break;
                     case 25:
                         pos = 4;
                         break;
@@ -259,7 +268,7 @@ public class Encuesta extends Fragment {
                         }  if (Respuesta2.isChecked()) {
                         MusculoLesionado[1] = 15;
                     } if(Respuesta3.isChecked()) {
-                        MusculoLesionado[2] = 16;
+                        MusculoLesionado[2] = 14;
                     }
                         break;
                     case 28:
@@ -352,7 +361,10 @@ public class Encuesta extends Fragment {
                 if(i==57) {
                     i=58;
                 }
-                datos(i);
+                if(i == 58 && Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1){
+                    i= 69;
+                }
+                datos(i,Resultadosinprocesar);
                 Log.d("I", ""+i);
                 for(int i = 0; i< Resultadosinprocesar.length; i++) {
                     int n = i+1;
@@ -377,14 +389,17 @@ public class Encuesta extends Fragment {
         });
     }
     private int opcion1, opcion2, opcion3, opcion4;
-    public void datos(int Pregunta) {
+    public void datos(int Pregunta,int sinprocesar[]) {
         try {
             String contenidoJson = JsonPreguntas.leerJson(getContext());
             JsonParser parser = new JsonParser();
             JsonElement elemento = parser.parse(contenidoJson);
             JsonObject jsonObject = elemento.getAsJsonObject();
             JsonArray jsonArray = jsonObject.getAsJsonArray("JsonPreguntas");
-
+            Respuesta1.setVisibility(View.VISIBLE);
+            Respuesta2.setVisibility(View.VISIBLE);
+            Respuesta3.setVisibility(View.VISIBLE);
+            Respuesta4.setVisibility(View.VISIBLE);
             for (int i = 0; i < jsonArray.size(); i++) {
                 jsonObject = jsonArray.get(i).getAsJsonObject();
                 int id = jsonObject.get("NumPregunta").getAsInt();
@@ -399,14 +414,23 @@ public class Encuesta extends Fragment {
                     }
 
                     String respuesta1 = jsonObject.get("Respuesta1").getAsString();
-                    Respuesta1.setText(respuesta1);
-                    opcion1 = jsonObject.get("opcion1").getAsInt();
+                    if((sinprocesar[3]==1 && sinprocesar[2]==1)&& Pregunta==26){
+                        Respuesta1.setText("");
+                        Respuesta1.setVisibility(View.INVISIBLE);
+                    }else {
+                        Respuesta1.setText(respuesta1);
+                        opcion1 = jsonObject.get("opcion1").getAsInt();
+                    }
 
 
                     String respuesta2 = jsonObject.get("Respuesta2").getAsString();
-                    Respuesta2.setText(respuesta2);
-                    opcion2 = jsonObject.get("opcion2").getAsInt();
-
+                    if((sinprocesar[3]==2 && sinprocesar[2]==1)&& Pregunta==26){
+                        Respuesta2.setText("");
+                        Respuesta2.setVisibility(View.INVISIBLE);
+                    }else {
+                        Respuesta2.setText(respuesta2);
+                        opcion2 = jsonObject.get("opcion2").getAsInt();
+                    }
 
                     String respuesta3 = jsonObject.get("Respuesta3").getAsString();
                     if(respuesta3.equals("")){
@@ -796,7 +820,7 @@ public class Encuesta extends Fragment {
                         Query += " AND Tool = " + ResultadosSinProcesar[15];
                     }
                     if (ResultadosSinProcesar[7] == 1) {
-                        Query += " AND Difficulty = " + ResultadosSinProcesar[7] + "OR Difficulty = 2";
+                        Query += " AND Difficulty = " + ResultadosSinProcesar[7] + " OR Difficulty = 2";
                         Query +=" ORDER BY RANDOM() ";
                         //Query += " ORDER BY Difficulty ASC ";
                     }else{
