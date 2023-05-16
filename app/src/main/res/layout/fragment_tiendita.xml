@@ -24,14 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/TiButtonBack"
+        android:text="Seleccion de ejercicios"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato"
-        android:text="Seleccion de ejercicios"
         android:textAlignment="center"
         android:textColor="@color/bottomNavigationTintColor"
         android:textSize="30sp"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        >
 
     </TextView>
 
@@ -93,7 +94,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="Crear rutina"
-        android:textColor="@color/bottomNavigationTintColor"
+        android:textColor="@color/white"
         android:textSize="20dp" />
 
 </RelativeLayout>

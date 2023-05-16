@@ -78,10 +78,8 @@
             android:background="@drawable/backgroundcornerinverted"
             android:padding="10dp"
             android:text="¿ Como sentiste\n tu entrenaminento  ?"
-            android:textColor="@color/colorIdentidad5"
+            android:textColor="@color/white"
             android:visibility="visible" />
-
-
         <include
             android:id="@+id/VRTiempoEstimado"
             layout="@layout/card_tiempoestimado2"
