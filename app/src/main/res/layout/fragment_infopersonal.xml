@@ -1,44 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/parent.contentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Modulos.InfoPersonal.FragmentInfoPersonal"
+
     android:background="@drawable/backgrounblack"
-
-    xmlns:gl="http://schemas.android.com/apk/res-auto"
-    style="@style/parent.contentLayout">
-
+    tools:context=".Modulos.InfoPersonal.FragmentInfoPersonal">
 
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="55dp"
         app:layout_constraintVertical_bias="0.0">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:fontFamily="@font/lato"
-                android:paddingTop="5dp"
-                android:text="Informacion Personal"
-                android:textColor="@color/bottomNavigationTintColor"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/lato"
+                    android:paddingTop="5dp"
+                    android:text="Informacion Personal"
+                    android:textColor="@color/bottomNavigationTintColor"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/ipBotonInfo"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/info_icon_grey" />
+            </RelativeLayout>
 
 
             <androidx.cardview.widget.CardView
@@ -60,6 +77,12 @@
 
                     gl:start_color="@color/colorIdentidad5">
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/gblogogodborde" />
 
                     <TextView
                         android:id="@+id/Pregunta"
@@ -116,10 +139,10 @@
 
                     <TextView
                         android:id="@+id/textViewSub2Title"
-                        android:layout_marginBottom="10dp"
-                        android:textAlignment="center"
                         style="@style/viewParent.headerText.HomeCardTitle"
-                        android:text="Rutina de hoy" />
+                        android:layout_marginBottom="10dp"
+                        android:text="Rutina de hoy"
+                        android:textAlignment="center" />
 
                     <View
                         android:id="@+id/separadorGM"
@@ -133,14 +156,14 @@
                         android:layout_height="143dp"
                         android:layout_below="@id/textViewSub2Title"
                         android:layout_toStartOf="@id/separadorGM"
-                        android:src="@drawable/icmg_bicep"/>
+                        android:src="@drawable/icmg_bicep" />
 
                     <ImageView
                         android:id="@+id/imagenGM2"
                         android:layout_width="129dp"
                         android:layout_height="143dp"
-                        android:layout_toEndOf="@+id/separadorGM"
                         android:layout_below="@id/textViewSub2Title"
+                        android:layout_toEndOf="@+id/separadorGM"
                         android:src="@drawable/icmg_abs" />
 
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
@@ -184,30 +207,30 @@
 
                     <ProgressBar
                         android:id="@+id/progress"
-                        android:min="-20"
-                        android:max="100"
-                        android:progressTint="@color/black"
-                        android:progressBackgroundTint="@color/white"
-                        android:progressDrawable="@drawable/progressback"
                         style="@style/CustomProgressBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/Texto1Peso"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="50dp"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="10dp"
+                        android:max="100"
+                        android:min="-20"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressDrawable="@drawable/progressback"
+                        android:progressTint="@color/black">
 
 
                     </ProgressBar>
 
                     <TextView
                         android:id="@+id/Tvporcentaje1"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="wrap_content"
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/progress"
-                        android:textAlignment="center"
-                        android:layout_height="wrap_content">
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center">
 
                     </TextView>
 
@@ -258,20 +281,18 @@
 
                     <ProgressBar
                         android:id="@+id/progress2"
-                        android:progressTint="@color/black"
-                        android:progressBackgroundTint="@color/white"
-                        android:progressDrawable="@drawable/progressback"
                         style="@style/CustomProgressBar"
-                        android:max="100"
-                        android:min="-50"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/dias"
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="50dp"
                         android:layout_marginBottom="10dp"
-                        >
-
+                        android:max="100"
+                        android:min="-50"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressDrawable="@drawable/progressback"
+                        android:progressTint="@color/black">
 
 
                     </ProgressBar>
@@ -279,12 +300,12 @@
 
                     <TextView
                         android:id="@+id/Tvporcentaje2"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="wrap_content"
                         style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/progress2"
-                        android:textAlignment="center"
-                        android:layout_height="wrap_content">
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center">
 
                     </TextView>
 
@@ -369,8 +390,6 @@
                 </net.colindodd.gradientlayout.GradientRelativeLayout>
 
 
-
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -399,11 +418,11 @@
 
                     <ImageView
                         android:id="@+id/imglogout"
-                        android:layout_below="@+id/textViewSub7Title"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_width="69dp"
                         android:layout_height="61dp"
                         android:layout_above="@+id/textViewSub8Title"
+                        android:layout_below="@+id/textViewSub7Title"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_logout" />
 
@@ -414,7 +433,6 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

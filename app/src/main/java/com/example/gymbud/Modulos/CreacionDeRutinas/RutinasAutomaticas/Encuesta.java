@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -77,8 +76,6 @@ public class Encuesta extends Fragment {
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,17 +85,18 @@ public class Encuesta extends Fragment {
     }
 
     public int[] Resultadosinprocesar = new int[20];
-    boolean resp1=false, resp2=false, resp3=false, resp4=false;
+    boolean resp1 = false, resp2 = false, resp3 = false, resp4 = false;
     TextView Pregunta1;
-    RadioButton  Respuesta1, Respuesta2, Respuesta3, Respuesta4;
+    RadioButton Respuesta1, Respuesta2, Respuesta3, Respuesta4;
     Button Confirmado;
 
-    int i=1;
+    int i = 1;
     int pos = 0;
     int[] TiempoxDia;
-    int[] MusculoLesionado=new int[4];
+    int[] MusculoLesionado = new int[4];
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Resultadosinprocesar = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0};
+        Resultadosinprocesar = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         super.onViewCreated(view, savedInstanceState);
         Pregunta1 = view.findViewById(R.id.Pregunta);
         Respuesta1 = view.findViewById(R.id.Respuesta1);
@@ -122,34 +120,32 @@ public class Encuesta extends Fragment {
         });
 
 
-        
-
-        if(i==57) {
-            i=58;
+        if (i == 57) {
+            i = 58;
         }
-        if(i == 58 && Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1){
-            i= 69;
+        if (i == 58 && Resultadosinprocesar[2] == 1 && Resultadosinprocesar[3] == 1) {
+            i = 69;
         }
-        datos(i,Resultadosinprocesar);
+        datos(i, Resultadosinprocesar);
 
 
         Respuesta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(i!=27&&i!=28) {
+                if (i != 27 && i != 28) {
                     Respuesta2.setChecked(false);
                     Respuesta3.setChecked(false);
                     Respuesta4.setChecked(false);
-                    resp2=false;
-                    resp3=false;
-                    resp4=false;
+                    resp2 = false;
+                    resp3 = false;
+                    resp4 = false;
                 }
-                if(resp1==true && Respuesta1.isChecked()){
+                if (resp1 == true && Respuesta1.isChecked()) {
                     Respuesta1.setChecked(false);
-                    resp1=false;
+                    resp1 = false;
                     return;
                 }
-                resp1=true;
+                resp1 = true;
             }
         });
 //            Respuesta1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -171,20 +167,20 @@ public class Encuesta extends Fragment {
         Respuesta2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(i!=27&&i!=28) {
+                if (i != 27 && i != 28) {
                     Respuesta1.setChecked(false);
                     Respuesta3.setChecked(false);
                     Respuesta4.setChecked(false);
-                    resp1=false;
-                    resp3=false;
-                    resp4=false;
+                    resp1 = false;
+                    resp3 = false;
+                    resp4 = false;
                 }
-                if(resp2==true && Respuesta2.isChecked()){
+                if (resp2 == true && Respuesta2.isChecked()) {
                     Respuesta2.setChecked(false);
-                    resp2=false;
+                    resp2 = false;
                     return;
                 }
-                resp2=true;
+                resp2 = true;
             }
         });
 //            Respuesta2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -202,20 +198,20 @@ public class Encuesta extends Fragment {
         Respuesta3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(i!=27&&i!=28) {
+                if (i != 27 && i != 28) {
                     Respuesta2.setChecked(false);
                     Respuesta1.setChecked(false);
                     Respuesta4.setChecked(false);
-                    resp1=false;
-                    resp2=false;
-                    resp4=false;
+                    resp1 = false;
+                    resp2 = false;
+                    resp4 = false;
                 }
-                if(resp3==true && Respuesta3.isChecked()){
+                if (resp3 == true && Respuesta3.isChecked()) {
                     Respuesta3.setChecked(false);
-                    resp3=false;
+                    resp3 = false;
                     return;
                 }
-                resp3=true;
+                resp3 = true;
             }
         });
 //            Respuesta3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -233,22 +229,22 @@ public class Encuesta extends Fragment {
         Respuesta4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(i!=27&&i!=28) {
+                if (i != 27 && i != 28) {
                     Respuesta2.setChecked(false);
                     Respuesta3.setChecked(false);
                     Respuesta1.setChecked(false);
-                    resp1=false;
-                    resp2=false;
-                    resp3=false;
+                    resp1 = false;
+                    resp2 = false;
+                    resp3 = false;
                 }
-                if(resp4==true && Respuesta4.isChecked()){
+                if (resp4 == true && Respuesta4.isChecked()) {
                     Respuesta4.setChecked(false);
-                    resp4=false;
+                    resp4 = false;
                     return;
                 }
-                resp4=true;
+                resp4 = true;
             }
-                                      });
+        });
 //            Respuesta4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //                @Override
 //                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -264,18 +260,19 @@ public class Encuesta extends Fragment {
 
 
         Confirmado.setOnClickListener(new View.OnClickListener() {
-            int dias=0;
-            int l=0;
+            int dias = 0;
+            int l = 0;
+
             @Override
             public void onClick(View v) {
                 switch (i) {
                     case 57:
-                        pos=12;
+                        pos = 12;
                         break;
                     case 58:
-                        if(Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1) {
+                        if (Resultadosinprocesar[2] == 1 && Resultadosinprocesar[3] == 1) {
                             pos = 15;
-                            Resultadosinprocesar[14]=2;
+                            Resultadosinprocesar[14] = 2;
                         }
                         break;
                     case 25:
@@ -283,24 +280,29 @@ public class Encuesta extends Fragment {
                         break;
 
                     case 27:
-                        if (Respuesta1.isChecked()||Respuesta4.isChecked()) {
-                            MusculoLesionado[0]=7;
-                        }  if (Respuesta2.isChecked()) {
-                        MusculoLesionado[1] = 15;
-                    } if(Respuesta3.isChecked()) {
-                        MusculoLesionado[2] = 14;
-                    }
+                        if (Respuesta1.isChecked() || Respuesta4.isChecked()) {
+                            MusculoLesionado[0] = 7;
+                        }
+                        if (Respuesta2.isChecked()) {
+                            MusculoLesionado[1] = 15;
+                        }
+                        if (Respuesta3.isChecked()) {
+                            MusculoLesionado[2] = 14;
+                        }
                         break;
                     case 28:
                         if (Respuesta1.isChecked()) {
-                             MusculoLesionado[0]=1;
+                            MusculoLesionado[0] = 1;
 
-                        }  if (Respuesta2.isChecked()) {
+                        }
+                        if (Respuesta2.isChecked()) {
                             MusculoLesionado[1] = 3;
-                        } if(Respuesta3.isChecked()) {
+                        }
+                        if (Respuesta3.isChecked()) {
                             MusculoLesionado[2] = 2;
-                        }if(Respuesta4.isChecked()){
-                            MusculoLesionado[3]=11;
+                        }
+                        if (Respuesta4.isChecked()) {
+                            MusculoLesionado[3] = 11;
                         }
 
                     case 39:
@@ -322,7 +324,7 @@ public class Encuesta extends Fragment {
 
                     case 44:
                     case 42:
-                        int n=l+1;
+                        int n = l + 1;
 
                         Pregunta1.setText("¿Cuanto tiempo tienes para entrenar el dia " + n + "?");
                         if (Respuesta1.isChecked()) {
@@ -339,17 +341,16 @@ public class Encuesta extends Fragment {
                         break;
 
                     case 56:
-                        pos=12;
+                        pos = 12;
                         break;
 
                     case 69:
-                        pos=15;
+                        pos = 15;
                         break;
                 }
-                if (l<=dias && i==44) {
+                if (l <= dias && i == 44) {
                     Log.d("Entre", "ESTOY DENTRO");
-                }
-                else {
+                } else {
                     if (Respuesta1.isChecked()) {
                         i += opcion1;
                         Resultadosinprocesar[pos] = 1;
@@ -374,24 +375,24 @@ public class Encuesta extends Fragment {
                 Respuesta2.setChecked(false);
                 Respuesta3.setChecked(false);
                 Respuesta4.setChecked(false);
-                resp1=false;
-                resp2=false;
-                resp3=false;
-                resp4=false;
-                if(i==57) {
-                    i=58;
+                resp1 = false;
+                resp2 = false;
+                resp3 = false;
+                resp4 = false;
+                if (i == 57) {
+                    i = 58;
                 }
-                if(i == 58 && Resultadosinprocesar[2]==1 && Resultadosinprocesar[3]==1){
-                    i= 69;
+                if (i == 58 && Resultadosinprocesar[2] == 1 && Resultadosinprocesar[3] == 1) {
+                    i = 69;
                 }
-                datos(i,Resultadosinprocesar);
-                Log.d("I", ""+i);
-                for(int i = 0; i< Resultadosinprocesar.length; i++) {
-                    int n = i+1;
-                    Log.d("Resultado", "Seleccion "+ n +" "+ Resultadosinprocesar[i]);
+                datos(i, Resultadosinprocesar);
+                Log.d("I", "" + i);
+                for (int i = 0; i < Resultadosinprocesar.length; i++) {
+                    int n = i + 1;
+                    Log.d("Resultado", "Seleccion " + n + " " + Resultadosinprocesar[i]);
                 }
-                if(i==70){
-                            RutinaAuto(Resultadosinprocesar,TiempoxDia);
+                if (i == 70) {
+                    RutinaAuto(Resultadosinprocesar, TiempoxDia);
                     Bundle bundle = new Bundle();
                     bundle.putIntArray("Resultado", Resultadosinprocesar);
                     Fragment firstFragment = new Rutinas();
@@ -403,13 +404,14 @@ public class Encuesta extends Fragment {
                 }
 
 
-
             }
 
         });
     }
+
     private int opcion1, opcion2, opcion3, opcion4;
-    public void datos(int Pregunta,int sinprocesar[]) {
+
+    public void datos(int Pregunta, int sinprocesar[]) {
         try {
             String contenidoJson = JsonPreguntas.leerJson(getContext());
             JsonParser parser = new JsonParser();
@@ -428,34 +430,34 @@ public class Encuesta extends Fragment {
 
 
                     String pregunta = jsonObject.get("pregunta").getAsString();
-                    if(Pregunta==44) {
-                    }else {
+                    if (Pregunta == 44) {
+                    } else {
                         Pregunta1.setText(pregunta);
                     }
 
                     String respuesta1 = jsonObject.get("Respuesta1").getAsString();
-                    if((sinprocesar[3]==1 && sinprocesar[2]==1)&& Pregunta==26){
+                    if ((sinprocesar[3] == 1 && sinprocesar[2] == 1) && Pregunta == 26) {
                         Respuesta1.setText("");
                         Respuesta1.setVisibility(View.INVISIBLE);
-                    }else {
+                    } else {
                         Respuesta1.setText(respuesta1);
                         opcion1 = jsonObject.get("opcion1").getAsInt();
                     }
 
 
                     String respuesta2 = jsonObject.get("Respuesta2").getAsString();
-                    if((sinprocesar[3]==2 && sinprocesar[2]==1)&& Pregunta==26){
+                    if ((sinprocesar[3] == 2 && sinprocesar[2] == 1) && Pregunta == 26) {
                         Respuesta2.setText("");
                         Respuesta2.setVisibility(View.INVISIBLE);
-                    }else {
+                    } else {
                         Respuesta2.setText(respuesta2);
                         opcion2 = jsonObject.get("opcion2").getAsInt();
                     }
 
                     String respuesta3 = jsonObject.get("Respuesta3").getAsString();
-                    if(respuesta3.equals("")){
+                    if (respuesta3.equals("")) {
                         Respuesta3.setVisibility(View.INVISIBLE);
-                    }else{
+                    } else {
                         Respuesta3.setVisibility(View.VISIBLE);
                     }
                     Respuesta3.setText(respuesta3);
@@ -464,9 +466,9 @@ public class Encuesta extends Fragment {
 
                     String respuesta4 = jsonObject.get("Respuesta4").getAsString();
                     Respuesta4.setText(respuesta4);
-                    if(respuesta4.equals("")){
+                    if (respuesta4.equals("")) {
                         Respuesta4.setVisibility(View.INVISIBLE);
-                    }else{
+                    } else {
                         Respuesta4.setVisibility(View.VISIBLE);
                     }
                     opcion4 = jsonObject.get("opcion4").getAsInt();
@@ -489,7 +491,7 @@ public class Encuesta extends Fragment {
         }
     }
 
-    public void  RutinaAuto(int[] ResultadosSinProcesar,int[] TiempoxDia) {
+    public void RutinaAuto(int[] ResultadosSinProcesar, int[] TiempoxDia) {
         //Primer resultado es el sexo del usuario(1 es hombre, 2 es mujer)
         //el segundo es si padece de alguna enfermedad(1 es si, 2 es no)
         // el tercero es si la enfermedad le dificulta el entrenamiento(1 si 2 no)
@@ -519,26 +521,26 @@ public class Encuesta extends Fragment {
         DbQuery dbQuery = new DbQuery(getContext());
 
         boolean Enfermedad = false; //Esta variable es para saber si el usuario tiene alguna enfermedad que le dificulte el entrenamiento.
-        boolean EjerciciosCapaces=false; //Esta variable es para saber si se disminuyen los ejercicios que se le van a asignar o se quitar completamente.
-        boolean Lesionado=false; //Esta variable es para saber si el usuario esta lesionado y asi no asignarle ejercicios que le puedan causar mas daño.
-        int CantEjercicios=0;
+        boolean EjerciciosCapaces = false; //Esta variable es para saber si se disminuyen los ejercicios que se le van a asignar o se quitar completamente.
+        boolean Lesionado = false; //Esta variable es para saber si el usuario esta lesionado y asi no asignarle ejercicios que le puedan causar mas daño.
+        int CantEjercicios = 0;
 
 
-        int Reps=0;
-        int Series=0;
-        boolean abs=false;
+        int Reps = 0;
+        int Series = 0;
+        boolean abs = false;
 
-        HashMap<Integer,Integer> Tiempos = new HashMap<>();
-        Tiempos.put(1,6);
-        Tiempos.put(2,10);
-        Tiempos.put(3,12);
-        int Dia1=0,Dia2=0,Dia3=0,Dia4=0,Dia5=0,Dia6=0;
+        HashMap<Integer, Integer> Tiempos = new HashMap<>();
+        Tiempos.put(1, 6);
+        Tiempos.put(2, 10);
+        Tiempos.put(3, 12);
+        int Dia1 = 0, Dia2 = 0, Dia3 = 0, Dia4 = 0, Dia5 = 0, Dia6 = 0;
         //acceder a la posicion 9 del arreglo y agarrar los dias que en trena
-        if(Resultadosinprocesar[10]==1) {
+        if (Resultadosinprocesar[10] == 1) {
 
-            CantEjercicios=Tiempos.get(ResultadosSinProcesar[11]);
+            CantEjercicios = Tiempos.get(ResultadosSinProcesar[11]);
 
-        }else{
+        } else {
 
             for (int i = 1; i < TiempoxDia.length; i++) {
                 switch (i) {
@@ -570,85 +572,81 @@ public class Encuesta extends Fragment {
             }
         }
 
-        if(Resultadosinprocesar[1]==1) {
-            Enfermedad=true;
-            if (Resultadosinprocesar[2]==1){
-                EjerciciosCapaces=true;
-            }else{
-                EjerciciosCapaces=false;
+        if (Resultadosinprocesar[1] == 1) {
+            Enfermedad = true;
+            if (Resultadosinprocesar[2] == 1) {
+                EjerciciosCapaces = true;
+            } else {
+                EjerciciosCapaces = false;
             }
             //Acceder a la posicion 3 y agarrar el tren que se dificulta
         }
-        if(Resultadosinprocesar[4]==1) {
+        if (Resultadosinprocesar[4] == 1) {
             Lesionado = true;
         }
         //acceder a la posicion 7 del arreglo y agarrar la experiencia del usuario
         //acceder a la posicion 8 del arreglo y agarrar la condicion fisica del usuario
 
 
-
-        if(Resultadosinprocesar[12]==1||Resultadosinprocesar[12]==3||Resultadosinprocesar[12]==4) {
-            Series=4;
-            Reps=12;
-        }else{
-            Series=4;
-            Reps=8;
+        if (Resultadosinprocesar[12] == 1 || Resultadosinprocesar[12] == 3 || Resultadosinprocesar[12] == 4) {
+            Series = 4;
+            Reps = 12;
+        } else {
+            Series = 4;
+            Reps = 8;
         }
-        if(Resultadosinprocesar[14]==1)
-        {
-            abs=true;
+        if (Resultadosinprocesar[14] == 1) {
+            abs = true;
         }
         ArrayList<ExerciseSet> listaCompleta = new ArrayList<>();
         dbQuery.deleteRoutines();
         switch (ResultadosSinProcesar[9]) {
 
             case 1:
-                if(EjerciciosCapaces==true && Resultadosinprocesar[3]==1){
-                    listaCompleta.addAll(Dias(3,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,false,CantEjercicios,Dia1,2,Series,Reps));
-                    listaCompleta.addAll(Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,false,CantEjercicios,Dia1,2,Series,Reps));
-                    AgregarRutina("Lunes",1,listaCompleta);
+                if (EjerciciosCapaces == true && Resultadosinprocesar[3] == 1) {
+                    listaCompleta.addAll(Dias(3, 7, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
+                    listaCompleta.addAll(Dias(3, 13, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
+                    AgregarRutina("Lunes", 1, listaCompleta);
                     listaCompleta.clear();
                     //Dia 2
-                    listaCompleta.addAll(Dias(3,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,false,CantEjercicios,Dia2,2,Series,Reps));
-                    if(abs==true)
-                    {
-                        listaCompleta.addAll(Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                    listaCompleta.addAll(Dias(3, 14, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia2, 2, Series, Reps));
+                    if (abs == true) {
+                        listaCompleta.addAll(Dias(3, 4, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia2, 2, Series, Reps));
                     }
-                    AgregarRutina("Miercoles",3,listaCompleta);
+                    AgregarRutina("Miercoles", 3, listaCompleta);
                     listaCompleta.clear();
                     //Dia 3
-                    listaCompleta.addAll(Dias(3,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,false,CantEjercicios,Dia3,2,Series,Reps));
-                    listaCompleta.addAll(Dias(3,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,false,CantEjercicios,Dia3,2,Series,Reps));
-                    AgregarRutina("Viernes",5,listaCompleta);
+                    listaCompleta.addAll(Dias(3, 15, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia3, 2, Series, Reps));
+                    listaCompleta.addAll(Dias(3, 13, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia3, 2, Series, Reps));
+                    AgregarRutina("Viernes", 5, listaCompleta);
                     listaCompleta.clear();
                     break;
                 }
                 //Dia 1
-                listaCompleta.addAll(Dias(3,3,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
-                listaCompleta.addAll(Dias(3,1,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
-                listaCompleta.addAll(Dias(3,10,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia1,1,Series,Reps));
-                AgregarRutina("Lunes",1,listaCompleta);
+                listaCompleta.addAll(Dias(3, 3, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
+                listaCompleta.addAll(Dias(3, 1, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
+                listaCompleta.addAll(Dias(3, 10, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
+                AgregarRutina("Lunes", 1, listaCompleta);
                 listaCompleta.clear();
                 //Dia 2
-                listaCompleta.addAll(Dias(2,2,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
-                listaCompleta.addAll(Dias(2,11,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,1,Series,Reps));
-                if(abs==true)
-                {
-                    listaCompleta.addAll(Dias(3,4,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia2,2,Series,Reps));
+                listaCompleta.addAll(Dias(2, 2, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia2, 1, Series, Reps));
+                listaCompleta.addAll(Dias(2, 11, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia2, 1, Series, Reps));
+                if (abs == true) {
+                    listaCompleta.addAll(Dias(3, 4, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia2, 2, Series, Reps));
                 }
-                AgregarRutina("Miercoles",3,listaCompleta);
+                AgregarRutina("Miercoles", 3, listaCompleta);
                 listaCompleta.clear();
                 //Dia 3
-                listaCompleta.addAll(Dias(4,14,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
-                listaCompleta.addAll(Dias(4,7,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
-                listaCompleta.addAll(Dias(4,15,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
-                listaCompleta.addAll(Dias(4,13,ResultadosSinProcesar,EjerciciosCapaces,Lesionado,MusculoLesionado,Enfermedad,CantEjercicios,Dia3,2,Series,Reps));
-                AgregarRutina("Viernes",5,listaCompleta);
+                listaCompleta.addAll(Dias(4, 14, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia3, 2, Series, Reps));
+                listaCompleta.addAll(Dias(4, 7, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia3, 2, Series, Reps));
+                listaCompleta.addAll(Dias(4, 15, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia3, 2, Series, Reps));
+                listaCompleta.addAll(Dias(4, 13, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia3, 2, Series, Reps));
+                AgregarRutina("Viernes", 5, listaCompleta);
                 listaCompleta.clear();
                 break;
 
             case 2:
-                if(EjerciciosCapaces==true && Resultadosinprocesar[3]==1){
+                if (EjerciciosCapaces == true && Resultadosinprocesar[3] == 1) {
                     listaCompleta.addAll(Dias(3, 7, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
                     listaCompleta.addAll(Dias(3, 13, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
                     AgregarRutina("Lunes", 1, listaCompleta);
@@ -678,7 +676,7 @@ public class Encuesta extends Fragment {
                     }
                     AgregarRutina("Viernes", 5, listaCompleta);
                     listaCompleta.clear();
-                }else {
+                } else {
                     //Dia 1
                     listaCompleta.addAll(Dias(5, 3, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
                     listaCompleta.addAll(Dias(5, 1, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
@@ -722,7 +720,7 @@ public class Encuesta extends Fragment {
                 break;
 
             case 3:
-                if(EjerciciosCapaces==true && Resultadosinprocesar[3]==1){
+                if (EjerciciosCapaces == true && Resultadosinprocesar[3] == 1) {
                     listaCompleta.addAll(Dias(3, 7, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
                     listaCompleta.addAll(Dias(3, 13, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, false, CantEjercicios, Dia1, 2, Series, Reps));
                     AgregarRutina("Lunes", 1, listaCompleta);
@@ -759,10 +757,7 @@ public class Encuesta extends Fragment {
                     listaCompleta.clear();
 
 
-
-
-
-                }else {
+                } else {
                     listaCompleta.addAll(Dias(3, 3, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
                     listaCompleta.addAll(Dias(3, 1, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
                     listaCompleta.addAll(Dias(3, 10, ResultadosSinProcesar, EjerciciosCapaces, Lesionado, MusculoLesionado, Enfermedad, CantEjercicios, Dia1, 1, Series, Reps));
@@ -810,7 +805,7 @@ public class Encuesta extends Fragment {
         Regresamos();
     }
 
-    private ArrayList<ExerciseSet> Dias(int cantMusculos,int musculo, int[] ResultadosSinProcesar,boolean EjerciciosCapaces,boolean Lesionado, int[] MusculoLesionado,boolean Enfermedad,double CantEjercicios,int Dia,int tren,int series,int reps) {
+    private ArrayList<ExerciseSet> Dias(int cantMusculos, int musculo, int[] ResultadosSinProcesar, boolean EjerciciosCapaces, boolean Lesionado, int[] MusculoLesionado, boolean Enfermedad, double CantEjercicios, int Dia, int tren, int series, int reps) {
         DbQuery dbQuery = new DbQuery(getContext());
         HashMap<Integer, String> TrenSup = new HashMap<>();
         TrenSup.put(1, "Hombro");
@@ -828,65 +823,66 @@ public class Encuesta extends Fragment {
         TrenInf.put(7, "Cuadriceps");
         TrenInf.put(13, "Gluteo");
         TrenInf.put(14, "Femoral");
-        TrenInf.put(15,"Pantorrilla");
+        TrenInf.put(15, "Pantorrilla");
         TrenInf.put(16, "Cardio");
 
         ArrayList<ExerciseSet> Rutina = new ArrayList<>();
         ExerciseSet ejercicios = new ExerciseSet();
         double EjerciciosPorMusculo;
-         String Query = " WHERE MuscularGroup = ";
-                    Query += musculo;
-                    if(ResultadosSinProcesar[15]!=4) {
-                        Query += " AND Tool = " + ResultadosSinProcesar[15];
-                    }
-                    if (ResultadosSinProcesar[7] == 1) {
-                        Query += " AND Difficulty = " + ResultadosSinProcesar[7] + " OR Difficulty = 2";
-                        Query +=" ORDER BY RANDOM() ";
-                        //Query += " ORDER BY Difficulty ASC ";
-                    }else{
-                        Query +=" ORDER BY RANDOM() ";
-                        //Query += " ORDER BY Difficulty Desc ";
-                    }
-                    if(Resultadosinprocesar[10]==1) {
-                        EjerciciosPorMusculo = Math.floor(CantEjercicios/cantMusculos);
-                    }else{
-                        EjerciciosPorMusculo = Math.floor(Dia/cantMusculos);
-                    }
-                    if ((EjerciciosCapaces == true && Resultadosinprocesar[3]==tren) || ((MusculoLesionado[0]==musculo)||(MusculoLesionado[1]==musculo)||(MusculoLesionado[2]==musculo)||(MusculoLesionado[3]==musculo)) && (Lesionado==true)  ) {
-                        Query += "LIMIT 0";
-                    }else if((EjerciciosCapaces == false && Enfermedad==true && Resultadosinprocesar[3]==tren)){
-                        Query+="LIMIT "+ Math.ceil(EjerciciosPorMusculo/2);
-                    }else{
-                        if(musculo==2||musculo==10||musculo==6||musculo==8||musculo==15||musculo==4){
-                            Query+="LIMIT "+ 2;
-                        }else {
-                            Query += "LIMIT " + EjerciciosPorMusculo;
-                        }
-                        }
+        String Query = " WHERE MuscularGroup = ";
+        Query += musculo;
+        if (ResultadosSinProcesar[15] != 4) {
+            Query += " AND Tool = " + ResultadosSinProcesar[15];
+        }
+        if (ResultadosSinProcesar[7] == 1) {
+            Query += " AND Difficulty = " + ResultadosSinProcesar[7] + " OR Difficulty = 2";
+            Query += " ORDER BY RANDOM() ";
+            //Query += " ORDER BY Difficulty ASC ";
+        } else {
+            Query += " ORDER BY RANDOM() ";
+            //Query += " ORDER BY Difficulty Desc ";
+        }
+        if (Resultadosinprocesar[10] == 1) {
+            EjerciciosPorMusculo = Math.floor(CantEjercicios / cantMusculos);
+        } else {
+            EjerciciosPorMusculo = Math.floor(Dia / cantMusculos);
+        }
+        if ((EjerciciosCapaces == true && Resultadosinprocesar[3] == tren) || ((MusculoLesionado[0] == musculo) || (MusculoLesionado[1] == musculo) || (MusculoLesionado[2] == musculo) || (MusculoLesionado[3] == musculo)) && (Lesionado == true)) {
+            Query += "LIMIT 0";
+        } else if ((EjerciciosCapaces == false && Enfermedad == true && Resultadosinprocesar[3] == tren)) {
+            Query += "LIMIT " + Math.ceil(EjerciciosPorMusculo / 2);
+        } else {
+            if (musculo == 2 || musculo == 10 || musculo == 6 || musculo == 8 || musculo == 15 || musculo == 4) {
+                Query += "LIMIT " + 2;
+            } else {
+                Query += "LIMIT " + EjerciciosPorMusculo;
+            }
+        }
         Log.d("Ejercicios", Query);
-                    ArrayList <Exercises> ejercicios1;
-                    ejercicios1 = dbQuery.EjerciciosID(Query);
-                    for(int i=0;i<ejercicios1.size();i++){
-                        ejercicios = new ExerciseSet(ejercicios1.get(i).getId(),ejercicios1.get(i).getName(),series,reps,musculo,null);
-                        Rutina.add(ejercicios);
-                        Log.d("Ejercicios", "Ejercicio del musculo "+TrenSup.get(musculo)+" o "+TrenInf.get(musculo)+"  "+ejercicios1.get(i).getId());
-                    }
-                    return Rutina;
-                }
+        ArrayList<Exercises> ejercicios1;
+        ejercicios1 = dbQuery.EjerciciosID(Query);
+        for (int i = 0; i < ejercicios1.size(); i++) {
+            ejercicios = new ExerciseSet(ejercicios1.get(i).getId(), ejercicios1.get(i).getName(), series, reps, musculo, null);
+            Rutina.add(ejercicios);
+            Log.d("Ejercicios", "Ejercicio del musculo " + TrenSup.get(musculo) + " o " + TrenInf.get(musculo) + "  " + ejercicios1.get(i).getId());
+        }
+        return Rutina;
+    }
 
-    private void AgregarRutina(String day, int dayOfWeek, ArrayList<ExerciseSet> listaIds){
+    private void AgregarRutina(String day, int dayOfWeek, ArrayList<ExerciseSet> listaIds) {
 
         DbQuery dbQuery = new DbQuery(getContext());
         Routine routine = new Routine("Rutina " + day, listaIds, dayOfWeek);
         Log.d("El dia de la semana " + day + "ya cuenta con una rutina", dbQuery.routineDayAlreadyFilled(dayOfWeek) + "");
-                dbQuery.insertRoutine(routine);
-                Toast.makeText(getContext(), "Rutina del dia " + day+ " actualizada correctamente", Toast.LENGTH_SHORT).show();
-                listaIds.clear();
+        dbQuery.insertRoutine(routine);
+//                Toast.makeText(getContext(), "Rutina del dia " + day+ " actualizada correctamente", Toast.LENGTH_SHORT).show();
+        listaIds.clear();
     }
-    private void Regresamos(){
+
+    private void Regresamos() {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
     }
-            }
+}
 
 

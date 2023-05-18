@@ -171,6 +171,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                     linearLayout.addView(textView);
 
                     layout.addView(linearLayout);
+                    //poner background a layout
                     builder.setView(layout);
 
                     builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -233,6 +234,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
                     LinearLayout layout = new LinearLayout(view.getContext());
+
                     layout.setOrientation(LinearLayout.VERTICAL);
                     layout.setGravity(Gravity.CENTER_HORIZONTAL);
 
@@ -245,6 +247,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                     //Crear línea con ambos elementos
                     LinearLayout linearLayout = new LinearLayout(view.getContext());
+
                     linearLayout.setOrientation(LinearLayout.HORIZONTAL);
                     linearLayout.setGravity(Gravity.CENTER_HORIZONTAL);
 
@@ -329,7 +332,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                     });
 
                     builder.setNegativeButton("Cancelar", null);
-
+                    
                     builder.show();
                 }
             }

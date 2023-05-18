@@ -7,12 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +18,19 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
 import com.example.gymbud.Entidades.Stats;
 import com.example.gymbud.FragmentContainer;
 import com.example.gymbud.R;
 
-
 import java.util.ArrayList;
-
 import java.util.List;
-
 
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
@@ -100,9 +96,7 @@ public class stats extends Fragment {
         View view;
         view = inflater.inflate(R.layout.fragment_stats, container, false);
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
-        fechas.setBackground(getResources().getDrawable(R.drawable.spinnerbackground));
-        fechas.setPopupBackgroundResource(R.drawable.pop_up_background);
-        fechas.setPadding(10, 10, 10, 10);
+
 
 
         Bundle args = getArguments();
@@ -110,8 +104,12 @@ public class stats extends Fragment {
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
         ConsultarDatos(id,UID);
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,ListaStats);
+
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.spinner_item, ListaStats);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        fechas.setPadding(10, 0, 10, 0);
         fechas.setAdapter(adapter);
+
         return view;
     }
 

@@ -1,6 +1,7 @@
 package com.example.gymbud.Modulos.InfoPersonal;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,9 +52,6 @@ import java.util.Random;
  * create an instance of this fragment.
  */
 public class FragmentInfoPersonal extends Fragment {
-
-
-
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -117,18 +115,17 @@ public class FragmentInfoPersonal extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_infopersonal,container,false);
-
+        View v = inflater.inflate(R.layout.fragment_infopersonal, container, false);
 
 
         return v;
 
     }
-    ProgressBar progressBar1,progressBar2;
+
+    ProgressBar progressBar1, progressBar2;
 
 
     @Override
@@ -136,9 +133,32 @@ public class FragmentInfoPersonal extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         startLocationUpdates();
 
+        ImageView infoPantalla = view.findViewById(R.id.ipBotonInfo);
+        infoPantalla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                //centrar titulo
+                builder.setTitle(R.string.Info_pantallaInfoPersonal);
+                //logo de la app
+                builder.setIcon(R.drawable.gblogogodborde);
+                //mensaje
+                builder.setMessage(R.string.Info_pantallaInfoPersonal);
+                //centrar mensaje
+                builder.setCancelable(true);
+
+                //boton ok
+
+                builder.setPositiveButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                builder.show();
+            }
+        });
+
         String id = UrlDataSingleton.getInstance().getId();
 
-        if (id != null){
+        if (id != null) {
 //            Exercises exercises = DbQuery.EjerciciosVER(Integer.parseInt(id));
             DbQuery dbQuery = new DbQuery(getContext());
 
@@ -151,20 +171,20 @@ public class FragmentInfoPersonal extends Fragment {
             args.putInt("ID", dbQuery.GetMuscularGroup(Integer.parseInt(id)));
 
             HashMap<Integer, String> Tren = new HashMap<>();
-            Tren.put( 1,"Hombro");
-            Tren.put( 2,"Bicep");
-            Tren.put( 3,"Pecho");
-            Tren.put( 4,"Abs");
-            Tren.put( 5,"Oblicuos");
-            Tren.put( 6,"Antebrazo");
-            Tren.put( 7,"Cuadriceps");
-            Tren.put( 8,"Trapecios");
-            Tren.put( 9,"Dorsal");
-            Tren.put( 10,"Triceps");
-            Tren.put( 11,"Espalda");
-            Tren.put( 13,"Gluteo");
-            Tren.put( 14,"Femoral");
-            Tren.put(15,"Pantorrilla");
+            Tren.put(1, "Hombro");
+            Tren.put(2, "Bicep");
+            Tren.put(3, "Pecho");
+            Tren.put(4, "Abs");
+            Tren.put(5, "Oblicuos");
+            Tren.put(6, "Antebrazo");
+            Tren.put(7, "Cuadriceps");
+            Tren.put(8, "Trapecios");
+            Tren.put(9, "Dorsal");
+            Tren.put(10, "Triceps");
+            Tren.put(11, "Espalda");
+            Tren.put(13, "Gluteo");
+            Tren.put(14, "Femoral");
+            Tren.put(15, "Pantorrilla");
             Tren.put(16, "Cardio");
 
             String musculo = Tren.get(dbQuery.GetMuscularGroup(Integer.parseInt(id)));
@@ -207,7 +227,6 @@ public class FragmentInfoPersonal extends Fragment {
 //        ipCard7.animate().translationX(0).setDuration(500).setStartDelay(0);
 
 
-
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
@@ -237,8 +256,6 @@ public class FragmentInfoPersonal extends Fragment {
         Log.d("dia de la semana ", String.valueOf(numberDayOfWeek));
 
 
-
-
         DbQuery dbQuery = new DbQuery(getContext());
         personInfo = dbQuery.verinfo(UID);
 
@@ -250,11 +267,11 @@ public class FragmentInfoPersonal extends Fragment {
         TextView textoGMROutine = view.findViewById(R.id.textViewSub2Title);
 
 
-        String dayName="";
+        String dayName = "";
         TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
 
         if (!dbQuery.routineDayAlreadyFilled(numberDayOfWeek)) {
-            dayName = "El dia "+ getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1] + " no tiene rutina asignada";
+            dayName = "El dia " + getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1] + " no tiene rutina asignada";
             textoGMROutine.setText(dayName);
             Log.d("Error sin rutina", "El dia no tiene ninguna rutina asignada");
             separdor.setVisibility(View.GONE);
@@ -279,7 +296,7 @@ public class FragmentInfoPersonal extends Fragment {
                 }
             });
 
-        }else {
+        } else {
             try {
                 //using strings.xml set day name to textview
                 dayName = "Rutina del dia " + getResources().getStringArray(R.array.DiasSemana)[numberDayOfWeek - 1];
@@ -309,7 +326,7 @@ public class FragmentInfoPersonal extends Fragment {
 
                     imagenes.recycle();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.d("Error", "Error al cargar las imagenes");
             }
         }
@@ -333,8 +350,8 @@ public class FragmentInfoPersonal extends Fragment {
             }
         });
 
-        rellenado(personInfo,UID,pesos,IMC,TG,Racha);
-        fecha(FechaG,FechaAct,frase,FechaC);
+        rellenado(personInfo, UID, pesos, IMC, TG, Racha);
+        fecha(FechaG, FechaAct, frase, FechaC);
 
 
         //setonclick en caso de que presiones la imagen de logout
@@ -351,7 +368,7 @@ public class FragmentInfoPersonal extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
-                }
+            }
         });
 
 
@@ -367,7 +384,6 @@ public class FragmentInfoPersonal extends Fragment {
                 transaction.commit();
             }
         });
-
 
 
         //setOnClick listener en caso de que presiones la tarjeta de peso, te manda a DatosInfoIMC
@@ -405,21 +421,21 @@ public class FragmentInfoPersonal extends Fragment {
     //recibe el UID que es el id del usuario en la base de datos, y los textview de las tarjetas, despues realiza el calculo del imc con el peso y la altura guardada
     //en la bd, tambien calcula la grasa corporal con una funcion que usa el imc del usuario previamente calculado, su edad y su genero
     //Para finalizar coloca los calculos realizados en su tarjeta correspondiente.
-    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG,TextView racha){
+    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG, TextView racha) {
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
-        int RachaGuardada = sharedPrefs.getInt("RACHA",0);
+        int RachaGuardada = sharedPrefs.getInt("RACHA", 0);
         double imc = 0;
         double grasa;
         TextView progress1 = (TextView) getView().findViewById(R.id.Tvporcentaje1);
         TextView progress2 = (TextView) getView().findViewById(R.id.Tvporcentaje2);
 
-        if(personInfo.getHeight() != 0 && personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
+        if (personInfo.getHeight() != 0 && personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
             imc = personInfo.getCurrentWeight() / Math.pow(personInfo.getHeight(), 2);
             //  Log.d("IMC", Double.toString(imc));
             imc = Math.round(imc);
 
-        }else{
+        } else {
             imc = 0;
             progress2.setText("Rellena todos los datos anteriores para calcular tu IMC");
         }
@@ -436,36 +452,33 @@ public class FragmentInfoPersonal extends Fragment {
         Log.d("Valor de grasa ", String.valueOf(grasa));
 
 
+        pesos.setText("Peso actual: " + personInfo.getCurrentWeight() + " | Meta de peso:" + personInfo.getWeightGoal());
+        IMC.setText("IMC:" + imc + "| Ideal:" + " 18.5 – 24.9");
+        TG.setText("Tu tasa de grasa es del " + grasa + "%");
+        racha.setText(String.valueOf(RachaGuardada));
+        if (personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
+            int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
 
-            pesos.setText("Peso actual: " + personInfo.getCurrentWeight() + " | Meta de peso:" + personInfo.getWeightGoal());
-            IMC.setText("IMC:" + imc + "| Ideal:" + " 18.5 – 24.9");
-            TG.setText("Tu tasa de grasa es del " + grasa + "%");
-            racha.setText(String.valueOf(RachaGuardada));
-            if (personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
-                int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
-
-                if (Progreso > 100) {
-                    Progreso = 100 - (Progreso - 100);
-                }
-                progressBar1.setProgress(Progreso);
-                progress1.setText(Progreso + "%");
-                Log.d("Peso", Integer.toString(Progreso));
+            if (Progreso > 100) {
+                Progreso = 100 - (Progreso - 100);
             }
+            progressBar1.setProgress(Progreso);
+            progress1.setText(Progreso + "%");
+            Log.d("Peso", Integer.toString(Progreso));
+        }
 
-            if (imc > 0) {
-                int ProgresoIMC = (int) (imc * 100 / 24.9);
-                if (ProgresoIMC > 100) {
-                    ProgresoIMC = 100 - (ProgresoIMC - 100);
-                }
-                Log.d("IMC", Integer.toString(ProgresoIMC));
-                progressBar2.setProgress(ProgresoIMC);
-                progress2.setText(ProgresoIMC + "%");
+        if (imc > 0) {
+            int ProgresoIMC = (int) (imc * 100 / 24.9);
+            if (ProgresoIMC > 100) {
+                ProgresoIMC = 100 - (ProgresoIMC - 100);
             }
-
+            Log.d("IMC", Integer.toString(ProgresoIMC));
+            progressBar2.setProgress(ProgresoIMC);
+            progress2.setText(ProgresoIMC + "%");
+        }
 
 
         //poner porcentaje de proressbar en el textview
-
 
 
     }
@@ -476,48 +489,47 @@ public class FragmentInfoPersonal extends Fragment {
     //tambien esta misma funcion realiza un cambio en la frase del dia si la fecha actual es diferente de la fecha guardada, si asi es se llama la funcion verFrase
     //E ingresa el texto en el textview de la frase
     //Si la fecha es la misma recibe el id de la frase guardado en los shared preferences y hace la query con el id guardado
-    private void fecha(String fecha,String DateT, TextView testoFrase, float FechaL)
-    {
+    private void fecha(String fecha, String DateT, TextView testoFrase, float FechaL) {
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        int Racha = sharedPrefs.getInt("RACHA",0);
+        int Racha = sharedPrefs.getInt("RACHA", 0);
         final int random = new Random().nextInt(74);
         DbQuery dbQuery = new DbQuery(getContext());
         Phrase frase;
         frase = dbQuery.verFrase(random);
 
 
-        float FechaGUARDADA = sharedPrefs.getFloat("FechaDIF",0);
+        float FechaGUARDADA = sharedPrefs.getFloat("FechaDIF", 0);
 
 
-       // Log.d("Diferencia Fechas",""+FechasDif );
-        if((FechaL-FechaGUARDADA) == 1){
+        // Log.d("Diferencia Fechas",""+FechasDif );
+        if ((FechaL - FechaGUARDADA) == 1) {
             Racha++;
-            editor.putFloat("FechaDIF",FechaL);
+            editor.putFloat("FechaDIF", FechaL);
             editor.putInt("RACHA", Racha);
             editor.commit();
-        }else if(FechaL-FechaGUARDADA == 0){
+        } else if (FechaL - FechaGUARDADA == 0) {
 
-        }else{
+        } else {
             Racha = 0;
             editor.putInt("RACHA", Racha);
-            editor.putFloat("FechaDIF",FechaL);
+            editor.putFloat("FechaDIF", FechaL);
             editor.commit();
         }
 
-        if(DateT.equals(fecha)){
-            int id = sharedPrefs.getInt("Id",0);
+        if (DateT.equals(fecha)) {
+            int id = sharedPrefs.getInt("Id", 0);
             frase = dbQuery.verFrase(id);
             testoFrase.setText(frase.getMotivation());
-       //     Log.d("Fecha","Es el mismo dia");
+            //     Log.d("Fecha","Es el mismo dia");
 
-        }else{
+        } else {
             long ahora = System.currentTimeMillis();
             testoFrase.setText(frase.getMotivation());
             editor.putString("Fecha", DateT);
             editor.putInt("Id", random);
-            editor.putLong("FechaL",ahora);
+            editor.putLong("FechaL", ahora);
             editor.commit();
 
         }

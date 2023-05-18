@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgrounblack"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-   >
+    android:background="@drawable/backgrounblack">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="55dp"
-        >
+        android:layout_marginBottom="55dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,21 +40,18 @@
                     android:id="@+id/ssLayoutBoton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/background_circular"
-                    >
+                    android:background="@drawable/background_circular">
 
                     <ImageView
                         android:id="@+id/botonbackselec"
-                        android:padding="10dp"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_flechanegrodorado"
-                        >
-                    </ImageView>
+                        android:padding="10dp"
+                        android:src="@drawable/ic_flechanegrodorado"></ImageView>
                 </RelativeLayout>
 
 
@@ -65,20 +59,18 @@
 
             <View
                 android:id="@+id/ssAlignView"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:layout_height="250dp"
                 android:layout_width="0dp"
+                android:layout_height="250dp"
                 android:layout_below="@id/ssPart1"
-                >
-            </View>
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"></View>
 
             <RelativeLayout
                 android:id="@+id/ssPart2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_below="@+id/ssAlignView"
+                android:layout_alignParentBottom="true"
                 android:background="@drawable/backgroundcornerinverted"
                 tools:ignore="NotSibling">
 
@@ -87,10 +79,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ssLayoutBoton"
-                    android:layout_marginTop="30dp"
                     android:layout_alignStart="@+id/ssLayoutMap"
                     android:layout_alignEnd="@+id/ssLayoutMap"
-                    >
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:id="@+id/TituloSucursales"
@@ -104,16 +95,15 @@
 
                     <TextView
                         android:id="@+id/ssUbicacionSucursales"
-                        android:layout_below="@+id/TituloSucursales"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato"
+                        android:layout_below="@+id/TituloSucursales"
                         android:layout_marginTop="2dp"
-                        android:textAlignment="center"
+                        android:fontFamily="@font/lato"
                         android:text="Av De La Calma 4481, 45070 Zapopan, Jal."
+                        android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
-                        android:textSize="15sp"
-                        />
+                        android:textSize="15sp" />
 
 
                     <RatingBar
@@ -121,18 +111,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ssUbicacionSucursales"
-                        android:layout_marginTop="5dp"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="0.5"
-                        android:isIndicator="true"
-                        android:layout_gravity="start"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="5dp"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:rating="0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:progressTint="@color/colorIdentidad2"
                         android:secondaryProgressTint="@color/colorIdentidad2"
-                        />
+                        android:stepSize="0.5" />
 
                     <TextView
                         android:id="@+id/ssTvratingValue"
@@ -140,25 +129,25 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ssRatingBarAvg"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
                         android:text="..."
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:textColor="@color/bottomNavigationBackground"
-                        android:layout_gravity="center_vertical"/>
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/ssLayoutMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginTop="20dp"
-                    android:focusable="false"
                     android:layout_below="@+id/ssLayoutTitulo"
                     android:layout_centerHorizontal="true"
-                    android:padding="5dp"
-                    android:background="@drawable/rounded_background">
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="40dp"
+                    android:background="@drawable/rounded_background"
+                    android:focusable="false"
+                    android:padding="5dp">
 
                     <fragment
                         android:id="@+id/map"
@@ -176,37 +165,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ssLayoutMap"
-                    android:layout_marginTop="30dp"
                     android:layout_alignStart="@+id/ssLayoutMap"
                     android:layout_alignEnd="@+id/ssLayoutMap"
-                    >
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:id="@+id/TextoPersonas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/lato"
                         android:text="Personas en la sucursal"
                         android:textAlignment="center"
-                        android:layout_centerHorizontal="true"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/Personas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/TextoPersonas"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/lato"
                         android:paddingTop="5dp"
                         android:text="..."
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
-                        android:textSize="25sp"
-                        android:layout_below="@+id/TextoPersonas"
-                        android:layout_centerHorizontal="true"
-                        />
+                        android:textSize="25sp" />
 
                 </RelativeLayout>
 
@@ -215,105 +201,115 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ssLayoutPersonas"
-                    android:layout_marginTop="30dp"
                     android:layout_alignStart="@+id/ssLayoutMap"
                     android:layout_alignEnd="@+id/ssLayoutMap"
-                    >
+                    android:layout_marginTop="30dp">
 
                     <TextView
                         android:id="@+id/ssServiciosTexto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
                         android:fontFamily="@font/lato"
                         android:text="Servicios extra de la sucursal"
                         android:textAlignment="center"
-                        android:layout_centerHorizontal="true"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ssLayoutImagenesServicios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ssServiciosTexto"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/ssLayoutImagenesServicios"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/ssServiciosTexto"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="30dp"
-                            android:orientation="vertical"
-                            >
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal"
-                                >
+                            <ImageView
+                                android:id="@+id/Extra1"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
 
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra1"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
+                            <ImageView
+                                android:id="@+id/Extra2"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
 
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra2"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra3"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
+                            <ImageView
+                                android:id="@+id/Extra3"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
 
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_gravity="center_horizontal"
-                                >
-
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra4"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
-                                
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra5"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
-
-                                <ImageView
-                                    android:visibility="gone"
-                                    android:id="@+id/Extra6"
-                                    android:layout_width="70dp"
-                                    android:layout_height="70dp"
-                                    />
-                            </LinearLayout>
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/Extra4"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/Extra5"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/Extra6"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/Extra7"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/Extra8"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:visibility="gone" />
+
+                        </LinearLayout>
+                    </LinearLayout>
                 </RelativeLayout>
-                
+
                 <LinearLayout
-                    android:layout_below="@+id/ssLayoutServicios"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_alignStart="@+id/ssLayoutMap"
-                    android:layout_alignEnd="@+id/ssLayoutMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_below="@+id/ssLayoutServicios"
+                    android:layout_alignStart="@+id/ssLayoutMap"
+                    android:layout_alignEnd="@+id/ssLayoutMap"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:gravity="center_horizontal"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -323,22 +319,20 @@
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <RatingBar
                         android:id="@+id/ssRatingBarMaquinas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="0.5"
                         android:isIndicator="false"
+                        android:numStars="5"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:rating="0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:progressTint="@color/colorIdentidad2"
                         android:secondaryProgressTint="@color/colorIdentidad2"
-                        />
+                        android:stepSize="0.5" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -348,22 +342,20 @@
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <RatingBar
                         android:id="@+id/ssRatingBarStaff"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="0.5"
                         android:isIndicator="false"
+                        android:numStars="5"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:rating="0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:progressTint="@color/colorIdentidad2"
                         android:secondaryProgressTint="@color/colorIdentidad2"
-                        />
+                        android:stepSize="0.5" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -373,32 +365,30 @@
                         android:textAlignment="center"
                         android:textColor="@color/bottomNavigationBackground"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <RatingBar
                         android:id="@+id/ssRatingBarVestidores"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:rating="0"
-                        android:stepSize="0.5"
                         android:isIndicator="false"
+                        android:numStars="5"
+                        android:progressTint="@color/colorIdentidad2"
+                        android:rating="0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:progressTint="@color/colorIdentidad2"
                         android:secondaryProgressTint="@color/colorIdentidad2"
-                        />
+                        android:stepSize="0.5" />
 
                     <Button
                         android:id="@+id/ssBotonCalificacion"
                         android:layout_width="wrap_content"
-                        android:padding="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Enviar Calificacion"
-                        android:textColor="@color/black"
                         android:background="@drawable/backgroundcorner"
-                        android:layout_height="wrap_content" />
+                        android:padding="30dp"
+                        android:text="Enviar Calificacion"
+                        android:textColor="@color/black" />
                 </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
