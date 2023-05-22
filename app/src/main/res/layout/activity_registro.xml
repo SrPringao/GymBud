@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#252525"
     tools:context=".Modulos.Login.Registro">
-
-
 
 
     <LinearLayout
@@ -21,9 +20,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39">
+        app:layout_constraintVertical_bias="0.498">
 
 
         <TextView
@@ -40,15 +40,15 @@
             android:id="@+id/ETusuario"
             android:layout_width="343dp"
             android:layout_height="43dp"
-            android:textAlignment="center"
-            android:textCursorDrawable="@color/black"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_edittext"
             android:ems="10"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             android:textColor="@color/black"
+            android:textCursorDrawable="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -65,17 +65,18 @@
             android:id="@+id/ETcorreo"
             android:layout_width="343dp"
             android:layout_height="43dp"
-            android:textAlignment="center"
-            android:textCursorDrawable="@color/black"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_edittext"
+
             android:ems="10"
             android:inputType="text"
+            android:textAlignment="center"
             android:textColor="@color/black"
+            android:textCursorDrawable="@color/black"
             android:textSize="18sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,13 +91,13 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:passwordToggleEnabled="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
             android:textSize="18sp"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
 
             >
 
@@ -106,10 +107,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background_edittext"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@color/black"
                 android:inputType="textPassword"
                 android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black"
 
                 >
 
@@ -126,19 +127,17 @@
             android:textSize="23sp" />
 
 
-
-
         <com.google.android.material.textfield.TextInputLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:passwordToggleEnabled="true"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
-
             android:textSize="18sp"
+            app:passwordToggleEnabled="true"
+
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
 
             >
 
@@ -148,10 +147,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background_edittext"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@color/black"
                 android:inputType="textPassword"
                 android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@color/black"
 
                 >
 
@@ -167,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:srcCompat="@drawable/gblogo" />
+        app:srcCompat="@drawable/gblogoregistro" />
 
     <Button
         android:id="@+id/Bconfirmar"

@@ -244,6 +244,7 @@
                     android:text="Añadir registro"
                     android:background="@drawable/backgroundcorner"
                     android:layout_width="wrap_content"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content">
                 </Button>
             </RelativeLayout>

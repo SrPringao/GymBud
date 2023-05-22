@@ -2,10 +2,6 @@ package com.example.gymbud.Modulos.InfoPersonal;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +12,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.FragmentContainer;
@@ -75,8 +74,14 @@ public class CardInfoTg extends Fragment {
         view = inflater.inflate(R.layout.fragment_datos_info_tg, container, false);
 
 
-        opciones = (Spinner)view.findViewById(R.id.SpinnerSex);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.opciones, android.R.layout.simple_spinner_item);
+        opciones = (Spinner) view.findViewById(R.id.SpinnerSex);
+
+
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.opciones, R.layout.spinner_item);
+
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        opciones.setPadding(10, 10, 10, 10);
         opciones.setAdapter(adapter);
         return view;
     }
@@ -105,18 +110,18 @@ public class CardInfoTg extends Fragment {
                 } else {
 
 
-                if( 0 == opciones.getSelectedItemId()){
-                    sexo = 1;
-                }else if(1==opciones.getSelectedItemId()){
-                    sexo = 2;
-                }
+                    if (0 == opciones.getSelectedItemId()) {
+                        sexo = 1;
+                    } else if (1 == opciones.getSelectedItemId()) {
+                        sexo = 2;
+                    }
                     int UID = activity.UIDUSR();
-                String update = "UPDATE PERSONINFO SET Age = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
-                Log.d("Edad registrada", Edad.getText().toString());
-                Log.d("Query update", update);
-                Log.d("UPDATE", update);
-                db.execSQL(update);
-                db.close();
+                    String update = "UPDATE PERSONINFO SET Age = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
+                    Log.d("Edad registrada", Edad.getText().toString());
+                    Log.d("Query update", update);
+                    Log.d("UPDATE", update);
+                    db.execSQL(update);
+                    db.close();
 
 
                     Fragment firstFragment = new FragmentInfoPersonal();

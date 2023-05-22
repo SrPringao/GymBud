@@ -2,6 +2,7 @@
     <string name="app_name">GymBud</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Info_pantallaInfoPersonal">En esta pantalla podras registrar tus datos personales para que la aplicacion pueda calcular tu IMC y Tasa de grasa ademas de poder ir actualizando tu peso y tu meta a cumplir, tambien podras tener acceso a las rutinas que hayas creado y visualizar frases motivacionales que te ayudaran a seguir adelante con tu rutina.</string>
     <!-- TODO: Remove or change this placeholder text -->
 
     <string-array name="ListaEjercicios">

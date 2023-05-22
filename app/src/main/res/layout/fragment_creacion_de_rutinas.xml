@@ -102,7 +102,7 @@
         android:textSize="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="90dp"
-        android:textColor="@color/bottomNavigationTintColor"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true">
 
     </Button>
