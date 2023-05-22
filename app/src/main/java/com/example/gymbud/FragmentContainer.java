@@ -171,6 +171,7 @@ public class FragmentContainer extends AppCompatActivity {
         String DateT = df.format(fechaD);
         Log.d("FechaAct",DateT);
         return  DateT;
+        
     }
 
     //Esta funcion realiza lo mismo que FechaAct, solo con la diferencia de que realiza un calculo para poder restar las fechas
