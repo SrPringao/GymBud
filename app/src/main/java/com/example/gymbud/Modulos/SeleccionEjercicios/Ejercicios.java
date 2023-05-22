@@ -265,7 +265,7 @@ public class Ejercicios extends Fragment {
         ConstraintLayout ejerciciosfrontalesd = view.findViewById(R.id.ejerciciosderecha);
         ConstraintLayout ejerciciostraserosi = view.findViewById(R.id.ejerciciositraseros);
         ConstraintLayout ejerciciostraserosd = view.findViewById(R.id.ejerciciosdtraseros);
-
+        TextView TvVuelta = view.findViewById(R.id.TvVuelta);
         ejerciciosfrontalesd.setVisibility(View.VISIBLE);
         ejerciciosfrontalesi.setVisibility(View.VISIBLE);
         modelo.setImageResource(R.drawable.otisparado);
@@ -281,8 +281,11 @@ public class Ejercicios extends Fragment {
         ejerciciostraserosi.setY(-3000);
         ejerciciostraserosd.setY(-3000);
 
+        TvVuelta.setY(-3000);
+
 
         imagen.animate().translationX(0).setDuration(500).setStartDelay(0);
+        TvVuelta.animate().translationY(0).setDuration(500).setStartDelay(0);
         modelo.animate().translationY(0).setDuration(500).setStartDelay(0);
         titulo.animate().translationX(0).setDuration(500).setStartDelay(0);
 
@@ -309,6 +312,7 @@ public class Ejercicios extends Fragment {
                     modelo.setImageResource(R.drawable.otisparado);
 
                     titulo.setText("Ejercicios frontales");
+                    TvVuelta.setText("Mostrar ejercicios\ntraseros");
                     Log.d("Estado", "onClick: Adelante");
 
                     ejercicios[0] = false;
@@ -325,6 +329,8 @@ public class Ejercicios extends Fragment {
                     modelo.setImageResource(R.drawable.otisparado2);
 
                     titulo.setText("Ejercicios traseros");
+                    TvVuelta.setText("Mostrar ejercicios\nfrontales");
+
                     ejercicios[0] = true;
 
                     Log.d("Estado", "onClick: Atras");
