@@ -93,6 +93,17 @@
         android:dropDownVerticalOffset="70dp"
         android:textColor="#000000" />
 
+    <ImageView
+        android:id="@+id/imagenGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CRSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_above="@+id/CRButton"
+        android:layout_marginBottom="40dp"
+        />
+
     <Button
         android:id="@+id/CRButton"
         android:layout_width="300dp"

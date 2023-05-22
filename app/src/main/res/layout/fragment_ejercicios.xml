@@ -24,18 +24,8 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imgvuelta"
-        android:layout_width="68dp"
-        android:layout_height="74dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="60dp"
-        android:src="@drawable/icvuelta2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imgmodelo"
@@ -118,119 +108,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ejerciciosderecha"
-        android:layout_width="198dp"
-        android:layout_height="428dp"
-        android:layout_marginEnd="4dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/imgvuelta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626">
-
-
-        <EditText
-            android:id="@+id/etpecho"
-
-            android:layout_width="159dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="20dp"
-            android:cursorVisible="false"
-            android:editable="false"
-            android:ems="10"
-            android:focusable="false"
-
-            android:inputType="textPersonName"
-            android:text="Pecho"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.177"
-            tools:ignore="Deprecated,MissingConstraints" />
-
-        <EditText
-            android:id="@+id/etabs"
-
-            android:layout_width="159dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="16dp"
-            android:cursorVisible="false"
-            android:editable="false"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="textPersonName"
-            android:text="Abs"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.33"
-            tools:ignore="Deprecated,MissingConstraints" />
-
-        <EditText
-            android:id="@+id/etantebrazos"
-
-            android:layout_width="127dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="4dp"
-            android:cursorVisible="false"
-            android:editable="false"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="textPersonName"
-            android:text="Antebrazos"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.477"
-            tools:ignore="Deprecated,MissingConstraints" />
-
-        <EditText
-            android:id="@+id/etcuadriceps"
-
-            android:layout_width="127dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="48dp"
-            android:cursorVisible="false"
-            android:editable="false"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="textPersonName"
-            android:text="Cuadriceps"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.655"
-            tools:ignore="Deprecated,MissingConstraints" />
-
-        <EditText
-            android:id="@+id/etCardio"
-            android:layout_width="127dp"
-            android:layout_height="45dp"
-            android:cursorVisible="true"
-            android:editable="false"
-            android:ems="10"
-            android:focusable="false"
-            android:inputType="textPersonName"
-            android:text="Cardio"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.655"
-            tools:ignore="Deprecated,MissingConstraints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -324,7 +201,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ejerciciosdtraseros"
-
         android:layout_width="211dp"
         android:layout_height="548dp"
         android:layout_marginEnd="4dp"
@@ -392,9 +268,148 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.638"
             tools:ignore="Deprecated,MissingConstraints" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ejerciciosderecha"
+        android:layout_width="198dp"
+        android:layout_height="428dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
+
+
+        <EditText
+            android:id="@+id/etpecho"
+            android:layout_width="159dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Pecho"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.177"
+            tools:ignore="Deprecated,MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etabs"
+
+            android:layout_width="159dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Abs"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.33"
+            tools:ignore="Deprecated,MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etantebrazos"
+
+            android:layout_width="127dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="4dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Antebrazos"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.477"
+            tools:ignore="Deprecated,MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etcuadriceps"
+
+            android:layout_width="127dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="48dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Cuadriceps"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.655"
+            tools:ignore="Deprecated,MissingConstraints" />
+
+        <EditText
+            android:id="@+id/etCardio"
+            android:layout_width="127dp"
+            android:layout_height="45dp"
+            android:cursorVisible="true"
+            android:editable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:text="Cardio"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.655"
+            tools:ignore="Deprecated,MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutvuelta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imgvuelta"
+            android:layout_width="68dp"
+            android:layout_height="74dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="52dp"
+            android:src="@drawable/icvuelta3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/TvVuelta"
+            android:layout_width="157dp"
+            android:layout_height="42dp"
+            android:layout_below="@+id/imgvuelta"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="Mostrar ejercicios\ntraseros"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

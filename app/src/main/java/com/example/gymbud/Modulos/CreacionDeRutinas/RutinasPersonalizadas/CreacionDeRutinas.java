@@ -1,6 +1,7 @@
 package com.example.gymbud.Modulos.CreacionDeRutinas.RutinasPersonalizadas;
 
-import android.graphics.Color;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -99,6 +100,10 @@ public class CreacionDeRutinas extends Fragment {
         ImageView BotonBack = view.findViewById(R.id.TBButtonBack);
         TextView NumeroDeEjercicios = view.findViewById(R.id.CRNumero);
         listaIds = IdList.getInstance();
+        TypedArray imagenes = getResources().obtainTypedArray(R.array.imagenes);
+        ImageView imagenGrupo = view.findViewById(R.id.imagenGrupo);
+        imagenGrupo.setImageResource(imagenes.getResourceId(0, 0));
+
 
         NumeroDeEjercicios.setText(String.valueOf(listaIds.size()));
         BotonBack.setOnClickListener(new View.OnClickListener() {
@@ -136,18 +141,7 @@ public class CreacionDeRutinas extends Fragment {
         spinner.setPadding(10, 10, 10, 10);
         spinner.setAdapter(adapter);
 
-        AdapterView.OnItemSelectedListener OnCatSpinnerCL = new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
-                ((TextView) parent.getChildAt(0)).setTextSize(5);
-
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        };
 
 
         imageViewToolbar.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +166,11 @@ public class CreacionDeRutinas extends Fragment {
                 if (pos >= 12){
                     pos+=1;
                 }
+
+                Drawable drawable = imagenes.getDrawable(pos-1);
+                imagenGrupo.setImageDrawable(drawable);
+
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
