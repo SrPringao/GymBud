@@ -233,11 +233,19 @@
                         android:textAlignment="center">
 
                     </TextView>
-
+                    <View
+                        android:id="@+id/FIseparador1"
+                        android:layout_below="@id/Tvporcentaje1"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_edittext"/>
                     <TextView
                         android:id="@+id/Pesos"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/Tvporcentaje1"
+                        android:layout_below="@id/FIseparador1"
 
                         android:layout_centerHorizontal="true"
                         android:text="Peso actual: X | Meta de peso: N" />
@@ -308,11 +316,19 @@
                         android:textAlignment="center">
 
                     </TextView>
-
+                    <View
+                        android:id="@+id/FIseparador2"
+                        android:layout_below="@id/Tvporcentaje2"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_edittext"/>
                     <TextView
                         android:id="@+id/IMC"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/Tvporcentaje2"
+                        android:layout_below="@id/FIseparador2"
                         android:layout_centerHorizontal="true"
                         android:text="IMC: X | IMC ideal: N" />
 

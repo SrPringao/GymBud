@@ -86,6 +86,7 @@ public class stats extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     ArrayList<String> ListaStats;
     ArrayList<Stats> StatsLista;
 
@@ -98,12 +99,11 @@ public class stats extends Fragment {
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
 
 
-
         Bundle args = getArguments();
         int id = args.getInt("id");//id del ejercicio seleccionado
         FragmentContainer activity = (FragmentContainer) getActivity();
         int UID = activity.UIDUSR();
-        ConsultarDatos(id,UID);
+        ConsultarDatos(id, UID);
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.spinner_item, ListaStats);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -121,7 +121,7 @@ public class stats extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Context context = getContext();
         DbQuery dbQuery = new DbQuery(context);
-        TextView Carga,Reps,Tiempo,Reps2,rm;
+        TextView Carga, Reps, Tiempo, Reps2, rm;
         ImageView Back = view.findViewById(R.id.botonback);
         Button agregar = view.findViewById(R.id.fsButtonAgregar);
         Bundle args = getArguments();
@@ -144,12 +144,12 @@ public class stats extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-                Carga.setText(""+StatsLista.get(position).getWeight()+" kg");
-                Reps.setText(""+StatsLista.get(position).getReps());
-                Reps2.setText(""+StatsLista.get(position).getReps2());
-                Tiempo.setText(""+StatsLista.get(position).getTime()+ " mins");
-                double RM = ((0.0333 * StatsLista.get(position).getWeight()) * StatsLista.get(position).getReps() + StatsLista.get(position).getWeight());
-                rm.setText(RM+" kg");
+                Carga.setText("" + StatsLista.get(position).getWeight() + " Lb");
+                Reps.setText("" + StatsLista.get(position).getReps());
+                Reps2.setText("" + StatsLista.get(position).getReps2());
+                Tiempo.setText("" + StatsLista.get(position).getTime() + " mins");
+                double RM = ((0.0333 * (StatsLista.get(position).getWeight())*0.453592) * StatsLista.get(position).getReps() + (StatsLista.get(position).getWeight())*0.453592);
+                rm.setText(RM + " Lb");
             }
 
             @Override
@@ -160,27 +160,24 @@ public class stats extends Fragment {
 
 
         try {
-            stats = dbQuery.verStats(id,UID); //Esta es la query verstats con el id del ejercicio seleccionado
+            stats = dbQuery.verStats(id, UID); //Esta es la query verstats con el id del ejercicio seleccionado
             //Este if ingresa los datos registrados de la bd en caso de que si haya algo, si no inserta 0 en todo en el id del ejercicio
-            if(stats != null) {
+            if (stats != null) {
                 Carga.setText("" + stats.getWeight());
                 Reps.setText("" + stats.getReps());
                 Reps2.setText("" + stats.getReps2());
                 Tiempo.setText("" + stats.getTime());
 
 
-
-
-            }else{
+            } else {
                /* FragmentContainer activity = (FragmentContainer) getActivity();
                 String FechaAct = activity.FechaAct();
                 long query = dbQuery.StatsInsert(0,0,0,0,FechaAct,id); //Es la query del insert
                 Log.d("INSERT", "Se inserto");*/
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.d("Error", "No hay stats que sacar");
         }
-
 
 
 //En caso de que se presione el boton de regresar te envia a la pantalla anterior con id,ID y el nombre del musculo
@@ -189,9 +186,9 @@ public class stats extends Fragment {
             public void onClick(View view) {
                 Fragment fragment = new registropeso();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                args.putInt("id",id);
-                args.putInt("ID",ID);
-                args.putString("Musculo",musculo);
+                args.putInt("id", id);
+                args.putInt("ID", ID);
+                args.putString("Musculo", musculo);
                 fragment.setArguments(args);
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
@@ -204,11 +201,11 @@ public class stats extends Fragment {
             public void onClick(View view) {
                 Fragment fragment = new fragment_ejercicio_seleccionado();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                args.putInt("id",id);
-                args.putInt("ID",ID);
-                args.putString("Musculo",musculo);
+                args.putInt("id", id);
+                args.putInt("ID", ID);
+                args.putString("Musculo", musculo);
                 fragment.setArguments(args);
-                Log.d("ID", id+"");
+                Log.d("ID", id + "");
                 transaction.replace(R.id.navFragmentContainer, fragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -216,8 +213,7 @@ public class stats extends Fragment {
         });
 
 
-
-       //
+        //
         //Todo esto es sobre la grafica
 
         LineChartView grafica; //Aqui declaramos el objeto de la grafica que es un Line Chart
@@ -228,26 +224,25 @@ public class stats extends Fragment {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
         String[] Fechas = new String[StatsLista.size()];
         float[] axisData = new float[StatsLista.size()];
-        for (int i=0;i<StatsLista.size();i++){
+        for (int i = 0; i < StatsLista.size(); i++) {
             String FECHABD = StatsLista.get(i).getDate();
-                Log.d("PESO", ""+StatsLista.get(i).getWeight());
-                Fechas[i] = StatsLista.get(i).getDate();
-                tempPointValue =  new PointValue(i,StatsLista.get(i).getWeight());
-                values.add(tempPointValue);
+            Log.d("PESO", "" + StatsLista.get(i).getWeight());
+            Fechas[i] = StatsLista.get(i).getDate();
+            tempPointValue = new PointValue(i, StatsLista.get(i).getWeight());
+            values.add(tempPointValue);
 
         }
-         //Le ingresamos los datos del eje X
+        //Le ingresamos los datos del eje X
 
-        int[] yAxisData = {10,20,30,40,50,60,70,80,90,100,110,120,130,140,150}; //Le ingresamos los datos del eje Y
+        int[] yAxisData = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150}; //Le ingresamos los datos del eje Y
         List<AxisValue> yAxisValues = new ArrayList(); //Creamos una arraylist para los puntos en el eje Y
         List<AxisValue> axisValues = new ArrayList(); //Creamos un arraylist  para los puntos en el eje X
         AxisValue tempAxisValue;
 
         Line line = new Line(values).setColor(Color.parseColor("#E1C675")).setHasLabels(true).setCubic(false); //Le ponemos el color que queramos a la grafica
 
-        
 
-        for (int i = 0; i <axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
+        for (int i = 0; i < axisData.length; i++) { //Este for itera todos los valores en el eje x en el arraylist y los ingresa a la grafica
             tempAxisValue = new AxisValue(i);
             tempAxisValue.setLabel(Fechas[i]);
             axisValues.add(tempAxisValue);
@@ -264,14 +259,14 @@ public class stats extends Fragment {
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-       Axis axis = new Axis(axisValues);
+        Axis axis = new Axis(axisValues);
         axis.setTextSize(10);
         axis.setName("Fecha");
         axis.setTextColor(Color.parseColor("#E1C675"));
         data.setValueLabelTextSize(10);
         data.setAxisXBottom(axis);
 
-       Axis yAxis = new Axis(yAxisValues);
+        Axis yAxis = new Axis(yAxisValues);
         yAxis.setTextSize(10);
         yAxis.setName("Peso");
         yAxis.setTextColor(Color.parseColor("#FCFCFC"));
@@ -284,17 +279,18 @@ public class stats extends Fragment {
         grafica.setMaximumViewport(viewport);
         grafica.setCurrentViewport(viewport);
     }
+
     //Funcion para recuperar la info de la base de datos e insertarla al spinner
-    private void ConsultarDatos(int id,int usr) {
+    private void ConsultarDatos(int id, int usr) {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         Stats stats = null;
         StatsLista = new ArrayList<Stats>();
 
-        Cursor cursor = db.rawQuery(" SELECT * FROM "+DbQuery.TABLE_STATS+" WHERE IdEjercicio =" + id +" AND IdUsr= "+ usr,null);
+        Cursor cursor = db.rawQuery(" SELECT * FROM " + DbQuery.TABLE_STATS + " WHERE IdEjercicio =" + id + " AND IdUsr= " + usr, null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             stats = new Stats();
             stats.setID_Stats(cursor.getInt(0));
             stats.setWeight(cursor.getInt(1));
@@ -307,9 +303,10 @@ public class stats extends Fragment {
         }
         ObtenerLista();
     }
-    private void ObtenerLista(){
+
+    private void ObtenerLista() {
         ListaStats = new ArrayList<String>();
-        for (int i=0;i<StatsLista.size();i++){
+        for (int i = 0; i < StatsLista.size(); i++) {
             ListaStats.add(StatsLista.get(i).getDate());
         }
     }

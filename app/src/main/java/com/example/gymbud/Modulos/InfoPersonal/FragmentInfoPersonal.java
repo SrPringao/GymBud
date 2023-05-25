@@ -460,26 +460,33 @@ public class FragmentInfoPersonal extends Fragment {
         if (personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
             int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
 
-                if (Progreso > 100) {
-                    Progreso = 100 - (Progreso - 100);
-                }
+            if (Progreso > 100) {
+                Progreso = 100 - (Progreso - 100);
+            }
 
             progressBar1.setProgress(Progreso);
-            progress1.setText(Progreso + "%");
-            Log.d("Peso", Integer.toString(Progreso));
+            if (Progreso==100) {
+                progress1.setText("Felicidades!!, has llegado a tu meta de peso");
+            }else {
+                progress1.setText("Te falta " + (100 - Progreso) + "%" + " para llegar a tu meta de peso");
+                Log.d("Peso", Integer.toString(Progreso));
+            }
         }
 
 
             if (imc > 0) {
-                int ProgresoIMC = (int) Math.floor( 24.9* 100 / imc);
+                int ProgresoIMC = (int) Math.floor(24.9 * 100 / imc);
                 if (ProgresoIMC > 100) {
                     ProgresoIMC = 100 - (ProgresoIMC - 100);
                 }
                 Log.d("IMC", Integer.toString(ProgresoIMC));
                 progressBar2.setProgress(ProgresoIMC);
-                progress2.setText(ProgresoIMC + "%");
+                if (ProgresoIMC == 100) {
+                    progress2.setText("Felicidades!!, has llegado a tu IMC ideal");
+                } else {
+                    progress2.setText("Te falta " + (100 - ProgresoIMC) + "%" + " para llegar a tu IMC ideal");
+                }
             }
-
         }
 
 

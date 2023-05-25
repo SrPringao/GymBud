@@ -69,6 +69,7 @@
         android:layout_marginBottom="60dp"
         android:layout_below="@+id/fsPart2"
         android:layout_alignParentBottom="true"
+        android:padding="15dp"
 
         >
 
@@ -214,7 +215,7 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="0kg"
+                android:text="0 Lb"
                 android:fontFamily="@font/lato"
                 android:textColor="@color/bottomNavigationTintColor"
                 android:textSize="25sp"
@@ -274,7 +275,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
 
-                android:text="0 KG"
+                android:text="0 Lb"
                 android:textAlignment="center"
                 android:fontFamily="@font/lato"
                 android:textColor="@color/bottomNavigationTintColor"
