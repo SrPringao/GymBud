@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Modulos.SeleccionEjercicios.registropeso"
-    android:background="@drawable/backgrounblack">
-
-
+    android:background="@drawable/backgrounblack"
+    tools:context=".Modulos.SeleccionEjercicios.registropeso">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        >
+        android:layout_marginBottom="60dp">
 
         <RelativeLayout
             android:id="@+id/fsPart1"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content">
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp">
 
             <ImageView
                 android:id="@+id/frpBotonBack"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_flechanegrodorado"
                 android:layout_alignParentStart="true"
-                >
-            </ImageView>
+                android:src="@drawable/ic_flechanegrodorado"></ImageView>
 
             <TextView
                 android:id="@+id/frgRegistroDatos"
@@ -40,213 +34,197 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/frpBotonBack"
                 android:layout_centerHorizontal="true"
+                android:fontFamily="@font/lato"
                 android:text="Registro de datos"
                 android:textAlignment="center"
-                android:fontFamily="@font/lato"
                 android:textColor="@color/bottomNavigationTintColor"
                 android:textSize="40sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_centerInParent="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/backgroundcornerinverted"
-                >
+                android:background="@drawable/backgroundcornerinverted">
 
                 <LinearLayout
                     android:id="@+id/fsLinearInfo"
-                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_gravity="center_horizontal"
                         android:id="@+id/fsTextoRepeticiones"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
 
                         android:fontFamily="@font/lato"
                         android:gravity="center"
                         android:text="Repeticiones"
                         android:textColor="@color/bottomNavigationTextColor"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/frpRepsR"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
                             android:gravity="center"
                             android:hint="0"
-                            android:textColorHint="@color/bottomNavigationTintColor"
 
+                            android:imeOptions="actionDone"
                             android:inputType="number"
                             android:singleLine="true"
-                            android:imeOptions="actionDone"
 
                             android:textAlignment="center"
-                            android:fontFamily="@font/lato"
                             android:textColor="@color/bottomNavigationTintColor"
-                            android:textSize="25sp"
-                            >
-                        </EditText>
+                            android:textColorHint="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"></EditText>
 
                         <TextView
                             android:id="@+id/fsTvX"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
                             android:gravity="center"
                             android:text=" x "
                             android:textAlignment="center"
-                            android:fontFamily="@font/lato"
                             android:textColor="@color/bottomNavigationTintColor"
-                            android:textSize="25sp"
-                            >
-                        </TextView>
+                            android:textSize="25sp"></TextView>
 
                         <EditText
                             android:id="@+id/frpRepsR2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
                             android:gravity="center"
                             android:hint="0"
-                            android:inputType="number"
-                            android:textColorHint="@color/bottomNavigationTintColor"
-                            android:textAlignment="center"
-                            android:fontFamily="@font/lato"
-                            android:textColor="@color/bottomNavigationTintColor"
-                            android:textSize="25sp"
-                            android:singleLine="true"
                             android:imeOptions="actionDone"
-                            >
-                        </EditText>
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textColorHint="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"></EditText>
                     </LinearLayout>
 
                     <TextView
-                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/lato"
                         android:text="Carga"
                         android:textAlignment="center"
-                        android:fontFamily="@font/lato"
                         android:textColor="@color/bottomNavigationTintColor"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textStyle="bold"></TextView>
 
                     <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
 
                         <EditText
-                            android:layout_marginTop="5dp"
                             android:id="@+id/frpCargaR"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/lato"
                             android:hint="0"
-                            android:singleLine="true"
                             android:imeOptions="actionDone"
-                            android:textColorHint="@color/bottomNavigationTintColor"                            android:fontFamily="@font/lato"
-                            android:textColor="@color/bottomNavigationTintColor"
-                            android:textSize="25sp"
                             android:inputType="number"
-                            >
-                        </EditText>
+                            android:singleLine="true"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textColorHint="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"></EditText>
 
                         <TextView
-                            android:text=" Kg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:fontFamily="@font/lato"
+                            android:text=" Lb"
                             android:textColor="@color/bottomNavigationTintColor"
-                            android:textSize="25sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                        </TextView>
+                            android:textSize="25sp"></TextView>
                     </LinearLayout>
 
                     <TextView
-                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/lato"
                         android:text="Tiempo"
                         android:textAlignment="center"
-                        android:fontFamily="@font/lato"
                         android:textColor="@color/bottomNavigationTintColor"
                         android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:textStyle="bold"></TextView>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/frpTiempoR"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:hint="0"
-                        android:textColorHint="@color/bottomNavigationTintColor"
-                        android:textAlignment="center"
-                        android:fontFamily="@font/lato"
-                        android:textColor="@color/bottomNavigationTintColor"
-                        android:textSize="25sp"
-                        android:singleLine="true"
-                        android:inputType="number"
-                        android:imeOptions="actionDone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </EditText>
+                        <EditText
+                            android:id="@+id/frpTiempoR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/lato"
+                            android:gravity="center"
+                            android:hint="0"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textAlignment="center"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textColorHint="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"></EditText>
 
-                    <TextView
-                        android:text=" Mins"
-                        android:layout_gravity="center_vertical"
-                        android:fontFamily="@font/lato"
-                        android:textColor="@color/bottomNavigationTintColor"
-                        android:textSize="25sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/lato"
+                            android:text=" Mins"
+                            android:textColor="@color/bottomNavigationTintColor"
+                            android:textSize="25sp"></TextView>
+                    </LinearLayout>
 
 
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/frpBotonGuardar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/fsLinearInfo"
-                    android:padding="20dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
-                    android:text="Añadir registro"
                     android:background="@drawable/backgroundcorner"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content">
-                </Button>
+                    android:padding="20dp"
+                    android:text="Añadir registro"
+                    android:textColor="@color/black"></Button>
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
     </RelativeLayout>

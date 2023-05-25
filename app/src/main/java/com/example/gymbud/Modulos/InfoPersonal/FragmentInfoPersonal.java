@@ -350,7 +350,8 @@ public class FragmentInfoPersonal extends Fragment {
             }
         });
 
-        rellenado(personInfo, UID, pesos, IMC, TG, Racha);
+
+        rellenado(personInfo,UID,pesos,IMC,TG,Racha);
         fecha(FechaG, FechaAct, frase, FechaC);
 
 
@@ -462,26 +463,32 @@ public class FragmentInfoPersonal extends Fragment {
             if (Progreso > 100) {
                 Progreso = 100 - (Progreso - 100);
             }
+
             progressBar1.setProgress(Progreso);
-            progress1.setText(Progreso + "%");
-            Log.d("Peso", Integer.toString(Progreso));
-        }
-
-        if (imc > 0) {
-            int ProgresoIMC = (int) (imc * 100 / 24.9);
-            if (ProgresoIMC > 100) {
-                ProgresoIMC = 100 - (ProgresoIMC - 100);
+            if (Progreso==100) {
+                progress1.setText("Felicidades!!, has llegado a tu meta de peso");
+            }else {
+                progress1.setText("Te falta " + (100 - Progreso) + "%" + " para llegar a tu meta de peso");
+                Log.d("Peso", Integer.toString(Progreso));
             }
-            Log.d("IMC", Integer.toString(ProgresoIMC));
-            progressBar2.setProgress(ProgresoIMC);
-            progress2.setText(ProgresoIMC + "%");
         }
 
 
-        //poner porcentaje de proressbar en el textview
+            if (imc > 0) {
+                int ProgresoIMC = (int) Math.floor(24.9 * 100 / imc);
+                if (ProgresoIMC > 100) {
+                    ProgresoIMC = 100 - (ProgresoIMC - 100);
+                }
+                Log.d("IMC", Integer.toString(ProgresoIMC));
+                progressBar2.setProgress(ProgresoIMC);
+                if (ProgresoIMC == 100) {
+                    progress2.setText("Felicidades!!, has llegado a tu IMC ideal");
+                } else {
+                    progress2.setText("Te falta " + (100 - ProgresoIMC) + "%" + " para llegar a tu IMC ideal");
+                }
+            }
+        }
 
-
-    }
 
     //Esta funcion realiza una comparacion con la fecha previamente registrada en los shared preferencees que seria la ultima fecha que el usuario
     //ingreso a la aplicacion, y despues realiza una comparacion con la fecha actual y si la resta de estas fechas es mayor a uno se reinicia la racha de asistencias a 0
@@ -489,7 +496,9 @@ public class FragmentInfoPersonal extends Fragment {
     //tambien esta misma funcion realiza un cambio en la frase del dia si la fecha actual es diferente de la fecha guardada, si asi es se llama la funcion verFrase
     //E ingresa el texto en el textview de la frase
     //Si la fecha es la misma recibe el id de la frase guardado en los shared preferences y hace la query con el id guardado
-    private void fecha(String fecha, String DateT, TextView testoFrase, float FechaL) {
+
+    private void fecha(String fecha, String DateT, TextView testoFrase, float FechaL)
+    {
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -498,41 +507,60 @@ public class FragmentInfoPersonal extends Fragment {
         DbQuery dbQuery = new DbQuery(getContext());
         Phrase frase;
         frase = dbQuery.verFrase(random);
-
-
         float FechaGUARDADA = sharedPrefs.getFloat("FechaDIF", 0);
+        float FechaDIA = sharedPrefs.getInt("FechaDIA", 0);
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        Log.d("Dia de la semana",""+dayOfWeek);
 
-
-        // Log.d("Diferencia Fechas",""+FechasDif );
-        if ((FechaL - FechaGUARDADA) == 1) {
+        if(((FechaL-FechaGUARDADA) == 1) && dayOfWeek-FechaDIA == 1 ||(dayOfWeek == 1 && FechaDIA == 7)){
             Racha++;
-            editor.putFloat("FechaDIF", FechaL);
+            editor.putFloat("FechaDIF",FechaL);
             editor.putInt("RACHA", Racha);
+            editor.putInt("FechaDIA",dayOfWeek);
             editor.commit();
-        } else if (FechaL - FechaGUARDADA == 0) {
+        }else if(FechaL-FechaGUARDADA == 0){
 
-        } else {
+        }else{
             Racha = 0;
             editor.putInt("RACHA", Racha);
-            editor.putFloat("FechaDIF", FechaL);
+            editor.putFloat("FechaDIF",FechaL);
+            editor.putInt("FechaDIA",dayOfWeek);
             editor.commit();
         }
 
-        if (DateT.equals(fecha)) {
-            int id = sharedPrefs.getInt("Id", 0);
+        if(DateT.equals(fecha)){
+            int id = sharedPrefs.getInt("Id",0);
             frase = dbQuery.verFrase(id);
             testoFrase.setText(frase.getMotivation());
-            //     Log.d("Fecha","Es el mismo dia");
+            Log.d("Fecha","Es el mismo dia");
 
-        } else {
+        }else{
+
             long ahora = System.currentTimeMillis();
             testoFrase.setText(frase.getMotivation());
             editor.putString("Fecha", DateT);
             editor.putInt("Id", random);
-            editor.putLong("FechaL", ahora);
+            editor.putLong("FechaL",ahora);
             editor.commit();
 
         }
+
+       /* if(dayOfWeek-FechaGUARDADA == 1 ||(dayOfWeek == 1 && FechaGUARDADA == 7)) {
+            Racha++;
+            editor.putFloat("FechaDIF", dayOfWeek);
+            editor.putInt("RACHA", Racha);
+            editor.commit();
+        }else if(FechaGUARDADA-dayOfWeek > 1){
+            Racha = 0;
+            editor.putInt("RACHA", Racha);
+            editor.putFloat("FechaDIF",dayOfWeek);
+            editor.commit();
+        }else{
+
+        }*/
+        //editor.putFloat("FechaDIF",dayOfWeek);
+        //editor.commit();
     }
 
 
