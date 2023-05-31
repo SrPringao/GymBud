@@ -409,6 +409,48 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/ipCardNfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true">
+
+                <net.colindodd.gradientlayout.GradientRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:padding="10dp"
+                    gl:end_color="@color/colorIdentidad6"
+                    gl:orientation="LEFT_RIGHT"
+                    gl:start_color="@color/colorIdentidad5">
+
+                    <TextView
+                        android:id="@+id/nfcTitle"
+                        style="@style/viewParent.headerText.HomeCardTitle"
+                        android:paddingBottom="10dp"
+                        android:text="Funcion NFC" />
+
+                    <TextView
+                        android:id="@+id/nfcinfo"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:text="Si te encuentras en el gimnasio, acerca tu celular con el NFC activado a la etiqueta nfc para probar la funcion!"
+                        android:layout_below="@id/nfcTitle" />
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_nfc"
+                        android:layout_below="@+id/nfcinfo" />
+
+                </net.colindodd.gradientlayout.GradientRelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/ipCard7"
 
                 android:layout_width="match_parent"

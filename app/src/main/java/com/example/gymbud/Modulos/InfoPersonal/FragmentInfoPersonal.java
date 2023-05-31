@@ -114,6 +114,11 @@ public class FragmentInfoPersonal extends Fragment {
         }
     }
 
+    //checar si el telefono cuenta con nfc
+    private boolean hasNFC() {
+        return getContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -127,11 +132,22 @@ public class FragmentInfoPersonal extends Fragment {
 
     ProgressBar progressBar1, progressBar2;
 
+    CardView cardnfc;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         startLocationUpdates();
+        Log.d("has nfc", "onViewCreated: " + hasNFC());
+
+
+        cardnfc = view.findViewById(R.id.ipCardNfc);
+
+        if (hasNFC()) {
+            cardnfc.setVisibility(View.VISIBLE);
+        } else {
+            cardnfc.setVisibility(View.GONE);
+        }
 
         ImageView infoPantalla = view.findViewById(R.id.ipBotonInfo);
         infoPantalla.setOnClickListener(new View.OnClickListener() {
