@@ -160,9 +160,11 @@
                     <TextView
                         android:id="@+id/Detalles"
                         style="@style/nestedTextTitle"
-                        android:text="Detalles"
+                        android:layout_width="wrap_content"
+                        android:text="Detalles / Recomendaciones"
                         app:layout_constraintTop_toBottomOf="@+id/EjecucionData"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteX="20dp" />
 
 
                     <TextView

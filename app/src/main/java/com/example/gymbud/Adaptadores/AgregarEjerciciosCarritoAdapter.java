@@ -182,6 +182,11 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 Toast.makeText(view.getContext(), "Por favor ingrese un tiempo", Toast.LENGTH_SHORT).show();
                                 return;
                             }
+
+
+
+
+
                             int tiempo = Integer.parseInt(seriesEditText.getText().toString());
                             int muscleId = exercise.getMuscularGroup();
                             String name = exercise.getName();
@@ -307,9 +312,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             listaDeGrupos.add(muscleId);
 
 
-                            exerciseSet[0] = new ExerciseSet(exerciseId, name, numSeries, numReps, muscleId, imagen);
-                            Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
-                            IdList.getInstance().add(exerciseSet[0]);
+
 
                             //if iflist.size() == 0, then the list is empty
                             if (IdList.getInstance().size() == 9) {
@@ -326,7 +329,39 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 builder.show();
                             }
 
+                            //if series or reps are more than 20 send a error message
+                            if ( numSeries > 5) {
+                                //popUp
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("¡Cuidado!");
+                                builder.setMessage("Puede que agregar a tu rutina mas de 5 series no sea la mejor idea.");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //go to the next activity
+                                    }
+                                });
+                                builder.show();
+                            }
 
+                            if ( numReps > 25) {
+                                //popUp
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("¡Cuidado!");
+                                builder.setMessage("Puede que agregar a tu rutina mas de 25 repeticiones no sea la mejor idea.");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //go to the next activity
+                                    }
+                                });
+                                builder.show();
+                            }
+
+
+                            exerciseSet[0] = new ExerciseSet(exerciseId, name, numSeries, numReps, muscleId, imagen);
+                            Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
+                            IdList.getInstance().add(exerciseSet[0]);
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
                         }
                     });
