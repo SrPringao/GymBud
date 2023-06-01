@@ -247,6 +247,8 @@ public class Sucursales extends Fragment {
                                                 Log.d("Horario", SucursalesLista.get(position).getSchedule());
                                                 args.putString("Rating", "" + SucursalesLista.get(position).getRating());
                                                 args.putInt("ID", SucursalesLista.get(position).getId());
+                                                args.putString("Latitud", SucursalesLista.get(position).getLatitud());
+                                                args.putString("Longitud", SucursalesLista.get(position).getLongitud());
                                                 Log.d("ID", "" + SucursalesLista.get(position).getId());
 
                                                 fragment.setArguments(args);

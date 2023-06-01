@@ -103,40 +103,40 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
 
     TextView Sucursal, Personas, Ubicacion, TextoRating;
 
-    public int[] imagenes(String sucursal) {
+    public int[] imagenes(int sucursal) {
         int[] mImages = new int[]{};
         switch (sucursal) {
-            case "La Calma":
+            case 1:
                 mImages = new int[]{
                         R.drawable.lacalma1, R.drawable.lacalma2, R.drawable.lacalma3, R.drawable.lacalma4
                 };
                 break;
-            case "Javier Mina":
+            case 2:
                 mImages = new int[]{
                         R.drawable.javiermina1, R.drawable.javiermina2, R.drawable.javiermina3, R.drawable.javiermina4
                 };
                 break;
-            case "Mariano Otero":
+            case 3:
                 mImages = new int[]{
                         R.drawable.marianootero1, R.drawable.marianootero2, R.drawable.marianootero3, R.drawable.marianootero4
                 };
                 break;
-            case "Clouthier":
+            case 4:
                 mImages = new int[]{
                         R.drawable.clouthier1, R.drawable.clouthier2, R.drawable.clouthier3, R.drawable.clouthier4
                 };
                 break;
-            case "Belisario":
+            case 5:
                 mImages = new int[]{
                         R.drawable.belisario1, R.drawable.belisario2, R.drawable.belisario3, R.drawable.belisario4
                 };
                 break;
-            case "Chapalita":
+            case 6:
                 mImages = new int[]{
                         R.drawable.chapalita1, R.drawable.chapalita2, R.drawable.chapalita3, R.drawable.chapalita4
                 };
                 break;
-            case "Lázaro Cárdenas":
+            case 7:
                 mImages = new int[]{
                         R.drawable.lazarocardenas1, R.drawable.lazarocardenas2, R.drawable.lazarocardenas3, R.drawable.lazarocardenas4
                 };
@@ -174,7 +174,7 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         //obtener los datos de la sucursal seleccionada
         Extras(view);
         Bundle mbundle = getArguments();
-        Imagenes = imagenes(mbundle.getString("Nombre"));
+        Imagenes = imagenes(mbundle.getInt("ID",0));
         sucursal = mbundle.getString("Nombre");
         Ubi = mbundle.getString("Ubicacion");
         String Rating = mbundle.getString("Rating");
@@ -250,13 +250,16 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 requestQueue.add(stringRequest);
 
-
+                String Latitud = mbundle.getString("Latitud", "NO DATA");
+                String Longitud = mbundle.getString("Longitud", "NO DATA");
                 Fragment fragment = new SucursalSeleccionada();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("Nombre", sucursal);
                 args.putString("Ubicacion", Ubi);
                 args.putInt("ID", id);
+                args.putString("Latitud", Latitud);
+                args.putString("Longitud", Longitud);
 
 
                 fragment.setArguments(args);
@@ -310,42 +313,12 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Bundle mbundle = getArguments();
-        String sucursal = mbundle.getString("Nombre", "NO DATA");
+        double Latitud = Double.parseDouble(mbundle.getString("Latitud", "NO DATA"));
+        double Longitud = Double.parseDouble(mbundle.getString("Longitud", "NO DATA"));
 
-        double Lat = 20.637847141785972, Long = -103.41884252155718;
-        switch (sucursal) {
-            case "La Calma":
-                Lat = 20.637847141785972;
-                Long = -103.41884252155718;
-                break;
-            case "Javier Mina":
-                Lat = 20.667294198684644;
-                Long = -103.31336553875106;
-                break;
-            case "Mariano Otero":
-                Lat = 20.632611820270494;
-                Long = -103.4253400851146;
-                break;
-            case "Clouthier":
-                Lat = 20.671056271119884;
-                Long = -103.41746674272368;
-                break;
-            case "Belisario":
-                Lat = 20.69425458524266;
-                Long = -103.32276057242636;
-                break;
-            case "Chapalita":
-                Lat = 20.664563545261345;
-                Long = -103.4106651913678;
-                break;
-            case "Lázaro Cárdenas":
-                Lat = 20.669517605369627;
-                Long = -103.40420645405732;
-                break;
 
-        }
         mMap = googleMap;
-        LatLng Gym = new LatLng(Lat, Long);
+        LatLng Gym = new LatLng(Latitud, Longitud);
         mMap.addMarker(new MarkerOptions()
                 .position(Gym)
                 .title("Gym")
@@ -356,34 +329,10 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
 
     public void personas(View view) {
         Bundle mbundle = getArguments();
-        String sucursal = mbundle.getString("Nombre", "NO DATA");
-        int NumSucursal = 1;
-        switch (sucursal) {
-            case "La Calma":
-                NumSucursal = 1;
-                break;
-            case "Javier Mina":
-                NumSucursal = 2;
-                break;
-            case "Mariano Otero":
-                NumSucursal = 3;
-                break;
-            case "Clouthier":
-                NumSucursal = 4;
-                break;
-            case "Belisario":
-                NumSucursal = 5;
-                break;
-            case "Chapalita":
-                NumSucursal = 5;
-                break;
-            case "Lázaro Cárdenas":
-                NumSucursal = 6;
-                break;
+        int sucursal = mbundle.getInt("ID", 0);
 
-        }
         String url = "https://francoaldrete.com/GymBud/count.php?sucursal=";
-        url += NumSucursal;
+        url += sucursal;
         StringRequest sRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
@@ -404,359 +353,63 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
     }
 
     public void Extras(View view) {
-
+        imagen1 = view.findViewById(R.id.Extra1);
+        imagen2 = view.findViewById(R.id.Extra2);
+        imagen3 = view.findViewById(R.id.Extra3);
+        imagen4 = view.findViewById(R.id.Extra4);
+        imagen5 = view.findViewById(R.id.Extra5);
+        imagen6 = view.findViewById(R.id.Extra6);
+        imagen7 = view.findViewById(R.id.Extra7);
+        imagen8 = view.findViewById(R.id.Extra8);
         Bundle mbundle = getArguments();
-        String sucursal = mbundle.getString("Nombre", "NO DATA");
-        int NumSucursal = 1;
-        switch (sucursal) {
-            case "La Calma":
-                NumSucursal = 1;
-                break;
-            case "Javier Mina":
-                NumSucursal = 2;
-                break;
-            case "Mariano Otero":
-                NumSucursal = 3;
-                break;
-            case "Clouthier":
-                NumSucursal = 4;
-                break;
-            case "Belisario":
-                NumSucursal = 5;
-                break;
-            case "Chapalita":
-                NumSucursal = 5;
-                break;
-            case "Lázaro Cárdenas":
-                NumSucursal = 6;
-                break;
-
-        }
+        int sucursal = mbundle.getInt("ID", 0);
 
         String url = "https://francoaldrete.com/GymBud/extra.php?sucursal=";
-        url += NumSucursal;
+        url += sucursal;
         Log.d("Extras", "URL: " + url);
         JsonArrayRequest extra = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 String serviceId = jsonObject.getString("ServiceId");
 
                                 switch (serviceId) {
                                     case "1":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
                                                 imagen1.setImageResource(R.drawable.ic_crossfit);
                                                 imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_crossfit);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_crossfit);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_crossfit);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_crossfit);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_crossfit);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
                                         break;
                                     case "2":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_telas);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
                                                 imagen2.setImageResource(R.drawable.ic_telas);
                                                 imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_telas);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_telas);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_telas);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_telas);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
                                         break;
                                     case "3":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_alberca2);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_alberca2);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
                                                 imagen3.setImageResource(R.drawable.ic_alberca2);
                                                 imagen3.setVisibility(View.VISIBLE);
                                                 break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_alberca2);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_alberca2);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_alberca2);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
-                                        break;
                                     case "4":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_box1);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_box1);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_box1);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
                                                 imagen4.setImageResource(R.drawable.ic_box1);
                                                 imagen4.setVisibility(View.VISIBLE);
                                                 break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_box1);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_box1);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
-                                        break;
                                     case "5":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_sauna);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_sauna);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_sauna);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_sauna);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
                                                 imagen5.setImageResource(R.drawable.ic_sauna);
                                                 imagen5.setVisibility(View.VISIBLE);
                                                 break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_sauna);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
-                                        break;
                                     case "6":
-
+                                        imagen6.setImageResource(R.drawable.ic_baile);
+                                        imagen6.setVisibility(View.VISIBLE);
                                     case "7":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_masaje2);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_masaje2);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_masaje2);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_masaje2);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_masaje2);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_masaje2);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
+                                                imagen7.setImageResource(R.drawable.ic_masaje2);
                                                 imagen7.setVisibility(View.VISIBLE);
                                                 break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
-                                                imagen8.setImageResource(R.drawable.ic_colageno);
-                                                imagen8.setVisibility(View.VISIBLE);
-                                                break;
-                                        }
-                                        break;
-
                                     case "8":
-                                        switch (i) {
-                                            case 0:
-                                                imagen1 = view.findViewById(R.id.Extra1);
-                                                imagen1.setImageResource(R.drawable.ic_masaje2);
-                                                imagen1.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 1:
-                                                imagen2 = view.findViewById(R.id.Extra2);
-                                                imagen2.setImageResource(R.drawable.ic_masaje2);
-                                                imagen2.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 2:
-                                                imagen3 = view.findViewById(R.id.Extra3);
-                                                imagen3.setImageResource(R.drawable.ic_masaje2);
-                                                imagen3.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 3:
-                                                imagen4 = view.findViewById(R.id.Extra4);
-                                                imagen4.setImageResource(R.drawable.ic_masaje2);
-                                                imagen4.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 4:
-                                                imagen5 = view.findViewById(R.id.Extra5);
-                                                imagen5.setImageResource(R.drawable.ic_masaje2);
-                                                imagen5.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 5:
-                                                imagen6 = view.findViewById(R.id.Extra6);
-                                                imagen6.setImageResource(R.drawable.ic_masaje2);
-                                                imagen6.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 6:
-                                                imagen7 = view.findViewById(R.id.Extra7);
-                                                imagen7.setImageResource(R.drawable.ic_baile);
-                                                imagen7.setVisibility(View.VISIBLE);
-                                                break;
-                                            case 7:
-                                                imagen8 = view.findViewById(R.id.Extra8);
                                                 imagen8.setImageResource(R.drawable.ic_colageno);
                                                 imagen8.setVisibility(View.VISIBLE);
                                                 break;
-                                        }
-                                        break;
+
                                 }
                                 Log.d("Extras", "ServiceId: " + serviceId);
                             }
