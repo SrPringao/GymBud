@@ -461,9 +461,11 @@ public class FragmentInfoPersonal extends Fragment {
         if (imc != 0 && personInfo.getAge() != 0 && personInfo.getGender() != 0 && personInfo.getHeight() != 0) {
             grasa = ((1.20 * imc) + (0.23 * personInfo.getAge()) - (10.8 * personInfo.getGender()) - 5.4);
             grasa = Math.round(grasa);
+            TG.setText("Tu tasa de grasa es del " + grasa + "%");
         } else {
             grasa = 0;
             TG.setText("Rellena los datos anteriores para calcular tu tasa de grasa");
+
         }
 
         Log.d("Valor de grasa ", String.valueOf(grasa));
@@ -471,7 +473,7 @@ public class FragmentInfoPersonal extends Fragment {
 
         pesos.setText("Peso actual: " + personInfo.getCurrentWeight() + " | Meta de peso:" + personInfo.getWeightGoal());
         IMC.setText("IMC:" + imc + "| Ideal:" + " 18.5 – 24.9");
-        TG.setText("Tu tasa de grasa es del " + grasa + "%");
+
         racha.setText(String.valueOf(RachaGuardada));
         if (personInfo.getCurrentWeight() != 0 && personInfo.getWeightGoal() != 0) {
             int Progreso = (int) ((personInfo.getCurrentWeight() * 100) / personInfo.getWeightGoal());
@@ -483,10 +485,12 @@ public class FragmentInfoPersonal extends Fragment {
             progressBar1.setProgress(Progreso);
             if (Progreso==100) {
                 progress1.setText("Felicidades!!, has llegado a tu meta de peso");
-            }else {
+            } else {
                 progress1.setText("Te falta " + (100 - Progreso) + "%" + " para llegar a tu meta de peso");
                 Log.d("Peso", Integer.toString(Progreso));
             }
+        }else{
+            progress1.setText("Rellena todos los datos anteriores para llevar un seguimiento!");
         }
 
 
