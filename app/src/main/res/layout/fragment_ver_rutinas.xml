@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgrounblack">
 
+    <TextView
+        style="@style/viewParent.headerText.HomeCardTitle"
+        android:paddingBottom="10dp"
+        android:text="Registro peso"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center"
+        android:textColor="@color/white"
+         />
+
     <ImageView
         android:id="@+id/VRButtonBack"
         android:layout_marginTop="30dp"
