@@ -2,10 +2,6 @@ package com.example.gymbud.Modulos.InfoPersonal;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.FragmentContainer;
@@ -32,7 +31,7 @@ public class CardInfoPeso extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private int UID;
+    private Long UID;
     private String mParam2;
 
     public CardInfoPeso() {
@@ -114,7 +113,7 @@ public class CardInfoPeso extends Fragment {
                 } else {
 
 
-                    int UID = activity.UIDUSR();
+                    Long UID = activity.UIDUSR();
                     Log.d("USR", "EL uid que llego es " + UID);
                     Float PAct = Float.parseFloat(ETP.getText().toString());
                     Float MP = Float.parseFloat(ETP2.getText().toString());

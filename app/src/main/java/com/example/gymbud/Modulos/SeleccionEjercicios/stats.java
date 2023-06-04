@@ -102,7 +102,7 @@ public class stats extends Fragment {
         Bundle args = getArguments();
         int id = args.getInt("id");//id del ejercicio seleccionado
         FragmentContainer activity = (FragmentContainer) getActivity();
-        int UID = activity.UIDUSR();
+        Long UID = activity.UIDUSR();
         ConsultarDatos(id, UID);
 
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.spinner_item, ListaStats);
@@ -130,7 +130,7 @@ public class stats extends Fragment {
         String musculo = args.getString("Musculo");//Nombre del musculo seleccionado
 
         FragmentContainer activity = (FragmentContainer) getActivity();
-        int UID = activity.UIDUSR();
+        Long UID = activity.UIDUSR();
 
         fechas = (Spinner) view.findViewById(R.id.SpinnerProgre);
         Carga = view.findViewById(R.id.Carga);
@@ -281,7 +281,7 @@ public class stats extends Fragment {
     }
 
     //Funcion para recuperar la info de la base de datos e insertarla al spinner
-    private void ConsultarDatos(int id, int usr) {
+    private void ConsultarDatos(int id, Long usr) {
         DbHelper dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 

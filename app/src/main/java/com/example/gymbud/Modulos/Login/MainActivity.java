@@ -1,18 +1,19 @@
 package com.example.gymbud.Modulos.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.TextView;
-import android.net.Uri;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -44,7 +45,7 @@ PersonInfo personInfo;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int shared;
+        long shared;
         SharedPreferences sharedPrefs = getSharedPreferences("MainArchivo", MODE_PRIVATE);
         setContentView(R.layout.activity_main);
         ETusr = findViewById(R.id.etUsuario);
@@ -55,7 +56,7 @@ PersonInfo personInfo;
 
 
 
-        shared = sharedPrefs.getInt("UID",0);
+        shared = sharedPrefs.getLong("UID",0);
         if(shared != 0  ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
             Intent i = new Intent(MainActivity.this, FragmentContainer.class);
             i.putExtra("UID",shared);
@@ -121,8 +122,8 @@ PersonInfo personInfo;
                     public void onResponse(JSONObject response) {
                         try {
                             Toast.makeText(MainActivity.this,"Bienvenido "+ response.getString("User"),Toast.LENGTH_SHORT).show();
-                            if (response.getInt("UID") != -1) {
-                                int UID = response.getInt("UID");
+                            if (response.getLong("UID") != -1) {
+                                long UID = response.getLong("UID");
                                 DbQuery dbQuery = new DbQuery(MainActivity.this);
                                 personInfo = dbQuery.verinfo(UID);
                                 if (personInfo != null) {
@@ -131,7 +132,7 @@ PersonInfo personInfo;
 
 
                                     SharedPreferences.Editor editor = sharedPrefs.edit();
-                                    editor.putInt("UID", UID);
+                                    editor.putLong("UID", UID);
                                     editor.commit();
 
 
@@ -142,7 +143,7 @@ PersonInfo personInfo;
 
                                     long id = dbQuery.InsertarInfoPerson(UID, 0, 0, 0.00, 0.00, 0.00, 0, 0, "abubu");
                                     SharedPreferences.Editor editor = sharedPrefs.edit();
-                                    editor.putInt("UID", UID);
+                                    editor.putLong("UID", UID);
                                     editor.commit();
 
                                     Intent i = new Intent(MainActivity.this, FragmentContainer.class);

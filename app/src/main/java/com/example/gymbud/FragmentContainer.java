@@ -27,10 +27,10 @@ public class FragmentContainer extends AppCompatActivity {
     MeowBottomNavigation bottomNav;
 
     ImageView imagen;
-    int UID;
+    Long UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        UID = getIntent().getExtras().getInt("UID");
+        UID = getIntent().getExtras().getLong("UID");
         Log.d("UID", "Llego el UID " + UID);
 
         //esto hace que cuando se abra el teclado no se mueva la pantalla
@@ -151,7 +151,7 @@ public class FragmentContainer extends AppCompatActivity {
     }
 
     //Esta funcion solo retorna el UID del usuario en caso de que se necesite
-    public int UIDUSR(){
+    public Long UIDUSR(){
         return UID;
     }
 

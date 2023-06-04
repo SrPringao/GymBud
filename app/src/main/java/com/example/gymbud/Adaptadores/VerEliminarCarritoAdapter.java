@@ -23,14 +23,9 @@ public class VerEliminarCarritoAdapter extends RecyclerView.Adapter<VerEliminarC
     ArrayList<Exercises> ListasEjercicios;
     ArrayList<Integer> listaSeries = new ArrayList<>();
     ArrayList<Integer>listaReps = new ArrayList<>();
-
     ArrayList<Integer>listaTiempo = new ArrayList<>();
-
     ArrayList<String>listaNombres = new ArrayList<>();
     TextView tiempoEstimadoTextView;
-
-
-
 
 
     public VerEliminarCarritoAdapter(ArrayList<Exercises> ListasEjercicios, TextView tiempoEstimadoTextView) {
@@ -83,8 +78,12 @@ public class VerEliminarCarritoAdapter extends RecyclerView.Adapter<VerEliminarC
             holder.ekis.setText(String.valueOf(exercise.getTime()) + " Minutos");
             holder.ekis.setTextSize(25);
         } else {
+            holder.sets.setVisibility(View.VISIBLE); // Mostrar sets
+            holder.reps.setVisibility(View.VISIBLE); // Mostrar reps
             holder.sets.setText(String.valueOf(exercise.getSets()));
             holder.reps.setText(String.valueOf(exercise.getReps()));
+            holder.ekis.setText("X"); // Limpiar texto
+
         }
 
 

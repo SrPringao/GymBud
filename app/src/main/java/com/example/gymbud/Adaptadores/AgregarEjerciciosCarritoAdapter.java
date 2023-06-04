@@ -109,10 +109,13 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
                 int exerciseId = exercise.getId();
                 int exerciseGroup = exercise.getMuscularGroup();
+                Log.d("Tamanio de la lista", "Tamanio: " + IdList.getInstance().size() + "");
 
                 Log.d("MuscularGroup del click", "MuscularGroup: " + exerciseGroup + "");
 
@@ -120,6 +123,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                 if (containsExerciseWithId(IdList.getInstance(), exerciseId)) {
 
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
+
 
                 } else if (exerciseGroup == 16) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -183,10 +187,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 return;
                             }
 
-
-
-
-
                             int tiempo = Integer.parseInt(seriesEditText.getText().toString());
                             int muscleId = exercise.getMuscularGroup();
                             String name = exercise.getName();
@@ -199,7 +199,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                             IdList.getInstance().add(new ExerciseSet(exerciseId, name, muscleId, tiempo));
 
-                            if (IdList.getInstance().size() == 9) {
+                            if (IdList.getInstance().size()+1 > 8) {
                                 //popUp
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("¡Cuidado!");
@@ -314,8 +314,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
 
-                            //if iflist.size() == 0, then the list is empty
-                            if (IdList.getInstance().size() == 9) {
+                            if (IdList.getInstance().size()+1 > 8) {
                                 //popUp
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("¡Cuidado!");
