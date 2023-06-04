@@ -201,15 +201,18 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
                             if (IdList.getInstance().size() > 8) {
                                 //popUp
+                                Log.d("Entre en el puto if", "Tamanio: " + IdList.getInstance().size() + "");
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("¡Cuidado!");
-                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
+                                builder.setMessage("Puede que agregar a tu rutina más de 8 ejercicios no sea la mejor idea. ");
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //go to the next activity
+                                        // Ir a la siguiente actividad
                                     }
                                 });
+                                builder.show(); // Agregar esta línea para mostrar el diálogo secundario
                             }
 
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
