@@ -9,6 +9,17 @@
     android:background="@drawable/backgrounblack"
     tools:context=".Modulos.InfoPersonal.CardInfoPeso">
 
+    <TextView
+        style="@style/viewParent.headerText.HomeCardTitle"
+        android:paddingBottom="10dp"
+        android:text="Registro meta de peso"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonback1" />
+
     <ImageView
         android:id="@+id/botonback1"
 
@@ -24,11 +35,12 @@
     </ImageView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="23dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
+        app:cardCornerRadius="23dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +49,9 @@
         tools:ignore="RtlSymmetry">
 
         <RelativeLayout
-            android:background="@drawable/backgroundcorner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/backgroundcorner"
             android:minHeight="100dp"
             android:padding="10dp"
             gl:end_color="@color/colorIdentidad6"
@@ -48,9 +60,9 @@
 
             <TextView
                 android:id="@+id/Pregunta"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
                 style="@style/viewParent.headerText.HomeCardTitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:paddingBottom="10dp"
                 android:text="Ingresa tu peso" />
@@ -62,12 +74,12 @@
                 android:layout_below="@id/Pregunta"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:inputType="numberDecimal"
-
                 android:layout_marginBottom="20dp"
+
                 android:background="@drawable/background_edittext"
                 android:cursorVisible="true"
                 android:hint="Ingresa tu peso actual"
+                android:inputType="numberDecimal"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -87,9 +99,9 @@
                 android:background="@drawable/background_edittext"
                 android:cursorVisible="true"
                 android:hint="Ingresa tu meta de peso"
+                android:inputType="numberDecimal"
                 android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:inputType="numberDecimal"
 
                 android:paddingBottom="10dp"
 

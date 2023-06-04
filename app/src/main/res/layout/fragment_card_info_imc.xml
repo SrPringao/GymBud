@@ -10,6 +10,17 @@
     tools:context=".Modulos.InfoPersonal.CardInfoPeso">
 
 
+    <TextView
+        style="@style/viewParent.headerText.HomeCardTitle"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:text="Calculo de Indice de masa corporal"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonback2" />
+
     <ImageView
         android:id="@+id/botonback2"
 
@@ -25,11 +36,12 @@
     </ImageView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="23dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
+        app:cardCornerRadius="23dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,9 +50,9 @@
         tools:ignore="RtlSymmetry">
 
         <RelativeLayout
-            android:background="@drawable/backgroundcorner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/backgroundcorner"
             android:minHeight="100dp"
             android:padding="10dp"
             gl:end_color="@color/colorIdentidad6"
@@ -49,9 +61,9 @@
 
             <TextView
                 android:id="@+id/Pregunta"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
                 style="@style/viewParent.headerText.HomeCardTitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:paddingBottom="10dp"
                 android:text="Indice de masa corporal" />
@@ -92,9 +104,7 @@
                 android:background="@drawable/backgroundcornerinverted"
                 android:padding="20dp"
                 android:text="Calcular imc"
-                android:textColor="@color/colorIdentidad6">
-            </Button>
-
+                android:textColor="@color/colorIdentidad6"></Button>
 
 
         </RelativeLayout>
