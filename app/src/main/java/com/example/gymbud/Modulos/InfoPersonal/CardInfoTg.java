@@ -115,7 +115,7 @@ public class CardInfoTg extends Fragment {
                     } else if (1 == opciones.getSelectedItemId()) {
                         sexo = 2;
                     }
-                    int UID = activity.UIDUSR();
+                    Long UID = activity.UIDUSR();
                     String update = "UPDATE PERSONINFO SET Age = " + Integer.parseInt(Edad.getText().toString()) + ",Gender = " + sexo + " WHERE UserId = " + UID;
                     Log.d("Edad registrada", Edad.getText().toString());
                     Log.d("Query update", update);

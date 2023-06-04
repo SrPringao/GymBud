@@ -109,6 +109,8 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
         holder.Button.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
                 int exerciseId = exercise.getId();
@@ -120,6 +122,7 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                 if (containsExerciseWithId(IdList.getInstance(), exerciseId)) {
 
                     Toast.makeText(view.getContext(), "El ejercicio ya fue agregado previamente", Toast.LENGTH_SHORT).show();
+
 
                 } else if (exerciseGroup == 16) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -183,10 +186,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 return;
                             }
 
-
-
-
-
                             int tiempo = Integer.parseInt(seriesEditText.getText().toString());
                             int muscleId = exercise.getMuscularGroup();
                             String name = exercise.getName();
@@ -198,18 +197,22 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
 
 
                             IdList.getInstance().add(new ExerciseSet(exerciseId, name, muscleId, tiempo));
+                            Log.d("Tamanio de la lista despues de agregar en cardio", "Tamanio: " + IdList.getInstance().size() + "");
 
-                            if (IdList.getInstance().size() == 9) {
+                            if (IdList.getInstance().size() > 8) {
                                 //popUp
+                                Log.d("Entre en el puto if", "Tamanio: " + IdList.getInstance().size() + "");
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                                 builder.setTitle("¡Cuidado!");
-                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
+                                builder.setMessage("Puede que agregar a tu rutina más de 8 ejercicios no sea la mejor idea. ");
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //go to the next activity
+                                        // Ir a la siguiente actividad
                                     }
                                 });
+                                builder.show(); // Agregar esta línea para mostrar el diálogo secundario
                             }
 
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
@@ -312,24 +315,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             listaDeGrupos.add(muscleId);
 
 
-
-
-                            //if iflist.size() == 0, then the list is empty
-                            if (IdList.getInstance().size() == 9) {
-                                //popUp
-                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                                builder.setTitle("¡Cuidado!");
-                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
-                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        //go to the next activity
-                                    }
-                                });
-                                builder.show();
-                            }
-
-                            //if series or reps are more than 20 send a error message
                             if ( numSeries > 5) {
                                 //popUp
                                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
@@ -338,7 +323,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //go to the next activity
                                     }
                                 });
                                 builder.show();
@@ -352,7 +336,6 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        //go to the next activity
                                     }
                                 });
                                 builder.show();
@@ -362,6 +345,25 @@ public class AgregarEjerciciosCarritoAdapter extends RecyclerView.Adapter<Agrega
                             exerciseSet[0] = new ExerciseSet(exerciseId, name, numSeries, numReps, muscleId, imagen);
                             Log.d("Ejercicio que se guarda en el objeto", exerciseId + " " + numSeries + " " + numReps);
                             IdList.getInstance().add(exerciseSet[0]);
+
+
+                            if (IdList.getInstance().size() > 8) {
+                                //popUp
+                                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                builder.setTitle("¡Cuidado!");
+                                builder.setMessage("Puede que agregar a tu rutina mas de 8 ejercicios no sea la mejor idea. ");
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        //go to the next activity
+                                    }
+                                });
+                                builder.show();
+                            }
+
+
+                            Log.d("Tamanio de la lista despues de agregar en ejercicio", "Tamanio: " + IdList.getInstance().size() + "");
+
                             Toast.makeText(view.getContext(), "Ejercicio agregado a la lista", Toast.LENGTH_SHORT).show();
                         }
                     });

@@ -3,12 +3,6 @@ package com.example.gymbud.Modulos.SeleccionEjercicios;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.Db.DbQuery;
@@ -133,7 +132,7 @@ public class registropeso extends Fragment {
                 String FechaAct = activity.FechaAct();
                 DbQuery dbQuery = new DbQuery(context);
                 FragmentContainer activity = (FragmentContainer) getActivity();
-                int UID =activity.UIDUSR();
+                Long UID =activity.UIDUSR();
                 dbQuery.StatsInsert(carga,reps,reps2,Time,FechaAct,id,UID);
                 Fragment fragment = new stats();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();

@@ -43,7 +43,7 @@ public class DbQuery extends DbHelper {
     //Para despues usar el metodo get writable database que lo que hace es preparar la bd para realizar cambios, despues
     //Declaramos content values y de ahi lo vamos llenando con los datos que recibe de cuando se invoca la funcion, para despues insertarlo en
     // la tabla person info
-    public long InsertarInfoPerson(int UserId, int Assists, int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age, String Phrase) {
+    public long InsertarInfoPerson(long UserId, int Assists, int DayRoutine, Double CurrentWeight, Double WeightGoal, Double Height, int Gender, int Age, String Phrase) {
         long id = 0;
         try {
 
@@ -71,7 +71,7 @@ public class DbQuery extends DbHelper {
     //Esta funcion lo que hace es mostrar la informacion almacenada en la bd, instanciamos un objeto dbHelper, y preparamos la bd para escribir,
     //despues con el pojo ya creado de PersonInfo que tiene las variables de la tabla con sus respectivos getters and setters, hacemos una query a la bd
     //con el id del usuario que lo recibe cuando se invoca la funcion, para despues ir guardando la informacion en este objeto person info y retornar el objeto.
-    public PersonInfo verinfo(int id) {
+    public PersonInfo verinfo(long id) {
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         PersonInfo personInfo = null;
@@ -244,7 +244,7 @@ public class DbQuery extends DbHelper {
     //Esta funcion inserta los valores recibidos en la tabla Stats, donde retorna un long, primero creamos el objeto Dbhelper y preparamos
     //la bd para escritura, despues insertamos los valores recibidos en values que es un content values y hacemos la query que es un insert con
     //los valores guardados en values, para retornar la query
-    public void StatsInsert(int weight, int reps, int reps2, float time, String Date, int IdEjercicio, int IdUsr) {
+    public void StatsInsert(int weight, int reps, int reps2, float time, String Date, int IdEjercicio, Long IdUsr) {
 
         try {
             DbHelper dbHelper = new DbHelper(context);
@@ -267,7 +267,7 @@ public class DbQuery extends DbHelper {
 
     //Esta funcion sirve para mostrar las stats, como ya fue mencionado antes se crea un pojo llamado stats y creamos el objeto dbhelper para preparar la bd
     //para escritura, despues realizar un selectr a la tabla stats con el id recibido y se almacenan los datos en el pojo, para despues retornar stats.
-    public Stats verStats(int id, int usr) {
+    public Stats verStats(int id, Long usr) {
 
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

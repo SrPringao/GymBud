@@ -182,7 +182,8 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
         id = mbundle.getInt("ID");
 
         FragmentContainer activity = (FragmentContainer) getActivity();
-        int UID = activity.UIDUSR();
+        Long UID = activity.UIDUSR();
+        Log.d("UID recibida", String.valueOf(UID));
         Log.d("id recibida", String.valueOf(id));
 
 
@@ -221,8 +222,10 @@ public class SucursalSeleccionada extends Fragment implements OnMapReadyCallback
                 Log.d("Calificacion", calificacion3);
 
                 //enviar calificaciones a la base de datos
+                String url = "http://francoaldrete.com/GymBud/rating.php?uid=" + UID + "&sucursal=" + id + "&cal1=" + calificacion1 + "&cal2=" + calificacion2 + "&cal3=" + calificacion3;
+                Log.d("URL ratin", url);
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://francoaldrete.com/GymBud/rating.php?uid=" + UID + "&sucursal=" + id + "&cal1=" + calificacion1 + "&cal2=" + calificacion2 + "&cal3=" + calificacion3,
-                        new Response.Listener<String>() {
+                new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();

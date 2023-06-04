@@ -116,6 +116,7 @@
             </RelativeLayout>
 
             <androidx.core.widget.NestedScrollView
+                android:padding="10dp"
                 android:id="@+id/nested"
                 android:layout_width="400dp"
                 android:layout_height="360dp"
@@ -208,6 +209,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/RecyclerViewParecido"
+                        android:padding="10dp"
                         android:layout_width="353dp"
                         android:layout_height="168dp"
                         android:layout_marginTop="12dp"

@@ -246,7 +246,7 @@ public class FragmentInfoPersonal extends Fragment {
         PersonInfo personInfo;
         TextView frase = view.findViewById(R.id.frase);
         FragmentContainer activity = (FragmentContainer) getActivity();
-        int UID = activity.UIDUSR();
+        Long UID = activity.UIDUSR();
         String FechaG = activity.FechaG();
         String FechaAct = activity.FechaAct();
         float FechaC = activity.FechaLONG();
@@ -438,7 +438,7 @@ public class FragmentInfoPersonal extends Fragment {
     //recibe el UID que es el id del usuario en la base de datos, y los textview de las tarjetas, despues realiza el calculo del imc con el peso y la altura guardada
     //en la bd, tambien calcula la grasa corporal con una funcion que usa el imc del usuario previamente calculado, su edad y su genero
     //Para finalizar coloca los calculos realizados en su tarjeta correspondiente.
-    private void rellenado(PersonInfo personInfo, int UID, TextView pesos, TextView IMC, TextView TG, TextView racha) {
+    private void rellenado(PersonInfo personInfo, Long UID, TextView pesos, TextView IMC, TextView TG, TextView racha) {
         Context context = getContext();
         SharedPreferences sharedPrefs = context.getSharedPreferences("Fecha", Context.MODE_PRIVATE);
         int RachaGuardada = sharedPrefs.getInt("RACHA", 0);

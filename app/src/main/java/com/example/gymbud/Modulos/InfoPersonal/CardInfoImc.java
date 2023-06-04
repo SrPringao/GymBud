@@ -2,10 +2,6 @@ package com.example.gymbud.Modulos.InfoPersonal;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gymbud.Db.DbHelper;
 import com.example.gymbud.FragmentContainer;
@@ -102,7 +101,7 @@ public class CardInfoImc extends Fragment {
 
                 }else{
 
-                    int UID = activity.UIDUSR();
+                    Long UID = activity.UIDUSR();
                     String update = "UPDATE PERSONINFO SET Height = "+testo.getText().toString()+ " WHERE UserId = " + UID;
                     Log.d("UPDATE", update);
                     db.execSQL(update);
