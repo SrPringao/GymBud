@@ -58,23 +58,26 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-
+                <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:host="francoaldrete.com"
                     android:scheme="https"
                     android:pathPrefix="//"
                     android:pathPattern=".*id=.*" />
-
             </intent-filter>
         </activity>
 
+
+
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCOPic6cUTjthbtwQxOde47gwTzy_Yi2gA" />
+            android:value="AIzaSyClyPyRoqiLMu5_3JUkamVPd6yMQvd31us" />
 
         <meta-data
             android:name="preloaded_fonts"

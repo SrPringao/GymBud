@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
@@ -124,16 +126,7 @@ public class Sucursales extends Fragment {
         return locationRequest;
     }
 
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        stopLocationUpdates();
-//    }
-//
-//    private void stopLocationUpdates() {
-//        fusedLocationClient.removeLocationUpdates(locationCallback);
-//    }
+
 
     RecyclerView recyclerView;
     ArrayList<Sucursal> SucursalesLista;
@@ -147,14 +140,21 @@ public class Sucursales extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.RecyclerSucursales);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
 
         //verificar si el permiso esta concedido o no y asignar valor a permiso
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             permiso = true;
         }
 
-        Log.wtf("Permiso", permiso.toString());
-
+        Log.d("Permiso", permiso.toString());
+        Log.d("Conectado", isConnected + "");
         MostrarResultado(permiso);
     }
 
