@@ -56,13 +56,13 @@ PersonInfo personInfo;
 
 
 
-        shared = sharedPrefs.getLong("UID",0);
-        if(shared != 0  ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
-            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
-            i.putExtra("UID",shared);
-            startActivity(i);
-            finish();
-        }
+//        shared = sharedPrefs.getLong("UID",0);
+//        if(shared != 0  ){ //este if evita que inicies sesion si anteriormente ya iniciaste sesion
+//            Intent i = new Intent(MainActivity.this, FragmentContainer.class);
+//            i.putExtra("UID",shared);
+//            startActivity(i);
+//            finish();
+//        }
 
         //La funcion ClickInicio lo que hace es que recibe los dos datos ingresados en los editText, para despues comprobar si alguno de estos esta vacio mandar error
         //, si esta completo realiza la query al servidor con el php designado, con la contraseña y usuario registrado, si si esta registrado acacede a la pantalla de
