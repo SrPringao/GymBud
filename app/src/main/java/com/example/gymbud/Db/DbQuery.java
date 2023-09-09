@@ -200,6 +200,7 @@ public class DbQuery extends DbHelper {
             exercises.setCategory(cursorejercicios.getInt(9));
             exercises.setDifficulty(cursorejercicios.getInt(10));
             exercises.setStats(cursorejercicios.getInt(11));
+
         }
 
         cursorejercicios.close();
